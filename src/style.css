@@ -1,0 +1,9 @@
+@charset "utf-8";
+/*
+Theme Name: WordPressBaseTheme
+Version: 1.0.0
+Author: naganuma
+Description: WordPressベーステーマ
+*/
+
+@import url("assets/css/style.css");

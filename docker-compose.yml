@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+   db:
+     container_name: ${TITLE}-db
+     image: mysql:5.7
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: somewordpress
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: wordpress
+
+   wordpress:
+     container_name: ${TITLE}-wp
+     depends_on:
+       - db
+     build: ./
+     volumes:
+        - ./dist:/var/www/html/wp-content/themes/${TITLE}
+        - wp_data:/var/www/html
+        - ./wp-install.sh:/tmp/wp-install.sh
+     env_file:
+      - .env
+     ports:
+       - "${IP}:8080:80"
+     restart: always
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: wordpress
+
+   phpmyadmin:
+      container_name: ${TITLE}-phpmyadmin
+      image: phpmyadmin/phpmyadmin:latest
+      environment:
+        PMA_ARBITRARY: 1
+        PMA_HOST: db
+        PMA_USER: wordpress
+        PMA_PASSWORD: wordpress
+      depends_on:
+        - db
+      ports:
+       - "${IP}:8000:80"
+volumes:
+    db_data:
+    wp_data:
