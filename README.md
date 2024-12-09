@@ -90,3 +90,49 @@ sudo chown {ユーザーネーム}:{ユーザーグループ} dist
 ```
 
 を実行します。
+
+## CSS
+
+```
+├── _common：全ページ共通のcss格納
+│   ├── common.scss
+│   ├── footer.scss
+│   ├── header.scss
+│   └── subpage：下層ページ共通のcss格納（=下層2ページ以上にまたがるcss）
+├── _custom-pages：各ページごとのcss格納
+│   ├── front-page.scss
+│   └── page-sample.scss
+├── _utils
+│   ├── animation.scss：共通cssアニメーション格納
+│   ├── function.scss：関数格納
+│   └── mixin.scss：mixin格納
+├── _var.scss：変数格納
+└── style.scss：全体のscss
+
+その他追加する場合は自由に追加してください。
+```
+
+## functions
+
+CSS Javascriptの読み込み  
+```
+src/functions/hooks/class-head.php
+```
+
+固定ページ作成, カスタム投稿タイプ作成, カスタムタクソノミー作成  
+```
+src/functions/hooks/setting/**.php
+src/functions/hooks/class-setting.php
+```
+
+開発時のみ関数
+```
+src/functions/modules/dev.php
+```
+
+その他関数
+```
+src/functions.php
+```
+
+
