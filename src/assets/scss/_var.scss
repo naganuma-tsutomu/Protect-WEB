@@ -1,0 +1,32 @@
+// 変数用
+// Break point
+@mixin breakpoint($point) {
+    @if $point == sp {
+      @media (max-width: 767px) {
+        @content;
+      }
+    }
+    @if $point == tab {
+      @media (min-width: 768px) {
+        @content;
+      }
+    }
+    @if $point == pc {
+      @media (min-width: 1280px) {
+        @content;
+      }
+    }
+  }
+  
+  // コンタクトフォームのボタン
+@mixin contactButton($bg) {
+    width: 45%;
+    margin: 0 auto;
+    padding: 1rem 0;
+    border-radius: 0.4rem;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    background-color: ($bg);
+  }
+  
