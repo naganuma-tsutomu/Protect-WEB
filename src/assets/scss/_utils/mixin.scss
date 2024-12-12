@@ -1,0 +1,20 @@
+@use "../var" as *;
+
+// Break point
+@mixin breakpoint($point) {
+    @if $point == sp {
+      @media (max-width: 767px) {
+        @content;
+      }
+    }
+    @if $point == tab {
+      @media (min-width: 768px) {
+        @content;
+      }
+    }
+    @if $point == pc {
+      @media (min-width: 1025px) {
+        @content;
+      }
+    }
+  }

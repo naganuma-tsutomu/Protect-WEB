@@ -1,0 +1,27 @@
+@use "../var" as *;
+
+.top {
+    text-align: center;
+    &__title {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 5rem 0;
+    }
+    text-align: center;
+    &__admin {
+      font-size: 2rem;
+      display: block;
+      width: 15rem;
+      padding: 1rem;
+      margin-inline: auto;
+      text-align: center;
+      border: 0.1rem solid #000;
+      animation: fadeIn 0.7s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+    }
+    &__img {
+      text-align: center;
+      width: 100%;
+      max-width: 100rem;
+    }
+  }

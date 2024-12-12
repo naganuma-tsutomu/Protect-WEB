@@ -1,0 +1,54 @@
+@use "var" as *;
+
+.breadcrumbs {
+  display: flex;
+  padding: 3rem 2rem;
+  width: 100%;
+  &__list {
+    flex: 0 0 auto; /* 内容に応じて伸縮 */
+    line-height: 1.7rem;
+    display: flex;
+    align-items: center;
+    padding: .5rem 0;
+    &:not(:last-child) {
+      &::after {
+        margin: 0 1rem;
+        content: "";
+        background-image: url(../images/right-707070.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: block;
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+    &:last-child{
+      min-width: 0; /* テキストの切り捨てが正しく動作するようにする */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1 1 auto; /* 残りのスペースを取る */
+    }
+    &_home {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: .8rem;
+      place-items: center;
+      &::before {
+        content: "";
+        height: 1.3rem;
+        width: 1.3rem;
+        background-image: url(../images/home.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}
+
+@include breakpoint(pc){
+  .breadcrumbs{
+    max-width: 120rem;
+    margin: 2rem auto;
+  }
+}

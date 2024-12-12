@@ -1,0 +1,7 @@
+@use "../var" as *;
+@use "../_utils/mixin.scss" as mixin;
+
+html {
+  font-size: 62.5%;
+  background: $bg-color;
+}
