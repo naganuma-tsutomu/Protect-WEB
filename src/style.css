@@ -1,7 +1,11 @@
 @charset "utf-8";
 /*
-Theme Name: WordPressBaseTheme
+Theme Name: Protect-web-creation
 Version: 1.0.0
 Author: naganuma
-Description: WordPressベーステーマ
+Description: ProtectHP制作専用WEBサイト
 */
+
+html{
+    font-size: 10px;
+}
