@@ -9,7 +9,7 @@ class Create_Page
 {
     // 作成したい固定ページのタイトル名・スラッグを入れる。
     private const PAGES = array(
-        array('title' => 'テストページ', 'name' => 'test', 'parent' => '', 'content' => ''),
+        array('title' => 'お問い合わせ', 'name' => 'contact', 'parent' => '', 'content' => ''),
     );
 
     /**
