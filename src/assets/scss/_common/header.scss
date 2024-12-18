@@ -1,1 +1,37 @@
 @use "../var" as *;
+@use "../_utils/mixin.scss" as mixin;
+
+header {
+  .title {
+    height: 15rem;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-image: url(../images/contact/contact_header.webp);
+    &__bg {
+      display: grid;
+      place-content: center;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      .title-text {
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        font-size: 2.4rem;
+        font-weight: bold;
+        color: #fff;
+      }
+    }
+  }
+  @include mixin.breakpoint(pc){
+    .title{
+      height: 40rem;
+    &__bg {
+      .title-text {
+        font-size: 4.2rem;
+      }
+    }
+    }
+  }
+}
