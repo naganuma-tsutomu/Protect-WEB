@@ -3,11 +3,14 @@
 @use "./node_modules/destyle.css/destyle.css";
 @use "./node_modules/ress/ress.css";
 
+@use "./_utils/animation.scss";
+
 @use "./_common/common.scss";
 @use "./_common/header.scss";
 @use "./_common/footer.scss";
+@use "./_common/subpage/page.scss";
 
 @use "./_custom-pages/front-page.scss";
-@use "./_custom-pages/page-sample.scss";
+@use "./_custom-pages/page-contact";
+@use "./_custom-pages/page-order";
 
-@use "./_utils/animation.scss";
