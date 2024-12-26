@@ -8,8 +8,9 @@
 @use "./_common/common.scss";
 @use "./_common/header.scss";
 @use "./_common/footer.scss";
+@use "./_common/subpage/page.scss";
 
 @use "./_custom-pages/front-page.scss";
-
 @use "./_custom-pages/page-contact";
+@use "./_custom-pages/page-order";
 
