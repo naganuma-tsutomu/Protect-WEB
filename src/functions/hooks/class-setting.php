@@ -36,7 +36,7 @@ class Setting
     public function init()
     {
         // $this->Create_Post_Type->addAction();
-        // $this->Create_Page->addAction();
+        $this->Create_Page->addAction();
         // $this->Create_Taxonomy_Main_Cat->addAction();
     }
 }

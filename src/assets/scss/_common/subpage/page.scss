@@ -1,1 +1,114 @@
-@use "../var" as *;
+@use "../../var" as *;
+@use "../../_utils/mixin.scss" as mixin;
+
+.contact-form {
+  padding: 4rem 0;
+  &__title {
+    color: $main-color;
+    text-align: center;
+    padding: 0 0 2rem;
+    &_main {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+    }
+    &_sub {
+      margin: 1rem 0 0 0;
+      font-weight: bold;
+      display: block;
+    }
+  }
+  .sitecontact {
+    width: 80%;
+    margin-inline: auto;
+    max-width: 50rem;
+    .input {
+      &__box {
+        font-size: 1.4rem;
+        margin: 2rem 0 0;
+        &_th {
+          font-weight: 600;
+          span {
+            line-height: 3.8rem;
+            position: relative;
+            &.required{
+              &::after{
+                line-height: 1.5rem;
+                content: "*";
+                color: red;
+                position: absolute;
+                right: -1rem;
+                bottom: 0;
+                display: block;
+              }
+            }
+          }
+        }
+        &_td {
+          input,
+          textarea {
+            width: 100%;
+            padding: 1rem;
+            border: solid #707070 0.1rem;
+            border-radius: 0.5rem;
+            background-color: #fff;
+          }
+        }
+      }
+    }
+    .buttonblock {
+      margin: 3rem 0 0;
+      text-align: center;
+      &__confirm {
+        width: 18rem;
+        height: 5rem;
+        background-color: #777777;
+        color: white;
+        border-radius: 0.6rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
+@include mixin.breakpoint(pc) {
+  .contact-form {
+    width: 128rem;
+    background-color: #ebf3ff;
+    border-radius: 4rem;
+    padding: 7rem 0;
+    margin: 5rem auto 0;
+    &__title {
+      &_main {
+        font-size: 10rem;
+      }
+      &_sub {
+        font-size: 2.4rem;
+      }
+    }
+    .sitecontact {
+      width: 80rem;
+      max-width: none;
+      .input {
+        &__box {
+          display: grid;
+          grid-template-columns: 14rem 1fr;
+          gap: 5rem;
+          font-size: 1.6rem;
+          margin: 4rem 0;
+          &_td {
+            textarea {
+              height: 15rem;
+            }
+          }
+        }
+      }
+      .buttonblock {
+        &__confirm {
+          width: 20rem;
+          height: 6rem;
+          margin: 5rem 0 0;
+          font-size: 2.2rem;
+        }
+      }
+    }
+  }
+}

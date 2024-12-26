@@ -1,0 +1,21 @@
+@use "../var" as *;
+@use "../_utils/mixin.scss" as mixin;
+
+#contact {
+  .contact-form {
+    &__title {
+      &_main {
+        font-size: 5rem;
+      }
+    }
+  }
+  @include mixin.breakpoint(pc) {
+    .contact-form {
+      &__title {
+        &_main {
+          font-size: 10rem;
+        }
+      }
+    }
+  }
+}
