@@ -3,7 +3,7 @@
 <div class="wrapper">
     <div class="container">
         <ul class="column-box">
-            <li class="listitem-left">
+            <li class="listitem-left pc">
                 <div class="listitem-left__img01">
                     <img src="<?php echo esc_url(get_theme_file_uri('/assets/images/about/about_01.webp')); ?>" alt="いわき市でホームページ制作ならPROTECT WEBにお任せください">
                 </div>
@@ -16,9 +16,17 @@
                         いわき市でホームページ制作なら<br>
                         PROTECT WEBにお任せください
                     </div>
-                    <div class="listitem-right__text01">
+                    <div class="listitem-right__text01 pc">
                         新規WEBサイトの制作・既存WEBサイトのリニューアル・SEO対策等を丁寧なヒアリングをもとに、お客様の課題解決につながる最適なご提案をいたします。また、WEBだけでなくロゴやポスター、チラシ等のグラフィックデザインも幅広く手がけていますので、媒体を問わず一貫したブランディングの構築が可能です。お気軽にお問い合わせください。
                     </div>
+                </div>
+            </li>
+            <li class="listitem-left sp">
+                <div class="listitem-left__img01">
+                    <img src="<?php echo esc_url(get_theme_file_uri('/assets/images/about/about_01.webp')); ?>" alt="いわき市でホームページ制作ならPROTECT WEBにお任せください">
+                </div>
+                <div class="listitem-right__text01 sp">
+                    新規WEBサイトの制作・既存WEBサイトのリニューアル・SEO対策等を丁寧なヒアリングをもとに、お客様の課題解決につながる最適なご提案をいたします。また、WEBだけでなくロゴやポスター、チラシ等のグラフィックデザインも幅広く手がけていますので、媒体を問わず一貫したブランディングの構築が可能です。お気軽にお問い合わせください。
                 </div>
             </li>
         </ul>
@@ -32,7 +40,7 @@
                         <div class="listitem-left__title02">
                             丁寧なヒアリングで<br>お客様に最適なご提案
                         </div>
-                        <div class="listitem-left__text01">
+                        <div class="listitem-left__text01 pc">
                             弊社はホームページ制作にあたって、お客さま目線に立った丁寧なヒアリングを何よりも重視しています。企画構成はもとより、WEBデザイン、搭載する機能など、すべてにおいてお客様のイメージと想いが実現できるWEBサイトを目指しております。
                         </div>
                     </div>
@@ -41,14 +49,21 @@
                     <div class="listitem-right__img01">
                         <img src="<?php echo esc_url(get_theme_file_uri('/assets/images/about/about_02.webp')); ?>" alt="丁寧なヒアリングでお客様に最適なご提案">
                     </div>
+                    <div class="listitem-left__text01 sp">
+                        弊社はホームページ制作にあたって、お客さま目線に立った丁寧なヒアリングを何よりも重視しています。企画構成はもとより、WEBデザイン、搭載する機能など、すべてにおいてお客様のイメージと想いが実現できるWEBサイトを目指しております。
+                    </div>
                 </li>
             </ul>
         </div>
-
+    </div>
+    <div class="about_bg2">
         <div class="container">
             <ul class="column-box">
                 <li class="listitem-left">
                     <div class="listitem-left__box02">
+                        <div class="listitem-right__title02 sp">
+                            使いやすく効果的で<br>クリエイティブな<br>WEBサイトを構築
+                        </div>
                         <div class="listitem-left__img02">
                             <img src="<?php echo esc_url(get_theme_file_uri('/assets/images/about/about_03.webp')); ?>" alt="使いやすく効果的でクリエイティブなWEBサイトを構築">
                         </div>
@@ -56,7 +71,7 @@
                 </li>
                 <li class="listitem-right">
                     <div class="listitem-right__box02">
-                        <div class="listitem-right__title02">
+                        <div class="listitem-right__title02 pc">
                             使いやすく効果的で<br>クリエイティブな<br>WEBサイトを構築
                         </div>
                         <div class="listitem-right__text01">
@@ -67,7 +82,8 @@
             </ul>
         </div>
     </div>
-    <div class="about_bg2">
+
+    <div class="about_bg3">
         <div class="container">
             <ul class="column-box">
                 <li class="listitem-left">
@@ -75,7 +91,7 @@
                         <div class="listitem-left__title03">
                             WEBサイト公開後も<br>安心のアフターサポート
                         </div>
-                        <div class="listitem-left__text01">
+                        <div class="listitem-left__text01 pc">
                             ホームページは公開してからが本番となります。<br>
                             弊社ではサイト公開後もアクセス解析やSEO対策等の様々な施策をご提案しながら、きめ細やかなアフターサポートをしてまいります。
                         </div>
@@ -84,6 +100,10 @@
                 <li class="listitem-right">
                     <div class="listitem-right__img02">
                         <img src="<?php echo esc_url(get_theme_file_uri('/assets/images/about/about_04.webp')); ?>" alt="WEBサイト公開後も安心のアフターサポート">
+                    </div>
+                    <div class="listitem-left__text01 sp">
+                        ホームページは公開してからが本番となります。<br>
+                        弊社ではサイト公開後もアクセス解析やSEO対策等の様々な施策をご提案しながら、きめ細やかなアフターサポートをしてまいります。
                     </div>
                 </li>
             </ul>
@@ -113,7 +133,7 @@
                     <li>
                         <div class="service__box_list_menu">
                             <div class="service__box_list_menu_img"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/service/service_02.webp')); ?>" alt="ホームページの運用・保守・改善"></div>
-                            <div class="service__box_list_menu_title">ホームページの運用・保守・改善</div>
+                            <div class="service__box_list_menu_title">ホームページの<br>運用・保守・改善</div>
                             <div class="service__box_list_menu_text">
                                 既存ホームページのリニューアル、部分修正・更新<br>サーバー契約、ドメイン取得代行・移管作業・運用保守
                             </div>
@@ -196,9 +216,7 @@
                     <li class="flow__box_line">
                         <div class="flow__box_img"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/flow/flow_04.webp')); ?>" alt="お問い合わせ～ヒアリング・打ち合わせ"></div>
                         <div class="flow__box_text">
-                            テストページでの最終確認が完了次第、実際に使用するドメインの
-                            設定やサーバーの設置・設定、SSL（暗号化通信）対応などを行い、
-                            本番環境へホームページを公開いたします。
+                            テストページでの最終確認が完了次第、実際に使用するドメインの設定やサーバーの設置・設定、SSL（暗号化通信）対応などを行い、本番環境へホームページを公開いたします。
                         </div>
                     </li>
                 </ul>
