@@ -34,3 +34,22 @@
         </div>
     </header>
     <main class="main">
+    <div class="outer-menu">
+    <input class="checkbox-toggle" type="checkbox" />
+    <div class="hamburger">
+        <div></div>
+    </div>
+    <div class="menu">
+        <div>
+            <div>
+                <ul>
+                    <li><a href="<?php echo esc_url(home_url()); ?>">HOME</a></li>
+                    <li><a href="<?php echo esc_url(home_url()); ?>#service">SERVICE</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/plan/')); ?>">PLAN</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/order/')); ?>">ORDER</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

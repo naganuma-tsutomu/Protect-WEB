@@ -67,57 +67,23 @@
     <meta name="google-site-verification" content="rDkRniiSrOzF_k5ccyGpkrfLe4dCJIARBhFrvuNsvlY" />
 </head>
 
-<body <?php body_class(); ?>>
-    <main class="main">
-        <?php //get_template_part('templates/parts/nav-menu'); 
-        ?>
-        <?php //get_template_part('templates/parts/breadcrumbs'); 
-        ?>
-        <div class="top">
-            <div class="top-left">
+
+<div class="outer-menu">
+    <input class="checkbox-toggle" type="checkbox" />
+    <div class="hamburger">
+        <div></div>
+    </div>
+    <div class="menu">
+        <div>
+            <div>
                 <ul>
-                    <li>
-                        <div class="outer-menu">
-                            <input class="checkbox-toggle" type="checkbox" />
-                            <div class="hamburger">
-                                <div></div>
-                            </div>
-                            <div class="menu">
-                                <div>
-                                    <div>
-                                        <ul>
-                                            <li><a href="<?php echo esc_url(home_url()); ?>">HOME</a></li>
-                                            <li><a href="<?php echo esc_url(home_url()); ?>#service">SERVICE</a></li>
-                                            <li><a href="<?php echo esc_url(home_url('/plan/')); ?>">PLAN</a></li>
-                                            <li><a href="<?php echo esc_url(home_url('/order/')); ?>">ORDER</a></li>
-                                            <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="top-left__text">
-                            PROTECT WEB CREATION &ensp;<span class="top-left__text_line01">━━━━━━━</span><span class="top-left__text_line02">━━━━━━━</span>
-                        </div>
-                    </li>
+                    <li><a href="<?php echo esc_url(home_url()); ?>">HOME</a></li>
+                    <li><a href="<?php echo esc_url(home_url()); ?>#service">SERVICE</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/plan/')); ?>">PLAN</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/order/')); ?>">ORDER</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT</a></li>
                 </ul>
             </div>
-
-            <div class="top-right">
-                <div class="top-box"></div>
-                <div class="top-box pc"></div>
-                <div class="container-top">
-                    <div class="container-top__text01">
-                        <div class="container-top__text01_inner">
-                            <div class="container-top__text01_inner01">あなたのビジョンを、</div>
-                            <div class="container-top__text01_inner02">デザインで形に。</div>
-                        </div>
-                    </div>
-                    <div class="container-top__text02">
-                        PROTECT <span>WEB</span> CREATION
-                    </div>
-                </div>
-            </div>
         </div>
+    </div>
+</div>
