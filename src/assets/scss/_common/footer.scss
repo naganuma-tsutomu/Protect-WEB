@@ -1,1 +1,125 @@
 @use "../var" as *;
+
+// -------------------- フッター --------------------
+footer {
+  .footer {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    color: #ffffff;
+    position: static;
+
+    &__contents {
+      padding: 4rem 0 0 0;
+      background-color: #1f4b8a;
+
+      &_info {
+        width: fit-content;
+        margin: 0 auto;
+
+        &_title {
+          margin: 0;
+          line-height: 1.5;
+          letter-spacing: 0.07vw;
+          font-family: Arial, Helvetica;
+          font-size: 2.3vw;
+          font-weight: bold;
+          text-align: center;
+          @media screen and (max-width: 1024px) {
+            padding-left: 4vw;
+            font-size: clamp(2.2em, 4.8vw, 4.8vw);
+            padding-bottom: 3.6vw;
+            border-bottom: 1.8px solid #ffffff;
+          }
+        }
+      }
+
+      &_menu {
+        width: 100%;
+        margin: 0 auto;
+        background-color: #ebf6fe;
+        @media screen and (max-width: 1024px) {
+          background-color: transparent;
+        }
+
+        &_contact {
+          width: 22vw;
+          height: 5vw;
+          margin: 2vw auto 2vw auto;
+          text-align: center;
+          vertical-align: middle;
+          border-radius: 0.3vw;
+          background: #ec831a;
+          @media screen and (max-width: 1024px) {
+            width: 43vw;
+            height: 7vw;
+            border-bottom: 3.5vw solid #f7a336;
+            margin: 5vw auto 5vw auto;
+          }
+          a:hover div {
+            //color: #1f4b8a;
+            opacity: 0.8;
+          }
+          &_button {
+            font-size: 1.4vw;
+            line-height: 5vw;
+            font-weight: bold;
+            letter-spacing: 0.1vw;
+          }
+        }
+
+        &_tel {
+          margin: 0 0 6rem 0;
+          font-size: 2vw;
+          font-weight: bold;
+          letter-spacing: 0.1vw;
+          @media screen and (max-width: 1024px) {
+            //font-size: clamp(3.2vw, 3.8vw, 3.8vw);
+          }
+        }
+
+        &_list {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: fit-content;
+          margin: 0 auto 2vw auto;
+          font-size: 0.9vw;
+          font-weight: bold;
+          letter-spacing: 0.08vw;
+          div {
+            margin: 0 2.5vw 0 2.5vw;
+            a:hover{
+              opacity: 0.8;
+            }
+          }
+        }
+
+        &_copyright {
+          margin: 0;
+          padding: 0 0 2rem 0;
+          font-size: 0.8vw;
+          @media screen and (max-width: 1024px) {
+            font-size: clamp(1.8vw, 1.8vw, 2.4vw);
+          }
+        }
+      }
+    }
+  }
+}
+
+#service .footer__contents_menu_list .menu_service > a {
+  pointer-events: none;
+  cursor: default;
+  color: #f7a336;
+}
+#plan .footer__contents_menu_list .menu_plan > a {
+  pointer-events: none;
+  cursor: default;
+  color: #f7a336;
+}
+#contact .footer__contents_menu_list .menu_contact > a {
+  pointer-events: none;
+  cursor: default;
+  color: #f7a336;
+}

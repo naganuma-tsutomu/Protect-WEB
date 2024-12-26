@@ -6,10 +6,6 @@ html {
   background: $bg-color;
 }
 
-body{
-  font-size: 1.4rem;
-}
-
 /* ==================== デザイン(SP) ==================== */
 .sp {
   display: block;
@@ -20,7 +16,7 @@ body{
 }
 
 /* ==================== デザイン(PC) ==================== */
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1025px) {
   .sp {
     display: none !important;
   }
