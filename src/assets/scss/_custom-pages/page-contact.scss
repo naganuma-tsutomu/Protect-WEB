@@ -2,101 +2,18 @@
 @use "../_utils/mixin.scss" as mixin;
 
 #contact {
-  .contact {
-    padding: 4rem 0;
+  .contact-form {
     &__title {
-      color: $main-color;
-      text-align: center;
-      padding: 0 0 4rem;
       &_main {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 5rem;
-        font-weight: 800;
-      }
-      &_sub {
-        margin: 1rem 0 0 0;
-        font-weight: bold;
-      }
-    }
-    .sitecontact {
-      width: 90%;
-      margin-inline: auto;
-      .input {
-        &__box {
-          display: grid;
-          grid-template-columns: 12rem 1fr;
-          gap: 1rem;
-          font-size: 1.4rem;
-          margin: 3rem 0 0;
-          &_th {
-            font-weight: 600;
-            span {
-              line-height: 3.8rem;
-            }
-          }
-          &_td {
-            input,
-            textarea {
-              width: 100%;
-              padding: 1rem;
-              border: solid #707070 0.1rem;
-              border-radius: 0.5rem;
-              background-color: #fff;
-            }
-          }
-        }
-      }
-      .buttonblock {
-        margin: 3rem 0 0;
-        text-align: center;
-        &__confirm {
-          width: 18rem;
-          height: 5rem;
-          background-color: #777777;
-          color: white;
-          border-radius: 0.6rem;
-          font-weight: bold;
-        }
       }
     }
   }
   @include mixin.breakpoint(pc) {
-    .contact {
-      width: 128rem;
-      background-color: #EBF3FF;
-      border-radius: 4rem;
-      padding: 7rem 0;
-      margin: 5rem auto 0;
+    .contact-form {
       &__title {
         &_main {
           font-size: 10rem;
-        }
-        &_sub {
-          font-size: 2.4rem;
-        }
-      }
-      .sitecontact {
-        width: 80rem;
-        .input {
-          &__box {
-            grid-template-columns: 14rem 1fr;
-            gap: 5rem;
-            font-size: 1.6rem;
-            margin: 4rem 0;
-            &_td {
-              textarea {
-                height: 15rem;
-              }
-            }
-          }
-        }
-        .buttonblock {
-          &__confirm {
-            width: 20rem;
-            height: 6rem;
-            margin: 5rem 0 0 ;
-            font-size: 2.2rem;
-          }
         }
       }
     }
