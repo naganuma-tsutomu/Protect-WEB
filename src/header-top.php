@@ -98,8 +98,8 @@
                         </div>
                     </li>
                     <li>
-                        <div class="top-left_text">
-                            PROTECT WEB CREATION
+                        <div class="top-left__text">
+                            PROTECT WEB CREATION &ensp;<span class="top-left__text_line01">━━━━━━━</span><span class="top-left__text_line02">━━━━━━━</span>
                         </div>
                     </li>
                 </ul>
@@ -107,13 +107,16 @@
 
             <div class="top-right">
                 <div class="top-box"></div>
-                <div class="top-box"></div>
+                <div class="top-box pc"></div>
                 <div class="container-top">
-                    <div class="container-top__text">
-                        <div class="container-top__text_inner">
-                            <div>あなたのビジョンを、</div>
-                            <div>デザインで形に。</div>
+                    <div class="container-top__text01">
+                        <div class="container-top__text01_inner">
+                            <div class="container-top__text01_inner01">あなたのビジョンを、</div>
+                            <div class="container-top__text01_inner02">デザインで形に。</div>
                         </div>
+                    </div>
+                    <div class="container-top__text02">
+                        PROTECT <span>WEB</span> CREATION
                     </div>
                 </div>
             </div>

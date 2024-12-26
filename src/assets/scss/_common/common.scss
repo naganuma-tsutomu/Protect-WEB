@@ -5,3 +5,23 @@ html {
   font-size: 62.5%;
   background: $bg-color;
 }
+
+/* ==================== デザイン(SP) ==================== */
+.sp {
+  display: block;
+}
+
+.pc {
+  display: none !important;
+}
+
+/* ==================== デザイン(PC) ==================== */
+@media screen and (min-width: 1025px) {
+  .sp {
+    display: none !important;
+  }
+
+  .pc {
+    display: block !important;
+  }
+}
