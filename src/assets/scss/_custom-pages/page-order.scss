@@ -2,6 +2,9 @@
 @use "../_utils/mixin.scss" as mixin;
 
 #order {
+  .wrapper{
+    margin: 3rem 0 0 0;
+  }
   .contact-form {
     &__title {
       &_main {
@@ -27,6 +30,14 @@
             }
           }
         }
+      }
+      .area-name{
+        text-align: center;
+        background-color: $main-color;
+        color: #FFF;
+        padding: 1rem 0;
+        border-radius: .5rem;
+        margin: 2rem 0 0 0;
       }
     }
   }
