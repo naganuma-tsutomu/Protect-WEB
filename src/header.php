@@ -22,34 +22,61 @@
     </script>
     <?php /* ios 入力欄タップ時に画面がズームされないようにする記述  終わり */ ?>
 
+    <?php /*スクロールヒント*/ ?>
+    <link rel="stylesheet" href="https://unpkg.com/scroll-hint@latest/css/scroll-hint.css">
+    <script src="https://unpkg.com/scroll-hint@latest/js/scroll-hint.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            new ScrollHint('.js-scrollable', {
+                scrollHintIconAppendClass: 'scroll-hint-icon-white',
+                suggestiveShadow: true,
+                i18n: {
+                    scrollable: "スクロールできます"
+                }
+            }); 
+        });
+    </script>
+
+    <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+
     <?php wp_head(); ?>
+    <meta name="google-site-verification" content="rDkRniiSrOzF_k5ccyGpkrfLe4dCJIARBhFrvuNsvlY" />
 </head>
 
-<body <?php body_class(); ?> id="<?php echo esc_attr( $post->post_name ); ?>">
+<body <?php body_class(); ?> id="<?php echo esc_attr($post->post_name); ?>">
     <header>
-        <div class="title">
-            <div class="title__bg">
+        <?php
+        $slug = basename(get_permalink());
+        ?>
+        <div class="title__<?php echo $slug ?>">
+            <div class="title__<?php echo $slug ?>__bg">
                 <h1 class="title-text"><?php the_title(); ?></h1>
             </div>
         </div>
     </header>
     <main class="main">
-    <div class="outer-menu">
-    <input class="checkbox-toggle" type="checkbox" />
-    <div class="hamburger">
-        <div></div>
-    </div>
-    <div class="menu">
-        <div>
-            <div>
-                <ul>
-                    <li><a href="<?php echo esc_url(home_url()); ?>">HOME</a></li>
-                    <li><a href="<?php echo esc_url(home_url()); ?>#service">SERVICE</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/plan/')); ?>">PLAN</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/order/')); ?>">ORDER</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT</a></li>
-                </ul>
+        <div class="outer-menu">
+            <input class="checkbox-toggle" type="checkbox" />
+            <div class="hamburger">
+                <div></div>
+            </div>
+            <div class="menu">
+                <div>
+                    <div>
+                        <ul>
+                            <li><a href="<?php echo esc_url(home_url()); ?>">HOME</a></li>
+                            <li><a href="<?php echo esc_url(home_url()); ?>#service">SERVICE</a></li>
+                            <li><a href="<?php echo esc_url(home_url('/plan/')); ?>">PLAN</a></li>
+                            <li><a href="<?php echo esc_url(home_url('/order/')); ?>">ORDER</a></li>
+                            <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>

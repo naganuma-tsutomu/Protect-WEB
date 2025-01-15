@@ -1,7 +1,7 @@
 @use "../var" as *;
 
-.wrapper{
-  margin: 12rem 0 12rem 0;
+.wrapper {
+  margin: 12vw 0 0 0;
 }
 
 .top {
@@ -40,24 +40,29 @@
   }
   &__text {
     width: fit-content;
-    margin: 20rem auto 0 auto;
+    margin: clamp(19rem, 10vw, 16vw) auto 0 auto;
     -ms-writing-mode: tb-rl;
     writing-mode: vertical-rl;
     text-orientation: upright;
     font-weight: bold;
-    font-size: clamp(1.4rem, 1.5rem, 1.5vw);
+    font-size: 1.6rem;
     color: #1f4b8a;
     vertical-align: middle;
     letter-spacing: 0.02rem;
     text-align: center;
-    span{
-      letter-spacing: 0;
+    white-space: nowrap;
+    span {
+      letter-spacing: -1px;
     }
-    &_line01{
-      color: #6CA1EB;
+    &_line01 {
+      color: #6ca1eb;
     }
-    &_line02{
+    &_line02 {
       color: #1f4b8a;
+    }
+    @media screen and (max-width: 1024px) {
+      margin: clamp(26vh, 10vw, 16vw) auto 0 auto;
+      font-size: clamp(1rem, 0.818rem + 0.91vw, 1.5rem);
     }
   }
 }
@@ -74,11 +79,12 @@
     right: 0;
     width: 100%;
     height: 96vh;
-    background-position: 100% 70%;
+    background-position: 75% 70%;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 0 0 0 100px;
     @media screen and (min-width: 1025px) {
+      background-position: 95% 70%;
       opacity: 0;
       animation-name: fade;
       animation-duration: 8s;
@@ -112,7 +118,11 @@
     &__text01 {
       position: absolute;
       top: 8%;
-      left: 8%;
+      left: 6%;
+      @media screen and (max-width: 1024px) {
+        top: 7.6vw;
+        left: 4%;
+      }
 
       &_inner {
         position: relative;
@@ -128,17 +138,18 @@
           color: #1f4b8a;
           -webkit-text-stroke-width: 0.5px;
           -webkit-text-stroke-color: #1f4b8a;
-          //vertical-align: middle;
           background: rgba(255, 255, 255, 1);
+
           @media screen and (max-width: 1024px) {
+            padding: 1rem 0rem 1rem 7vw;
             -ms-writing-mode: tb-rl;
             writing-mode: vertical-rl;
             text-orientation: upright;
-            //font-size: clamp(3vw, 4vw, 5vw);
+            //font-size: clamp(2.8rem, 2.527rem + 1.16vw, 3.4rem);
+            font-size: clamp(2.4rem, 1.945rem + 1.94vw, 3.4rem);
             color: #ffffff;
             -webkit-text-stroke-width: 0;
             -webkit-text-stroke-color: none;
-            vertical-align: middle;
             letter-spacing: 0.02rem;
             background: none;
           }
@@ -147,20 +158,20 @@
       &_inner01 {
         @media screen and (max-width: 1024px) {
           position: absolute;
-          top: -10vw;
-          left: clamp(6vw, 16vw, 18vw);
+          top: -10rem;
+          left: 10vw;
           width: fit-content;
-          height: 52vw;
+          min-height: 52rem;
           letter-spacing: 0.4rem !important;
         }
       }
       &_inner02 {
         @media screen and (max-width: 1024px) {
           position: absolute;
-          top: 10vw;
-          left: clamp(4vw, 10vw, 14vw);
+          top: 12rem;
+          left: 0.2vw;
           width: fit-content;
-          height: 48vw;
+          min-height: 42rem;
           letter-spacing: 0.4rem !important;
         }
       }
@@ -309,7 +320,7 @@
       &__title01 {
         font-size: clamp(6vw, 6vw, 8vw);
         font-family: "Arial";
-        font-weight: bolder;
+        font-weight: bold;
         -webkit-text-stroke: 4px #1f4b8a;
         color: #1f4b8a;
         text-align: right;
@@ -320,7 +331,7 @@
         }
       }
       &__title02 {
-        margin: 12rem 0 0 0;
+        margin: 10vw 0 0 0;
         font-size: clamp(2.4vw, 2.6vw, 2.8vw);
         font-weight: bold;
         color: #333333;
@@ -328,9 +339,10 @@
         letter-spacing: 0.4rem;
         line-height: 1.3;
         @media screen and (max-width: 1024px) {
-          margin: 8rem 0 3rem 0;
+          margin: 6rem 0 0rem 0;
           text-align: center;
-          font-size: 4vw;
+          //font-size: 4vw;
+          font-size: clamp(2rem, 1.545rem + 1.94vw, 3rem);
         }
       }
       &__title03 {
@@ -342,36 +354,38 @@
         text-align: right;
         letter-spacing: 0.4rem;
         line-height: 1.3;
+        white-space: nowrap;
         @media screen and (max-width: 1024px) {
-          margin: 8rem 0 3rem 0;
+          margin: 6rem 0 0 0;
           text-align: center;
-          font-size: 4vw;
+          font-size: clamp(2rem, 1.545rem + 1.94vw, 3rem);
         }
       }
       &__text01 {
-        margin: 4rem 0 4rem 0;
-        padding: 0 0 0 4rem;
-        font-size: clamp(1.2rem, 1.2vw, 1.3vw);
+        margin: 2vw 0 4vw 0;
+        padding: 0 0 0 2vw;
+        font-size: clamp(1.3rem, 1.264rem + 0.18vw, 1.6rem);
         color: #333333;
         line-height: 1.6;
         @media screen and (max-width: 1024px) {
           width: 80%;
-          margin: 2rem auto 0 auto;
+          margin: 6vw auto 0 auto;
           padding: 0;
-          font-size: 1.6vw;
+          font-size: clamp(1.4rem, 1.127rem + 1.16vw, 2rem);
         }
       }
       &__img01 {
         width: 100%;
         border-radius: 0 80px 80px 0;
         overflow: hidden;
+        margin: 1vw 0 0 0;
         img {
           margin: 0;
           width: 48vw;
         }
         @media screen and (max-width: 1024px) {
-          border-radius: 0 0 0 0!important;
-          img{
+          border-radius: 0 0 0 0 !important;
+          img {
             width: 100%;
           }
         }
@@ -407,7 +421,7 @@
       &__box01 {
         padding: 0 4rem 0 4rem;
         @media screen and (max-width: 1024px) {
-          margin: 0 auto!important;
+          margin: 0 auto !important;
         }
       }
       &__box02 {
@@ -426,14 +440,14 @@
         font-size: clamp(6vw, 6vw, 8vw);
         font-family: "Arial";
         font-weight: bold;
-        -webkit-text-stroke: 2px #1f4b8a;
+        -webkit-text-stroke: 0.3vw #1f4b8a;
         color: #1f4b8a;
         text-align: right;
-        letter-spacing: 0.4rem;
+        letter-spacing: 0.2vw;
         margin: 0 0 0.8rem 0;
         @media screen and (max-width: 1024px) {
           font-size: 10vw;
-          -webkit-text-stroke: 6px #1f4b8a;
+          -webkit-text-stroke: 0.6vw #1f4b8a;
           text-align: center;
         }
       }
@@ -445,19 +459,20 @@
         letter-spacing: 0.4rem;
         line-height: 1.2;
         @media screen and (max-width: 1024px) {
-          margin: 8rem 0 3rem 0;
+          margin: 6rem 0 0 0;
           text-align: center;
-          font-size: 4vw;
+          font-size: clamp(2rem, 1.545rem + 1.94vw, 3rem);
         }
       }
       &__sub01 {
-        font-size: 1.2vw;
+        //font-size: clamp(1.4rem, 1.255rem + 0.73vw, 1.8rem);
+        font-size: 1.8vw;
         font-weight: bold;
         color: #1f4b8a;
         margin: 0 0 2rem 0;
         text-align: right;
         @media screen and (max-width: 1024px) {
-          font-size: 2vw;
+          font-size: 2.8vw;
           color: #1f4b8a;
           text-align: center;
           margin: 0 auto;
@@ -468,25 +483,26 @@
         font-weight: bold;
         color: #1f4b8a;
         line-height: 1.5;
+        letter-spacing: 1px;
         writing-mode: horizontal-tb;
         text-align: right;
-        margin: 7rem 0 0rem 0;
+        margin: 4vw 0 0 0;
         @media screen and (max-width: 1024px) {
-          margin: 4rem auto 2rem auto;
-          font-size: 3.4vw;
+          margin: 7vw auto 2rem auto;
+          font-size: 3.6vw;
           text-align: center;
         }
       }
       &__text01 {
-        margin: 5rem 0 0 0;
-        font-size: clamp(1.2rem, 1.2vw, 1.3vw);
+        margin: 2vw 0 0 0;
+        font-size: clamp(1.3rem, 1.264rem + 0.18vw, 1.6rem);
         color: #333333;
         line-height: 1.6;
         text-align: left;
         @media screen and (max-width: 1024px) {
           width: 80%;
-          margin: 2rem auto 2rem auto;
-          font-size: 1.6vw;
+          margin: 4vw auto 2rem auto;
+          font-size: clamp(1.4rem, 1.127rem + 1.16vw, 2rem);
         }
       }
       &__img01 {
@@ -520,33 +536,41 @@
   .contents_title {
     font-size: clamp(6vw, 6vw, 8vw);
     font-family: "Arial";
-    font-weight: bolder;
-    -webkit-text-stroke: 6px #1f4b8a;
+    font-weight: bold;
+    -webkit-text-stroke: 0.3vw #1f4b8a;
     color: #1f4b8a;
     text-align: center;
-    letter-spacing: 0.4rem;
+    letter-spacing: 0.2vw;
     margin: 0 0 0.8rem 0;
+    @media screen and (max-width: 1024px) {
+      font-size: clamp(4rem, 1.273rem + 11.64vw, 10rem);
+    }
   }
 
   .contents_subtitle {
-    font-size: 1.2vw;
+    font-size: 1.8vw;
     font-weight: bold;
     text-align: center;
     color: #1f4b8a;
     margin: 0 0 2rem 0;
+    @media screen and (max-width: 1024px) {
+      font-size: clamp(1.4rem, 1.127rem + 1.16vw, 2rem);
+      margin: 0 0 4vw 0;
+    }
   }
 
   .contents_text01 {
-    margin: 4rem 0 4rem 0;
+    width: 83%;
+    margin: 4rem auto;
     padding: 0;
-    font-size: clamp(1.2rem, 1.2vw, 1.3vw);
+    font-size: clamp(1.3rem, 1.264rem + 0.18vw, 1.6rem);
     color: #333333;
     line-height: 1.6;
     text-align: left;
     @media screen and (max-width: 1024px) {
       width: 80%;
       margin: 0 auto;
-      font-size: 1.6vw;
+      font-size: clamp(1.4rem, 1.127rem + 1.16vw, 2rem);
     }
   }
 
@@ -554,22 +578,27 @@
     max-width: 1200px;
     margin: 8rem auto 14rem auto;
     text-align: center;
+    @media screen and (max-width: 1024px) {
+      margin: 8rem auto 6rem auto;
+      max-width: none;
+      width: 100%;
+    }
 
     &__box {
       width: fit-content;
+      height: auto;
       margin: 0 auto;
       position: relative;
       @media screen and (max-width: 1024px) {
-        margin: 8rem auto 0 auto;
+        margin: 8vw auto 0 auto;
       }
 
       &_deco {
-        position: absolute;
-        top: 47%;
-        left: 45%;
+        width: fit-content;
+        margin: 1rem auto 0 auto;
         text-align: center;
         //font-family: Arial, Helvetica;
-        font-size: 1.1vw;
+        font-size: 1.3vw;
         font-weight: bold;
         color: #ffffff;
         text-shadow: 2px 2px 4px #aaaaaa;
@@ -582,25 +611,21 @@
 
       &_list {
         display: flex;
+        align-items: stretch;
 
         li {
-          width: 30vw;
-          height: 30vw;
+          width: 34vw;
+          height: 34vw;
           border: 2px solid #1f4b8a;
           border-radius: 50%;
-          margin: 1rem;
-          padding: 7% 0 0 0;
+          margin: 0 1.5rem -5rem 1.5rem;
+          padding: 3vw 0 3vw 0;
           @media screen and (max-width: 1024px) {
-            width: 30vw;
-            min-height: 35vw;
-            border-radius: 10%;
-            margin: 4rem 1rem 4rem 1rem;
+            width: 38vw;
+            height: auto;
+            border-radius: 4vw;
+            margin: 5vw 1rem 3.5vw 1rem;
           }
-          /*
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          */
         }
         &_menu {
           width: 100%;
@@ -613,24 +638,24 @@
           }
 
           &_title {
-            font-size: clamp(1.6rem, 1.4vw, 1.6vw);
+            font-size: clamp(1.6rem, 1.455rem + 0.73vw, 2.4rem);
             color: #1f4b8a;
             margin: 2rem 0 2rem 0;
+            font-weight: bold;
             @media screen and (max-width: 1024px) {
-              font-size: 2.2vw;
-              font-weight: bold;
+              font-size: clamp(1.4rem, 1.327rem + 0.36vw, 1.6rem);
             }
           }
 
           &_text {
-            font-size: 1vw;
-            line-height: 1.4;
+            font-size: clamp(1.1rem, 0.991rem + 0.55vw, 2.4rem);
+            line-height: 2.2vw;
             width: 60%;
             margin: 0 auto;
             @media screen and (max-width: 1024px) {
               width: 80%;
-              font-size: 1.6vw;
-              line-height: 1.6;
+              font-size: clamp(1rem, 0.545rem + 1.94vw, 2rem);
+              line-height: 1.3;
             }
           }
         }
@@ -640,18 +665,26 @@
     &__contact {
       width: 30vw;
       height: auto;
-      margin: 4rem auto 0 auto;
-      font-size: 1.3vw;
-      font-weight: bold!important;
+      margin: 6vw auto 0 auto;
+      font-size: 1.6vw;
+      font-weight: bold !important;
       text-align: center;
       color: #ffffff;
       background-color: #ec831a;
       border-radius: 10px;
-      &_button{
-        padding: 3rem 0 3rem 0;
-        font-weight: bold!important;
+      @media screen and (max-width: 1024px) {
+        width: 80%;
+        font-size: 3vw;
       }
-      a:hover{
+      &_button {
+        padding: 3vw 0 2.8vw 0;
+        font-weight: bold !important;
+        line-height: 0;
+        @media screen and (max-width: 1024px) {
+          padding: 5vw 0 4.8vw 0;
+        }
+      }
+      a:hover {
         color: #1f4b8a;
       }
     }
@@ -660,18 +693,33 @@
   .flow {
     max-width: 1200px;
     margin: 8rem auto 8rem auto;
+    @media screen and (max-width: 1024px) {
+      max-width: none;
+      width: 100%;
+      margin: 12vw auto 4rem auto;
+    }
 
     &__box {
       width: fit-content;
       margin: 4rem auto 0 auto;
+      @media screen and (max-width: 1024px) {
+        width: 90%;
+        margin: 0 auto;
+        img {
+          width: 100%;
+        }
+      }
 
       &_title {
         margin: 1rem 0 1rem 0;
-        font-size: 2vw;
+        font-size: clamp(2rem, 1.855rem + 0.73vw, 2.4rem);
         font-weight: bold;
         color: #1f4b8a;
+        @media screen and (max-width: 1024px) {
+          font-size: clamp(1.4rem, 1.182rem + 1.09vw, 2rem);
+        }
 
-        &_num{
+        &_num {
           width: 7vw;
           height: 7vw;
           display: inline-block;
@@ -684,72 +732,103 @@
           border-radius: 60%;
           padding: 2.2vw 0 0 0;
         }
-        &_point{
-          letter-spacing: -20px;
+        &_point {
+          letter-spacing: -1.5rem;
+          @media screen and (max-width: 1024px) {
+            letter-spacing: -1rem;
+          }
         }
       }
 
-      &_line{
-        margin: 0 0 0 3.5vw;
+      &_line {
+        margin: 0 0 0 3.4vw;
         border-left: 4px solid #1f4b8a;
       }
 
-      &_line_end{
-        margin: 0 0 0 6.5rem;
+      &_line_end {
+        margin: 0 0 0 4.2vw;
       }
 
       &_img {
-        padding: 2rem 0 0 6.5rem;
-        img{
+        padding: 0 0 0 4.2vw;
+        img {
           border-radius: 10px;
+        }
+        @media screen and (max-width: 1024px) {
         }
       }
 
       &_text {
         margin: 2rem 0 0 0;
-        padding: 0 0 4rem 6.5rem;
+        padding: 0 0 4rem 5vw;
         max-width: 800px;
-        font-size: 1.2vw;
+        font-size: clamp(1.6rem, 1.527rem + 0.36vw, 1.8rem);
         line-height: 1.5;
-        &_sub{
-          margin: 4rem 0 0 0;
+        @media screen and (max-width: 1024px) {
+          font-size: clamp(1.4rem, 1.255rem + 0.73vw, 1.8rem);
+        }
+        &_sub {
+          margin: 4vw 0 0 0;
           font-weight: bold;
         }
       }
     }
   }
 
-  .company{
+  .company {
     max-width: 1200px;
-    margin: 8rem auto 8rem auto;
+    margin: 8vw auto 8vw auto;
+    @media screen and (max-width: 1024px) {
+      margin: 0 auto;
+    }
 
-    &__box{
+    &__box {
       width: fit-content;
-      margin: 6rem auto 0 auto;
+      margin: 6vw auto 0 auto;
       display: flex;
       font-size: 1.2vw;
-
-      ul{
-        width: fit-content;
-        margin: 0 2rem 0 0;
+      @media screen and (max-width: 1024px) {
+        margin: 8vw auto 0 auto;
+        display: block;
+        width: 100%;
+        font-size: clamp(1rem, 0.818rem + 0.91vw, 1.5rem);
       }
 
-      li{
+      ul {
+        width: fit-content;
+        margin: 0 2rem 0 0;
+        @media screen and (max-width: 1024px) {
+          width: 90%;
+          margin: 0 auto;
+        }
+      }
+
+      li {
         margin: 0 0 2.4rem 0;
         padding: 0 0 0.5rem 0;
         border-bottom: 1px solid #333333;
         display: flex;
+        @media screen and (max-width: 1024px) {
+          padding: 0 0 0.5rem 3vw;
+        }
       }
 
-      &_item{
+      &_item {
         width: 12vw;
+        font-weight: bold;
+        @media screen and (max-width: 1024px) {
+          width: 35%;
+        }
       }
 
-      &_map{
-        iframe{
+      &_map {
+        iframe {
           width: 32vw;
           height: auto;
           aspect-ratio: 4/3;
+          @media screen and (max-width: 1024px) {
+            width: 100%;
+          }
         }
       }
     }
