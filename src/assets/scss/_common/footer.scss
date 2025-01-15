@@ -10,7 +10,6 @@ footer {
     position: static;
 
     &__contents {
-      padding: 4rem 0 0 0;
       background-color: #1f4b8a;
 
       &_info {
@@ -18,18 +17,18 @@ footer {
         margin: 0 auto;
 
         &_title {
+          display: block;
           margin: 0;
-          line-height: 1.5;
+          padding: 4rem 0 1rem 0;
           letter-spacing: 0.07vw;
           font-family: Arial, Helvetica;
-          font-size: 2.3vw;
+          font-size: clamp(2.4rem, 2.182rem + 1.09vw, 3rem);
           font-weight: bold;
           text-align: center;
           @media screen and (max-width: 1024px) {
-            padding-left: 4vw;
+            text-align: center;
             font-size: clamp(2.2em, 4.8vw, 4.8vw);
-            padding-bottom: 3.6vw;
-            border-bottom: 1.8px solid #ffffff;
+            padding: 8vw 0 2vw 0;
           }
         }
       }
@@ -51,30 +50,41 @@ footer {
           border-radius: 0.3vw;
           background: #ec831a;
           @media screen and (max-width: 1024px) {
-            width: 43vw;
-            height: 7vw;
-            border-bottom: 3.5vw solid #f7a336;
+            width: 54%;
+            height: 10vw;
             margin: 5vw auto 5vw auto;
+            border-radius: 1.2vw;
           }
           a:hover div {
-            //color: #1f4b8a;
             opacity: 0.8;
           }
+
           &_button {
+            width: 100%;
+            height: 100%;
             font-size: 1.4vw;
             line-height: 5vw;
             font-weight: bold;
             letter-spacing: 0.1vw;
+            @media screen and (max-width: 1024px) {
+              padding: 2.5vw 0vw 0 0vw;
+              font-size: clamp(1rem, 0.273rem + 3.64vw, 3rem);
+            }
           }
         }
 
         &_tel {
-          margin: 0 0 6rem 0;
+          margin: 0 0 3vw 0;
           font-size: 2vw;
           font-weight: bold;
           letter-spacing: 0.1vw;
+          pointer-events: none;
+          cursor: default;
           @media screen and (max-width: 1024px) {
-            //font-size: clamp(3.2vw, 3.8vw, 3.8vw);
+            margin: 0 0 6vw 0;
+            font-size: clamp(3.2vw, 3.8vw, 3.8vw);
+            font-weight: bold !important;
+            pointer-events: auto;
           }
         }
 
@@ -83,13 +93,13 @@ footer {
           justify-content: center;
           align-items: center;
           height: fit-content;
-          margin: 0 auto 2vw auto;
-          font-size: 0.9vw;
+          margin: 0 auto 2.5vw auto;
+          font-size: clamp(0.8rem, 0.545rem + 1.27vw, 1.5rem);
           font-weight: bold;
           letter-spacing: 0.08vw;
           div {
             margin: 0 2.5vw 0 2.5vw;
-            a:hover{
+            a:hover {
               opacity: 0.8;
             }
           }
@@ -98,9 +108,9 @@ footer {
         &_copyright {
           margin: 0;
           padding: 0 0 2rem 0;
-          font-size: 0.8vw;
+          font-size: clamp(0.7rem, 0.518rem + 0.91vw, 1.2rem);
           @media screen and (max-width: 1024px) {
-            font-size: clamp(1.8vw, 1.8vw, 2.4vw);
+            font-size: clamp(0.8rem, 0.364rem + 2.18vw, 2rem);
           }
         }
       }

@@ -55,6 +55,21 @@
         })(document);
     </script>
 
+    <?php /*スクロールヒント*/ ?>
+    <link rel="stylesheet" href="https://unpkg.com/scroll-hint@latest/css/scroll-hint.css">
+    <script src="https://unpkg.com/scroll-hint@latest/js/scroll-hint.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            new ScrollHint('.js-scrollable', {
+                scrollHintIconAppendClass: 'scroll-hint-icon-white',
+                suggestiveShadow: true,
+                i18n: {
+                    scrollable: "スクロールできます"
+                }
+            });
+        });
+    </script>
+
     <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -1,44 +1,64 @@
 @use "../var" as *;
 @use "../_utils/mixin.scss" as mixin;
 
-#order {
-  .contact-form {
-    &__title {
-      &_main {
-        font-size: 3rem;
-      }
-      &_sub {
-        font-size: 1.3rem;
-      }
+.wrapper {
+  margin: 6vw 0 0 0;
+}
+
+.container {
+  margin: 2vw auto 2vw auto;
+  @media screen and (max-width: 1024px) {
+    width: 100% !important;
+  }
+
+  .order {
+    max-width: 1200px;
+    margin: 4rem auto 14rem auto;
+    text-align: center;
+    @media screen and (max-width: 1024px) {
+      margin: 8vw auto 14vw auto;
+      max-width: none;
+      width: 100%;
     }
-    .sitecontact {
-      .input {
-        &__box {
-          font-size: 1.4rem;
-          margin: 2rem 0 0;
-          &_td {
-            select {
-              width: 100%;
-              padding: 1rem;
-              border: solid #707070 0.1rem;
-              border-radius: 0.5rem;
-              background-color: #fff;
-              cursor: pointer;
+
+    .contact-form {
+      &__title {
+        &_main {
+          font-size: 3rem!important;
+        }
+        &_sub {
+          font-size: 1.3rem;
+        }
+      }
+      .sitecontact {
+        .input {
+          &__box {
+            font-size: 1.4rem;
+            margin: 2rem 0 0;
+            &_td {
+              select {
+                width: 100%;
+                padding: 1rem;
+                border: solid #707070 0.1rem;
+                border-radius: 0.5rem;
+                background-color: #fff;
+                cursor: pointer;
+              }
             }
           }
         }
       }
     }
-  }
-  @include mixin.breakpoint(pc) {
-    .contact-form {
-      &__title {
-        &_main {
-          font-size: 6.5rem;
-        }
-        &_sub {
-          font-size: 2rem;
-          margin: 2rem 0 0 0;
+    @include mixin.breakpoint(pc) {
+      .contact-form {
+        &__title {
+          &_main {
+            font-size: 6.5rem;
+          }
+          &_sub {
+            font-size: 2rem;
+            margin: 2rem 0 0 0;
+          }
         }
       }
     }
