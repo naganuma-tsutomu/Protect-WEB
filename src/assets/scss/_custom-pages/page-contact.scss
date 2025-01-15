@@ -2,6 +2,9 @@
 @use "../_utils/mixin.scss" as mixin;
 
 #contact {
+  .wrapper {
+    margin: 3rem 0 0 0;
+  }
   .contact-form {
     &__title {
       &_main {

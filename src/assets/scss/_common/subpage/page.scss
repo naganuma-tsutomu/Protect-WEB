@@ -18,10 +18,13 @@
     }
   }
   .sitecontact {
-    width: 80%;
+    width: 90%;
     margin-inline: auto;
     max-width: 50rem;
     .input {
+      width: 90%;
+      margin-inline: auto;
+      padding: 0 0 2rem;
       &__box {
         font-size: 1.4rem;
         margin: 2rem 0 0;
@@ -30,8 +33,8 @@
           span {
             line-height: 3.8rem;
             position: relative;
-            &.required{
-              &::after{
+            &.required {
+              &::after {
                 line-height: 1.5rem;
                 content: "*";
                 color: red;
@@ -44,13 +47,62 @@
           }
         }
         &_td {
+          position: relative;
           input,
-          textarea {
+          textarea,
+          select {
             width: 100%;
             padding: 1rem;
             border: solid #707070 0.1rem;
             border-radius: 0.5rem;
             background-color: #fff;
+          }
+          select {
+            cursor: pointer;
+          }
+          .clear {
+            position: absolute;
+            text-align: center;
+            color: #ffffff;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: block;
+            height: 1.5rem;
+            width: 1.5rem;
+            line-height: 1.5rem;
+            right: 1rem;
+            top: 1.2rem;
+            cursor: pointer;
+          }
+          .wpcf7-not-valid-tip {
+            margin: 1rem 0 0 0;
+          }
+        }
+      }
+
+      .wpcf7-form-control-wrap {
+        input,
+        select,
+        textarea {
+          /* Chrome, Safari */
+          &::-webkit-input-placeholder {
+            color: #cccccc;
+          }
+
+          /* Firefox */
+          &::-moz-placeholder {
+            color: #cccccc;
+          }
+
+          /* Firefox 18以前 */
+          &:-moz-placeholder {
+            color: #cccccc;
+          }
+
+          &.error {
+            color: #630015;
+            border-color: #c20c33;
+            background-color: #ffd9e1;
           }
         }
       }
@@ -71,7 +123,8 @@
 }
 @include mixin.breakpoint(pc) {
   .contact-form {
-    width: 128rem;
+    width: 90%;
+    max-width: 128rem;
     background-color: #ebf3ff;
     border-radius: 4rem;
     padding: 7rem 0;
@@ -93,7 +146,7 @@
           grid-template-columns: 14rem 1fr;
           gap: 5rem;
           font-size: 1.6rem;
-          margin: 4rem 0;
+          margin: 4rem 0 0;
           &_td {
             textarea {
               height: 15rem;
@@ -105,7 +158,6 @@
         &__confirm {
           width: 20rem;
           height: 6rem;
-          margin: 5rem 0 0;
           font-size: 2.2rem;
         }
       }

@@ -1,64 +1,45 @@
 @use "../var" as *;
 @use "../_utils/mixin.scss" as mixin;
 
-.wrapper {
-  margin: 6vw 0 0 0;
-}
-
-.container {
-  margin: 2vw auto 2vw auto;
-  @media screen and (max-width: 1024px) {
-    width: 100% !important;
+#order {
+  .wrapper{
+    margin: 3rem 0 0 0;
   }
-
-  .order {
-    max-width: 1200px;
-    margin: 4rem auto 14rem auto;
-    text-align: center;
-    @media screen and (max-width: 1024px) {
-      margin: 8vw auto 14vw auto;
-      max-width: none;
-      width: 100%;
+  .contact-form {
+    &__title {
+      &_main {
+        font-size: 3rem;
+      }
+      &_sub {
+        font-size: 1.3rem;
+      }
     }
-
+    .sitecontact {
+      .input {
+        &__box {
+          font-size: 1.4rem;
+          margin: 2rem 0 0;
+        }
+      }
+      .area-name{
+        text-align: center;
+        background-color: $main-color;
+        color: #FFF;
+        padding: 1rem 0;
+        border-radius: .5rem;
+        margin: 2rem 0 0 0;
+      }
+    }
+  }
+  @include mixin.breakpoint(pc) {
     .contact-form {
       &__title {
         &_main {
-          font-size: 3rem!important;
+          font-size: 6.5rem;
         }
         &_sub {
-          font-size: 1.3rem;
-        }
-      }
-      .sitecontact {
-        .input {
-          &__box {
-            font-size: 1.4rem;
-            margin: 2rem 0 0;
-            &_td {
-              select {
-                width: 100%;
-                padding: 1rem;
-                border: solid #707070 0.1rem;
-                border-radius: 0.5rem;
-                background-color: #fff;
-                cursor: pointer;
-              }
-            }
-          }
-        }
-      }
-    }
-    @include mixin.breakpoint(pc) {
-      .contact-form {
-        &__title {
-          &_main {
-            font-size: 6.5rem;
-          }
-          &_sub {
-            font-size: 2rem;
-            margin: 2rem 0 0 0;
-          }
+          font-size: 2rem;
+          margin: 2rem 0 0 0;
         }
       }
     }
