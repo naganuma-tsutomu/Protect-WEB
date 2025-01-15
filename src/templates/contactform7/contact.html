@@ -11,20 +11,19 @@
                             <span data-name="contact_name" class="wpcf7-form-control-wrap">
                                 <input :class="{ 'error' : v$.val.nameVal.$error}" v-model="val.nameVal" @blur="v$.val.nameVal.$touch()" aria-invalid="false" placeholder="山田 太郎" value="" type="text" name="contact_name" class="wpcf7-form-control wpcf7-text">
                             </span>
-                            <!-- <span v-if="val['nameVal']" class="clear" @click="reset('nameVal')" v-cloak>×</span> -->
-                            <!-- <span class="wpcf7-not-valid-tip" v-if="v$.val.nameVal.$error" v-cloak>名前が入力されていません。</span> -->
+                            <span v-if="val['nameVal']" class="clear" @click="reset('nameVal')" v-cloak>×</span>
+                            <span class="wpcf7-not-valid-tip" v-if="v$.val.nameVal.$error" v-cloak>名前が入力されていません。</span>
                         </div>
                     </div>
                     <div class="input__box">
                         <div class="input__box_th">
-                            <span class="required">会社名</span>
+                            <span class="">会社名</span>
                         </div>
                         <div class="input__box_td">
                             <span class="wpcf7-form-control-wrap">
-                                <input aria-invalid="false" placeholder="株式会社プロテクト" value="" type="text" name="contact_company" class="wpcf7-form-control wpcf7-text">
+                                <input v-model="val.companyVal" aria-invalid="false" placeholder="株式会社プロテクト" value="" type="text" name="contact_company" class="wpcf7-form-control wpcf7-text">
                             </span>
-                            <!-- <span v-if="val['nameVal']" class="clear" @click="reset('nameVal')" v-cloak>×</span> -->
-                            <!-- <span class="wpcf7-not-valid-tip" v-if="v$.val.nameVal.$error" v-cloak>名前が入力されていません。</span> -->
+                            <span v-if="val['companyVal']" class="clear" @click="reset('companyVal')" v-cloak>×</span>
                         </div>
                     </div>
                     <div class="input__box">
@@ -35,11 +34,11 @@
                             <span data-name="mail" class="wpcf7-form-control-wrap">
                                 <input :class="{ 'error' : v$.val.mailVal.$error}" v-model="val.mailVal" @blur="v$.val.mailVal.$touch()" aria-invalid="false" placeholder="info@example.com" value="" type="email" name="mail" class="wpcf7-form-control wpcf7-email wpcf7-text">
                             </span>
-                            <!-- <span v-if="val['mailVal']" class="clear" @click="reset('mailVal')" v-cloak>×</span>
+                            <span v-if="val['mailVal']" class="clear" @click="reset('mailVal')" v-cloak>×</span>
                             <div v-if="v$.val.mailVal.$error" v-cloak>
                                 <span class="wpcf7-not-valid-tip" v-if="v$.val.mailVal.required.$invalid" v-cloak>メールアドレスが入力されていません。</span>
                                 <span class="wpcf7-not-valid-tip" v-if="v$.val.mailVal.email.$invalid" v-cloak>メールアドレスの形式が正しくありません。</span>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                     <div class="input__box">
@@ -48,13 +47,13 @@
                         </div>
                         <div class="input__box_td">
                             <span class="wpcf7-form-control-wrap">
-                                <input aria-invalid="false" placeholder="0246-85-5811" value="" type="tel" name="telnumber" class="wpcf7-form-control wpcf7-tel wpcf7-text wpcf7-validates-as-tel">
+                                <input :class="{ 'error' : v$.val.telVal.$error}" v-model="val.telVal" @blur="v$.val.telVal.$touch()"  aria-invalid="false" placeholder="0246-85-5811" value="" type="tel" name="telnumber" class="wpcf7-form-control wpcf7-tel wpcf7-text wpcf7-validates-as-tel">
                             </span>
-                            <!-- <span v-if="val['mailVal']" class="clear" @click="reset('mailVal')" v-cloak>×</span>
-                            <div v-if="v$.val.mailVal.$error" v-cloak>
-                                <span class="wpcf7-not-valid-tip" v-if="v$.val.mailVal.required.$invalid" v-cloak>メールアドレスが入力されていません。</span>
-                                <span class="wpcf7-not-valid-tip" v-if="v$.val.mailVal.email.$invalid" v-cloak>メールアドレスの形式が正しくありません。</span>
-                            </div> -->
+                            <span v-if="val['telVal']" class="clear" @click="reset('telVal')" v-cloak>×</span>
+                            <div v-if="v$.val.telVal.$error" v-cloak>
+                                <span class="wpcf7-not-valid-tip" v-if="v$.val.telVal.required.$invalid" v-cloak>電話番号が入力されていません。</span>
+                                <span class="wpcf7-not-valid-tip" v-if="v$.val.telVal.maxLengthValue.$invalid" v-cloak>電話番号は15桁以内で入力してください。</span>
+                            </div>
                         </div>
                     </div>
                     <div class="input__box">
@@ -65,8 +64,8 @@
                             <span data-name="content" class="wpcf7-form-control-wrap">
                                 <textarea :class="{ 'error' : v$.val.postVal.$error}" v-model="val.postVal" @blur="v$.val.postVal.$touch()" rows="10" aria-invalid="false" placeholder="こちらにお問い合わせ内容をご記入ください。" name="content" class="wpcf7-form-control wpcf7-textarea"></textarea>
                             </span>
-                            <!-- <span v-if="val['postVal']" class="clear" @click="reset('postVal')">×</span>
-                            <span class="wpcf7-not-valid-tip" v-if="v$.val.postVal.$error" v-cloak>お問い合わせ内容が入力されていません。</span> -->
+                            <span v-if="val['postVal']" class="clear" @click="reset('postVal')">×</span>
+                            <span class="wpcf7-not-valid-tip" v-if="v$.val.postVal.$error" v-cloak>お問い合わせ内容が入力されていません。</span>
                         </div>
                     </div>
                 </div>
