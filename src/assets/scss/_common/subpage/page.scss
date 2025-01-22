@@ -1,6 +1,10 @@
 @use "../../var" as *;
 @use "../../_utils/mixin.scss" as mixin;
 
+.wpcf7-response-output {
+  display: none;
+}
+
 .contact-form {
   padding: 4rem 0;
   &__title {
@@ -21,18 +25,27 @@
     width: 90%;
     margin-inline: auto;
     max-width: 50rem;
+    min-height: 30rem;
+    overflow: hidden;
+    position: relative;
+    transition: height ease 0.2s;
+    &__block {
+      width: 100%;
+      position: absolute;
+    }
     .input {
       width: 90%;
       margin-inline: auto;
-      padding: 0 0 2rem;
+      padding: 2rem 0;
       &__box {
         font-size: 1.4rem;
-        margin: 2rem 0 0;
+        margin: 0 0 2rem;
         &_th {
           font-weight: 600;
-          span {
-            line-height: 3.8rem;
+          label {
             position: relative;
+            padding: 1.1rem 0;
+            display: inline-block;
             &.required {
               &::after {
                 line-height: 1.5rem;
@@ -40,7 +53,7 @@
                 color: red;
                 position: absolute;
                 right: -1rem;
-                bottom: 0;
+                top: 1rem;
                 display: block;
               }
             }
@@ -60,19 +73,34 @@
           select {
             cursor: pointer;
           }
+          &:has(select) {
+            &::after {
+              pointer-events: none; /*矢印部分をクリックを可能にする*/
+              position: absolute;
+              color: #666666;
+              top: 2rem;
+              right: 1rem;
+              transform: translateY(-50%); /*▼を上に移動*/
+              content: "▼";
+            }
+          }
           .clear {
             position: absolute;
             text-align: center;
-            color: #ffffff;
-            background-color: #ccc;
-            border-radius: 50%;
-            display: block;
-            height: 1.5rem;
-            width: 1.5rem;
-            line-height: 1.5rem;
-            right: 1rem;
-            top: 1.2rem;
+            right: 0.9rem;
+            top: 0.1rem;
             cursor: pointer;
+            padding: 0.5rem;
+            span {
+              color: #ffffff;
+              background-color: #ccc;
+              border-radius: 50%;
+              display: block;
+              height: 1.5rem;
+              width: 1.5rem;
+              line-height: 1.5rem;
+              font-size: 1.5rem;
+            }
           }
           .wpcf7-not-valid-tip {
             margin: 1rem 0 0 0;
@@ -107,16 +135,71 @@
         }
       }
     }
-    .buttonblock {
-      margin: 3rem 0 0;
+    .valid-error {
       text-align: center;
+      color: #dc3232;
+      margin: 0 0 1rem;
+    }
+    .confirm-text {
+      margin: 2rem 0 4rem;
+      text-align: center;
+    }
+    .con-input {
+      &__box {
+        padding: 1.5rem 0 1.5rem 2rem;
+        border-bottom: #777777 solid 1px;
+        &:nth-child(1) {
+          border-top: #777777 solid 1px;
+        }
+        &_th {
+          font-weight: bold;
+          margin: 0 0 1rem;
+        }
+        &_td {
+          white-space: pre-wrap;
+        }
+      }
+    }
+    .recaptcha {
+      font-size: 1.2rem;
+      opacity: 0.7;
+      margin: 3rem 2rem 4rem;
+      text-align: center;
+      a {
+        color: #0066c0;
+      }
+    }
+    .buttonblock {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      padding: 0 0 2rem;
+      font-size: 1.3rem;
+
       &__confirm {
-        width: 18rem;
-        height: 5rem;
-        background-color: #777777;
-        color: white;
-        border-radius: 0.6rem;
-        font-weight: bold;
+        @include mixin.contactButton($btn-color);
+      }
+
+      &__edit {
+        @include mixin.contactButton($btn-color);
+      }
+
+      &__send {
+        @include mixin.contactButton($main-color);
+        &:disabled {
+          opacity: 0.6;
+        }
+      }
+
+      &__top {
+        @include mixin.contactButton($main-color);
+      }
+    }
+    .thanks {
+      padding: 3rem;
+      p {
+        margin: 0 0 2rem;
+        line-height: 2.5rem;
       }
     }
   }
@@ -127,8 +210,8 @@
     max-width: 128rem;
     background-color: #ebf3ff;
     border-radius: 4rem;
-    padding: 7rem 0;
-    margin: 5rem auto 0;
+    padding: 5rem 0;
+    margin: 5rem auto;
     &__title {
       &_main {
         font-size: 10rem;
@@ -140,13 +223,17 @@
     .sitecontact {
       width: 80rem;
       max-width: none;
+      &__block {
+        width: 80rem;
+        max-width: none;
+      }
       .input {
         &__box {
           display: grid;
-          grid-template-columns: 14rem 1fr;
-          gap: 5rem;
+          grid-template-columns: 17rem 1fr;
+          gap: 2rem;
           font-size: 1.6rem;
-          margin: 4rem 0 0;
+          margin: 0 0 4rem;
           &_td {
             textarea {
               height: 15rem;
@@ -154,11 +241,30 @@
           }
         }
       }
+      .con-input {
+        &__box {
+          padding: 2.5rem 0 2.5rem 2rem;
+          display: grid;
+          grid-template-columns: 23rem 1fr;
+          &_th {
+            margin: 0;
+            padding: 0 0 0 3rem;
+          }
+          &_td {
+            padding: 0 0 0 3rem;
+          }
+        }
+      }
       .buttonblock {
-        &__confirm {
+        width: 50rem;
+        margin-inline: auto;
+        &__confirm,
+        &__edit,
+        &__send,
+        &__top {
           width: 20rem;
-          height: 6rem;
-          font-size: 2.2rem;
+          font-size: 1.6rem;
+          line-height: 3rem;
         }
       }
     }

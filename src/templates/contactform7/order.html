@@ -1,365 +1,332 @@
-    <div class="sitecontact">
-        <!-- 入力フォームstep1 -->
-        <div class="sitecontact__block" v-show="step.show">
-            <div class="form-wrap">
-                <div class="area-name">
-                    <span class="area-name__text">ご依頼内容</span>
-                </div>
-                <div class="input">
-                    <!-------------------------------------------- 基本情報-->
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="required">制作概要</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span class="wpcf7-form-control-wrap" data-name="homepage-project-type">
-                                <select :class="{ 'error' : v$.val.projectSummaryVal.$error}"
-                                        v-model="val.projectSummaryVal"
-                                        @blur="v$.val.projectSummaryVal.$touch()"
-                                        class="wpcf7-form-control wpcf7-select"
-                                        aria-invalid="false"
-                                        name="homepage-project-type">
-                                    <option value="" disabled selected>選択してください</option>
-                                    <option value="new-website">新規ホームページ作成</option>
-                                    <option value="renewal-website">既存ホームページリニューアル</option>
-                                </select>
-                            </span>
-                            <span class="wpcf7-not-valid-tip" v-if="v$.val.projectSummaryVal.$error" v-cloak>選択してください。</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="required">ホームページの分類</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span class="wpcf7-form-control-wrap" data-name="homepage-category">
-                                <select :class="{ 'error' : v$.val.pageCategoryVal.$error}"
-                                        v-model="val.pageCategoryVal"
-                                        @blur="v$.val.pageCategoryVal.$touch()"
-                                        class="wpcf7-form-control wpcf7-select"
-                                        aria-invalid="false"
-                                        name="homepage-category">
-                                    <option value="" disabled selected>選択してください</option>
-                                    <option value="corporate">コーポレートサイト</option>
-                                    <option value="landing-page">ランディングページ（LP）</option>
-                                    <option value="service-site">サービスサイト</option>
-                                    <option value="store-facility">店舗・施設サイト</option>
-                                    <option value="ec-site">ECサイト</option>
-                                    <option value="portal-site">ポータルサイト</option>
-                                    <option value="media-site">メディアサイト</option>
-                                    <option value="other">その他</option>
-                                </select>
-                            </span>
-                            <span class="wpcf7-not-valid-tip" v-if="v$.val.pageCategoryVal.$error" v-cloak>選択してください。</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="required">ホームページの目的</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span class="wpcf7-form-control-wrap" data-name="homepage-purpose">
-                                <select :class="{ 'error' : v$.val.pagePurposeVal.$error}"
-                                        v-model="val.pagePurposeVal"
-                                        @blur="v$.val.pagePurposeVal.$touch()"
-                                        class="wpcf7-form-control wpcf7-select"
-                                        aria-invalid="false"
-                                        name="homepage-purpose">
-                                    <option value="" disabled selected>選択してください</option>
-                                    <option value="corporate-info">企業情報を発信したい</option>
-                                    <option value="increase-sales">集客と売り上げを伸ばしたい</option>
-                                    <option value="pr-product-service">商品やサービスをPRしたい</option>
-                                    <option value="sell-online">WEB上で商品を販売したい</option>
-                                </select>
-                            </span>
-                            <span class="wpcf7-not-valid-tip" v-if="v$.val.pagePurposeVal.$error" v-cloak>選択してください。</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="required">ご希望の制作プラン</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span class="wpcf7-form-control-wrap" data-name="production-plan">
-                                <select :class="{ 'error' : v$.val.productionPlanVal.$error }"
-                                        v-model="val.productionPlanVal"
-                                        @blur="v$.val.productionPlanVal.$touch()"
-                                        class="wpcf7-form-control wpcf7-select"
-                                        aria-invalid="false"
-                                        name="production-plan">
-                                    <option value="" disabled selected>選択してください</option>
-                                    <option value="landing-page">ランディングページ（LP）</option>
-                                    <option value="simple-plan">シンプルプラン</option>
-                                    <option value="standard-plan">スタンダードプラン</option>
-                                    <option value="business-pro">ビジネスプロ</option>
-                                </select>
-                            </span>
-                            <span class="wpcf7-not-valid-tip" v-if="v$.val.productionPlanVal.$error" v-cloak>選択してください。</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="required">完成希望納期</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span class="wpcf7-form-control-wrap" data-name="completion-deadline">
-                                <select :class="{ 'error' : v$.val.completionDeadlineVal.$error }"
-                                        v-model="val.completionDeadlineVal"
-                                        @blur="v$.val.completionDeadlineVal.$touch()"
-                                        class="wpcf7-form-control wpcf7-select"
-                                        aria-invalid="false"
-                                        name="completion-deadline">
-                                    <option value="" disabled selected>選択してください</option>
-                                    <option value="within-1-month">１ヶ月以内</option>
-                                    <option value="1-to-2-months">１ヶ月～２ヶ月以内</option>
-                                    <option value="2-to-3-months">２ヶ月～３ヶ月以内</option>
-                                    <option value="3-to-6-months">３ヶ月～６ヶ月以内</option>
-                                </select>
-                            </span>
-                            <span class="wpcf7-not-valid-tip" v-if="v$.val.completionDeadlineVal.$error" v-cloak>選択してください。</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="">現在のホームページURL</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span class="wpcf7-form-control-wrap" data-name="homepage-url">
-                                <input v-model="val.homepageUrlVal"
-                                    aria-invalid="false"
-                                    placeholder="https://example.com"
-                                    value=""
-                                    type="url"
-                                    name="homepage-url"
-                                    class="wpcf7-form-control wpcf7-email wpcf7-text">
-                            </span>
-                            <span v-if="val['homepageUrlVal']" class="clear" @click="reset('homepageUrlVal')" v-cloak>×</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="">ご希望の参考サイト</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span class="wpcf7-form-control-wrap" data-name="reference-site">
-                                <input v-model="val.referenceSiteVal"
-                                    aria-invalid="false"
-                                    placeholder="https://example.com"
-                                    value=""
-                                    type="url"
-                                    name="reference-site"
-                                    class="wpcf7-form-control wpcf7-email wpcf7-text">
-                            </span>
-                            <span v-if="val['referenceSiteVal']" class="clear" @click="reset('referenceSiteVal')" v-cloak>×</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th vertical">
-                            <span class="">ホームページ内容やページ構成について</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span class="wpcf7-form-control-wrap" data-name="page-content">
-                                <textarea v-model="val.pageContentVal"
-                                    rows="10"
-                                    aria-invalid="false"
-                                    placeholder=""
-                                    name="page-content"
-                                    class="wpcf7-form-control wpcf7-textarea">
-                                </textarea>
-                            </span>
-                            <span v-if="val['pageContentVal']" class="clear" @click="reset('pageContentVal')">×</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="required">サーバー契約</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span class="wpcf7-form-control-wrap" data-name="server-contract">
-                                <select :class="{ 'error' : v$.val.serverContractVal.$error }"
-                                        v-model="val.serverContractVal"
-                                        @blur="v$.val.serverContractVal.$touch()"
-                                        class="wpcf7-form-control wpcf7-select"
-                                        aria-invalid="false"
-                                        name="server-contract">
-                                    <option value="" disabled selected>選択してください</option>
-                                    <option value="new-server">新規サーバー契約</option>
-                                    <option value="existing-server">既存サーバーを使用</option>
-                                </select>
-                            </span>
-                            <span class="wpcf7-not-valid-tip" v-if="v$.val.serverContractVal.$error" v-cloak>選択してください。</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="required">ドメイン取得</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span class="wpcf7-form-control-wrap" data-name="domain-acquisition">
-                                <select :class="{ 'error' : v$.val.domainAcquisitionVal.$error }"
-                                        v-model="val.domainAcquisitionVal"
-                                        @blur="v$.val.domainAcquisitionVal.$touch()"
-                                        class="wpcf7-form-control wpcf7-select"
-                                        aria-invalid="false"
-                                        name="domain-acquisition">
-                                    <option value="" disabled selected>選択してください</option>
-                                    <option value="new-domain">新規ドメイン取得</option>
-                                    <option value="existing-domain">既存ドメインを使用</option>
-                                </select>
-                            </span>
-                            <span class="wpcf7-not-valid-tip" v-if="v$.val.domainAcquisitionVal.$error" v-cloak>選択してください。</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th vertical">
-                            <span class="">その他・備考</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span data-name="content" class="wpcf7-form-control-wrap">
-                                <textarea v-model="val.postVal"
-                                    rows="10"
-                                    aria-invalid="false"
-                                    placeholder=""
-                                    name="content"
-                                    class="wpcf7-form-control wpcf7-textarea">
-                                </textarea>
-                            </span>
-                            <span v-if="val['postVal']" class="clear" @click="reset('postVal')">×</span>
-                        </div>
-                    </div>
-                </div>
-                    <div class="area-name">
-                        <span class="area-name__text">お客様情報</span>
-                    </div>
-                <div class="input">
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="required">貴社名</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span data-name="order_company" class="wpcf7-form-control-wrap">
-                                <input :class="{ 'error' : v$.val.companyVal.$error}"
-                                    v-model="val.companyVal"
-                                    @blur="v$.val.companyVal.$touch()"
-                                    aria-invalid="false"
-                                    placeholder="株式会社プロテクト"
-                                    value=""
-                                    type="text"
-                                    name="order_company"
-                                    class="wpcf7-form-control wpcf7-text">
-                            </span>
-                            <span v-if="val['companyVal']" class="clear" @click="reset('companyVal')" v-cloak>×</span>
-                            <span class="wpcf7-not-valid-tip" v-if="v$.val.companyVal.$error" v-cloak>社名を入力してください。</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="required">ご担当者様名</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span data-name="order_name" class="wpcf7-form-control-wrap">
-                                <input :class="{ 'error' : v$.val.nameVal.$error}"
-                                    v-model="val.nameVal"
-                                    @blur="v$.val.nameVal.$touch()"
-                                    aria-invalid="false"
-                                    placeholder="山田 太郎"
-                                    value=""
-                                    type="text"
-                                    name="order_name"
-                                    class="wpcf7-form-control wpcf7-text">
-                            </span>
-                            <span v-if="val['nameVal']" class="clear" @click="reset('nameVal')" v-cloak>×</span>
-                            <span class="wpcf7-not-valid-tip" v-if="v$.val.nameVal.$error" v-cloak>入力してください。</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="required">所在地</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span data-name="order_address" class="wpcf7-form-control-wrap">
-                                <input :class="{ 'error' : v$.val.addressVal.$error}"
-                                    v-model="val.addressVal"
-                                    @blur="v$.val.addressVal.$touch()"
-                                    aria-invalid="false"
-                                    placeholder=""
-                                    value=""
-                                    type="text"
-                                    name="order_address"
-                                    class="wpcf7-form-control wpcf7-text">
-                            </span>
-                            <span v-if="val['addressVal']" class="clear" @click="reset('addressVal')" v-cloak>×</span>
-                            <span class="wpcf7-not-valid-tip" v-if="v$.val.addressVal.$error" v-cloak>所在地を入力してください。</span>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="required">メールアドレス</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span data-name="mail" class="wpcf7-form-control-wrap">
-                                <input :class="{ 'error' : v$.val.mailVal.$error}"
-                                    v-model="val.mailVal"
-                                    @blur="v$.val.mailVal.$touch()"
-                                    aria-invalid="false"
-                                    placeholder="info@example.com"
-                                    value=""
-                                    type="email"
-                                    name="mail"
-                                    class="wpcf7-form-control wpcf7-email wpcf7-text">
-                            </span>
-                            <span v-if="val['mailVal']" class="clear" @click="reset('mailVal')" v-cloak>×</span>
-                            <div v-if="v$.val.mailVal.$error" v-cloak>
-                                <span class="wpcf7-not-valid-tip" v-if="v$.val.mailVal.required.$invalid" v-cloak>メールアドレスが入力されていません。</span>
-                                <span class="wpcf7-not-valid-tip" v-if="v$.val.mailVal.email.$invalid" v-cloak>メールアドレスの形式が正しくありません。</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="required">電話番号</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span class="wpcf7-form-control-wrap">
-                                <input :class="{ 'error' : v$.val.telVal.$error}"
-                                    v-model="val.telVal"
-                                    @blur="v$.val.telVal.$touch()"
-                                    aria-invalid="false"
-                                    placeholder="0246-85-5811"
-                                    value=""
-                                    type="tel"
-                                    name="telnumber"
-                                    class="wpcf7-form-control wpcf7-tel wpcf7-text wpcf7-validates-as-tel">
-                            </span>
-                            <span v-if="val['telVal']" class="clear" @click="reset('telVal')" v-cloak>×</span>
-                            <div v-if="v$.val.telVal.$error" v-cloak>
-                                <span class="wpcf7-not-valid-tip" v-if="v$.val.telVal.required.$invalid" v-cloak>電話番号が入力されていません。</span>
-                                <span class="wpcf7-not-valid-tip" v-if="v$.val.telVal.maxLengthValue.$invalid" v-cloak>電話番号は15桁以内で入力してください。</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input__box">
-                        <div class="input__box_th">
-                            <span class="">FAX</span>
-                        </div>
-                        <div class="input__box_td">
-                            <span class="wpcf7-form-control-wrap">
-                                <input v-model="val.faxVal"
-                                    aria-invalid="false"
-                                    placeholder="0246-85-5812"
-                                    value=""
-                                    type="tel"
-                                    name="faxnumber"
-                                    class="wpcf7-form-control wpcf7-tel wpcf7-text wpcf7-validates-as-tel">
-                            </span>
-                            <span v-if="val['faxVal']" class="clear" @click="reset('faxVal')" v-cloak>×</span>
-                        </div>
-                    </div>
-                </div>
+<div class="sitecontact" ref="form">
+  <!-- 入力フォームstep1 -->
+  <Transition
+    name="fade"
+    @after-enter="adjustHeight"
+    @after-leave="adjustHeight"
+  >
+    <div class="sitecontact__block v-height" v-show="step === 1">
+        <div class="area-name">
+          <span class="area-name__text">ご依頼内容</span>
+        </div>
+        <div class="input">
+          <div v-for="([key, field], index) in Object.entries(formFields).slice(0, 11)" :key="key" class="input__box">
+            <div class="input__box_th">
+              <label :class="{'required': field.error,}" :for="key">
+                {{ field.label }}
+              </label>
             </div>
-            <!-- 確認ボタン等ブロック -->
-            <div class="buttonblock">
-                    <button type="button" class="buttonblock__confirm" @click="stepForm">入力内容確認</button>
+            <div class="input__box_td">
+              <span class="wpcf7-form-control-wrap">
+
+                <template v-if="field.type === 'select'">
+                  <select
+                    v-model="formFields[key].value"
+                    @blur="v$.formFields[key]?.value?.$touch"
+                    @keydown.enter.prevent
+                    :placeholder="field.placeholder || ''"
+                    :name="key"
+                    :id="key"
+                    value=""
+                    :aria-invalid="field.error && v$.formFields[key]?.value?.$error ? true : false"
+                    :aria-required="field.error ? true : false"
+                    :class="wpcf7Classes(field, key)">
+                    <option value="" disabled selected>選択してください</option>
+                    <option
+                      v-for="option in field.options"
+                      :key="option.value"
+                      :value="option.value"
+                    >
+                      {{ option.label }}
+                    </option>
+                  </select>
+                </template>
+
+                <template
+                  v-else-if="['text', 'email', 'tel','url'].includes(field.type)"
+                >
+                  <input
+                    v-model="formFields[key].value"
+                    @blur="v$.formFields[key]?.value?.$touch"
+                    @keydown.enter.prevent
+                    :placeholder="field.placeholder || ''"
+                    :name="key"
+                    :id="key"
+                    value=""
+                    :type="field.type"
+                    :aria-invalid="field.error && v$.formFields[key]?.value?.$error ? true : false"
+                    :aria-required="field.error ? true : false"
+                    :class="wpcf7Classes(field, key)"
+                  />
+                  <div
+                    v-if="formFields[key].value"
+                    class="clear"
+                    @click="reset(key)"
+                    v-cloak
+                  >
+                    <span>×</span>
+                  </div>
+                </template>
+
+                <template v-if="field.type === 'textarea'">
+                  <textarea
+                    v-model="formFields[key].value"
+                    @blur="v$.formFields[key]?.value?.$touch"
+                    :placeholder="field.placeholder || ''"
+                    :name="key"
+                    :id="key"
+                    :rows="field.rows || '10'"
+                    value=""
+                    :type="field.type"
+                    :aria-invalid="field.error && v$.formFields[key]?.value?.$error ? true : false"
+                    :aria-required="field.error ? true : false"
+                    :class="wpcf7Classes(field, key)"
+                  ></textarea>
+                  <div
+                    v-if="formFields[key].value"
+                    class="clear"
+                    @click="reset(key)"
+                    v-cloak
+                  >
+                    <span>×</span>
+                  </div>
+                </template>
+
+              <template v-if="field.error && v$.formFields[key]?.value.$error">
+                <div
+                  v-for="(error_field, error_key) in formFields[key]['error']"
+                  :key="error_key"
+                  v-cloak
+                >
+                  <span
+                    class="wpcf7-not-valid-tip"
+                    v-if="v$.formFields[key].value[error_key].$invalid"
+                    v-cloak
+                    >{{ formFields[key].error[error_key] }}</span
+                  >
+                </div>
+              </template>
+              </span>
             </div>
+          </div>
+        </div>
+          <!-------------------------------------------- 基本情報-->
+
+        <div class="area-name">
+          <span class="area-name__text">お客様情報</span>
+        </div>
+        <div class="input">
+          <div v-for="([key, field], index) in Object.entries(formFields).slice(11)" :key="key" class="input__box">
+            <div class="input__box_th">
+              <label :class="{'required': field.error,}" :for="key">
+                {{ field.label }}
+              </label>
+            </div>
+            <div class="input__box_td">
+              <span class="wpcf7-form-control-wrap">
+                <template v-if="field.type === 'select'">
+                  <select
+                    v-model="formFields[key].value"
+                    @blur="v$.formFields[key]?.value?.$touch"
+                    @keydown.enter.prevent
+                    :placeholder="field.placeholder || ''"
+                    :name="key"
+                    :id="key"
+                    value=""
+                    :aria-invalid="field.error && v$.formFields[key]?.value?.$error ? true : false"
+                    :aria-required="field.error ? true : false"
+                    :class="wpcf7Classes(field, key)">
+                    <option value="" disabled selected>選択してください</option>
+                    <option
+                      v-for="option in field.options"
+                      :key="option.value"
+                      :value="option.value"
+                    >
+                      {{ option.label }}
+                    </option>
+                  </select>
+                </template>
+
+                <template
+                v-else-if="field?.error?.validZipLength"
+              >
+                <input
+                  v-model="formFields[key].value"
+                  @blur="v$.formFields[key]?.value?.$touch"
+                  @input="getAddress"
+                  @keydown.enter.prevent
+                  :placeholder="field.placeholder || ''"
+                  :name="key"
+                  :id="key"
+                  value=""
+                  :type="field.type"
+                  :aria-invalid="field.error && v$.formFields[key]?.value?.$error ? true : false"
+                  :aria-required="field.error ? true : false"
+                  :class="wpcf7Classes(field, key)"
+                />
+                <div
+                  v-if="formFields[key].value"
+                  class="clear"
+                  @click="reset(key)"
+                  v-cloak
+                >
+                  <span>×</span>
+                </div>
+              </template>
+
+                <template
+                  v-else-if="['text', 'email', 'tel','url'].includes(field.type)"
+                >
+                  <input
+                    v-model="formFields[key].value"
+                    @blur="v$.formFields[key]?.value?.$touch"
+                    @keydown.enter.prevent
+                    :placeholder="field.placeholder || ''"
+                    :name="key"
+                    :id="key"
+                    value=""
+                    :type="field.type"
+                    :aria-invalid="field.error && v$.formFields[key]?.value?.$error ? true : false"
+                    :aria-required="field.error ? true : false"
+                    :class="wpcf7Classes(field, key)"
+                  />
+                  <div
+                    v-if="formFields[key].value"
+                    class="clear"
+                    @click="reset(key)"
+                    v-cloak
+                  >
+                    <span>×</span>
+                  </div>
+                </template>
+
+                <template v-if="field.type === 'textarea'">
+                  <textarea
+                    v-model="formFields[key].value"
+                    @blur="v$.formFields[key]?.value?.$touch"
+                    :placeholder="field.placeholder || ''"
+                    :name="key"
+                    :id="key"
+                    :rows="field.rows || '10'"
+                    value=""
+                    :type="field.type"
+                    :aria-invalid="field.error && v$.formFields[key]?.value?.$error ? true : false"
+                    :aria-required="field.error ? true : false"
+                    :class="wpcf7Classes(field, key)"
+                  ></textarea>
+                  <div
+                    v-if="formFields[key].value"
+                    class="clear"
+                    @click="reset(key)"
+                    v-cloak
+                  >
+                    <span>×</span>
+                  </div>
+                </template>
+              <template v-if="field.error && v$.formFields[key]?.value.$error">
+                <div
+                  v-for="(error_field, error_key) in formFields[key]['error']"
+                  :key="error_key"
+                  v-cloak
+                >
+                  <span
+                    class="wpcf7-not-valid-tip"
+                    v-if="v$.formFields[key].value[error_key].$invalid"
+                    v-cloak
+                    >{{ formFields[key].error[error_key] }}</span
+                  >
+                </div>
+              </template>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="valid-error">
+          <span v-if="v$.formFields.$error" v-cloak
+            >×入力内容に問題があります。</span
+          >
+        </div>
+        <!-- 確認ボタン等ブロック -->
+        <div class="buttonblock">
+          <button type="button" class="buttonblock__confirm" @click="stepForm">
+            入力内容確認
+          </button>
         </div>
     </div>
+  </Transition>
+  <!-- 入力フォームstep2 -->
+  <Transition
+    name="fade"
+    @after-enter="adjustHeight"
+    @after-leave="adjustHeight"
+  >
+    <div class="sitecontact__block v-height" v-show="step === 2" v-cloak>
+      <div class="confirm-text">
+        <span class="confirm-text__main"
+          >以下の内容で送信してもよろしいですか？</span
+        >
+      </div>
+      <div class="con-input">
+        <!-------------------------------------------- 確認-->
+        <div
+          v-for="(field, key) in formFields"
+          :key="key"
+          class="con-input__box"
+        >
+          <div class="con-input__box_th">
+            <span class="con-label"> {{ field.label }} </span>
+          </div>
+          <div class="con-input__box_td">
+            <template v-if="field.type === 'select'">
+              <p>{{ field.options.find(option => option.value === field.value)?.label || "-" }}</p>
+            </template>
+            <template v-else>
+              <p>{{ field.value || "-" }}</p>
+            </template>
+          </div>
+        </div>
+      </div>
+      <p class="recaptcha">
+        このサイトはreCAPTCHAによって保護されており、Googleの
+        <a href="https://policies.google.com/privacy">プライバシーポリシー</a>と
+        <a href="https://policies.google.com/terms">利用規約</a>が適用されます。
+      </p>
+      <!-- 確認ボタン等ブロック -->
+      <div class="buttonblock">
+        <button type="button" class="buttonblock__edit" @click="backForm">
+          入力内容を編集する
+        </button>
+        <button
+          type="submit"
+          class="buttonblock__send"
+          :disabled="isSubmitting"
+          class="buttonblock__send wpcf7-submit"
+        >
+          {{ isSubmitting ? "送信中..." : "送信する" }}
+        </button>
+      </div>
+    </div>
+  </Transition>
+  <!-- 入力フォームstep3 -->
+  <Transition
+    name="fade"
+    @after-enter="adjustHeight"
+    @after-leave="adjustHeight"
+  >
+    <div class="sitecontact__block v-height" v-show="step === 3" v-cloak>
+      <div class="thanks">
+        <p class="thankstxt">お問い合わせありがとうございます。</p>
+        <p>
+          ご入力頂きましたメールアドレス宛に、お問い合わせ内容を記載したメールを送信いたしましたのでご確認ください。
+        </p>
+        <p class="thankspstsc">
+          お問い合わせ内容につきましては
+          ２～３日後に回答いたしますので今しばらくお待ちください。<br />なお、一週間がたちましても連絡がない場合は恐れ入りますが。直接お電話にてご確認をお願いいたします。
+        </p>
+      </div>
+      <div class="buttonblock">
+        <a class="buttonblock__top" href="/">TOPページに戻る</a>
+      </div>
+    </div>
+  </Transition>
+</div>
