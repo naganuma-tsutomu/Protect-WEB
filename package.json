@@ -28,12 +28,13 @@
     "webpack-watched-glob-entries-plugin": "^2.2.6"
   },
   "dependencies": {
-    "destyle.css": "^4.0.0",
-    "ress": "^5.0.2",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
+    "axios": "^1.7.9",
+    "destyle.css": "^4.0.0",
+    "gsap": "^3.12.5",
+    "ress": "^5.0.2",
     "vue": "^3.4.15",
-    "vue-scrollto": "^2.20.0",
-    "gsap": "^3.12.5"
+    "vue-scrollto": "^2.20.0"
   }
 }

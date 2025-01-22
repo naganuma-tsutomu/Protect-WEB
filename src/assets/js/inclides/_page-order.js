@@ -1,29 +1,211 @@
 import { createApp } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, helpers, maxLength } from "@vuelidate/validators";
+import VueScrollTo from "vue-scrollto";
+import axios from "axios";
 
 // バリデーション
 export function orderValidator() {
-
   const formData = function () {
     return {
-      projectSummaryVal: "",
-      pageCategoryVal: "",
-      pagePurposeVal: "",
-      productionPlanVal: "",
-      completionDeadlineVal: "",
-      homepageUrlVal: "",
-      referenceSiteVal: "",
-      pageContentVal: "",
-      serverContractVal: "",
-      domainAcquisitionVal: "",
-      postVal: "",
-      companyVal: "",
-      nameVal: "",
-      addressVal: "",
-      mailVal: "",
-      telVal: "",
+      homepage_project_type: "",
+      homepage_category: "",
+      homepage_purpose: "",
+      production_plan: "",
+      completion_deadline: "",
+      homepage_url: "",
+      reference_site: "",
+      page_content: "",
+      server_contract: "",
+      domain_acquisition: "",
+      content: "",
+      order_company: "",
+      order_name: "",
+      order_zip: "",
+      order_address: "",
+      mail: "",
+      telnumber: "",
+      faxnumber: "",
     };
+  };
+
+  const form_field = {
+    homepage_project_type: {
+      label: "制作概要",
+      type: "select",
+      value: "",
+      options: [
+        { label: "新規ホームページ作成", value: "new-website" },
+        { label: "既存ホームページリニューアル", value: "renewal-website" },
+      ],
+      error: {
+        required: "選択してください",
+      },
+    },
+    homepage_category: {
+      label: "ホームページの分類",
+      type: "select",
+      value: "",
+      options: [
+        { label: "コーポレートサイト", value: "corporate" },
+        { label: "ランディングページ（LP）", value: "landing-page" },
+        { label: "サービスサイト", value: "service-site" },
+        { label: "店舗・施設サイト", value: "store-facility" },
+        { label: "ECサイト", value: "ec-site" },
+        { label: "ポータルサイト", value: "portal-site" },
+        { label: "メディアサイト", value: "media-site" },
+        { label: "その他", value: "other" },
+      ],
+      error: {
+        required: "選択してください",
+      },
+    },
+    homepage_purpose: {
+      label: "ホームページの目的",
+      type: "select",
+      value: "",
+      options: [
+        { label: "企業情報を発信したい", value: "corporate-info" },
+        { label: "集客と売り上げを伸ばしたい", value: "increase-sales" },
+      ],
+      error: {
+        required: "選択してください",
+      },
+    },
+    production_plan: {
+      label: "ご希望の制作プラン",
+      type: "select",
+      value: "",
+      options: [
+        { label: "ランディングページ（LP）", value: "landing-page" },
+        { label: "シンプルプラン", value: "simple-plan" },
+        { label: "スタンダードプラン", value: "standard-plan" },
+        { label: "ビジネスプロ", value: "business-pro" },
+      ],
+      error: {
+        required: "選択してください",
+      },
+    },
+    completion_deadline: {
+      label: "完成希望納期",
+      type: "select",
+      value: "",
+      options: [
+        { label: "１ヶ月以内", value: "within-1-month" },
+        { label: "１ヶ月～２ヶ月以内", value: "1-to-2-months" },
+        { label: "２ヶ月～３ヶ月以内", value: "2-to-3-months" },
+        { label: "３ヶ月～６ヶ月以内", value: "3-to-6-months" },
+      ],
+      error: {
+        required: "選択してください",
+      },
+    },
+    homepage_url: {
+      label: "現在のホームページURL",
+      type: "url",
+      placeholder: "https://example.com",
+      value: "",
+    },
+    reference_site: {
+      label: "ご希望の参考サイト",
+      type: "url",
+      placeholder: "https://example.com",
+      value: "",
+    },
+    page_content: {
+      label: "ホームページ内容やページ構成について",
+      type: "textarea",
+      value: "",
+    },
+    server_contract: {
+      label: "サーバー契約",
+      type: "select",
+      value: "",
+      options: [
+        { label: "新規サーバー契約", value: "new-server" },
+        { label: "既存サーバーを使用", value: "existing-server" },
+      ],
+      error: {
+        required: "選択してください",
+      },
+    },
+    domain_acquisition: {
+      label: "ドメイン取得",
+      type: "select",
+      value: "",
+      options: [
+        { label: "新規ドメイン取得", value: "new-domain" },
+        { label: "既存ドメインを使用", value: "existing-domain" },
+      ],
+      error: {
+        required: "選択してください",
+      },
+    },
+    content: {
+      label: "その他・備考",
+      type: "textarea",
+      value: "",
+    },
+    order_company: {
+      label: "貴社名",
+      type: "text",
+      placeholder: "株式会社プロテクト",
+      value: "",
+    },
+    order_name: {
+      label: "ご担当者様名",
+      type: "text",
+      placeholder: "山田 太郎",
+      value: "",
+      error: {
+        required: "名前を入力してください",
+      },
+    },
+    order_zip: {
+      label: "郵便番号",
+      type: "text",
+      placeholder: "9790201",
+      value: "",
+      error: {
+        required: "郵便番号を入力してください",
+        validZipLength: "7桁で入力してください",
+      },
+    },
+    order_address: {
+      label: "所在地",
+      type: "text",
+      placeholder: "",
+      value: "",
+      error: {
+        required: "所在地を入力してください",
+      },
+    },
+    mail: {
+      label: "メールアドレス",
+      type: "email",
+      placeholder: "info@example.com",
+      value: "",
+      error: {
+        required: "メールアドレスが入力されていません。",
+        email: "メールアドレスの形式が正しくありません",
+      },
+    },
+    telnumber: {
+      label: "電話番号",
+      type: "tel",
+      placeholder: "0246-85-5811",
+      value: "",
+      error: {
+        required: "電話番号が入力されていません",
+        maxLengthValue: "電話番号は15桁以内で入力してください",
+      },
+    },
+    faxnumber: {
+      label: "FAX",
+      type: "tel",
+      placeholder: "0246-85-5812",
+      value: "",
+    },
   };
 
   const form = createApp({
@@ -32,61 +214,171 @@ export function orderValidator() {
     },
     data() {
       return {
-        step: {
-          show: true,
-          show2: false,
-          show3: false,
+        scroll: {
+          anchor: "#order_form",
+          error: ".error",
+          setting: {
+            easing: "ease-in-out",
+            offset: -50, // 必要ならオフセット調整
+          },
         },
-        val: {
-          projectSummaryVal: "",
-          pageCategoryVal: "",
-          pagePurposeVal: "",
-          productionPlanVal: "",
-          completionDeadlineVal: "",
-          homepageUrlVal: "",
-          referenceSiteVal: "",
-          pageContentVal: "",
-          serverContractVal: "",
-          domainAcquisitionVal: "",
-          postVal: "",
-          companyVal: "",
-          nameVal: "",
-          addressVal: "",
-          mailVal: "",
-          telVal: "",
-        },
+        step: 1,
+        formFields: form_field,
+        isSubmitting: false, // ボタン状態を管理
       };
     },
     methods: {
+      reset(get) {
+        this.$data.formFields[get].value = formData()[get];
+      },
+      popState() {
+        // 履歴を記録する
+        history.pushState({ step: this.step }, "", `?step=${this.step}`);
+      },
       stepForm() {
         this.v$.$touch();
         if (!this.v$.$invalid) {
-          this.step.show = !this.step.show;
-          this.step.show2 = !this.step.show2;
+          this.step = 2;
+          this.popState(); // 履歴を記録する
+        } else {
+          this.$nextTick(() => {
+            VueScrollTo.scrollTo(this.scroll.error, 500, this.scroll.setting);
+          });
         }
       },
-      reset(get) {
-        this.$data.val[get] = formData()[get];
-        // Object.assign(this.$data.val, formData()); // 全てリセットの場合
-        // this.$v.$touch();
+      backForm() {
+        this.step = 1;
+        this.popState(); // 履歴を記録する
       },
+      checkSubmit(event) {
+        this.step = 3;
+        this.popState(); // 履歴を記録する
+      },
+      adjustHeight() {
+        // アクティブな要素の高さを取得して親要素に適用
+        this.$nextTick(() => {
+          const form = this.$refs.form;
+          const activeBox = form.querySelector(
+            `.v-height:nth-of-type(${this.step})`
+          );
+          if (activeBox) {
+            form.style.height = `${activeBox.offsetHeight + 20}px`;
+          }
+        });
+      },
+      onFormSubmit(event) {
+        this.isSubmitting = true; // ボタンを無効化
+      },
+      onMailFailed(event) {
+        alert("送信に失敗しました。もう一度お試しください。");
+        this.isSubmitting = false; // ボタンを再び有効化
+      },
+      async getAddress() {
+        const zip = this.formFields.order_zip.value;
+        if (zip.length === 7) {
+          try {
+            const response = await axios.get(
+              `https://api.zipaddress.net/?zipcode=${zip}`
+            );
+            if (response.data.code === 200 && response.data.data) {
+              this.formFields.order_address.value =
+                response.data.data.fullAddress;
+            } else {
+              alert("住所が見つかりませんでした");
+            }
+          } catch (error) {
+            console.error(error);
+            alert("エラーが発生しました");
+          }
+        }
+      },
+      wpcf7Classes(field, key) {
+        return {
+          "wpcf7-form-control": true,
+          error: field.error && this.v$.formFields[key]?.value.$error,
+        };
+      },
+    },
+    watch: {
+      v$(v) {
+        this.adjustHeight();
+      },
+      step() {
+        this.v$.$touch();
+        if (this.v$.$invalid) {
+          this.isSubmitting = true; // ボタンを無効化
+        }
+        // スクロールを実行
+        VueScrollTo.scrollTo(this.scroll.anchor, 500, this.scroll.setting);
+      },
+    },
+    mounted() {
+      // 初期のパラメータ、履歴を管理
+      const urlParams = new URLSearchParams(window.location.search);
+      const step = parseInt(urlParams.get("step"), 10);
+      if (!urlParams.has("step") || step !== 1) {
+        this.popState(); // 履歴を記録する
+      }
+      // 初期化時の高さ調整
+      this.adjustHeight();
+      // フォーム送信イベントを監視
+      document.addEventListener("submit", this.onFormSubmit);
+      document.addEventListener("wpcf7mailsent", this.checkSubmit);
+      document.addEventListener("wpcf7mailfailed", this.onMailFailed);
+      document.addEventListener("wpcf7spam", this.onMailFailed);
+      document.addEventListener("wpcf7invalid", this.onMailFailed);
+      // popstateイベントを監視
+      window.addEventListener("popstate", (event) => {
+        if (event.state && event.state.step) {
+          this.step = event.state.step;
+        }
+      });
     },
     validations() {
       return {
-        val: {
-          projectSummaryVal: { required }, // Matches this.select
-          pageCategoryVal: { required }, // Matches this.select
-          pagePurposeVal: { required }, // Matches this.select
-          productionPlanVal: { required }, // Matches this.select
-          completionDeadlineVal: { required }, // Matches this.select
-          serverContractVal: { required }, // Matches this.select
-          domainAcquisitionVal: { required }, // Matches this.select
-          postVal: { required}, // Matches this.lastName
-          companyVal: { required }, // Matches this.firstName
-          nameVal: { required }, // Matches this.firstName
-          addressVal: { required }, // Matches this.firstName
-          mailVal: { required, email }, // Matches this.contact.email
-          telVal: { required, maxLengthValue: maxLength(15) }, // Matches this.contact.email
+        formFields: {
+          homepage_project_type: {
+            value: { required },
+          },
+          homepage_category: {
+            value: { required },
+          },
+          homepage_purpose: {
+            value: { required },
+          },
+          production_plan: {
+            value: { required },
+          },
+          completion_deadline: {
+            value: { required },
+          },
+          homepage_project_type: {
+            value: { required },
+          },
+          server_contract: {
+            value: { required },
+          },
+          domain_acquisition: {
+            value: { required },
+          },
+          order_name: {
+            value: { required },
+          },
+          order_zip: {
+            value: {
+              required,
+              validZipLength: helpers.regex(/^[0-9]{7}$/),
+            },
+          },
+          order_address: {
+            value: { required },
+          },
+          mail: {
+            value: { required, email },
+          },
+          telnumber: {
+            value: { required, maxLengthValue: maxLength(15) },
+          },
         },
       };
     },
