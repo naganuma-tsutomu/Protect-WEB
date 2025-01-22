@@ -1,9 +1,4 @@
 @use "../var" as *;
-
-.wrapper {
-  margin: 6vw 0 0 0;
-}
-
 .container {
   margin: 2vw auto 2vw auto;
   @media screen and (max-width: 1024px) {
@@ -57,10 +52,17 @@
           width: 100%;
           ul {
             display: flex;
-            flex-wrap: wrap;
             gap: 2rem;
-            //grid-template-columns: repeat( auto-fit, minmax(180px,1fr) ) ;
+            @media screen and (max-width: 1024px) {
+              width: 90%;
+              margin: 0 auto;
+              display: grid;
+              gap: 1rem;
+              grid-template-columns: repeat(3, 1fr);
+            }
+            flex-wrap: wrap;
             justify-content: center !important;
+
             li {
               font-size: clamp(1rem, 0.818rem + 0.91vw, 1.5rem);
               background-color: #ffffff;
@@ -71,11 +73,19 @@
               align-items: center;
               justify-content: center;
               vertical-align: middle;
+              padding: 1rem;
               img {
                 margin: 0 0 2rem 0;
               }
               @media screen and (max-width: 1024px) {
+                min-width: 100%;
+                min-height: auto;
                 font-size: clamp(1.4rem, 0.818rem + 0.91vw, 1.6rem);
+                img {
+                  max-width: 100%;
+                  height: auto;
+                  margin: 1rem 0 1rem 0;
+                }
               }
             }
           }
@@ -333,12 +343,14 @@
           margin: 0 auto;
           font-size: clamp(1.3rem, 0.818rem + 0.91vw, 1.6rem);
           @media screen and (max-width: 1024px) {
-            width: 90%;
+            //max-width: 90%;
             overflow-x: scroll;
           }
           table {
             min-width: 1200px;
             table-layout: fixed;
+            @media screen and (max-width: 1024px) {
+            }
           }
           table,
           th,
@@ -349,11 +361,18 @@
             vertical-align: middle;
           }
           th {
+            text-align: center;
             padding: 2rem 1rem;
+            @media screen and (max-width: 1024px) {
+              padding: 1rem 0.2rem;
+            }
           }
           td {
             text-align: center;
             padding: 2rem 1rem;
+            @media screen and (max-width: 1024px) {
+              padding: 1rem 0rem;
+            }
           }
           .price_th_menu {
             padding: 3rem 1rem 3rem 1rem;
@@ -421,7 +440,43 @@
             text-align: left;
             line-height: 1.5;
           }
-          .price_th_option {
+        }
+
+        &_price_table_option {
+          margin: 0 auto;
+          font-size: clamp(1.3rem, 0.818rem + 0.91vw, 1.6rem);
+          @media screen and (max-width: 1024px) {
+            width: 90%;
+          }
+
+          table {
+            width: 1200px;
+            margin: 0 auto;
+            table-layout: fixed;
+            @media screen and (max-width: 1024px) {
+              width: 100%;
+            }
+          }
+          table,
+          th,
+          td {
+            border: 1px solid #333333;
+            border-collapse: collapse;
+            color: #333333;
+            vertical-align: middle;
+          }
+          th {
+            text-align: center;
+            padding: 2rem 1rem;
+          }
+          td {
+            text-align: center;
+            padding: 2rem 1rem;
+            @media screen and (max-width: 1024px) {
+              padding: 1rem 0.2rem;
+            }
+          }
+          .price_th_option_menu {
             text-align: center;
             background-color: #1f4b8a;
             color: #ffffff;
@@ -430,14 +485,34 @@
               border-right-color: #333333 !important;
             }
           }
+          .price_th_option_menu_1{
+            text-align: center;
+            background-color: #1f4b8a;
+            color: #ffffff;
+            border-right-color: #ffffff;
+            width: 20vw;
+          }
           .price_td_option {
             font-weight: bold;
             background-color: #eeeeee;
+            width: 20vw;
+            /*
+            @media screen and (max-width: 1024px) {
+              width: 22%;
+            }
+            */
           }
           .price_td_option_text {
             div {
               line-height: 1.5;
             }
+          }
+          .price_td_option_note {
+            width: fit-content;
+            text-align: left;
+            margin: 1rem auto 0 auto;
+            padding: 0 0 0 0.2rem;
+            font-size: 83%;
           }
         }
 
@@ -456,7 +531,7 @@
             //width: fit-content;
             height: 8rem;
             margin: 0 3rem 0 0;
-            font-size: 1.6vw;            
+            font-size: 1.6vw;
             font-weight: bold !important;
             text-align: center;
             color: #ffffff;
