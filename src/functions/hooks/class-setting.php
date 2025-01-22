@@ -6,6 +6,7 @@ use hooks\setting\{
     Create_Post_Type,
     Create_Page,
     Create_Taxonomy_Main_Cat,
+    Redirect,
 };
 
 /**
@@ -17,6 +18,7 @@ class Setting
     private object $Create_Post_Type;
     private object $Create_Page;
     private object $Create_Taxonomy_Main_Cat;
+    private object $Redirect;
 
     /**
      * インスタンスの作成
@@ -26,6 +28,7 @@ class Setting
         $this->Create_Post_Type = new Create_Post_Type();
         $this->Create_Page = new Create_Page();
         $this->Create_Taxonomy_Main_Cat = new Create_Taxonomy_Main_Cat();
+        $this->Redirect = new Redirect();
     }
 
     /**
@@ -38,5 +41,6 @@ class Setting
         // $this->Create_Post_Type->addAction();
         $this->Create_Page->addAction();
         // $this->Create_Taxonomy_Main_Cat->addAction();
+        $this->Redirect->addAction();
     }
 }
