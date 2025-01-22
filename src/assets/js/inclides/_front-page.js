@@ -126,29 +126,29 @@ slideJs_y2.forEach((target) => {
   );
 });
 
-
 // 対象の要素を取得
 const paragraph = document.querySelector(".js-text");
-// テキストコンテンツを取得
-const textContent = paragraph.textContent;
-// テキストコンテンツを一文字ずつ分割して<span>タグで囲んで新しい文字列を作成
-const newTextContent = [...textContent]
-  .map((char) => `<span>${char}</span>`)
-  .join("");
-// 新しい文字列をHTMLに挿入
-paragraph.innerHTML = newTextContent;
-gsap.fromTo(
-  ".js-text span", // アニメーションさせる要素
-  {
-    autoAlpha: 0, // アニメーション開始前は透明
-    y: 20, // 20px下に移動
-  },
-  {
-    autoAlpha: 1, // アニメーション後は出現(透過率0)
-    y: 0, // 20px上に移動
-    repeat: 0, // リピート無し
-    //repeatDelay: 1.2, // 1.2秒遅れでリピート
-    stagger: 0.1, // 0.1秒遅れて順番に再生
-  }
-);
-
+if (paragraph) {
+  // テキストコンテンツを取得
+  const textContent = paragraph.textContent;
+  // テキストコンテンツを一文字ずつ分割して<span>タグで囲んで新しい文字列を作成
+  const newTextContent = [...textContent]
+    .map((char) => `<span>${char}</span>`)
+    .join("");
+  // 新しい文字列をHTMLに挿入
+  paragraph.innerHTML = newTextContent;
+  gsap.fromTo(
+    ".js-text span", // アニメーションさせる要素
+    {
+      autoAlpha: 0, // アニメーション開始前は透明
+      y: 20, // 20px下に移動
+    },
+    {
+      autoAlpha: 1, // アニメーション後は出現(透過率0)
+      y: 0, // 20px上に移動
+      repeat: 0, // リピート無し
+      //repeatDelay: 1.2, // 1.2秒遅れでリピート
+      stagger: 0.1, // 0.1秒遅れて順番に再生
+    }
+  );
+}
