@@ -250,33 +250,34 @@
                             </div>
 
                             <div class="plan__box_detail_price_table_info">－ 追加オプション －</div>
-                            <div class="plan__box_detail_price_table js-scrollable">
+                            <div class="plan__box_detail_price_table_option">
                                 <table>
                                     <tr>
-                                        <th class="price_th_option">オプション項目</th>
-                                        <th class="price_th_option">料金</th>
-                                        <th class="price_th_option price_th_option_border">内容</th>
+                                        <th class="price_th_option_menu_1">オプション項目</th>
+                                        <th class="price_th_option_menu price_th_option_menu_border">料金</th>
                                     </tr>
                                     <tr>
                                         <td class="price_td_option">ページ追加</td>
-                                        <td>￥30,000～</td>
-                                        <td>デザインやコンテンツの量、SEOの有無等によって変動しますので、ご相談ください。</td>
+                                        <td>
+                                            <div>￥30,000～</div>
+                                            <div class="price_td_option_note">※デザインやコンテンツの量、SEOの有無等によって変動しますので、ご相談ください。</div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td class="price_td_option">サーバー契約代行</td>
+                                        <td class="price_td_option">サーバー<br>契約代行</td>
                                         <td class="price_td_option_text">
                                             <div>サーバー契約初期費用：￥5,000</div>
                                             <div>サーバー管理費用(月額)：￥3,000～</div>
+                                            <div class="price_td_option_note">※ご指定のサーバーがない場合は、弊社が最適なサーバーを検討し契約代行いたします。</div>
                                         </td>
-                                        <td>ご指定のサーバーがない場合は、弊社が最適なサーバーを検討し契約代行いたします。</td>
                                     </tr>
                                     <tr>
-                                        <td class="price_td_option">ドメイン取得代行</td>
+                                        <td class="price_td_option">ドメイン<br>取得代行</td>
                                         <td class="price_td_option_text">
                                             <div>ドメイン契約初期費用：￥5,000</div>
                                             <div>ドメイン管理費用(月額)：￥3,000～</div>
+                                            <div class="price_td_option_note">※ご指定のドメインがない場合は、弊社が最適なドメインを検討し取得代行いたします。</div>
                                         </td>
-                                        <td>ご指定のドメインがない場合は、弊社が最適なドメインを検討し取得代行いたします。</td>
                                     </tr>
                                 </table>
                             </div>

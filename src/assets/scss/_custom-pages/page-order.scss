@@ -11,7 +11,8 @@
         font-size: 3rem;
       }
       &_sub {
-        font-size: 1.3rem;
+        //font-size: 1.3rem;
+        font-size: clamp(1.5rem, 1.318rem + 0.91vw, 2rem);
       }
     }
     .sitecontact {
@@ -40,6 +41,7 @@
         &_sub {
           font-size: 2rem;
           margin: 2rem 0 0 0;
+          line-height: 1.5;
         }
       }
     }

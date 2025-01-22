@@ -8,6 +8,11 @@ html {
 body{
   font-size: 1.6rem;
 }
+main{
+  //width: 100vw;
+  //overflow-x: hidden;
+  overflow-x:clip
+}
 
 /* ==================== デザイン(SP) ==================== */
 .sp {

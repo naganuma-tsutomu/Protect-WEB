@@ -10,9 +10,7 @@
             <div class="top-left">
                 <ul>
                     <li>
-                        <div class="top-left__text">
-                            PROTECT WEB CREATION &ensp;<span class="top-left__text_line01">━━━━━━━</span><span class="top-left__text_line02">━━━━━━━</span>
-                        </div>
+                        <div class="top-left__text"><span class="js-text">PROTECT&ensp;WEB&ensp;CREATION</span>&ensp;<span class="top-left__text_line01"></span></div>
                     </li>
                 </ul>
             </div>
@@ -23,11 +21,14 @@
                 <div class="container-top">
                     <div class="container-top__text01">
                         <div class="container-top__text01_inner">
-                            <div class="container-top__text01_inner01">あなたのビジョンを、</div>
-                            <div class="container-top__text01_inner02">デザインで形に。</div>
+                            <div class="container-top__text01_inner01 slideJs_x2_2">あなたのビジョンを、</div>
+                            <div class="container-top__text01_inner02 slideJs_x2_2">デザインで形に。</div>
                         </div>
                     </div>
-                    <div class="container-top__text02">
+                    <div class="pc container-top__text02 slideJs_x3_2">
+                        PROTECT <span>WEB</span> CREATION
+                    </div>
+                    <div class="sp container-top__text02 slideJs_y2">
                         PROTECT <span>WEB</span> CREATION
                     </div>
                 </div>
@@ -36,7 +37,7 @@
 
         <div class="wrapper">
             <div class="container">
-                <ul class="column-box">
+                <ul class="column-box slideJs">
                     <li class="listitem-left pc">
                         <div class="listitem-left__img01">
                             <img src="<?php echo esc_url(get_theme_file_uri('/assets/images/about/about_01.webp')); ?>" alt="いわき市でホームページ制作ならPROTECT WEBにお任せください">
@@ -68,7 +69,7 @@
 
             <div class="about_bg">
                 <div class="container">
-                    <ul class="column-box">
+                    <ul class="column-box slideJs">
                         <li class="listitem-left">
                             <div class="listitem-left__box01">
                                 <div class="listitem-left__title02">
@@ -91,7 +92,7 @@
                 </div>
 
                 <div class="container pc">
-                    <ul class="column-box">
+                    <ul class="column-box slideJs">
                         <li class="listitem-left">
                             <div class="listitem-left__box02">
                                 <div class="listitem-right__title02 sp">
@@ -117,7 +118,7 @@
 
                 <div class="about_bg2 sp">
                     <div class="container">
-                        <ul class="column-box">
+                        <ul class="column-box slideJs">
                             <li class="listitem-left">
                                 <div class="listitem-left__box02">
                                     <div class="listitem-right__title02 sp">
@@ -144,7 +145,7 @@
 
                 <div class="about_bg2 pc">
                     <div class="container">
-                        <ul class="column-box">
+                        <ul class="column-box slideJs">
                             <li class="listitem-left">
                                 <div class="listitem-left__box03">
                                     <div class="listitem-left__title03">
@@ -169,7 +170,7 @@
 
                 <div class="about_bg3 sp">
                     <div class="container">
-                        <ul class="column-box">
+                        <ul class="column-box slideJs">
                             <li class="listitem-left">
                                 <div class="listitem-left__box03">
                                     <div class="listitem-left__title03">
@@ -191,15 +192,17 @@
 
                 <div class="container">
                     <div id="service" class="service">
-                        <div class="contents_title">SERVICE</div>
-                        <div class="contents_subtitle">サービス・メニュー</div>
-                        <div class="contents_text01">
-                            弊社のWEBサイト制作は、企業用のコーポレートサイトはもちろん、採用サイトやECサイト、商品販促のためのLP(ランディングページ)等、様々な ジャンルのホームページ制作を承っております。制作にあたっては綿密で丁寧なヒアリングを行い、お客さまの目的に合わせた最適なホームページをご提案・制作いたします。さらにホームページ公開後はアクセス解析やSEO対策をはじめ、更新・管理業務等のアフターフォローによりお客さまの事業をIT面からサポートし、課題解決に繋げていきます。
+                        <div class="slideJs">
+                            <div class="contents_title">SERVICE</div>
+                            <div class="contents_subtitle">サービス・メニュー</div>
+                            <div class="contents_text01">
+                                弊社のWEBサイト制作は、企業用のコーポレートサイトはもちろん、採用サイトやECサイト、商品販促のためのLP(ランディングページ)等、様々な ジャンルのホームページ制作を承っております。制作にあたっては綿密で丁寧なヒアリングを行い、お客さまの目的に合わせた最適なホームページをご提案・制作いたします。さらにホームページ公開後はアクセス解析やSEO対策をはじめ、更新・管理業務等のアフターフォローによりお客さまの事業をIT面からサポートし、課題解決に繋げていきます。
+                            </div>
                         </div>
 
                         <div class="service__box">
                             <ul class="service__box_list">
-                                <li>
+                                <li class="slideJs_x2">
                                     <div class="service__box_list_menu">
                                         <div class="service__box_list_menu_img"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/service/service_01.webp')); ?>" alt="ホームページ制作"></div>
                                         <div class="service__box_list_menu_title">ホームページ制作</div>
@@ -208,7 +211,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li>
+                                <li class="slideJs_x2_3">
                                     <div class="service__box_list_menu">
                                         <div class="service__box_list_menu_img"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/service/service_02.webp')); ?>" alt="ホームページの運用・保守・改善"></div>
                                         <div class="service__box_list_menu_title">ホームページの<br>運用・保守・改善</div>
@@ -220,7 +223,7 @@
                             </ul>
                             <div class="service__box_deco">PROTECT<br><span>WEB</span><br>CREATION</div>
                             <ul class="service__box_list">
-                                <li>
+                                <li class="slideJs_x2">
                                     <div class="service__box_list_menu">
                                         <div class="service__box_list_menu_img"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/service/service_03.webp')); ?>" alt="各種デザイン・動画制作"></div>
                                         <div class="service__box_list_menu_title">各種デザイン・動画制作</div>
@@ -229,7 +232,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li>
+                                <li class="slideJs_x2_3">
                                     <div class="service__box_list_menu">
                                         <div class="service__box_list_menu_img"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/service/service_04.webp')); ?>" alt="アクセス解析、SEO対策等"></div>
                                         <div class="service__box_list_menu_title">アクセス解析、SEO対策等</div>
@@ -248,12 +251,16 @@
                             </a>
                         </div>
                     </div>
+                </div>
 
+                <div class="container">
                     <div class="flow">
-                        <div class="contents_title">FLOW</div>
-                        <div class="contents_subtitle">サイト制作の流れ</div>
+                        <div class="slideJs">
+                            <div class="contents_title">FLOW</div>
+                            <div class="contents_subtitle">サイト制作の流れ</div>
+                        </div>
                         <div class="flow__box">
-                            <ul>
+                            <ul class="slideJs">
                                 <li class="flow__box_title"><span class="flow__box_title_num">01</span><span class="flow__box_title_point">・・・・・</span>&ensp;お問い合わせ～ヒアリング</li>
                                 <li class="flow__box_line">
                                     <div class="flow__box_img"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/flow/flow_01.webp')); ?>" alt="お問い合わせ～ヒアリング"></div>
@@ -263,7 +270,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <ul>
+                            <ul class="slideJs">
                                 <li class="flow__box_title"><span class="flow__box_title_num">02</span><span class="flow__box_title_point">・・・・・</span>&ensp;仕様策定～お見積り</li>
                                 <li class="flow__box_line">
                                     <div class="flow__box_img"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/flow/flow_02.webp')); ?>" alt="お問い合わせ～ヒアリング・打ち合わせ"></div>
@@ -272,7 +279,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <ul>
+                            <ul class="slideJs">
                                 <li class="flow__box_title"><span class="flow__box_title_num">03</span><span class="flow__box_title_point">・・・・・</span>&ensp;WEBサイト制作</li>
                                 <li class="flow__box_line">
                                     <div class="flow__box_img"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/flow/flow_03.webp')); ?>" alt="お問い合わせ～ヒアリング・打ち合わせ"></div>
@@ -288,7 +295,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <ul>
+                            <ul class="slideJs">
                                 <li class="flow__box_title"><span class="flow__box_title_num">04</span><span class="flow__box_title_point">・・・・・</span>&ensp;WEBサイト公開</li>
                                 <li class="flow__box_line">
                                     <div class="flow__box_img"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/flow/flow_04.webp')); ?>" alt="お問い合わせ～ヒアリング・打ち合わせ"></div>
@@ -297,7 +304,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <ul>
+                            <ul class="slideJs">
                                 <li class="flow__box_title"><span class="flow__box_title_num">05</span><span class="flow__box_title_point">・・・・・</span>&ensp;運用支援サポート</li>
                                 <li class="flow__box_line_end">
                                     <div class="flow__box_img"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/flow/flow_05.webp')); ?>" alt="お問い合わせ～ヒアリング・打ち合わせ"></div>
@@ -308,11 +315,15 @@
                             </ul>
                         </div>
                     </div>
+                </div>
 
+                <div class="container">
                     <div class="company">
-                        <div class="contents_title">COMPANY</div>
-                        <div class="contents_subtitle">会社概要</div>
-                        <div class="company__box">
+                        <div class="slideJs">
+                            <div class="contents_title">COMPANY</div>
+                            <div class="contents_subtitle">会社概要</div>
+                        </div>
+                        <div class="company__box slideJs">
                             <ul>
                                 <li>
                                     <div class="company__box_item">商号</div>
@@ -348,4 +359,5 @@
                     </div>
                 </div>
             </div>
-            <?php get_footer(); ?>
+        </div>
+        <?php get_footer(); ?>
