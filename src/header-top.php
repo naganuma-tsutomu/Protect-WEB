@@ -70,6 +70,7 @@
         });
     </script>
 
+
     <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
