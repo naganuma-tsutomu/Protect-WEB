@@ -11,6 +11,7 @@ class Create_Page
     private const PAGES = array(
         array('title' => 'お問い合わせ', 'name' => 'contact', 'parent' => '', 'content' => ''),
         array('title' => '見積り依頼フォーム', 'name' => 'order', 'parent' => '', 'content' => ''),
+        array('title' => '制作料金・プラン比較表', 'name' => 'plan', 'parent' => '', 'content' => ''),
     );
 
     /**
