@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - no-shopping
+      - main
 name:  Deploy website on push
 jobs:
   web-deploy:
