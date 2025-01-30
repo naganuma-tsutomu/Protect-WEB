@@ -21,7 +21,7 @@ export default function contactValidator() {
         label: "お名前",
         type: "text",
         placeholder: "山田 太郎",
-        value: "山田 太郎",
+        value: "",
         error: {
           required: "名前を入力してください",
         },
@@ -36,7 +36,7 @@ export default function contactValidator() {
         label: "メールアドレス",
         type: "email",
         placeholder: "info@example.com",
-        value: "m2106m@gmail.com",
+        value: "",
         error: {
           required: "メールアドレスが入力されていません。",
           email: "メールアドレスの形式が正しくありません",
@@ -46,7 +46,7 @@ export default function contactValidator() {
         label: "電話番号",
         type: "tel",
         placeholder: "0246-85-5811",
-        value: "0246-85-5811",
+        value: "",
         error: {
           required: "電話番号が入力されていません",
           maxLengthValue: "電話番号は15桁以内で入力してください",
@@ -56,19 +56,7 @@ export default function contactValidator() {
         label: "お問い合わせ内容",
         type: "textarea",
         placeholder: "こちらにお問い合わせ内容をご記入ください",
-        value: "こちらにお問い合わせ内容をご記入ください",
-        error: {
-          required: "お問い合わせ内容が入力されていません",
-        },
-      },
-      content02: {
-        label: "お問い合わせ",
-        type: "select",
         value: "",
-        options: [
-          { label: "新規ホームページ作成", value: "new-website" },
-          { label: "既存ホームページリニューアル", value: "renewal-website" },
-        ],
         error: {
           required: "お問い合わせ内容が入力されていません",
         },
@@ -146,10 +134,12 @@ export default function contactValidator() {
         const formData = new FormData(event.target);
         // `type: "select"`のすべての項目を処理
         Object.keys(this.formFields).forEach((key) => {
+          const selectedValue = formData.get(key);
+          if (!selectedValue.trim()) {
+            formData.set(key, "-");
+          }
           const field = this.formFields[key];
-          if (field.type === "select") {
-            const selectedValue = formData.get(key);
-
+          if (field.type === "select" && !selectedValue.trim()) {
             // 対応するラベルを取得
             const selectedOption = field.options.find(
               (option) => option.value === selectedValue
@@ -173,13 +163,14 @@ export default function contactValidator() {
             },
           });
 
-          if (response.formData.status === "mail_sent") {
+          if (response.data.status === "mail_sent") {
             this.checkSubmit();
           } else {
             this.onMailFailed();
           }
         } catch (error) {
           this.onMailFailed();
+          console.error(error);
           console.log("送信エラーです。");
         }
       },
