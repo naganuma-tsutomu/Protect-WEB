@@ -11,7 +11,6 @@
         font-size: 3rem;
       }
       &_sub {
-        //font-size: 1.3rem;
         font-size: clamp(1.5rem, 1.318rem + 0.91vw, 2rem);
       }
     }
@@ -22,13 +21,17 @@
           margin: 2rem 0 0;
         }
       }
-      .area-name{
+      .area-name,
+      .area-name-confirm{
         text-align: center;
         background-color: $main-color;
         color: #FFF;
         padding: 1rem 0;
         border-radius: .5rem;
         margin: 2rem 0 0 0;
+      }
+      .area-name-confirm{
+        margin: 4rem 0 2rem;
       }
     }
   }

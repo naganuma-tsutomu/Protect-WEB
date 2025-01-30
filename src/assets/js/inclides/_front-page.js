@@ -152,3 +152,10 @@ if (paragraph) {
     }
   );
 }
+jQuery(document).ready(function ($) {
+  $('.menu a[href]').on('click', function(event) {
+    console.log($('.checkbox-toggle'));
+    console.log($('.checkbox-toggle')[0].checked);
+    $('.checkbox-toggle')[0].checked = false;
+  });
+});

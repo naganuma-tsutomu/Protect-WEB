@@ -2,63 +2,78 @@ import { createApp } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, helpers, maxLength } from "@vuelidate/validators";
 import VueScrollTo from "vue-scrollto";
+import axios from "axios";
 
 export default function contactValidator() {
   const formData = function () {
     return {
-      contact_name: "",
-      contact_company: "",
-      mail: "",
-      telnumber: "",
-      content: "",
+      contact_name: { value: "" },
+      contact_company: { value: "" },
+      mail: { value: "" },
+      telnumber: { value: "" },
+      content: { value: "" },
     };
   };
 
-  const form_field = {
-    contact_name: {
-      label: "お名前",
-      type: "text",
-      placeholder: "山田 太郎",
-      value: "",
-      error: {
-        required: "名前を入力してください",
+  const form_field = function () {
+    return {
+      contact_name: {
+        label: "お名前",
+        type: "text",
+        placeholder: "山田 太郎",
+        value: "山田 太郎",
+        error: {
+          required: "名前を入力してください",
+        },
       },
-    },
-    contact_company: {
-      label: "貴社名",
-      type: "text",
-      placeholder: "株式会社プロテクト",
-      value: "",
-    },
-    mail: {
-      label: "メールアドレス",
-      type: "email",
-      placeholder: "info@example.com",
-      value: "",
-      error: {
-        required: "メールアドレスが入力されていません。",
-        email: "メールアドレスの形式が正しくありません",
+      contact_company: {
+        label: "貴社名",
+        type: "text",
+        placeholder: "株式会社プロテクト",
+        value: "",
       },
-    },
-    telnumber: {
-      label: "電話番号",
-      type: "tel",
-      placeholder: "0246-85-5811",
-      value: "",
-      error: {
-        required: "電話番号が入力されていません",
-        maxLengthValue: "電話番号は15桁以内で入力してください",
+      mail: {
+        label: "メールアドレス",
+        type: "email",
+        placeholder: "info@example.com",
+        value: "m2106m@gmail.com",
+        error: {
+          required: "メールアドレスが入力されていません。",
+          email: "メールアドレスの形式が正しくありません",
+        },
       },
-    },
-    content: {
-      label: "お問い合わせ内容",
-      type: "textarea",
-      placeholder: "こちらにお問い合わせ内容をご記入ください",
-      value: "",
-      error: {
-        required: "お問い合わせ内容が入力されていません",
+      telnumber: {
+        label: "電話番号",
+        type: "tel",
+        placeholder: "0246-85-5811",
+        value: "0246-85-5811",
+        error: {
+          required: "電話番号が入力されていません",
+          maxLengthValue: "電話番号は15桁以内で入力してください",
+        },
       },
-    },
+      content: {
+        label: "お問い合わせ内容",
+        type: "textarea",
+        placeholder: "こちらにお問い合わせ内容をご記入ください",
+        value: "こちらにお問い合わせ内容をご記入ください",
+        error: {
+          required: "お問い合わせ内容が入力されていません",
+        },
+      },
+      content02: {
+        label: "お問い合わせ",
+        type: "select",
+        value: "",
+        options: [
+          { label: "新規ホームページ作成", value: "new-website" },
+          { label: "既存ホームページリニューアル", value: "renewal-website" },
+        ],
+        error: {
+          required: "お問い合わせ内容が入力されていません",
+        },
+      },
+    };
   };
 
   const form = createApp({
@@ -76,13 +91,13 @@ export default function contactValidator() {
           },
         },
         step: 1,
-        formFields: form_field,
+        formFields: form_field(),
         isSubmitting: false, // ボタン状態を管理
       };
     },
     methods: {
       reset(get) {
-        this.$data.formFields[get].value = formData()[get];
+        this.$data.formFields[get].value = formData()[get].value;
       },
       popState() {
         // 履歴を記録する
@@ -103,7 +118,7 @@ export default function contactValidator() {
         this.step = 1;
         this.popState(); // 履歴を記録する
       },
-      checkSubmit(event) {
+      checkSubmit() {
         this.step = 3;
         this.popState(); // 履歴を記録する
       },
@@ -119,18 +134,54 @@ export default function contactValidator() {
           }
         });
       },
-      onFormSubmit(event) {
+      onFormSubmit() {
         this.isSubmitting = true; // ボタンを無効化
       },
-      onMailFailed(event) {
+      onMailFailed() {
         alert("送信に失敗しました。もう一度お試しください。");
         this.isSubmitting = false; // ボタンを再び有効化
       },
-      wpcf7Classes(field, key) {
-        return {
-          "wpcf7-form-control": true,
-          error: field.error && this.v$.formFields[key]?.value.$error,
-        };
+      async handleSubmit(event) {
+        // FormDataオブジェクトを作成
+        const formData = new FormData(event.target);
+        // `type: "select"`のすべての項目を処理
+        Object.keys(this.formFields).forEach((key) => {
+          const field = this.formFields[key];
+          if (field.type === "select") {
+            const selectedValue = formData.get(key);
+
+            // 対応するラベルを取得
+            const selectedOption = field.options.find(
+              (option) => option.value === selectedValue
+            );
+            // フォームデータをラベルに置き換え
+            if (selectedOption) {
+              formData.set(key, selectedOption.label);
+            }
+          }
+        });
+
+        const formId = formData.get("_wpcf7"); // CF7フォームのID
+        const homeUrl = formData.get("_home_url"); // TOPのアドレス
+        const apiEndpoint = `${homeUrl}wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`;
+
+        try {
+          this.onFormSubmit(); // ボタンを無効化
+          const response = await axios.post(apiEndpoint, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+
+          if (response.formData.status === "mail_sent") {
+            this.checkSubmit();
+          } else {
+            this.onMailFailed();
+          }
+        } catch (error) {
+          this.onMailFailed();
+          console.log("送信エラーです。");
+        }
       },
     },
     watch: {
@@ -155,12 +206,6 @@ export default function contactValidator() {
       }
       // 初期化時の高さ調整
       this.adjustHeight();
-      // フォーム送信イベントを監視
-      document.addEventListener("submit", this.onFormSubmit);
-      document.addEventListener("wpcf7mailsent", this.checkSubmit);
-      document.addEventListener("wpcf7mailfailed", this.onMailFailed);
-      document.addEventListener("wpcf7spam", this.onMailFailed);
-      document.addEventListener("wpcf7invalid", this.onMailFailed);
       // popstateイベントを監視
       window.addEventListener("popstate", (event) => {
         if (event.state && event.state.step) {
@@ -190,7 +235,6 @@ export default function contactValidator() {
 
   const form_id = document.getElementById("contact_form");
   if (form_id) {
-    form.use(VueScrollTo);
     form.mount("#contact_form");
   }
 }
