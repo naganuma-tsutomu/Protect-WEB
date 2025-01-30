@@ -660,7 +660,6 @@
 
     &__box {
       width: fit-content;
-      height: auto;
       margin: 0 auto;
       position: relative;
       @media screen and (max-width: 1024px) {
@@ -669,10 +668,8 @@
 
       &_deco {
         width: fit-content;
-        margin: 0rem auto 0 auto;
+        margin: 0 auto;
         text-align: center;
-        //font-family: Arial, Helvetica;
-        //font-size: 1.3vw;
         font-size: clamp(1.2rem, 1.055rem + 0.73vw, 1.6rem);
         font-weight: bold;
         color: #ffffff;
@@ -687,11 +684,17 @@
 
       &_list {
         display: flex;
-        align-items: stretch;
+        //align-items: stretch;
+        max-width: 1200px;
+        margin: 0 auto;
 
         li {
           width: 34vw;
           height: 34vw;
+          max-width: 570px;
+          max-height: 570px;
+          //height: auto;
+          aspect-ratio: 1;
           border: 2px solid #1f4b8a;
           border-radius: 50%;
           margin: 0 1.5rem -2.5rem 1.5rem;
@@ -725,7 +728,7 @@
 
           &_text {
             font-size: clamp(1.1rem, 0.991rem + 0.55vw, 2.4rem);
-            line-height: 2.2vw;
+            line-height: 1.8vw;
             width: 60%;
             margin: 0 auto;
             @media screen and (max-width: 1024px) {
