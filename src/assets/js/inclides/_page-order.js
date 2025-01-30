@@ -299,10 +299,12 @@ export function orderValidator() {
         const formData = new FormData(event.target);
         // `type: "select"`のすべての項目を処理
         Object.keys(this.formFields).forEach((key) => {
+          const selectedValue = formData.get(key);
+          if (!selectedValue.trim()) {
+            formData.set(key, "-");
+          }
           const field = this.formFields[key];
-          if (field.type === "select") {
-            const selectedValue = formData.get(key);
-
+          if (field.type === "select" && !selectedValue.trim()) {
             // 対応するラベルを取得
             const selectedOption = field.options.find(
               (option) => option.value === selectedValue
@@ -326,7 +328,7 @@ export function orderValidator() {
             },
           });
 
-          if (response.formData.status === "mail_sent") {
+          if (response.data.status === "mail_sent") {
             this.checkSubmit();
           } else {
             this.onMailFailed();
