@@ -64,11 +64,24 @@
           input,
           textarea,
           select {
+            &:focus {
+              outline: none;
+            }
             width: 100%;
             padding: 1rem;
             border: solid #707070 0.1rem;
             border-radius: 0.5rem;
             background-color: #fff;
+
+            &::placeholder{
+              color: gray;
+            }
+
+            &.error {
+              color: #630015;
+              border-color: #c20c33;
+              background-color: #ffd9e1;
+            }
           }
           select {
             cursor: pointer;
@@ -87,8 +100,8 @@
           .clear {
             position: absolute;
             text-align: center;
-            right: 0.9rem;
-            top: 0.1rem;
+            right: 2rem;
+            top: 0.8rem;
             cursor: pointer;
             padding: 0.5rem;
             span {
@@ -102,35 +115,12 @@
               font-size: 1.5rem;
             }
           }
-          .wpcf7-not-valid-tip {
+          .not-valid-tip {
             margin: 1rem 0 0 0;
-          }
-        }
-      }
-
-      .wpcf7-form-control-wrap {
-        input,
-        select,
-        textarea {
-          /* Chrome, Safari */
-          &::-webkit-input-placeholder {
-            color: #cccccc;
-          }
-
-          /* Firefox */
-          &::-moz-placeholder {
-            color: #cccccc;
-          }
-
-          /* Firefox 18以前 */
-          &:-moz-placeholder {
-            color: #cccccc;
-          }
-
-          &.error {
-            color: #630015;
-            border-color: #c20c33;
-            background-color: #ffd9e1;
+            color: #dc3232;
+            font-size: 1em;
+            font-weight: normal;
+            display: block;
           }
         }
       }
@@ -148,6 +138,7 @@
       &__box {
         padding: 1.5rem 0 1.5rem 2rem;
         border-bottom: #777777 solid 1px;
+        margin: 0 1rem;
         &:nth-child(1) {
           border-top: #777777 solid 1px;
         }
@@ -246,6 +237,8 @@
           padding: 2.5rem 0 2.5rem 2rem;
           display: grid;
           grid-template-columns: 23rem 1fr;
+          margin: 0 3rem;
+
           &_th {
             margin: 0;
             padding: 0 0 0 3rem;

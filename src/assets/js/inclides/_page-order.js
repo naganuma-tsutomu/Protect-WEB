@@ -8,204 +8,206 @@ import axios from "axios";
 export function orderValidator() {
   const formData = function () {
     return {
-      homepage_project_type: "",
-      homepage_category: "",
-      homepage_purpose: "",
-      production_plan: "",
-      completion_deadline: "",
-      homepage_url: "",
-      reference_site: "",
-      page_content: "",
-      server_contract: "",
-      domain_acquisition: "",
-      content: "",
-      order_company: "",
-      order_name: "",
-      order_zip: "",
-      order_address: "",
-      mail: "",
-      telnumber: "",
-      faxnumber: "",
+      homepage_project_type: { value: "" },
+      homepage_category: { value: "" },
+      homepage_purpose: { value: "" },
+      production_plan: { value: "" },
+      completion_deadline: { value: "" },
+      homepage_url: { value: "" },
+      reference_site: { value: "" },
+      page_content: { value: "" },
+      server_contract: { value: "" },
+      domain_acquisition: { value: "" },
+      content: { value: "" },
+      order_company: { value: "" },
+      order_name: { value: "" },
+      order_zip: { value: "" },
+      order_address: { value: "" },
+      mail: { value: "" }, // 修正
+      telnumber: { value: "" },
+      faxnumber: { value: "" },
     };
   };
 
-  const form_field = {
-    homepage_project_type: {
-      label: "制作概要",
-      type: "select",
-      value: "",
-      options: [
-        { label: "新規ホームページ作成", value: "new-website" },
-        { label: "既存ホームページリニューアル", value: "renewal-website" },
-      ],
-      error: {
-        required: "選択してください",
+  const form_field = function () {
+    return {
+      homepage_project_type: {
+        label: "制作概要",
+        type: "select",
+        value: "",
+        options: [
+          { label: "新規ホームページ作成", value: "new-website" },
+          { label: "既存ホームページリニューアル", value: "renewal-website" },
+        ],
+        error: {
+          required: "選択してください",
+        },
       },
-    },
-    homepage_category: {
-      label: "ホームページの分類",
-      type: "select",
-      value: "",
-      options: [
-        { label: "コーポレートサイト", value: "corporate" },
-        { label: "ランディングページ（LP）", value: "landing-page" },
-        { label: "サービスサイト", value: "service-site" },
-        { label: "店舗・施設サイト", value: "store-facility" },
-        { label: "ECサイト", value: "ec-site" },
-        { label: "ポータルサイト", value: "portal-site" },
-        { label: "メディアサイト", value: "media-site" },
-        { label: "その他", value: "other" },
-      ],
-      error: {
-        required: "選択してください",
+      homepage_category: {
+        label: "ホームページの分類",
+        type: "select",
+        value: "",
+        options: [
+          { label: "コーポレートサイト", value: "corporate" },
+          { label: "ランディングページ（LP）", value: "landing-page" },
+          { label: "サービスサイト", value: "service-site" },
+          { label: "店舗・施設サイト", value: "store-facility" },
+          { label: "ECサイト", value: "ec-site" },
+          { label: "ポータルサイト", value: "portal-site" },
+          { label: "メディアサイト", value: "media-site" },
+          { label: "その他", value: "other" },
+        ],
+        error: {
+          required: "選択してください",
+        },
       },
-    },
-    homepage_purpose: {
-      label: "ホームページの目的",
-      type: "select",
-      value: "",
-      options: [
-        { label: "企業情報を発信したい", value: "corporate-info" },
-        { label: "集客と売り上げを伸ばしたい", value: "increase-sales" },
-      ],
-      error: {
-        required: "選択してください",
+      homepage_purpose: {
+        label: "ホームページの目的",
+        type: "select",
+        value: "",
+        options: [
+          { label: "企業情報を発信したい", value: "corporate-info" },
+          { label: "集客と売り上げを伸ばしたい", value: "increase-sales" },
+        ],
+        error: {
+          required: "選択してください",
+        },
       },
-    },
-    production_plan: {
-      label: "ご希望の制作プラン",
-      type: "select",
-      value: "",
-      options: [
-        { label: "ランディングページ（LP）", value: "landing-page" },
-        { label: "シンプルプラン", value: "simple-plan" },
-        { label: "スタンダードプラン", value: "standard-plan" },
-        { label: "ビジネスプロ", value: "business-pro" },
-      ],
-      error: {
-        required: "選択してください",
+      production_plan: {
+        label: "ご希望の制作プラン",
+        type: "select",
+        value: "",
+        options: [
+          { label: "ランディングページ（LP）", value: "landing-page" },
+          { label: "シンプルプラン", value: "simple-plan" },
+          { label: "スタンダードプラン", value: "standard-plan" },
+          { label: "ビジネスプロ", value: "business-pro" },
+        ],
+        error: {
+          required: "選択してください",
+        },
       },
-    },
-    completion_deadline: {
-      label: "完成希望納期",
-      type: "select",
-      value: "",
-      options: [
-        { label: "１ヶ月以内", value: "within-1-month" },
-        { label: "１ヶ月～２ヶ月以内", value: "1-to-2-months" },
-        { label: "２ヶ月～３ヶ月以内", value: "2-to-3-months" },
-        { label: "３ヶ月～６ヶ月以内", value: "3-to-6-months" },
-      ],
-      error: {
-        required: "選択してください",
+      completion_deadline: {
+        label: "完成希望納期",
+        type: "select",
+        value: "",
+        options: [
+          { label: "１ヶ月以内", value: "within-1-month" },
+          { label: "１ヶ月～２ヶ月以内", value: "1-to-2-months" },
+          { label: "２ヶ月～３ヶ月以内", value: "2-to-3-months" },
+          { label: "３ヶ月～６ヶ月以内", value: "3-to-6-months" },
+        ],
+        error: {
+          required: "選択してください",
+        },
       },
-    },
-    homepage_url: {
-      label: "現在のホームページURL",
-      type: "url",
-      placeholder: "https://example.com",
-      value: "",
-    },
-    reference_site: {
-      label: "ご希望の参考サイト",
-      type: "url",
-      placeholder: "https://example.com",
-      value: "",
-    },
-    page_content: {
-      label: "ホームページ内容やページ構成について",
-      type: "textarea",
-      value: "",
-    },
-    server_contract: {
-      label: "サーバー契約",
-      type: "select",
-      value: "",
-      options: [
-        { label: "新規サーバー契約", value: "new-server" },
-        { label: "既存サーバーを使用", value: "existing-server" },
-      ],
-      error: {
-        required: "選択してください",
+      homepage_url: {
+        label: "現在のホームページURL",
+        type: "url",
+        placeholder: "https://example.com",
+        value: "",
       },
-    },
-    domain_acquisition: {
-      label: "ドメイン取得",
-      type: "select",
-      value: "",
-      options: [
-        { label: "新規ドメイン取得", value: "new-domain" },
-        { label: "既存ドメインを使用", value: "existing-domain" },
-      ],
-      error: {
-        required: "選択してください",
+      reference_site: {
+        label: "ご希望の参考サイト",
+        type: "url",
+        placeholder: "https://example.com",
+        value: "",
       },
-    },
-    content: {
-      label: "その他・備考",
-      type: "textarea",
-      value: "",
-    },
-    order_company: {
-      label: "貴社名",
-      type: "text",
-      placeholder: "株式会社プロテクト",
-      value: "",
-    },
-    order_name: {
-      label: "ご担当者様名",
-      type: "text",
-      placeholder: "山田 太郎",
-      value: "",
-      error: {
-        required: "名前を入力してください",
+      page_content: {
+        label: "ホームページ内容やページ構成について",
+        type: "textarea",
+        value: "",
       },
-    },
-    order_zip: {
-      label: "郵便番号",
-      type: "text",
-      placeholder: "9790201",
-      value: "",
-      error: {
-        required: "郵便番号を入力してください",
-        validZipLength: "7桁で入力してください",
+      server_contract: {
+        label: "サーバー契約",
+        type: "select",
+        value: "",
+        options: [
+          { label: "新規サーバー契約", value: "new-server" },
+          { label: "既存サーバーを使用", value: "existing-server" },
+        ],
+        error: {
+          required: "選択してください",
+        },
       },
-    },
-    order_address: {
-      label: "所在地",
-      type: "text",
-      placeholder: "",
-      value: "",
-      error: {
-        required: "所在地を入力してください",
+      domain_acquisition: {
+        label: "ドメイン取得",
+        type: "select",
+        value: "",
+        options: [
+          { label: "新規ドメイン取得", value: "new-domain" },
+          { label: "既存ドメインを使用", value: "existing-domain" },
+        ],
+        error: {
+          required: "選択してください",
+        },
       },
-    },
-    mail: {
-      label: "メールアドレス",
-      type: "email",
-      placeholder: "info@example.com",
-      value: "",
-      error: {
-        required: "メールアドレスが入力されていません。",
-        email: "メールアドレスの形式が正しくありません",
+      content: {
+        label: "その他・備考",
+        type: "textarea",
+        value: "",
       },
-    },
-    telnumber: {
-      label: "電話番号",
-      type: "tel",
-      placeholder: "0246-85-5811",
-      value: "",
-      error: {
-        required: "電話番号が入力されていません",
-        maxLengthValue: "電話番号は15桁以内で入力してください",
+      order_company: {
+        label: "貴社名",
+        type: "text",
+        placeholder: "株式会社プロテクト",
+        value: "",
       },
-    },
-    faxnumber: {
-      label: "FAX",
-      type: "tel",
-      placeholder: "0246-85-5812",
-      value: "",
-    },
+      order_name: {
+        label: "ご担当者様名",
+        type: "text",
+        placeholder: "山田 太郎",
+        value: "",
+        error: {
+          required: "名前を入力してください",
+        },
+      },
+      order_zip: {
+        label: "郵便番号",
+        type: "text",
+        placeholder: "9790201",
+        value: "",
+        error: {
+          required: "郵便番号を入力してください",
+          validZipLength: "7桁で入力してください",
+        },
+      },
+      order_address: {
+        label: "所在地",
+        type: "text",
+        placeholder: "",
+        value: "",
+        error: {
+          required: "所在地を入力してください",
+        },
+      },
+      mail: {
+        label: "メールアドレス",
+        type: "email",
+        placeholder: "info@example.com",
+        value: "",
+        error: {
+          required: "メールアドレスが入力されていません。",
+          email: "メールアドレスの形式が正しくありません",
+        },
+      },
+      telnumber: {
+        label: "電話番号",
+        type: "tel",
+        placeholder: "0246-85-5811",
+        value: "",
+        error: {
+          required: "電話番号が入力されていません",
+          maxLengthValue: "電話番号は15桁以内で入力してください",
+        },
+      },
+      faxnumber: {
+        label: "FAX",
+        type: "tel",
+        placeholder: "0246-85-5812",
+        value: "",
+      },
+    };
   };
 
   const form = createApp({
@@ -223,13 +225,13 @@ export function orderValidator() {
           },
         },
         step: 1,
-        formFields: form_field,
+        formFields: form_field(),
         isSubmitting: false, // ボタン状態を管理
       };
     },
     methods: {
       reset(get) {
-        this.$data.formFields[get].value = formData()[get];
+        this.$data.formFields[get].value = formData()[get].value;
       },
       popState() {
         // 履歴を記録する
@@ -250,7 +252,7 @@ export function orderValidator() {
         this.step = 1;
         this.popState(); // 履歴を記録する
       },
-      checkSubmit(event) {
+      checkSubmit() {
         this.step = 3;
         this.popState(); // 履歴を記録する
       },
@@ -266,10 +268,10 @@ export function orderValidator() {
           }
         });
       },
-      onFormSubmit(event) {
+      onFormSubmit() {
         this.isSubmitting = true; // ボタンを無効化
       },
-      onMailFailed(event) {
+      onMailFailed() {
         alert("送信に失敗しました。もう一度お試しください。");
         this.isSubmitting = false; // ボタンを再び有効化
       },
@@ -292,11 +294,47 @@ export function orderValidator() {
           }
         }
       },
-      wpcf7Classes(field, key) {
-        return {
-          "wpcf7-form-control": true,
-          error: field.error && this.v$.formFields[key]?.value.$error,
-        };
+      async handleSubmit(event) {
+        // FormDataオブジェクトを作成
+        const formData = new FormData(event.target);
+        // `type: "select"`のすべての項目を処理
+        Object.keys(this.formFields).forEach((key) => {
+          const field = this.formFields[key];
+          if (field.type === "select") {
+            const selectedValue = formData.get(key);
+
+            // 対応するラベルを取得
+            const selectedOption = field.options.find(
+              (option) => option.value === selectedValue
+            );
+            // フォームデータをラベルに置き換え
+            if (selectedOption) {
+              formData.set(key, selectedOption.label);
+            }
+          }
+        });
+
+        const formId = formData.get("_wpcf7"); // CF7フォームのID
+        const homeUrl = formData.get("_home_url"); // TOPのアドレス
+        const apiEndpoint = `${homeUrl}wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`;
+
+        try {
+          this.onFormSubmit(); // ボタンを無効化
+          const response = await axios.post(apiEndpoint, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+
+          if (response.formData.status === "mail_sent") {
+            this.checkSubmit();
+          } else {
+            this.onMailFailed();
+          }
+        } catch (error) {
+          this.onMailFailed();
+          console.log("送信エラーです。");
+        }
       },
     },
     watch: {
@@ -321,12 +359,6 @@ export function orderValidator() {
       }
       // 初期化時の高さ調整
       this.adjustHeight();
-      // フォーム送信イベントを監視
-      document.addEventListener("submit", this.onFormSubmit);
-      document.addEventListener("wpcf7mailsent", this.checkSubmit);
-      document.addEventListener("wpcf7mailfailed", this.onMailFailed);
-      document.addEventListener("wpcf7spam", this.onMailFailed);
-      document.addEventListener("wpcf7invalid", this.onMailFailed);
       // popstateイベントを監視
       window.addEventListener("popstate", (event) => {
         if (event.state && event.state.step) {
