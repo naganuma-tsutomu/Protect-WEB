@@ -7,7 +7,9 @@ class Head
     public function init()
     {
         add_action('wp_enqueue_scripts', array($this, 'styles_and_scripts'));
-        add_theme_support( 'title-tag' );
+        add_theme_support('title-tag');
+        add_filter('wpcf7_load_js', '__return_false');
+        add_filter('wpcf7_load_css', '__return_false');
     }
 
     public function styles_and_scripts()
