@@ -153,8 +153,9 @@ if (paragraph) {
   );
 }
 
-jQuery(document).ready(function get($) {
-  $('.menu a[href]').on('click', function(event) {
-    $('.checkbox-toggle')[0].checked = false;
+document.querySelectorAll(".menu a[href]").forEach(function (link) {
+  link.addEventListener("click", function () {
+    document.getElementById("checkbox-toggle").checked = false;
   });
 });
+
