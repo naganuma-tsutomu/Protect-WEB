@@ -2,41 +2,10 @@
 <html lang="ja">
 
 <head>
-
     <?php wp_head(); ?>
     <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
     <meta name="format-detection" content="telephone=no">
-
-    <?php /* ios 入力欄タップ時に画面がズームされないようにする記述  始め */ ?>
-    <script>
-        var ua = navigator.userAgent.toLowerCase();
-        var isiOS = (ua.indexOf('iphone') > -1) || (ua.indexOf('ipad') > -1);
-        if (isiOS) {
-            var viewport = document.querySelector('meta[name="viewport"]');
-            if (viewport) {
-                var viewportContent = viewport.getAttribute('content');
-                viewport.setAttribute('content', viewportContent + ', user-scalable=no');
-            }
-        }
-    </script>
-    <?php /* ios 入力欄タップ時に画面がズームされないようにする記述  終わり */ ?>
-
-    <?php /*スクロールヒント*/ ?>
-    <link rel="stylesheet" href="https://unpkg.com/scroll-hint@latest/css/scroll-hint.css">
-    <script src="https://unpkg.com/scroll-hint@latest/js/scroll-hint.min.js"></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', function() {
-            new ScrollHint('.js-scrollable', {
-                scrollHintIconAppendClass: 'scroll-hint-icon-white',
-                suggestiveShadow: true,
-                i18n: {
-                    scrollable: "スクロールできます"
-                }
-            });
-        });
-    </script>
-
 </head>
 
 <div class="outer-menu">
