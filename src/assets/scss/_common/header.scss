@@ -87,10 +87,9 @@ header {
 
 .outer-menu {
   position: fixed;
-  //top: 5vh;
-  //left: 3vw;
   z-index: 1;
   width: 15%;
+  top: 0;
 
   .checkbox-toggle {
     position: absolute;
