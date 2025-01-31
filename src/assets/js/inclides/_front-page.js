@@ -152,10 +152,10 @@ if (paragraph) {
     }
   );
 }
-
-document.querySelectorAll(".menu a[href]").forEach(function (link) {
-  link.addEventListener("click", function () {
-    document.getElementById("checkbox-toggle").checked = false;
+window.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".menu a[href]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      document.getElementById("checkbox-toggle").checked = false;
+    });
   });
 });
-
