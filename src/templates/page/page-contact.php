@@ -185,14 +185,10 @@ if (!empty($form)) {
                 @after-leave="adjustHeight">
                 <div class="sitecontact__block v-height" v-show="step === 3" v-cloak>
                     <div class="thanks">
-                        <p class="thankstxt">お問い合わせありがとうございます。</p>
-                        <p>
-                            ご入力頂きましたメールアドレス宛に、お問い合わせ内容を記載したメールを送信いたしましたのでご確認ください。
-                        </p>
-                        <p class="thankspstsc">
-                            お問い合わせ内容につきましては
-                            ２～３日後に回答いたしますので今しばらくお待ちください。<br />なお、一週間がたちましても連絡がない場合は恐れ入りますが。直接お電話にてご確認をお願いいたします。
-                        </p>
+                        <p class="">お問い合わせありがとうございます。</p>
+                        <p class="">ご入力頂きましたメールアドレス宛にお問い合わせ内容を記載した<br>メールを送信いたしましたので、ご確認ください。</p>
+                        <p class="">お問い合わせ内容につきましては、2～3日後に回答いたしますので、今しばらくお待ちください。</p>
+                        <p>なお、一週間がたちましても連絡がない場合は恐れ入りますが、<br>直接お電話にてご確認をお願いいたします。</p>
                     </div>
                     <div class="buttonblock">
                         <a class="buttonblock__top" href="<?php echo esc_url(home_url('/')); ?>">TOPページに戻る</a>

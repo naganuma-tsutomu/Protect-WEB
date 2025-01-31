@@ -304,7 +304,7 @@ export function orderValidator() {
             formData.set(key, "-");
           }
           const field = this.formFields[key];
-          if (field.type === "select" && !selectedValue.trim()) {
+          if (field.type === "select" && selectedValue) {
             // 対応するラベルを取得
             const selectedOption = field.options.find(
               (option) => option.value === selectedValue
