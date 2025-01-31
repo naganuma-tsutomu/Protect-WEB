@@ -9,7 +9,7 @@
 </head>
 
 <div class="outer-menu">
-    <input class="checkbox-toggle" type="checkbox" />
+    <input id="checkbox-toggle" class="checkbox-toggle" type="checkbox" />
     <div class="hamburger">
         <div></div>
     </div>
