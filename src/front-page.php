@@ -1,11 +1,5 @@
-<?php get_header('top'); ?>
+<?php get_header(); ?>
 
-<body <?php body_class(); ?>>
-    <main class="main">
-        <?php //get_template_part('templates/parts/nav-menu');
-        ?>
-        <?php //get_template_part('templates/parts/breadcrumbs');
-        ?>
         <div class="top">
             <div class="top-left">
                 <ul>
