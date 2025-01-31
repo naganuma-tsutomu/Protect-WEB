@@ -52,10 +52,10 @@ module.exports = (env, argv) => {
           test: /node_modules\/(.+)\.css$/,
           use: [
             {
-              loader: 'style-loader',
+              loader: "style-loader",
             },
             {
-              loader: 'css-loader',
+              loader: "css-loader",
               options: { url: false },
             },
           ],
@@ -142,7 +142,7 @@ module.exports = (env, argv) => {
     ],
     resolve: {
       alias: {
-        vue: 'vue/dist/vue.esm-bundler.js',
+        vue: "vue/dist/vue.esm-bundler.js",
       },
     },
     // node_modules を監視（watch）対象から除外
