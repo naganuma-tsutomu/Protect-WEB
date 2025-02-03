@@ -8,7 +8,7 @@ namespace hooks\setting;
 class Create_Post_Type
 {
     private const POST_TYPES = [
-        'news' => 'お知らせ',
+        'works' => '制作実績',
     ];
 
     /**

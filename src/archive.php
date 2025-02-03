@@ -1,13 +1,11 @@
 <?php get_header(); ?>
-
-<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-
-		<section class="post">
-			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-			<?php the_excerpt(); ?>
-		</section>
-
-<?php endwhile;
-endif; ?>
+<div class="wrapper">
+    <?php
+    // アーカイブするカスタム投稿のスラッグ名を取得する
+    $post_name = $post->post_name;
+    // カスタム投稿に応じたテンプレートを出力する
+    get_template_part('templates/archive/archive', $post_name);
+    ?>
+</div>
 
 <?php get_footer(); ?>
