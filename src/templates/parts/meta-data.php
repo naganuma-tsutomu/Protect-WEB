@@ -23,6 +23,7 @@ if(is_front_page()){
 <meta property="og:title" content="<?php echo esc_attr($title); ?>" />
 <meta property="og:description" content="<?php echo esc_attr($description); ?>" />
 <meta property="og:url" content="<?php echo esc_attr($url); ?>" />
+<meta property="og:image" content="<?php echo esc_url(get_theme_file_uri('/assets/images/ogp/ogp_top.webp')); ?>" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="<?php echo esc_attr($title); ?>" />
 <meta name="twitter:description" content="<?php echo esc_attr($description); ?>" />
