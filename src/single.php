@@ -1,19 +1,11 @@
 <?php get_header(); ?>
 
-<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+<?php
 
-    <h2><?php the_title(); ?></h2>
-
-    <?php if(has_post_thumbnail()): ?>
-    <div>
-        <img src="<?php the_post_thumbnail_url('large'); ?>">
-    </div>
-    <?php endif; ?>
-
-    <div>
-        <div><?php the_content(); ?></div>
-    </div>
-
-<?php endwhile; endif; ?>
+// アーカイブするカスタム投稿のスラッグ名を取得する
+$post_name = get_query_var('post_type');
+// カスタム投稿(個別ページ)に応じたテンプレートを出力する
+get_template_part('templates/single/single', $post_name);
+?>
 
 <?php get_footer(); ?>
