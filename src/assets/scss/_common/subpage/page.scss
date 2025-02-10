@@ -61,9 +61,7 @@
         }
         &_td {
           position: relative;
-          input,
-          textarea,
-          select {
+          :is(input, textarea, select) {
             &:focus {
               outline: none;
             }
@@ -73,7 +71,7 @@
             border-radius: 0.5rem;
             background-color: #fff;
 
-            &::placeholder{
+            &::placeholder {
               color: gray;
             }
 
@@ -251,14 +249,16 @@
       .buttonblock {
         width: 50rem;
         margin-inline: auto;
-        &__confirm,
-        &__edit,
-        &__send,
-        &__top {
-          width: 20rem;
-          font-size: 1.6rem;
-          line-height: 3rem;
-        }
+      }
+      :is(
+          .buttonblock__confirm,
+          .buttonblock__edit,
+          .buttonblock__send,
+          .buttonblock__top
+        ) {
+        width: 20rem;
+        font-size: 1.6rem;
+        line-height: 3rem;
       }
     }
   }
