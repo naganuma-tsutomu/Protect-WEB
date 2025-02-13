@@ -2,11 +2,10 @@
 
 <div class="top">
     <div class="top-left">
-        <ul>
-            <li>
-                <div class="top-left__text"><span class="js-text">PROTECT&ensp;WEB&ensp;CREATION</span>&ensp;<span class="top-left__text_line01"></span></div>
-            </li>
-        </ul>
+        <div class="top-left__text">
+            <span class="top-left__text_main js-text">PROTECT&ensp;WEB&ensp;CREATION</span>
+            <span class="top-left__text_line01"></span>
+        </div>
     </div>
 
     <div class="top-right">
@@ -14,10 +13,8 @@
         <div class="top-box pc"></div>
         <div class="container-top">
             <div class="container-top__text01">
-                <div class="container-top__text01_inner">
-                    <div class="container-top__text01_inner01 slideJs_x2_2">あなたのビジョンを、</div>
-                    <div class="container-top__text01_inner02 slideJs_x2_2">デザインで形に。</div>
-                </div>
+                <div class="container-top__text01_inner01 slideJs_x2_2">あなたのビジョンを、</div>
+                <div class="container-top__text01_inner02 slideJs_x2_2">デザインで形に。</div>
             </div>
             <div class="pc container-top__text02 slideJs_x3_2">
                 PROTECT <span>WEB</span> CREATION
