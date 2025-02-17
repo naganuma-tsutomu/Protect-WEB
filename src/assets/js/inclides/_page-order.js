@@ -106,12 +106,18 @@ export function orderValidator() {
         type: "url",
         placeholder: "https://example.com",
         value: "",
+        error: {
+          validURL : "http:// または https:// から始まるURLを入力してください",
+        },
       },
       reference_site: {
         label: "ご希望の参考サイト",
         type: "url",
         placeholder: "https://example.com",
         value: "",
+        error: {
+          validURL : "http:// または https:// から始まるURLを入力してください",
+        },
       },
       page_content: {
         label: "ホームページ内容やページ構成について",
@@ -385,6 +391,18 @@ export function orderValidator() {
           },
           completion_deadline: {
             value: { required },
+          },
+          homepage_url: {
+            value: {
+              required,
+              validURL: helpers.regex(/^(https?:\/\/)[\w.-]+(\.[\w.-]+)+[/#?]?.*$/),
+            },
+          },
+          reference_site: {
+            value: {
+              required,
+              validURL: helpers.regex(/^(https?:\/\/)[\w.-]+(\.[\w.-]+)+[/#?]?.*$/),
+            },
           },
           homepage_project_type: {
             value: { required },
