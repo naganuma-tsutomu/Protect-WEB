@@ -457,9 +457,7 @@
               width: 100%;
             }
           }
-          table,
-          th,
-          td {
+          :is(table, th, td) {
             border: 1px solid #333333;
             border-collapse: collapse;
             color: #333333;
