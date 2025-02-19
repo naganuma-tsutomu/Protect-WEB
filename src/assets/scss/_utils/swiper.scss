@@ -1,0 +1,8 @@
+@use "../var" as *;
+.swiper{
+  z-index: 0!important;
+}
+.swiper-pagination {
+  position: static!important;
+}
+

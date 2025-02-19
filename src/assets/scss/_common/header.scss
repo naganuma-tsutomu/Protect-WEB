@@ -70,6 +70,31 @@ header {
       }
     }
   }
+
+  .title__works {
+    height: 30rem;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-image: url(../images/works/works_header.webp);
+    &__bg {
+      display: grid;
+      place-content: center;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      .title-text {
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        font-size: clamp(2rem, 1.2rem + 4vw, 4.2rem);
+        font-weight: bold;
+        color: #fff;
+      }
+    }
+  }
+  
+
   @include mixin.breakpoint(sp) {
     .title__plan {
       height: 20rem;
@@ -78,6 +103,9 @@ header {
       height: 20rem;
     }
     .title__contact {
+      height: 20rem;
+    }
+    .title__works {
       height: 20rem;
     }
   }

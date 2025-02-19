@@ -15,11 +15,21 @@
     <?php if (!is_front_page()) : ?>
         <header>
             <?php
-            $slug = basename(get_permalink());
+            if (is_archive()) {
+                $slug = get_query_var('post_type');
+                $title = get_post_type_object($slug)->label;
+            } else if (is_single()) {
+                $slug = get_query_var('post_type');
+                $title = get_post_type_object($slug)->label;
+            } else {
+                $slug = basename(get_permalink());
+                $title = get_the_title();
+            }
+
             ?>
             <div class="title__<?php echo $slug ?>">
                 <div class="title__<?php echo $slug ?>__bg">
-                    <h1 class="title-text"><?php the_title(); ?></h1>
+                    <h1 class="title-text"><?php echo esc_html($title); ?></h1>
                 </div>
             </div>
         </header>
@@ -37,6 +47,7 @@
                         <li><a href="<?php echo esc_url(home_url()); ?>">HOME&ensp;&ensp;<span>トップページ</span></a></li>
                         <li><a href="<?php echo esc_url(home_url()); ?>#service">SERVICE&ensp;&ensp;<span>サービス・メニュー</span></a></li>
                         <li><a href="<?php echo esc_url(home_url('/plan/')); ?>">PLAN&ensp;&ensp;<span>制作料金・プラン比較表</span></a></li>
+                        <!--<li><a href="<?php //echo esc_url(home_url('/works/')); ?>">WORKS&ensp;&ensp;<span>制作実績</span></a></li>-->
                         <li><a href="<?php echo esc_url(home_url('/order/')); ?>">ORDER&ensp;&ensp;<span>見積もり依頼</span></a></li>
                         <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT&ensp;&ensp;<span>お問い合わせ</span></a></li>
                     </ul>

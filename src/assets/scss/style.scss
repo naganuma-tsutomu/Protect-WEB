@@ -3,6 +3,7 @@
 @use "./reset";
 
 @use "./_utils/animation.scss";
+@use "./_utils/swiper.scss";
 
 @use "./_common/common.scss";
 @use "./_common/header.scss";
@@ -13,4 +14,6 @@
 @use "./_custom-pages/page-plan.scss";
 @use "./_custom-pages/page-order.scss";
 @use "./_custom-pages/page-contact.scss";
+@use "./_custom-pages/archive-works.scss";
+@use "./_custom-pages/single-works.scss";
 

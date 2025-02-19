@@ -25,6 +25,12 @@ footer {
           font-size: clamp(2.4rem, 2.182rem + 1.09vw, 3rem);
           font-weight: bold;
           text-align: center;
+          img{
+            width: 35px;
+            height: auto;
+            margin: 0 1.5rem 0 0;
+            vertical-align: middle;
+          }
           @media screen and (max-width: 1024px) {
             text-align: center;
             font-size: clamp(2.2em, 4.8vw, 4.8vw);

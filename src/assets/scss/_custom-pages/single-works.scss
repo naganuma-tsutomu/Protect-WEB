@@ -1,0 +1,284 @@
+@use "../var" as *;
+
+.works-single {
+  margin: 4rem auto 8rem auto;
+  text-align: center;
+  @media screen and (max-width: 1024px) {
+    margin: 8vw auto 14vw auto;
+    max-width: none;
+    width: 100%;
+  }
+
+  .contents_title {
+    font-size: clamp(6vw, 6vw, 8vw);
+    font-family: "Arial";
+    font-weight: bold;
+    -webkit-text-stroke: 0.3vw #1f4b8a;
+    color: #1f4b8a;
+    text-align: center;
+    letter-spacing: 0.2vw;
+    margin: 0 0 0.8rem 0;
+    @media screen and (max-width: 1024px) {
+      font-size: clamp(4rem, 1.273rem + 11.64vw, 10rem);
+    }
+  }
+
+  .contents_subtitle {
+    font-size: 1.8vw;
+    font-weight: bold;
+    text-align: center;
+    color: #1f4b8a;
+    margin: 0 0 2rem 0;
+    @media screen and (max-width: 1024px) {
+      font-size: clamp(1.4rem, 1.127rem + 1.16vw, 2rem);
+      margin: 0 0 4vw 0;
+    }
+  }
+
+  .contents_text01 {
+    width: fit-content;
+    margin: 6rem auto 4rem auto;
+    padding: 0;
+    font-size: clamp(1.3rem, 1.264rem + 0.18vw, 1.6rem);
+    color: #333333;
+    line-height: 1.6;
+    text-align: center;
+    @media screen and (max-width: 1024px) {
+      width: 80%;
+      margin: 0 auto;
+      font-size: clamp(1.6rem, 0.818rem + 0.91vw, 2rem);
+    }
+  }
+
+  &__client {
+    max-width: 980px;
+    margin: 6rem auto 2rem auto;
+    padding-bottom: 1rem;
+    font-size: clamp(1.6rem, 1.309rem + 1.45vw, 2.4rem);
+    font-weight: bold;
+    color: #444444;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #333333;
+    @media screen and (max-width: 1024px) {
+      width: 90%;
+    }
+  }
+
+  &__product {
+    margin: 0 0 2rem 0;
+    font-size: 1.6rem;
+    color: #1f4b8a;
+  }
+
+  &__topimg {
+    width: 100%;
+    height: auto;
+    background: linear-gradient(
+        to top,
+        transparent 0%,
+        transparent 85%,
+        #fff 100%
+      ),
+      url(../images/works/works_bg.webp);
+    background-position: center 85%;
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.1);
+    background-blend-mode: lighten;
+    background-repeat: no-repeat;
+    @media screen and (max-width: 1024px) {
+    }
+
+    &_box {
+      max-width: 683px;
+      height: 40rem;
+      margin: 4rem auto 0 auto;
+      position: relative;
+      @media screen and (max-width: 1024px) {
+        max-width: none;
+        width: fit-content;
+        height: 43vw;
+      }
+
+      &_pc {
+        width: 683px;
+        height: 392px;
+        background-image: url(../images/works/works_detail_top_pc.webp);
+        background-size: contain;
+        position: relative;
+        @media screen and (max-width: 1024px) {
+          width: 80vw;
+          height: 42vw;
+        }
+        img {
+          margin: 2.5rem 0 0 0;
+          width: 77.2%;
+          height: auto;
+          @media screen and (max-width: 1024px) {
+            margin: 2.5vw 0 0 -7vw;
+            width: 71%;
+            height: auto;
+          }
+        }
+      }
+
+      &_sp {
+        width: 159px;
+        height: 317px;
+        background-image: url(../images/works/works_detail_top_sp.webp);
+        background-size: contain;
+        margin: -32rem 0 0 56rem;
+        position: relative;
+        @media screen and (max-width: 1024px) {
+          width: 20vw;
+          height: 60vw;
+          margin: -40vw 0 0 58vw;
+        }
+        img {
+          margin: 4.5% 0 0 0;
+          border-radius: 15px;
+          @media screen and (max-width: 1024px) {
+            border-radius: 2vw;
+            width: 89%;
+            height: 64%;
+          }
+        }
+      }
+    }
+  }
+
+  &__list {
+    margin: 3rem 0 0 0;
+    background-color: #e7eef9;
+    ul {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 4rem 0 4rem 0;
+      @media screen and (max-width: 1024px) {
+        width: 80%;
+        margin: 0 auto;
+        padding: 4rem 0 2rem 0;
+      }
+    }
+    li {
+      padding: 0 0 1rem 3rem;
+      border-bottom: 2px solid rgba(31, 75, 138, 0.3);
+      text-align: left;
+      @media screen and (max-width: 1024px) {
+        margin: 0 0 2rem 0;
+        padding: 0 1rem 1rem 1rem;
+      }
+      span {
+        display: inline-block;
+        margin: 2rem 6rem 0 0;
+        a{
+          color: #1f4b8a;
+        }
+        a:hover{
+          opacity: 0.7;
+        }
+
+        @media screen and (max-width: 1024px) {
+          display: block;
+          margin: 1rem 0 0 0;
+        }
+      }
+    }
+    &_item {
+      width: 25%;
+      font-size: clamp(1.4rem, 1.255rem + 0.73vw, 1.8rem);
+      font-weight: bold;
+      @media screen and (max-width: 1024px) {
+        width: 100%;
+        display: block;
+      }
+    }
+    &_text {
+      border-bottom: none !important;
+      margin: -1.5rem 0 0 0;
+      line-height: 1.7;
+    }
+  }
+
+  &__design {
+    max-width: 1100px;
+    margin: 4rem auto 4rem auto;
+    span {
+      margin: 0 2rem 0 1rem;
+    }
+    .text-line-right {
+      width: 96%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      vertical-align: middle;
+      @media screen and (max-width: 1024px) {
+        display: block;
+        width: 84%;
+        background: linear-gradient(transparent 70%, #B7C5E1 30%);
+        display: inline-block;
+        font-size: clamp(1.6rem, 1.455rem + 0.73vw, 2rem);
+        font-weight: bold;
+      }
+    }
+    .text-line-right:after {
+      content: "";
+      flex-grow: 1;
+      height: 2px;
+      display: block;
+      @media screen and (max-width: 1024px) {
+        content: none;
+        height: fit-content;
+      }
+    }
+    .text-line-right:after {
+      margin-left: 0.4rem;
+      background: #555555;
+    }
+
+    &_pc {
+      width: fit-content;
+      margin: 3rem auto 4rem auto;
+      text-align: center;
+      @media screen and (max-width: 1024px) {
+        width: 84%;
+      }
+      img {
+        display: block;
+        width: 100%;
+        margin: 2rem 0 2rem 0;
+        border: 1px solid #999999;
+      }
+    }
+    &_sp {
+      width: 90%;
+      margin: 0 auto;
+      text-align: center;
+      img {
+        margin: 4rem 0.7rem 4rem 0.7rem;
+        border: 1px solid #999999;
+        @media screen and (max-width: 1024px) {
+          margin: 2rem 0rem 2rem 0rem;
+        }
+      }
+    }
+  }
+
+  .pagination {
+    margin: 8rem 0 0 0;
+    .page-numbers {
+      padding: 2px 6px 2px 6px;
+      border: 1px solid #333333;
+      line-height: 0;
+    }
+    a:hover {
+      background-color: #1f4b8a;
+      color: #ffffff;
+      border: 1px solid #1f4b8a;
+    }
+    .current {
+      background-color: #1f4b8a;
+      color: #ffffff;
+      border: 1px solid #1f4b8a;
+    }
+  }
+}
