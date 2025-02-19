@@ -1,9 +1,5 @@
 @use "../var" as *;
 
-.wrapper {
-  margin: 6vw 0 0 0;
-}
-
 .top {
   display: flex;
   text-align: center;
@@ -264,6 +260,12 @@
         font-weight: bold;
         text-shadow: 2px 2px 4px rgba(200, 200, 200, 0.3);
       }
+      img{
+        width: 3vw;
+        height: auto;
+        margin: 0 0.5rem 0 0;
+        vertical-align: middle;
+      }
       @media screen and (max-width: 1024px) {
         width: fit-content;
         //font-size: 3vw;
@@ -272,6 +274,12 @@
         bottom: clamp(6%, 7%, 8%);
         //bottom: 18%;
         right: 22%;
+        img{
+          width: 3vw;
+          height: auto;
+          margin: 0 0.5vw 0 0;
+          vertical-align: middle;
+        }
       }
     }
   }
