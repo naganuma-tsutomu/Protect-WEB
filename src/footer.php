@@ -4,7 +4,7 @@
         <div class="footer__contents">
             <ul class="footer__contents_info sp">
                 <li>
-                    <div class="footer__contents_info_title">PROTECT WEB CREATION</div>
+                    <div class="footer__contents_info_title"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/footer/logo.webp')); ?>" alt="PROTECT WEB CREATION">PROTECT WEB CREATION</div>
                     <div class="footer__contents_menu_contact">
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>">
                             <div class="footer__contents_menu_contact_button">お問い合わせ</div>
@@ -17,7 +17,7 @@
 
             <ul class="footer__contents_info pc">
                 <li>
-                    <div class="footer__contents_info_title">PROTECT WEB CREATION</div>
+                    <div class="footer__contents_info_title"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/footer/logo.webp')); ?>" alt="PROTECT WEB CREATION">PROTECT WEB CREATION</div>
                     <div class="footer__contents_menu_contact">
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>">
                             <div class="footer__contents_menu_contact_button">お問い合わせ</div>
