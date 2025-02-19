@@ -13,10 +13,8 @@
         <div class="top-box pc"></div>
         <div class="container-top">
             <div class="container-top__text01">
-                <div class="container-top__text01_inner">
-                    <div class="container-top__text01_inner01 slideJs_x2_2">あなたのビジョンを、</div>
-                    <div class="container-top__text01_inner02 slideJs_x2_2">デザインで形に。</div>
-                </div>
+                <div class="container-top__text01_inner01 slideJs_x2_2">あなたのビジョンを、</div>
+                <div class="container-top__text01_inner02 slideJs_x2_2">デザインで形に。</div>
             </div>
             <div class="pc container-top__text02 slideJs_x3_2">
                 <img src="<?php echo esc_url(get_theme_file_uri('/assets/images/footer/logo.webp')); ?>" alt="PROTECT WEB CREATION">
