@@ -47,7 +47,7 @@
                         <li><a href="<?php echo esc_url(home_url()); ?>">HOME&ensp;&ensp;<span>トップページ</span></a></li>
                         <li><a href="<?php echo esc_url(home_url()); ?>#service">SERVICE&ensp;&ensp;<span>サービス・メニュー</span></a></li>
                         <li><a href="<?php echo esc_url(home_url('/plan/')); ?>">PLAN&ensp;&ensp;<span>制作料金・プラン比較表</span></a></li>
-                        <li><a href="<?php echo esc_url(home_url('/works/')); ?>">WORKS&ensp;&ensp;<span>制作実績</span></a></li>
+                        <!--<li><a href="<?php //echo esc_url(home_url('/works/')); ?>">WORKS&ensp;&ensp;<span>制作実績</span></a></li>-->
                         <li><a href="<?php echo esc_url(home_url('/order/')); ?>">ORDER&ensp;&ensp;<span>見積もり依頼</span></a></li>
                         <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT&ensp;&ensp;<span>お問い合わせ</span></a></li>
                     </ul>
