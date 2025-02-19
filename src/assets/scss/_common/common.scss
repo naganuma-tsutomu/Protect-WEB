@@ -13,6 +13,15 @@ main{
   //overflow-x: hidden;
   overflow-x:clip
 }
+.wrapper {
+  margin: 6vw 0 0 0;
+}
+.container {
+  margin: 2vw auto 2vw auto;
+  @media screen and (max-width: 1024px) {
+    width: 100% !important;
+  }
+}
 .v-cloak{
   display: none !important;
 }
