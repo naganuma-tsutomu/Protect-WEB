@@ -137,6 +137,7 @@ if (paragraph) {
     .join("");
   // 新しい文字列をHTMLに挿入
   paragraph.innerHTML = newTextContent;
+  paragraph.style.opacity = 1;
   gsap.fromTo(
     ".js-text span", // アニメーションさせる要素
     {
@@ -152,6 +153,7 @@ if (paragraph) {
     }
   );
 }
+
 window.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".menu a[href]").forEach(function (link) {
     link.addEventListener("click", function () {

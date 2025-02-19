@@ -2,7 +2,7 @@
 @use "../_utils/mixin.scss" as mixin;
 
 #order {
-  .wrapper{
+  .wrapper {
     margin: 3rem 0 0 0;
   }
   .contact-form {
@@ -21,16 +21,15 @@
           margin: 2rem 0 0;
         }
       }
-      .area-name,
-      .area-name-confirm{
+      :is(.area-name, .area-name-confirm) {
         text-align: center;
         background-color: $main-color;
-        color: #FFF;
+        color: #fff;
         padding: 1rem 0;
-        border-radius: .5rem;
+        border-radius: 0.5rem;
         margin: 2rem 0 0 0;
       }
-      .area-name-confirm{
+      .area-name-confirm {
         margin: 4rem 0 2rem;
       }
     }
