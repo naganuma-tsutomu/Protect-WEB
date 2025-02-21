@@ -31,7 +31,7 @@
                         <div class="menu_service"><a href="<?php echo esc_url(home_url()); ?>#service">SERVICE</a></div>
                         <div class="menu_plan"><a href="<?php echo esc_url(home_url('/plan/')); ?>">PLAN</a></div>
                         <!--<div class="menu_plan"><a href="<?php //echo esc_url(home_url('/works/')); ?>">WORKS</a></div>-->
-                        <div class="menu_contact"><a href="<?php echo esc_url(home_url('/order/')); ?>">ORDER</a></div>
+                        <div class="menu_order"><a href="<?php echo esc_url(home_url('/order/')); ?>">ORDER</a></div>
                         <div class="menu_contact"><a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT</a></div>
                     </div>
                 </li>

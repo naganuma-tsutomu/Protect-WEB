@@ -134,6 +134,11 @@ footer {
   cursor: default;
   color: #f7a336;
 }
+#order .footer__contents_menu_list .menu_order > a {
+  pointer-events: none;
+  cursor: default;
+  color: #f7a336;
+}
 #contact .footer__contents_menu_list .menu_contact > a {
   pointer-events: none;
   cursor: default;
