@@ -4,7 +4,7 @@
         <div class="footer__contents">
             <ul class="footer__contents_info sp">
                 <li>
-                    <div class="footer__contents_info_title">PROTECT WEB CREATION</div>
+                    <div class="footer__contents_info_title"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/footer/logo.webp')); ?>" alt="PROTECT WEB CREATION">PROTECT WEB CREATION</div>
                     <div class="footer__contents_menu_contact">
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>">
                             <div class="footer__contents_menu_contact_button">お問い合わせ</div>
@@ -17,7 +17,7 @@
 
             <ul class="footer__contents_info pc">
                 <li>
-                    <div class="footer__contents_info_title">PROTECT WEB CREATION</div>
+                    <div class="footer__contents_info_title"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/footer/logo.webp')); ?>" alt="PROTECT WEB CREATION">PROTECT WEB CREATION</div>
                     <div class="footer__contents_menu_contact">
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>">
                             <div class="footer__contents_menu_contact_button">お問い合わせ</div>
@@ -30,6 +30,8 @@
                         <div class="menu_home"><a href="<?php echo esc_url(home_url()); ?>">HOME</a></div>
                         <div class="menu_service"><a href="<?php echo esc_url(home_url()); ?>#service">SERVICE</a></div>
                         <div class="menu_plan"><a href="<?php echo esc_url(home_url('/plan/')); ?>">PLAN</a></div>
+                        <!--<div class="menu_plan"><a href="<?php //echo esc_url(home_url('/works/')); ?>">WORKS</a></div>-->
+                        <div class="menu_order"><a href="<?php echo esc_url(home_url('/order/')); ?>">ORDER</a></div>
                         <div class="menu_contact"><a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT</a></div>
                     </div>
                 </li>

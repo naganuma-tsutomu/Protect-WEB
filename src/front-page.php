@@ -17,9 +17,11 @@
                 <div class="container-top__text01_inner02 slideJs_x2_2">デザインで形に。</div>
             </div>
             <div class="pc container-top__text02 slideJs_x3_2">
+                <img src="<?php echo esc_url(get_theme_file_uri('/assets/images/footer/logo.webp')); ?>" alt="PROTECT WEB CREATION">
                 PROTECT <span>WEB</span> CREATION
             </div>
             <div class="sp container-top__text02 slideJs_y2">
+                <img src="<?php echo esc_url(get_theme_file_uri('/assets/images/footer/logo.webp')); ?>" alt="PROTECT WEB CREATION">
                 PROTECT <span>WEB</span> CREATION
             </div>
         </div>

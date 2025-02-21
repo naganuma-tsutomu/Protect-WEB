@@ -1,604 +1,598 @@
 @use "../var" as *;
-.container {
-  margin: 2vw auto 2vw auto;
+
+.plan {
+  max-width: 1200px;
+  margin: 4rem auto 14rem auto;
+  text-align: center;
   @media screen and (max-width: 1024px) {
-    width: 100% !important;
+    margin: 8vw auto 14vw auto;
+    max-width: none;
+    width: 100%;
   }
 
-  .plan {
-    max-width: 1200px;
-    margin: 4rem auto 14rem auto;
-    text-align: center;
+  .contents_text01 {
+    width: fit-content;
+    margin: 4rem auto 4rem auto;
+    padding: 0;
+    font-size: clamp(1.3rem, 1.264rem + 0.18vw, 1.6rem);
+    color: #333333;
+    line-height: 1.6;
     @media screen and (max-width: 1024px) {
-      margin: 8vw auto 14vw auto;
-      max-width: none;
-      width: 100%;
-    }
-
-    .contents_text01 {
-      width: fit-content;
-      margin: 4rem auto 4rem auto;
-      padding: 0;
-      font-size: clamp(1.3rem, 1.264rem + 0.18vw, 1.6rem);
-      color: #333333;
-      line-height: 1.6;
-      @media screen and (max-width: 1024px) {
-        width: 80%;
-        margin: 0 auto;
-        font-size: clamp(1.6rem, 0.818rem + 0.91vw, 2rem);
-      }
-    }
-
-    &__box {
+      width: 80%;
       margin: 0 auto;
-      position: relative;
-      @media screen and (max-width: 1024px) {
-        margin: 8vw auto 0 auto;
+      font-size: clamp(1.6rem, 0.818rem + 0.91vw, 2rem);
+    }
+  }
+
+  &__box {
+    margin: 0 auto;
+    position: relative;
+    @media screen and (max-width: 1024px) {
+      margin: 8vw auto 0 auto;
+    }
+
+    &_common {
+      background-color: #1f4b8a;
+      height: fit-content;
+      padding: 3rem 0 3rem 0;
+      margin: 0 0 6rem 0;
+
+      &_title {
+        font-size: clamp(2.5rem, 0.818rem + 0.91vw, 3rem);
+        font-weight: bold;
+        color: #ffffff;
+        margin: 0 0 3rem 0;
       }
-
-      &_common {
-        background-color: #1f4b8a;
-        height: fit-content;
-        padding: 3rem 0 3rem 0;
-        margin: 0 0 6rem 0;
-
-        &_title {
-          font-size: clamp(2.5rem, 0.818rem + 0.91vw, 3rem);
-          font-weight: bold;
-          color: #ffffff;
-          margin: 0 0 3rem 0;
-        }
-        &_list {
-          width: 100%;
-          ul {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center !important;
-            @media screen and (max-width: 1024px) {
-              width: 90%;
-              margin: 0 auto;
-              display: grid;
-              gap: 1rem;
-              grid-template-columns: repeat(3, 1fr);
-            }
-
-            li {
-              font-size: clamp(1rem, 0.818rem + 0.91vw, 1.5rem);
-              background-color: #ffffff;
-              border-radius: 1rem;
-              min-width: 15rem;
-              min-height: 20rem;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              vertical-align: middle;
-              padding: 1rem;
-              @media screen and (max-width: 1024px) {
-                min-width: 100%;
-                min-height: auto;
-                font-size: clamp(1.4rem, 0.818rem + 0.91vw, 1.6rem);
-                img {
-                  max-width: 100%;
-                  height: auto;
-                  margin: 1rem 0 1rem 0;
-                }
-              }
-              img {
-                margin: 0 0 2rem 0;
-              }
-            }
-          }
-        }
-      }
-
-      &_detail {
+      &_list {
         width: 100%;
-        margin: 4rem auto 4rem auto;
-
-        &_lp {
-          border: 0.8rem solid #278a2a;
-          border-radius: 0.8rem;
-          background-image: url(../images/plan/plan_lp_bg.webp);
-          background-color: rgba(255, 255, 255, 0.7);
-          background-blend-mode: lighten;
-          background-repeat: no-repeat;
-          background-position: -80% 30%;
+        ul {
+          display: flex;
+          gap: 2rem;
+          flex-wrap: wrap;
+          justify-content: center !important;
           @media screen and (max-width: 1024px) {
-            border: 0;
-            background-image: none;
+            width: 90%;
+            margin: 0 auto;
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(3, 1fr);
           }
 
-          ul {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: repeat(2, 1fr);
-            padding: 3rem 6rem 5rem 6rem;
-            @media screen and (max-width: 1024px) {
-              display: block;
-              padding: 3rem 2rem 5rem 2rem;
-            }
-          }
           li {
-            text-align: center;
-          }
-          &_purpose {
-            padding: 3rem 0 3.4rem 0;
-            background-color: #278a2a;
-            color: #ffffff;
-            font-size: clamp(1.8rem, 1.545rem + 1.27vw, 2.5rem);
-            font-weight: bold;
-            letter-spacing: 0.1rem;
-            line-height: 0;
+            font-size: clamp(1rem, 0.818rem + 0.91vw, 1.5rem);
+            background-color: #ffffff;
+            border-radius: 1rem;
+            min-width: 15rem;
+            min-height: 20rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+            padding: 1rem;
             @media screen and (max-width: 1024px) {
-              padding: 4rem 0 4rem 0;
+              min-width: 100%;
+              min-height: auto;
+              font-size: clamp(1.4rem, 0.818rem + 0.91vw, 1.6rem);
+              img {
+                max-width: 100%;
+                height: auto;
+                margin: 1rem 0 1rem 0;
+              }
+            }
+            img {
+              margin: 0 0 2rem 0;
             }
           }
         }
+      }
+    }
 
-        &_simple {
-          border: 0.8rem solid #1f7f8a;
-          border-radius: 0.8rem;
-          background-image: url(../images/plan/plan_simple_bg.webp);
-          background-color: rgba(255, 255, 255, 0.7);
-          background-blend-mode: lighten;
-          background-repeat: no-repeat;
-          background-size: cover;
-          @media screen and (max-width: 1024px) {
-            border: 0;
-            background-image: none;
-          }
+    &_detail {
+      width: 100%;
+      margin: 4rem auto 4rem auto;
 
-          ul {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: repeat(2, 1fr);
-            padding: 3rem 6rem 5rem 6rem;
-            @media screen and (max-width: 1024px) {
-              display: block;
-              padding: 3rem 2rem 5rem 2rem;
-            }
-          }
-          li {
-            text-align: center;
-          }
-          &_purpose {
-            padding: 3rem 0 3.4rem 0;
-            background-color: #1f7f8a;
-            color: #ffffff;
-            font-size: clamp(1.8rem, 1.545rem + 1.27vw, 2.5rem);
-            font-weight: bold;
-            letter-spacing: 0.1rem;
-            line-height: 0;
-            @media screen and (max-width: 1024px) {
-              padding: 4rem 0 4rem 0;
-            }
-          }
+      &_lp {
+        border: 0.8rem solid #278a2a;
+        border-radius: 0.8rem;
+        background-image: url(../images/plan/plan_lp_bg.webp);
+        background-color: rgba(255, 255, 255, 0.7);
+        background-blend-mode: lighten;
+        background-repeat: no-repeat;
+        background-position: -80% 30%;
+        @media screen and (max-width: 1024px) {
+          border: 0;
+          background-image: none;
         }
 
-        &_standard {
-          border: 0.8rem solid #8a7c1f;
-          border-radius: 0.8rem;
-          background-image: url(../images/plan/plan_standard_bg.webp);
-          background-color: rgba(255, 255, 255, 0.7);
-          background-blend-mode: lighten;
-          background-repeat: no-repeat;
-          background-size: cover;
+        ul {
+          display: grid;
+          gap: 2rem;
+          grid-template-columns: repeat(2, 1fr);
+          padding: 3rem 6rem 5rem 6rem;
           @media screen and (max-width: 1024px) {
-            border: 0;
-            background-image: none;
-          }
-
-          ul {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: repeat(2, 1fr);
-            padding: 3rem 6rem 5rem 6rem;
-            @media screen and (max-width: 1024px) {
-              display: block;
-              padding: 3rem 2rem 5rem 2rem;
-            }
-          }
-          li {
-            text-align: center;
-          }
-          &_purpose {
-            padding: 3rem 0 3.4rem 0;
-            background-color: #8a7c1f;
-            color: #ffffff;
-            font-size: clamp(1.8rem, 1.545rem + 1.27vw, 2.5rem);
-            font-weight: bold;
-            letter-spacing: 0.1rem;
-            line-height: 0;
-            @media screen and (max-width: 1024px) {
-              padding: 4rem 0 4rem 0;
-            }
+            display: block;
+            padding: 3rem 2rem 5rem 2rem;
           }
         }
-
-        &_business {
-          border: 0.8rem solid #8a1f47;
-          border-radius: 0.8rem;
-          background-image: url(../images/plan/plan_business_bg.webp);
-          background-color: rgba(255, 255, 255, 0.7);
-          background-blend-mode: lighten;
-          background-repeat: no-repeat;
-          background-position: 0% 40%;
-          background-size: cover;
-          margin: 0 0 10rem 0;
-          @media screen and (max-width: 1024px) {
-            border: 0;
-            background-image: none;
-          }
-
-          ul {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: repeat(2, 1fr);
-            padding: 3rem 6rem 5rem 6rem;
-            @media screen and (max-width: 1024px) {
-              display: block;
-              padding: 3rem 2rem 0 2rem;
-            }
-          }
-          li {
-            text-align: center;
-          }
-          &_purpose {
-            padding: 3rem 0 3.4rem 0;
-            background-color: #8a1f47;
-            color: #ffffff;
-            font-size: clamp(1.8rem, 1.545rem + 1.27vw, 2.5rem);
-            font-weight: bold;
-            letter-spacing: 0.1rem;
-            line-height: 0;
-            @media screen and (max-width: 1024px) {
-              padding: 4rem 0 4rem 0;
-            }
-          }
+        li {
+          text-align: center;
         }
-
-        &_title {
-          margin: 3rem 0 2rem 0;
-          font-size: clamp(3rem, 0.818rem + 0.91vw, 4rem);
+        &_purpose {
+          padding: 3rem 0 3.4rem 0;
+          background-color: #278a2a;
+          color: #ffffff;
+          font-size: clamp(1.8rem, 1.545rem + 1.27vw, 2.5rem);
           font-weight: bold;
+          letter-spacing: 0.1rem;
+          line-height: 0;
+          @media screen and (max-width: 1024px) {
+            padding: 4rem 0 4rem 0;
+          }
+        }
+      }
+
+      &_simple {
+        border: 0.8rem solid #1f7f8a;
+        border-radius: 0.8rem;
+        background-image: url(../images/plan/plan_simple_bg.webp);
+        background-color: rgba(255, 255, 255, 0.7);
+        background-blend-mode: lighten;
+        background-repeat: no-repeat;
+        background-size: cover;
+        @media screen and (max-width: 1024px) {
+          border: 0;
+          background-image: none;
+        }
+
+        ul {
+          display: grid;
+          gap: 2rem;
+          grid-template-columns: repeat(2, 1fr);
+          padding: 3rem 6rem 5rem 6rem;
+          @media screen and (max-width: 1024px) {
+            display: block;
+            padding: 3rem 2rem 5rem 2rem;
+          }
+        }
+        li {
+          text-align: center;
+        }
+        &_purpose {
+          padding: 3rem 0 3.4rem 0;
+          background-color: #1f7f8a;
+          color: #ffffff;
+          font-size: clamp(1.8rem, 1.545rem + 1.27vw, 2.5rem);
+          font-weight: bold;
+          letter-spacing: 0.1rem;
+          line-height: 0;
+          @media screen and (max-width: 1024px) {
+            padding: 4rem 0 4rem 0;
+          }
+        }
+      }
+
+      &_standard {
+        border: 0.8rem solid #8a7c1f;
+        border-radius: 0.8rem;
+        background-image: url(../images/plan/plan_standard_bg.webp);
+        background-color: rgba(255, 255, 255, 0.7);
+        background-blend-mode: lighten;
+        background-repeat: no-repeat;
+        background-size: cover;
+        @media screen and (max-width: 1024px) {
+          border: 0;
+          background-image: none;
+        }
+
+        ul {
+          display: grid;
+          gap: 2rem;
+          grid-template-columns: repeat(2, 1fr);
+          padding: 3rem 6rem 5rem 6rem;
+          @media screen and (max-width: 1024px) {
+            display: block;
+            padding: 3rem 2rem 5rem 2rem;
+          }
+        }
+        li {
+          text-align: center;
+        }
+        &_purpose {
+          padding: 3rem 0 3.4rem 0;
+          background-color: #8a7c1f;
+          color: #ffffff;
+          font-size: clamp(1.8rem, 1.545rem + 1.27vw, 2.5rem);
+          font-weight: bold;
+          letter-spacing: 0.1rem;
+          line-height: 0;
+          @media screen and (max-width: 1024px) {
+            padding: 4rem 0 4rem 0;
+          }
+        }
+      }
+
+      &_business {
+        border: 0.8rem solid #8a1f47;
+        border-radius: 0.8rem;
+        background-image: url(../images/plan/plan_business_bg.webp);
+        background-color: rgba(255, 255, 255, 0.7);
+        background-blend-mode: lighten;
+        background-repeat: no-repeat;
+        background-position: 0% 40%;
+        background-size: cover;
+        margin: 0 0 10rem 0;
+        @media screen and (max-width: 1024px) {
+          border: 0;
+          background-image: none;
+        }
+
+        ul {
+          display: grid;
+          gap: 2rem;
+          grid-template-columns: repeat(2, 1fr);
+          padding: 3rem 6rem 5rem 6rem;
+          @media screen and (max-width: 1024px) {
+            display: block;
+            padding: 3rem 2rem 0 2rem;
+          }
+        }
+        li {
+          text-align: center;
+        }
+        &_purpose {
+          padding: 3rem 0 3.4rem 0;
+          background-color: #8a1f47;
+          color: #ffffff;
+          font-size: clamp(1.8rem, 1.545rem + 1.27vw, 2.5rem);
+          font-weight: bold;
+          letter-spacing: 0.1rem;
+          line-height: 0;
+          @media screen and (max-width: 1024px) {
+            padding: 4rem 0 4rem 0;
+          }
+        }
+      }
+
+      &_title {
+        margin: 3rem 0 2rem 0;
+        font-size: clamp(3rem, 0.818rem + 0.91vw, 4rem);
+        font-weight: bold;
+        color: #333333;
+      }
+      &_price {
+        margin: 2rem 0 2rem 0;
+        font-size: clamp(4rem, 0.818rem + 0.91vw, 6rem);
+        font-weight: bold;
+        color: #1f4b8a;
+      }
+      &_img {
+        img {
+          width: 100%;
+          @media screen and (max-width: 1024px) {
+            width: 80%;
+          }
+        }
+      }
+      &_text {
+        margin: 3rem 0 4rem 0;
+        font-size: clamp(1.4rem, 0.818rem + 0.91vw, 2rem);
+        text-align: left;
+        line-height: 1.5;
+        @media screen and (max-width: 1024px) {
+          //text-align: center;
+          width: fit-content;
+          margin: 3rem auto 4rem auto;
+          font-size: clamp(1.6rem, 0.818rem + 0.91vw, 2rem);
+        }
+      }
+      &_breakdown {
+        font-size: clamp(1.2rem, 0.818rem + 0.91vw, 1.6rem);
+        color: #333333;
+        @media screen and (max-width: 1024px) {
+          font-size: clamp(1.8rem, 0.818rem + 0.91vw, 2.2rem);
+        }
+        dl {
+          display: flex;
+          flex-wrap: wrap;
+          width: 100%;
+          .gray {
+            background-color: #cccccc;
+          }
+        }
+        dt {
+          width: 40%;
+          margin: 0 0 0.7rem 0;
+          padding: 0.7rem 0 0.7rem 3rem;
+          text-align: left;
+          @media screen and (max-width: 1024px) {
+            margin: 0;
+            padding: 2rem 0 2rem 2rem;
+            font-size: clamp(1.4rem, 0.818rem + 0.91vw, 1.8rem);
+          }
+        }
+        dd {
+          width: 60%;
+          margin: 0 0 0.7rem 0;
+          padding: 0.7rem 0 0.7rem 0;
+          @media screen and (max-width: 1024px) {
+            margin: 0;
+            padding: 2rem 2rem 2rem 3rem;
+            font-size: clamp(1.4rem, 0.818rem + 0.91vw, 1.8rem);
+          }
+        }
+      }
+
+      &_price_table_info {
+        width: fit-content;
+        margin: 5vw auto 2rem auto;
+        font-size: clamp(2.4rem, 2.182rem + 1.09vw, 3rem);
+        font-weight: bold;
+        color: #333333;
+        @media screen and (max-width: 1024px) {
+          text-align: center;
+          margin: 6vw auto 2rem auto;
+        }
+      }
+
+      &_price_table {
+        margin: 0 auto;
+        font-size: clamp(1.3rem, 0.818rem + 0.91vw, 1.6rem);
+        @media screen and (max-width: 1024px) {
+          //max-width: 90%;
+          overflow-x: scroll;
+        }
+        table {
+          min-width: 1200px;
+          table-layout: fixed;
+          @media screen and (max-width: 1024px) {
+          }
+        }
+        table,
+        th,
+        td {
+          border: 1px solid #333333;
+          border-collapse: collapse;
           color: #333333;
+          vertical-align: middle;
         }
-        &_price {
-          margin: 2rem 0 2rem 0;
-          font-size: clamp(4rem, 0.818rem + 0.91vw, 6rem);
+        th {
+          text-align: center;
+          padding: 2rem 1rem;
+          @media screen and (max-width: 1024px) {
+            padding: 1rem 0.2rem;
+          }
+        }
+        td {
+          text-align: center;
+          padding: 2rem 1rem;
+          @media screen and (max-width: 1024px) {
+            padding: 1rem 0rem;
+          }
+        }
+        .price_th_menu {
+          padding: 3rem 1rem 3rem 1rem;
+          color: #ffffff;
           font-weight: bold;
-          color: #1f4b8a;
         }
-        &_img {
-          img {
-            width: 100%;
-            @media screen and (max-width: 1024px) {
-              width: 80%;
-            }
+        .price_th_plan {
+          background-color: #1f4b8a;
+          background-image: linear-gradient(
+            to right top,
+            transparent calc(50% - 0.5px),
+            #999 50%,
+            #999 calc(50% + 0.5px),
+            transparent calc(50% + 1px)
+          );
+        }
+        .price_th_plan_text01 {
+          width: fit-content;
+          display: block;
+          margin: 0 0 0 auto;
+          font-weight: bold;
+          text-align: right !important;
+        }
+        .price_th_plan_text02 {
+          width: fit-content;
+          display: block;
+          padding-top: 2rem;
+          font-weight: bold;
+        }
+        .price_lp {
+          background-color: #1f8a2a;
+        }
+        .price_simple {
+          background-color: #1f7f8a;
+        }
+        .price_standard {
+          background-color: #8a7c1f;
+        }
+        .price_business {
+          background-color: #8a1f47;
+        }
+
+        .price_th {
+          color: #333333;
+          background-color: #eeeeee;
+          text-align: center;
+        }
+
+        .price_td_common {
+          span {
+            width: fit-content;
+            display: inline-block;
+            margin: 1rem 1rem 1rem 1rem;
+            padding: 1.7rem 2rem 1.7rem 2rem;
+            color: #ffffff;
+            background-color: #1f4b8a;
+            border-radius: 1.5rem;
+            text-align: center;
+            line-height: 0;
           }
         }
         &_text {
-          margin: 3rem 0 4rem 0;
-          font-size: clamp(1.4rem, 0.818rem + 0.91vw, 2rem);
+          margin: 1rem 0 0 0;
+          font-size: clamp(1.2rem, 0.818rem + 0.91vw, 1.4rem);
           text-align: left;
           line-height: 1.5;
-          @media screen and (max-width: 1024px) {
-            //text-align: center;
-            width: fit-content;
-            margin: 3rem auto 4rem auto;
-            font-size: clamp(1.6rem, 0.818rem + 0.91vw, 2rem);
-          }
         }
-        &_breakdown {
-          font-size: clamp(1.2rem, 0.818rem + 0.91vw, 1.6rem);
-          color: #333333;
+      }
+
+      &_price_table_option {
+        margin: 0 auto;
+        font-size: clamp(1.3rem, 0.818rem + 0.91vw, 1.6rem);
+        @media screen and (max-width: 1024px) {
+          width: 90%;
+        }
+
+        table {
+          width: 1200px;
+          margin: 0 auto;
+          table-layout: fixed;
           @media screen and (max-width: 1024px) {
-            font-size: clamp(1.8rem, 0.818rem + 0.91vw, 2.2rem);
-          }
-          dl {
-            display: flex;
-            flex-wrap: wrap;
             width: 100%;
-            .gray {
-              background-color: #cccccc;
-            }
-          }
-          dt {
-            width: 40%;
-            margin: 0 0 0.7rem 0;
-            padding: 0.7rem 0 0.7rem 3rem;
-            text-align: left;
-            @media screen and (max-width: 1024px) {
-              margin: 0;
-              padding: 2rem 0 2rem 2rem;
-              font-size: clamp(1.4rem, 0.818rem + 0.91vw, 1.8rem);
-            }
-          }
-          dd {
-            width: 60%;
-            margin: 0 0 0.7rem 0;
-            padding: 0.7rem 0 0.7rem 0;
-            @media screen and (max-width: 1024px) {
-              margin: 0;
-              padding: 2rem 2rem 2rem 3rem;
-              font-size: clamp(1.4rem, 0.818rem + 0.91vw, 1.8rem);
-            }
           }
         }
-
-        &_price_table_info {
-          width: fit-content;
-          margin: 5vw auto 2rem auto;
-          font-size: clamp(2.4rem, 2.182rem + 1.09vw, 3rem);
-          font-weight: bold;
+        :is(table, th, td) {
+          border: 1px solid #333333;
+          border-collapse: collapse;
           color: #333333;
+          vertical-align: middle;
+        }
+        th {
+          text-align: center;
+          padding: 2rem 1rem;
+        }
+        td {
+          text-align: center;
+          padding: 2rem 1rem;
           @media screen and (max-width: 1024px) {
-            text-align: center;
-            margin: 6vw auto 2rem auto;
+            padding: 1rem 0.2rem;
           }
         }
-
-        &_price_table {
-          margin: 0 auto;
-          font-size: clamp(1.3rem, 0.818rem + 0.91vw, 1.6rem);
-          @media screen and (max-width: 1024px) {
-            //max-width: 90%;
-            overflow-x: scroll;
-          }
-          table {
-            min-width: 1200px;
-            table-layout: fixed;
-            @media screen and (max-width: 1024px) {
-            }
-          }
-          table,
-          th,
-          td {
-            border: 1px solid #333333;
-            border-collapse: collapse;
-            color: #333333;
-            vertical-align: middle;
-          }
-          th {
-            text-align: center;
-            padding: 2rem 1rem;
-            @media screen and (max-width: 1024px) {
-              padding: 1rem 0.2rem;
-            }
-          }
-          td {
-            text-align: center;
-            padding: 2rem 1rem;
-            @media screen and (max-width: 1024px) {
-              padding: 1rem 0rem;
-            }
-          }
-          .price_th_menu {
-            padding: 3rem 1rem 3rem 1rem;
-            color: #ffffff;
-            font-weight: bold;
-          }
-          .price_th_plan {
-            background-color: #1f4b8a;
-            background-image: linear-gradient(
-              to right top,
-              transparent calc(50% - 0.5px),
-              #999 50%,
-              #999 calc(50% + 0.5px),
-              transparent calc(50% + 1px)
-            );
-          }
-          .price_th_plan_text01 {
-            width: fit-content;
-            display: block;
-            margin: 0 0 0 auto;
-            font-weight: bold;
-            text-align: right !important;
-          }
-          .price_th_plan_text02 {
-            width: fit-content;
-            display: block;
-            padding-top: 2rem;
-            font-weight: bold;
-          }
-          .price_lp {
-            background-color: #1f8a2a;
-          }
-          .price_simple {
-            background-color: #1f7f8a;
-          }
-          .price_standard {
-            background-color: #8a7c1f;
-          }
-          .price_business {
-            background-color: #8a1f47;
-          }
-
-          .price_th {
-            color: #333333;
-            background-color: #eeeeee;
-            text-align: center;
-          }
-
-          .price_td_common {
-            span {
-              width: fit-content;
-              display: inline-block;
-              margin: 1rem 1rem 1rem 1rem;
-              padding: 1.7rem 2rem 1.7rem 2rem;
-              color: #ffffff;
-              background-color: #1f4b8a;
-              border-radius: 1.5rem;
-              text-align: center;
-              line-height: 0;
-            }
-          }
-          &_text {
-            margin: 1rem 0 0 0;
-            font-size: clamp(1.2rem, 0.818rem + 0.91vw, 1.4rem);
-            text-align: left;
-            line-height: 1.5;
+        .price_th_option_menu {
+          text-align: center;
+          background-color: #1f4b8a;
+          color: #ffffff;
+          border-right-color: #ffffff;
+          &_border {
+            border-right-color: #333333 !important;
           }
         }
-
-        &_price_table_option {
-          margin: 0 auto;
-          font-size: clamp(1.3rem, 0.818rem + 0.91vw, 1.6rem);
-          @media screen and (max-width: 1024px) {
-            width: 90%;
-          }
-
-          table {
-            width: 1200px;
-            margin: 0 auto;
-            table-layout: fixed;
-            @media screen and (max-width: 1024px) {
-              width: 100%;
-            }
-          }
-          :is(table, th, td) {
-            border: 1px solid #333333;
-            border-collapse: collapse;
-            color: #333333;
-            vertical-align: middle;
-          }
-          th {
-            text-align: center;
-            padding: 2rem 1rem;
-          }
-          td {
-            text-align: center;
-            padding: 2rem 1rem;
-            @media screen and (max-width: 1024px) {
-              padding: 1rem 0.2rem;
-            }
-          }
-          .price_th_option_menu {
-            text-align: center;
-            background-color: #1f4b8a;
-            color: #ffffff;
-            border-right-color: #ffffff;
-            &_border {
-              border-right-color: #333333 !important;
-            }
-          }
-          .price_th_option_menu_1 {
-            text-align: center;
-            background-color: #1f4b8a;
-            color: #ffffff;
-            border-right-color: #ffffff;
-            width: 20vw;
-          }
-          .price_td_option {
-            font-weight: bold;
-            background-color: #eeeeee;
-            width: 20vw;
-            /*
+        .price_th_option_menu_1 {
+          text-align: center;
+          background-color: #1f4b8a;
+          color: #ffffff;
+          border-right-color: #ffffff;
+          width: 20vw;
+        }
+        .price_td_option {
+          font-weight: bold;
+          background-color: #eeeeee;
+          width: 20vw;
+          /*
             @media screen and (max-width: 1024px) {
               width: 22%;
             }
             */
+        }
+        .price_td_option_text {
+          div {
+            line-height: 1.5;
           }
-          .price_td_option_text {
-            div {
-              line-height: 1.5;
+        }
+        .price_td_option_note {
+          width: fit-content;
+          text-align: left;
+          margin: 1rem auto 0 auto;
+          padding: 0 0 0 0.2rem;
+          font-size: 83%;
+        }
+      }
+
+      &_link {
+        display: flex;
+        width: fit-content;
+        margin: 6rem auto 0 auto;
+        @media screen and (max-width: 1024px) {
+          width: 60%;
+          margin: 0 auto;
+          display: grid;
+        }
+
+        &_estimate {
+          width: 24vw;
+          //width: fit-content;
+          height: 8rem;
+          margin: 0 3rem 0 0;
+          font-size: 1.6vw;
+          font-weight: bold !important;
+          text-align: center;
+          color: #ffffff;
+          background-color: #32a22e;
+          border-radius: 10px;
+          box-shadow: 3px 3px 2px rgba(80, 80, 80, 0.2);
+          @media screen and (max-width: 1024px) {
+            width: 100%;
+            margin: 2rem 0 4rem 0;
+            //font-size: 3vw;
+            font-size: clamp(1.5rem, 1.427rem + 0.36vw, 1.7rem);
+          }
+          &_button {
+            font-weight: bold !important;
+            line-height: 0;
+            img {
+              margin: 0 1rem 0 0;
+              vertical-align: middle;
             }
           }
-          .price_td_option_note {
-            width: fit-content;
-            text-align: left;
-            margin: 1rem auto 0 auto;
-            padding: 0 0 0 0.2rem;
-            font-size: 83%;
+          a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+          }
+          a:hover {
+            color: #1f4b8a;
           }
         }
 
-        &_link {
+        &_contact {
+          width: 24vw;
+          //width: fit-content;
+          height: 8rem;
           display: flex;
-          width: fit-content;
-          margin: 6rem auto 0 auto;
+          align-items: center;
+          font-size: 1.6vw;
+          font-weight: bold !important;
+          text-align: center;
+          color: #ffffff;
+          background-color: #ec831a;
+          border-radius: 10px;
+          box-shadow: 3px 3px 2px rgba(80, 80, 80, 0.2);
           @media screen and (max-width: 1024px) {
-            width: 60%;
-            margin: 0 auto;
-            display: grid;
+            width: 100%;
+            margin: 0;
+            //font-size: 3vw;
+            font-size: clamp(1.5rem, 1.427rem + 0.36vw, 1.7rem);
           }
-
-          &_estimate {
-            width: 24vw;
-            //width: fit-content;
-            height: 8rem;
-            margin: 0 3rem 0 0;
-            font-size: 1.6vw;
+          &_button {
             font-weight: bold !important;
-            text-align: center;
-            color: #ffffff;
-            background-color: #32a22e;
-            border-radius: 10px;
-            box-shadow: 3px 3px 2px rgba(80, 80, 80, 0.2);
-            @media screen and (max-width: 1024px) {
-              width: 100%;
-              margin: 2rem 0 4rem 0;
-              //font-size: 3vw;
-              font-size: clamp(1.5rem, 1.427rem + 0.36vw, 1.7rem);
-            }
-            &_button {
-              font-weight: bold !important;
-              line-height: 0;
-              img {
-                margin: 0 1rem 0 0;
-                vertical-align: middle;
-              }
-            }
-            a {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 100%;
-              height: 100%;
-            }
-            a:hover {
-              color: #1f4b8a;
+            line-height: 0;
+            img {
+              margin: 0 1rem 0 0;
+              vertical-align: middle;
             }
           }
-
-          &_contact {
-            width: 24vw;
-            //width: fit-content;
-            height: 8rem;
+          a {
             display: flex;
             align-items: center;
-            font-size: 1.6vw;
-            font-weight: bold !important;
-            text-align: center;
-            color: #ffffff;
-            background-color: #ec831a;
-            border-radius: 10px;
-            box-shadow: 3px 3px 2px rgba(80, 80, 80, 0.2);
-            @media screen and (max-width: 1024px) {
-              width: 100%;
-              margin: 0;
-              //font-size: 3vw;
-              font-size: clamp(1.5rem, 1.427rem + 0.36vw, 1.7rem);
-            }
-            &_button {
-              font-weight: bold !important;
-              line-height: 0;
-              img {
-                margin: 0 1rem 0 0;
-                vertical-align: middle;
-              }
-            }
-            a {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 100%;
-              height: 100%;
-            }
-            a:hover {
-              color: #1f4b8a;
-            }
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+          }
+          a:hover {
+            color: #1f4b8a;
           }
         }
       }

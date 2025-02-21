@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="14" viewBox="0 0 16 14">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="16" height="14" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Icon_-_Home" data-name="Icon - Home" clip-path="url(#clip-path)">
+    <path id="パス_772" data-name="パス 772" d="M9,2,1,8H3.131v8h4V12h4v4h4V8H17Z" transform="translate(-1 -2)" fill="#303030"/>
+  </g>
+</svg>
