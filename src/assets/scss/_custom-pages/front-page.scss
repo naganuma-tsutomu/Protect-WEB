@@ -262,7 +262,7 @@
         font-weight: bold;
         text-shadow: 2px 2px 4px rgba(200, 200, 200, 0.3);
       }
-      img{
+      img {
         width: 3vw;
         height: auto;
         margin: 0 0.5rem 0 0;
@@ -276,7 +276,7 @@
         bottom: clamp(6%, 7%, 8%);
         //bottom: 18%;
         right: 22%;
-        img{
+        img {
           width: 3vw;
           height: auto;
           margin: 0 0.5vw 0 0;
@@ -635,6 +635,118 @@
       width: 80%;
       margin: 0 auto;
       font-size: clamp(1.4rem, 1.127rem + 1.16vw, 2rem);
+    }
+  }
+
+  .front-works {
+    max-width: 1200px;
+    margin: 8rem auto 12rem auto;
+    @media screen and (max-width: 1024px) {
+      margin: 8rem auto 0 auto;
+    }
+    .contents_text01 {
+      text-align: center !important;
+      @media screen and (max-width: 1024px) {
+        width: 80%;
+        text-align: left !important;
+        margin: 0 auto 2rem auto;
+      }
+    }
+    &__box {
+      width: 90%;
+      margin: 0 auto;
+      position: relative;
+      @media screen and (max-width: 1024px) {
+        margin: 8vw auto 0 auto;
+      }
+
+      ul {
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        @media screen and (max-width: 1024px) {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        li {
+          max-width: 360px;
+          margin: 0 auto;
+          padding: 0 0 2rem 0;
+          box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.12);
+          @media screen and (max-width: 1024px) {
+            margin: 0 0 2rem 0;
+          }
+          a:hover {
+            opacity: 0.8;
+          }
+          img {
+            width: 100%;
+          }
+          div {
+            margin: 1rem 0 1rem 0;
+          }
+        }
+      }
+      &_img {
+        margin: 0 0 2rem 0 !important;
+      }
+      &_name {
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-align: center;
+      }
+      &_url {
+        //color: #1f4b8a;
+        margin: 1rem 0 2rem 0 !important;
+        font-size: 1.4rem;
+      }
+
+      &_product {
+        margin: 1rem 0 2rem 0 !important;
+        font-size: 1.4rem;
+        color: #999999;
+        text-align: center;
+      }
+      &_spec {
+        width: fit-content;
+        margin: 0 auto !important;
+        text-align: left;
+        font-size: 1.4rem;
+
+        &_cate,
+        &_plan {
+          display: inline-block;
+          width: 11rem;
+          margin: 0 1rem 0 0;
+          padding: 0.5rem 0 0.5rem 0;
+          border: 2px solid #555555;
+          border-radius: 10px;
+          text-align: center;
+        }
+      }
+      &_all {
+        width: 24rem;
+        margin: 4rem auto 4rem auto;
+        @media screen and (max-width: 1024px) {
+          margin: 2rem auto 4rem auto;
+        }
+        a {
+          width: 100%;
+          height: auto;
+          :hover {
+            opacity: 0.8;
+          }
+        }
+        &_button {
+          width: fit-content;
+          padding: 2rem 4rem 2rem 4rem;
+          background-color: #1f4b8a;
+          text-align: center;
+          color: #ffffff;
+          border-radius: 0.7rem;
+        }
+      }
     }
   }
 

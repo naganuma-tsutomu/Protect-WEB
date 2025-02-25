@@ -137,6 +137,75 @@
         </div>
     </div>
 
+    <?php
+    $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+    $args = [
+        'post_type' => 'works',
+        'post_status' => 'publish',
+        'order'  => 'ASC',
+        'orderby' => 'date',
+        'posts_per_page' => 3,
+        'paged' => $paged
+    ];
+
+    $query = new WP_Query($args);
+    $max_num_pages = $query->max_num_pages;
+    if ($query->have_posts()):
+    ?>
+        <div class="container">
+            <div id="front-works" class="front-works">
+                <div class="slideJs">
+                    <div class="contents_title">WORKS</div>
+                    <div class="contents_subtitle">制作実績</div>
+                    <div class="contents_text01">
+                        Protect webでは様々な業種のお客様からご依頼をいただいております。<br>
+                        お客様のご要望に沿った最適なWEbサイトを制作しておりますので、ぜひお気軽にご相談ください。
+                    </div>
+                </div>
+                <div class="front-works__box">
+                    <ul>
+                        <?php
+                        while ($query->have_posts()): $query->the_post();
+                            /* SCF各フィールド配列取り出し */
+                            $product_all = get_field('works_product');
+                            $cate_all = get_field('works_category');
+                            $plan_all = get_field('works_plan');
+                            if ($product_all && $cate_all && $plan_all) {
+                                $product_label = $product_all['label'];
+                                $product_value = $product_all['value'];
+                                $cate_label = $cate_all['label'];
+                                $cate_value = $cate_all['value'];
+                                $plan_label = $plan_all['label'];
+                                $plan_value = $plan_all['value'];
+                            }
+                        ?>
+                            <li class="slideJs">
+                                <a href="<?php the_permalink(); ?>">
+                                    <div class="front-works__box_img"><img src="<?php the_field('works_topimg_pc'); ?>" alt="<?php the_field('works_client'); ?>"></div>
+                                    <div class="front-works__box_name"><?php the_field('works_client'); ?> 様</div>
+                                    <div class="front-works__box_product"><?php echo $product_label; ?></div>
+                                    <div class="front-works__box_spec">
+                                        <div><span class="front-works__box_spec_cate">CATEGORY</span><span><?php echo $cate_label; ?></span></div>
+                                        <div><span class="front-works__box_spec_plan">PLAN</span><span><?php echo $plan_label; ?></span></div>
+                                    </div>
+                                </a>
+                            </li>
+                        <?php
+                        endwhile;
+                        ?>
+                    </ul>
+                    <div class="front-works__box_all slideJs">
+                        <a href="<?php echo esc_url(home_url('/works/')); ?>">
+                            <div class="front-works__box_all_button">全ての制作実績を見る</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    endif;
+    ?>
+
     <div class="container">
         <div id="service" class="service">
             <div class="slideJs">
