@@ -19,7 +19,7 @@ footer {
         &_title {
           display: block;
           margin: 0;
-          padding: 4rem 0 1rem 0;
+          padding: 4.5rem 0 1rem 0;
           letter-spacing: 0.07vw;
           font-family: Arial, Helvetica;
           font-size: clamp(2.4rem, 2.182rem + 1.09vw, 3rem);
@@ -58,7 +58,7 @@ footer {
           @media screen and (max-width: 1024px) {
             width: 54%;
             height: 10vw;
-            margin: 5vw auto 5vw auto;
+            margin: 5vw auto 6vw auto;
             border-radius: 1.2vw;
           }
           a:hover div {
@@ -80,17 +80,28 @@ footer {
         }
 
         &_tel {
-          margin: 0 0 3vw 0;
-          font-size: 2vw;
+          margin: 0 0 2.5rem 0;
+          font-size: clamp(2rem, 1.564rem + 2.18vw, 3.2rem);
           font-weight: bold;
           letter-spacing: 0.1vw;
           pointer-events: none;
           cursor: default;
           @media screen and (max-width: 1024px) {
-            margin: 0 0 6vw 0;
-            font-size: clamp(3.2vw, 3.8vw, 3.8vw);
+            margin: 5vw 0 5vw 0;
+            font-size: clamp(2rem, 1.636rem + 1.82vw, 3rem);
             font-weight: bold !important;
             pointer-events: auto;
+          }
+        }
+
+        &_sns{
+          width: fit-content;
+          margin: 0 auto 4rem auto;
+          img{
+            margin: 0 1rem 0 1rem;
+          }
+          a:hover{
+            opacity: 0.8;
           }
         }
 
@@ -99,7 +110,7 @@ footer {
           justify-content: center;
           align-items: center;
           height: fit-content;
-          margin: 0 auto 2.5vw auto;
+          margin: 0 auto 2vw auto;
           font-size: clamp(0.8rem, 0.545rem + 1.27vw, 1.5rem);
           font-weight: bold;
           letter-spacing: 0.08vw;
