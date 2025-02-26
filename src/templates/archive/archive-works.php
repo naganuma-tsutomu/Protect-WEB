@@ -44,7 +44,7 @@
 							<a href="<?php the_permalink(); ?>">
 								<div class="works__list_img"><img src="<?php the_field('works_topimg_pc'); ?>" alt="<?php the_field('works_client'); ?>"></div>
 								<div class="works__list_name"><?php the_field('works_client'); ?> 様</div>
-								<div class="works__list_url"><?php the_field('works_url'); ?></div>
+								<!--<div class="works__list_url"><?php //the_field('works_url'); ?></div>-->
 								<div class="works__list_product"><?php echo $product_label; ?></div>
 								<div class="works__list_spec">
 									<div><span class="works__list_spec_cate">CATEGORY</span><span><?php echo $cate_label; ?></span></div>
