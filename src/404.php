@@ -1,16 +1,17 @@
-<?php
-/*
-Template Name: Custom Template
-*/
-?>
-
 <?php get_header(); ?>
 
-<div id="content" class="site-content">
-  <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
+<div class="container">
+  <div id="notfound" class="notfound">
+    <div class="notfound__text">
+      ご指定のページは見つかりませんでした。<br>
+      一時的にアクセスできない状況にあるか、移動、もしくは削除された可能性があります。<br>
+    </div>
+    <div class="notfound__top">
+      <a href="<?php echo esc_url(home_url()); ?>">
+        <div class="notfound__top_text">トップページに戻る</div>
+      </a>
+    </div>
+  </div>
+</div>
 
-ページが見つかりません。
-
-    </main><!-- #main -->
 <?php get_footer(); ?>
