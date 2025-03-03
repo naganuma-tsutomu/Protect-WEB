@@ -677,8 +677,11 @@
           @media screen and (max-width: 1024px) {
             margin: 0 0 2rem 0;
           }
-          a:hover {
-            opacity: 0.8;
+          a {
+            transition: opacity 0.2s ease;
+            &:hover {
+              opacity: 0.8;
+            }
           }
           img {
             width: 100%;
@@ -734,7 +737,8 @@
         a {
           width: 100%;
           height: auto;
-          :hover {
+          transition: opacity 0.2s ease;
+          &:hover {
             opacity: 0.8;
           }
         }
@@ -865,8 +869,11 @@
           padding: 5vw 0 4.8vw 0;
         }
       }
-      a:hover {
-        color: #1f4b8a;
+      a {
+        transition: color 0.2s ease;
+        &:hover {
+          color: #1f4b8a;
+        }
       }
     }
   }
