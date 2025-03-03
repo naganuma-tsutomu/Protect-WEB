@@ -71,8 +71,11 @@
         margin: 0 auto;
         padding: 0 0 2rem 0;
         box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.12);
-        a:hover{
-          opacity: 0.8;
+        a {
+          transition: opacity 0.2s ease;
+          &:hover {
+            opacity: 0.8;
+          }
         }
         img {
           width: 100%;
@@ -125,10 +128,13 @@
       border: 1px solid #333333;
       line-height: 0;
     }
-    a:hover {
-      background-color: #1f4b8a;
-      color: #ffffff;
-      border: 1px solid #1f4b8a;
+    a {
+      transition: all 0.2s ease;
+      &:hover {
+        background-color: #1f4b8a;
+        color: #ffffff;
+        border: 1px solid #1f4b8a;
+      }
     }
     .current {
       background-color: #1f4b8a;
@@ -145,10 +151,10 @@
       margin: 6rem auto 0 auto;
     }
 
-    &_info{
+    &_info {
       width: fit-content;
       margin: 0 auto;
-      &_caption{
+      &_caption {
         font-size: clamp(1.4rem, 0.745rem + 3.27vw, 3.2rem);
         font-weight: bold;
         color: #1f4b8a;
@@ -157,7 +163,7 @@
           line-height: 1.5;
         }
       }
-      &_text{
+      &_text {
         margin: 2.2rem auto 2rem auto;
         line-height: 1.5;
         @media screen and (max-width: 1024px) {
@@ -206,8 +212,11 @@
           width: 100%;
           height: 100%;
         }
-        a:hover {
-          color: #1f4b8a;
+        a {
+          transition: color 0.2s ease;
+          &:hover {
+            color: #1f4b8a;
+          }
         }
       }
 
@@ -243,8 +252,11 @@
           width: 100%;
           height: 100%;
         }
-        a:hover {
-          color: #1f4b8a;
+        a {
+          transition: color 0.2s ease;
+          &:hover {
+            color: #1f4b8a;
+          }
         }
       }
     }

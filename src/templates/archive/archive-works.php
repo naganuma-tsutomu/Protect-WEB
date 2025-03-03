@@ -31,27 +31,28 @@
 						$product_all = get_field('works_product');
 						$cate_all = get_field('works_category');
 						$plan_all = get_field('works_plan');
-						if ($product_all && $cate_all && $plan_all) {
+						if ($product_all && $cate_all && $plan_all) :
 							$product_label = $product_all['label'];
 							$product_value = $product_all['value'];
 							$cate_label = $cate_all['label'];
 							$cate_value = $cate_all['value'];
 							$plan_label = $plan_all['label'];
 							$plan_value = $plan_all['value'];
-						}
 				?>
-						<li>
-							<a href="<?php the_permalink(); ?>">
-								<div class="works__list_img"><img src="<?php the_field('works_topimg_pc'); ?>" alt="<?php the_field('works_client'); ?>"></div>
-								<div class="works__list_name"><?php the_field('works_client'); ?> 様</div>
-								<!--<div class="works__list_url"><?php //the_field('works_url'); ?></div>-->
-								<div class="works__list_product"><?php echo $product_label; ?></div>
-								<div class="works__list_spec">
-									<div><span class="works__list_spec_cate">CATEGORY</span><span><?php echo $cate_label; ?></span></div>
-									<div><span class="works__list_spec_plan">PLAN</span><span><?php echo $plan_label; ?></span></div>
-								</div>
-							</a>
-						</li>
+							<li>
+								<a href="<?php the_permalink(); ?>">
+									<div class="works__list_img"><img src="<?php the_field('works_topimg_pc'); ?>" alt="<?php the_field('works_client'); ?>"></div>
+									<div class="works__list_name"><?php the_field('works_client'); ?> 様</div>
+									<!--<div class="works__list_url"><?php //the_field('works_url');
+																		?></div>-->
+									<div class="works__list_product"><?php echo $product_label; ?></div>
+									<div class="works__list_spec">
+										<div><span class="works__list_spec_cate">CATEGORY</span><span><?php echo $cate_label; ?></span></div>
+										<div><span class="works__list_spec_plan">PLAN</span><span><?php echo $plan_label; ?></span></div>
+									</div>
+								</a>
+							</li>
+						<?php endif; ?>
 				<?php
 					endwhile;
 				endif;
