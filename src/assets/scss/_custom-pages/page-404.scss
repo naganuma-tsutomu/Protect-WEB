@@ -1,0 +1,39 @@
+@use "../var" as *;
+
+.notfound {
+  width: fit-content;
+  margin: 10rem auto 10rem auto;
+  background-image: url(../images/footer/logo.webp);
+  //background-size: 15rem;
+  background-size: clamp(10rem, 8.182rem + 9.09vw, 15rem);
+  background-position: center top;
+  background-color: rgba(255, 255, 255, 0.85);
+  background-blend-mode: lighten;
+
+  &__text {
+    line-height: 2;
+    font-size: 2rem;
+    text-align: center;
+    @media screen and (max-width: 1024px) {
+      width: 80%;
+      margin: 0 auto;
+      text-align: left;
+    }
+  }
+
+  &__top {
+    width: fit-content;
+    margin: 10rem auto 4rem auto;
+    &_text {
+      padding: 2rem 4rem 2rem 4rem;
+      color: #ffffff;
+      font-weight: bold;
+      background-color: #ec831a;
+      border-radius: 1rem;
+    }
+    a {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

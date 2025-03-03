@@ -21,6 +21,9 @@
             } else if (is_single()) {
                 $slug = get_query_var('post_type');
                 $title = get_post_type_object($slug)->label;
+            } else if (is_404()) {
+                $slug = "404";
+                $title = "ページが見つかりません";
             } else {
                 $slug = basename(get_permalink());
                 $title = get_the_title();
