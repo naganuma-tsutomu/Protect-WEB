@@ -1,6 +1,7 @@
 <?php /* Template Name: archive blog Page */ ?>
-    <div class="container">
-        <main class="main">
+<div class="container">
+    <div id="weblog" class="weblog">
+        <div class="wrap">
             <div class="main-title">
                 <span class="main-title__text">BLOG</span>
                 <span class="main-title__text_sub">ブログ・記事</span>
@@ -634,5 +635,6 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
+</div>
