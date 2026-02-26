@@ -2,10 +2,9 @@
 <div class="container">
     <div id="weblog" class="weblog">
         <div class="wrap">
-            <div class="main-title">
-                <span class="main-title__text">BLOG</span>
-                <span class="main-title__text_sub">ブログ・記事</span>
-            </div>
+            <div class="contents_title">BLOG</div>
+            <div class="contents_subtitle">ブログ・記事</div>
+
             <div class="flex-box">
                 <!-- 記事一覧
                 ------------------------------------------------->
@@ -14,7 +13,7 @@
                         <li class="item">
                             <a class="item-link" href="#">
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_01.jpg" alt="サムネイル画像">
+                                    <img class="thumbnail__img" src="<?php the_dummy_image_url(); ?>" alt="サムネイル画像">
                                 </div>
                                 <div class="lead">
                                     <div class="lead__title">

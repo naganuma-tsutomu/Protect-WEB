@@ -2,121 +2,31 @@
 @use "../_utils/mixin.scss" as mixin;
 
 header {
-  .title__plan {
-    height: 30rem;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    background-image: url(../images/plan/plan_header.webp);
-    &__bg {
-      display: grid;
-      place-content: center;
-      height: 100%;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.3);
-      .title-text {
-        height: 100%;
-        width: 100%;
-        text-align: center;
-        font-size: clamp(2rem, 1.2rem + 4vw, 4.2rem);
-        font-weight: bold;
-        color: #fff;
-      }
-    }
-  }
 
-  .title__order {
-    height: 30rem;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    background-image: url(../images/contact/contact_header.webp);
-    &__bg {
-      display: grid;
-      place-content: center;
-      height: 100%;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.3);
-      .title-text {
-        height: 100%;
-        width: 100%;
-        text-align: center;
-        font-size: clamp(2rem, 1.2rem + 4vw, 4.2rem);
-        font-weight: bold;
-        color: #fff;
-      }
-    }
-  }
+// 2. 各クラスで @mixin を呼び出し、画像パスだけを指定する
+.title__plan {
+  @include mixin.title-header('../images/plan/plan_header.webp');
+}
 
-  .title__contact {
-    height: 30rem;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    background-image: url(../images/contact/contact_header.webp);
-    &__bg {
-      display: grid;
-      place-content: center;
-      height: 100%;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.3);
-      .title-text {
-        height: 100%;
-        width: 100%;
-        text-align: center;
-        font-size: clamp(2rem, 1.2rem + 4vw, 4.2rem);
-        font-weight: bold;
-        color: #fff;
-      }
-    }
-  }
+.title__order {
+  @include mixin.title-header('../images/contact/contact_header.webp');
+}
 
-  .title__works {
-    height: 30rem;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    background-image: url(../images/works/works_header.webp);
-    &__bg {
-      display: grid;
-      place-content: center;
-      height: 100%;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.3);
-      .title-text {
-        height: 100%;
-        width: 100%;
-        text-align: center;
-        font-size: clamp(2rem, 1.2rem + 4vw, 4.2rem);
-        font-weight: bold;
-        color: #fff;
-      }
-    }
-  }
+.title__contact {
+  @include mixin.title-header('../images/contact/contact_header.webp');
+}
 
-  .title__404 {
-    height: 30rem;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    background-image: url(../images/works/works_header.webp);
-    &__bg {
-      display: grid;
-      place-content: center;
-      height: 100%;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.3);
-      .title-text {
-        height: 100%;
-        width: 100%;
-        text-align: center;
-        font-size: clamp(2rem, 1.2rem + 4vw, 4.2rem);
-        font-weight: bold;
-        color: #fff;
-      }
-    }
-  }
-  
+.title__works {
+  @include mixin.title-header('../images/works/works_header.webp');
+}
+
+.title__blog {
+  @include mixin.title-header('../images/blog/blog_header.webp');
+}
+
+.title__404 {
+  @include mixin.title-header('../images/works/works_header.webp');
+}
 
   @include mixin.breakpoint(sp) {
     .title__plan {
