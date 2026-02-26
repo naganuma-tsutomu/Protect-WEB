@@ -12,6 +12,12 @@
                     </div>
                     <div class="footer__contents_menu_tel"><span>TEL</span> <a href=”tel:0246-85-5811″>0246-85-5811</a></div>
                 </li>
+                <li>
+                    <div class="footer__contents_menu_sns">
+                        <a href="https://www.instagram.com/pwc_web/"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/footer/footer_icon_insta.webp')); ?>" alt="PROTECT WEB CREATION_insta"></a>
+                        <a href="https://x.com/pwc_web"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/footer/footer_icon_x.webp')); ?>" alt="PROTECT WEB CREATION_X"></a>
+                    </div>
+                </li>
                 <li class="footer__contents_menu_copyright">Copyright© <?php echo date('Y'); ?> 株式会社プロテクト All Rights Reserved.</li>
             </ul>
 
@@ -24,6 +30,12 @@
                         </a>
                     </div>
                     <div class="footer__contents_menu_tel">TEL：<a href=”tel:0246-85-5811″>0246-85-5811</a></div>
+                </li>
+                <li>
+                    <div class="footer__contents_menu_sns">
+                        <a href="https://www.instagram.com/pwc_web/"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/footer/footer_icon_insta.webp')); ?>" alt="PROTECT WEB CREATION_insta"></a>
+                        <a href="https://x.com/pwc_web"><img src="<?php echo esc_url(get_theme_file_uri('/assets/images/footer/footer_icon_x.webp')); ?>" alt="PROTECT WEB CREATION_X"></a>
+                    </div>
                 </li>
                 <li class="pc">
                     <div class="footer__contents_menu_list">

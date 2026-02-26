@@ -38,8 +38,8 @@
         </a>
     </li>
     <li class="breadcrumbs__list"><?php the_title(); ?></li>
-<?php elseif (is_404()) : ?>
-    <li>ページが見つかりません</li>
+<?php //elseif (is_404()) : ?>
+    <!--<li>ページが見つかりません</li>-->
 <?php endif; ?>
     </ul>
 <?php endif; ?>

@@ -170,10 +170,10 @@
       span {
         display: inline-block;
         margin: 2rem 6rem 0 0;
-        a{
+        a {
           color: #1f4b8a;
         }
-        a:hover{
+        a:hover {
           opacity: 0.7;
         }
 
@@ -214,7 +214,7 @@
       @media screen and (max-width: 1024px) {
         display: block;
         width: 84%;
-        background: linear-gradient(transparent 70%, #B7C5E1 30%);
+        background: linear-gradient(transparent 70%, #b7c5e1 30%);
         display: inline-block;
         font-size: clamp(1.6rem, 1.455rem + 0.73vw, 2rem);
         font-weight: bold;
@@ -260,25 +260,6 @@
           margin: 2rem 0rem 2rem 0rem;
         }
       }
-    }
-  }
-
-  .pagination {
-    margin: 8rem 0 0 0;
-    .page-numbers {
-      padding: 2px 6px 2px 6px;
-      border: 1px solid #333333;
-      line-height: 0;
-    }
-    a:hover {
-      background-color: #1f4b8a;
-      color: #ffffff;
-      border: 1px solid #1f4b8a;
-    }
-    .current {
-      background-color: #1f4b8a;
-      color: #ffffff;
-      border: 1px solid #1f4b8a;
     }
   }
 }
