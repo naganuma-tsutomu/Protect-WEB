@@ -31,3 +31,29 @@
   background-color: ($bg);
   font-size: $font;
 }
+
+// ヘッダー画像
+@mixin title-header($img-path) {
+  height: 30rem;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-image: url($img-path); // ここに引数のパスが入る
+
+  &__bg {
+    display: grid;
+    place-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    .title-text {
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      font-size: clamp(2rem, 1.2rem + 4vw, 4.2rem);
+      font-weight: bold;
+      color: #fff;
+    }
+  }
+}

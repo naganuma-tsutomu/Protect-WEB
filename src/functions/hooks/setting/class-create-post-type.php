@@ -9,6 +9,7 @@ class Create_Post_Type
 {
     private const POST_TYPES = [
         'works' => '制作実績',
+        'blog' => 'ブログ・記事',
     ];
 
     /**
