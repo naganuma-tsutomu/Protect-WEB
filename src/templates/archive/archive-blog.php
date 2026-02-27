@@ -49,7 +49,7 @@
                         <li class="item">
                             <a class="item-link" href="#">
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_02.jpg" alt="サムネイル画像">
+                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri( '/assets/images/etc/dammy_960x640.webp' )); ?>" alt="サムネイル画像">
                                 </div>
                                 <div class="lead">
                                     <div class="lead__title">
@@ -85,7 +85,7 @@
                         <li class="item">
                             <a class="item-link" href="#">
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_03.jpg" alt="サムネイル画像">
+                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri( '/assets/images/etc/dammy_960x640.webp' )); ?>"  alt="サムネイル画像">
                                 </div>
                                 <div class="lead">
                                     <div class="lead__title">
@@ -121,7 +121,7 @@
                         <li class="item">
                             <a class="item-link" href="#">
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_04.jpg" alt="サムネイル画像">
+                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
                                 </div>
                                 <div class="lead">
                                     <div class="lead__title">
@@ -157,7 +157,7 @@
                         <li class="item">
                             <a class="item-link" href="#">
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_05.jpg" alt="サムネイル画像">
+                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
                                 </div>
                                 <div class="lead">
                                     <div class="lead__title">
@@ -193,7 +193,7 @@
                         <li class="item">
                             <a class="item-link" href="#">
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_06.jpg" alt="サムネイル画像">
+                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
                                 </div>
                                 <div class="lead">
                                     <div class="lead__title">
@@ -229,7 +229,7 @@
                         <li class="item">
                             <a class="item-link" href="#">
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_01.jpg" alt="サムネイル画像">
+                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
                                 </div>
                                 <div class="lead">
                                     <div class="lead__title">
@@ -265,7 +265,7 @@
                         <li class="item">
                             <a class="item-link" href="#">
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_02.jpg" alt="サムネイル画像">
+                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
                                 </div>
                                 <div class="lead">
                                     <div class="lead__title">
@@ -301,7 +301,7 @@
                         <li class="item">
                             <a class="item-link" href="#">
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_03.jpg" alt="サムネイル画像">
+                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
                                 </div>
                                 <div class="lead">
                                     <div class="lead__title">
@@ -337,7 +337,7 @@
                         <li class="item">
                             <a class="item-link" href="#">
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_04.jpg" alt="サムネイル画像">
+                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
                                 </div>
                                 <div class="lead">
                                     <div class="lead__title">
@@ -373,7 +373,7 @@
                         <li class="item">
                             <a class="item-link" href="#">
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_05.jpg" alt="サムネイル画像">
+                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
                                 </div>
                                 <div class="lead">
                                     <div class="lead__title">
@@ -409,7 +409,7 @@
                         <li class="item">
                             <a class="item-link" href="#">
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_06.jpg" alt="サムネイル画像">
+                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
                                 </div>
                                 <div class="lead">
                                     <div class="lead__title">
@@ -478,7 +478,9 @@
                         </ul>
                     </div>
                 </div>
-
+                
+                <!-- サイドバー
+                ------------------------------------------------->
                 <div class="sidebar">
                     <!-- 検索ボックス
                     ------------------------------------------------->

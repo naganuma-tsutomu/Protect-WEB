@@ -136,3 +136,7 @@ src/functions.php
 ```
 
 
+### 高橋編集ファイル
+
+src/templates/archive/archive-blog.php
+src/assets/scss/_custom-pages/archive-blog.scss
