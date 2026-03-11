@@ -10,631 +10,197 @@
                 ------------------------------------------------->
                 <div class="article">
                     <ul class="list">
-                        <li class="item">
-                            <a class="item-link" href="#">
-                                <div class="thumbnail">
-                                    <img class="thumbnail__img" src="<?php the_dummy_image_url(); ?>" alt="サムネイル画像">
-                                </div>
-                                <div class="lead">
-                                    <div class="lead__title">
-                                        <p class="lead__title_text">新人AI禁止令と、その結果の答え合わせ</p>
-                                    </div>
-                                    <div class="lead__main">
-                                        <p class="lead__main_text">こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                            弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude Codeを配布、</p>
-                                    </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
-                                        </div>
-                                        <div class="lead__category">
-                                            <object class="lead__category_text">
-                                                <a class="lead__category_link"
-                                                    href="https://web.kk-protect.co.jp/">AI</a></object>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <a class="lead__tag_link01" href="#">#AI</a>
-                                                <a class="lead__tag_link01" href="#">#生成AI</a>
-                                            </object>
-                                        </div>
-                                        <div class="lead__button">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="item-link" href="#">
-                                <div class="thumbnail">
-                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri( '/assets/images/etc/dammy_960x640.webp' )); ?>" alt="サムネイル画像">
-                                </div>
-                                <div class="lead">
-                                    <div class="lead__title">
-                                        <p class="lead__title_text">Javaのメモリ管理をざっくり理解する（Out-of-Memoryに至る流れ）</p>
-                                    </div>
-                                    <div class="lead__main">
-                                        <p class="lead__main_text">こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                            弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude Codeを配布、</p>
-                                    </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
-                                        </div>
-                                        <div class="lead__category">
-                                            <object class="lead__category_text">
-                                                <a class="lead__category_link"
-                                                    href="https://web.kk-protect.co.jp/">クラウド</a></object>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <a class="lead__tag_link01" href="#">#AI</a>
-                                                <a class="lead__tag_link01" href="#">#生成AI</a>
-                                            </object>
-                                        </div>
-                                        <div class="lead__button">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="item-link" href="#">
-                                <div class="thumbnail">
-                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri( '/assets/images/etc/dammy_960x640.webp' )); ?>"  alt="サムネイル画像">
-                                </div>
-                                <div class="lead">
-                                    <div class="lead__title">
-                                        <p class="lead__title_text">新人AI禁止令と、その結果の答え合わせ</p>
-                                    </div>
-                                    <div class="lead__main">
-                                        <p class="lead__main_text">こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                            弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude Codeを配布、</p>
-                                    </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
-                                        </div>
-                                        <div class="lead__category">
-                                            <object class="lead__category_text">
-                                                <a class="lead__category_link" href="https://web.kk-protect.co.jp/">Java
-                                                    Script</a></object>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <a class="lead__tag_link01" href="#">#AI</a>
-                                                <a class="lead__tag_link01" href="#">#生成AI</a>
-                                            </object>
-                                        </div>
-                                        <div class="lead__button">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="item-link" href="#">
-                                <div class="thumbnail">
-                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
-                                </div>
-                                <div class="lead">
-                                    <div class="lead__title">
-                                        <p class="lead__title_text">新人AI禁止令と、その結果の答え合わせ</p>
-                                    </div>
-                                    <div class="lead__main">
-                                        <p class="lead__main_text">こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                            弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude Codeを配布、</p>
-                                    </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
-                                        </div>
-                                        <div class="lead__category">
-                                            <object class="lead__category_text">
-                                                <a class="lead__category_link" href="https://web.kk-protect.co.jp/">Word
-                                                    Press</a></object>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <a class="lead__tag_link01" href="#">#AI</a>
-                                                <a class="lead__tag_link01" href="#">#生成AI</a>
-                                            </object>
-                                        </div>
-                                        <div class="lead__button">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="item-link" href="#">
-                                <div class="thumbnail">
-                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
-                                </div>
-                                <div class="lead">
-                                    <div class="lead__title">
-                                        <p class="lead__title_text">新人AI禁止令と、その結果の答え合わせ</p>
-                                    </div>
-                                    <div class="lead__main">
-                                        <p class="lead__main_text">こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                            弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude Codeを配布、</p>
-                                    </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
-                                        </div>
-                                        <div class="lead__category">
-                                            <object class="lead__category_text">
-                                                <a class="lead__category_link"
-                                                    href="https://web.kk-protect.co.jp/">サプライチェーン攻撃</a></object>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <a class="lead__tag_link01" href="#">#AI</a>
-                                                <a class="lead__tag_link01" href="#">#生成AI</a>
-                                            </object>
-                                        </div>
-                                        <div class="lead__button">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="item-link" href="#">
-                                <div class="thumbnail">
-                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
-                                </div>
-                                <div class="lead">
-                                    <div class="lead__title">
-                                        <p class="lead__title_text">新人AI禁止令と、その結果の答え合わせ</p>
-                                    </div>
-                                    <div class="lead__main">
-                                        <p class="lead__main_text">こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                            弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude Codeを配布、</p>
-                                    </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
-                                        </div>
-                                        <div class="lead__category">
-                                            <object class="lead__category_text">
-                                                <a class="lead__category_link"
-                                                    href="https://web.kk-protect.co.jp/">Python</a></object>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <a class="lead__tag_link01" href="#">#AI</a>
-                                                <a class="lead__tag_link01" href="#">#生成AI</a>
-                                            </object>
-                                        </div>
-                                        <div class="lead__button">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="item-link" href="#">
-                                <div class="thumbnail">
-                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
-                                </div>
-                                <div class="lead">
-                                    <div class="lead__title">
-                                        <p class="lead__title_text">新人AI禁止令と、その結果の答え合わせ</p>
-                                    </div>
-                                    <div class="lead__main">
-                                        <p class="lead__main_text">こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                            弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude Codeを配布、</p>
-                                    </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
-                                        </div>
-                                        <div class="lead__category">
-                                            <object class="lead__category_text">
-                                                <a class="lead__category_link"
-                                                    href="https://web.kk-protect.co.jp/">AIエージェント</a></object>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <a class="lead__tag_link01" href="#">#AI</a>
-                                                <a class="lead__tag_link01" href="#">#生成AI</a>
-                                            </object>
-                                        </div>
-                                        <div class="lead__button">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="item-link" href="#">
-                                <div class="thumbnail">
-                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
-                                </div>
-                                <div class="lead">
-                                    <div class="lead__title">
-                                        <p class="lead__title_text">【宇宙最速レビュー】AWSではじめるMCP実践ガイド</p>
-                                    </div>
-                                    <div class="lead__main">
-                                        <p class="lead__main_text">こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                            弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude Codeを配布、</p>
-                                    </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
-                                        </div>
-                                        <div class="lead__category">
-                                            <object class="lead__category_text">
-                                                <a class="lead__category_link"
-                                                    href="https://web.kk-protect.co.jp/">生成AI</a></object>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <a class="lead__tag_link01" href="#">#AI</a>
-                                                <a class="lead__tag_link01" href="#">#生成AI</a>
-                                            </object>
-                                        </div>
-                                        <div class="lead__button">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="item-link" href="#">
-                                <div class="thumbnail">
-                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
-                                </div>
-                                <div class="lead">
-                                    <div class="lead__title">
-                                        <p class="lead__title_text">初心者でもわかる！Pythonで学ぶマクロ経済学入門 全40回 総復習</p>
-                                    </div>
-                                    <div class="lead__main">
-                                        <p class="lead__main_text">こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                            弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude Codeを配布、</p>
-                                    </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
-                                        </div>
-                                        <div class="lead__category">
-                                            <object class="lead__category_text">
-                                                <a class="lead__category_link"
-                                                    href="https://web.kk-protect.co.jp/">作業効率化</a></object>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <a class="lead__tag_link01" href="#">#AI</a>
-                                                <a class="lead__tag_link01" href="#">#生成AI</a>
-                                            </object>
-                                        </div>
-                                        <div class="lead__button">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="item-link" href="#">
-                                <div class="thumbnail">
-                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
-                                </div>
-                                <div class="lead">
-                                    <div class="lead__title">
-                                        <p class="lead__title_text">新人AI禁止令と、その結果の答え合わせ</p>
-                                    </div>
-                                    <div class="lead__main">
-                                        <p class="lead__main_text">こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                            弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude Codeを配布、</p>
-                                    </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
-                                        </div>
-                                        <div class="lead__category">
-                                            <object class="lead__category_text">
-                                                <a class="lead__category_link"
-                                                    href="https://web.kk-protect.co.jp/">AWS</a></object>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <a class="lead__tag_link01" href="#">#AI</a>
-                                                <a class="lead__tag_link01" href="#">#生成AI</a>
-                                            </object>
-                                        </div>
-                                        <div class="lead__button">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="item-link" href="#">
-                                <div class="thumbnail">
-                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
-                                </div>
-                                <div class="lead">
-                                    <div class="lead__title">
-                                        <p class="lead__title_text">新人AI禁止令と、その結果の答え合わせ</p>
-                                    </div>
-                                    <div class="lead__main">
-                                        <p class="lead__main_text">こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                            弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude Codeを配布、</p>
-                                    </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
-                                        </div>
-                                        <div class="lead__category">
-                                            <object class="lead__category_text">
-                                                <a class="lead__category_link"
-                                                    href="https://web.kk-protect.co.jp/">アセンブリ言語</a></object>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <a class="lead__tag_link01" href="#">#AI</a>
-                                                <a class="lead__tag_link01" href="#">#生成AI</a>
-                                            </object>
-                                        </div>
-                                        <div class="lead__button">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="item-link" href="#">
-                                <div class="thumbnail">
-                                    <img class="thumbnail__img" src="<?php echo esc_url( get_theme_file_uri('/assets/images/etc/dammy_960x640.webp')); ?>" alt="サムネイル画像">
-                                </div>
-                                <div class="lead">
-                                    <div class="lead__title">
-                                        <p class="lead__title_text">新人AI禁止令と、その結果の答え合わせ</p>
-                                    </div>
-                                    <div class="lead__main">
-                                        <p class="lead__main_text">こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                            弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude Codeを配布、</p>
-                                    </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
-                                        </div>
-                                        <div class="lead__category">
-                                            <object class="lead__category_text">
-                                                <a class="lead__category_link"
-                                                    href="https://web.kk-protect.co.jp/">AIエージェント</a></object>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <a class="lead__tag_link01" href="#">#AI</a>
-                                                <a class="lead__tag_link01" href="#">#生成AI</a>
-                                            </object>
-                                        </div>
-                                        <div class="lead__button">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                        <?php
+                        // 独自のパラメータ 'pg' からページ番号を取得します。
+                        $paged = (int) (isset($_GET['pg']) ? $_GET['pg'] : 1);
 
+                        // WP_Queryに渡すパラメータを設定
+                        $args = array(
+                            'post_type'      => 'blog', // 取得する投稿タイプを 'blog' に指定
+                            'posts_per_page' => 2,     // 1ページに表示する記事の数
+                            'paged'          => $paged, // 取得するページ番号
+                        );
+                        // 設定したパラメータを使って、新しいクエリを作成し、記事データを取得
+                        $my_query = new WP_Query($args);
+                        ?>
+                        <?php if ($my_query->have_posts()): ?>
+                            <?php // 取得した記事データが存在する間、ループ処理を開始 
+                            while ($my_query->have_posts()) : $my_query->the_post(); ?>
 
+                                <li class="item">
+                                    <a class="item-link" href="<?php the_permalink(); ?>">
+                                        <div class="thumbnail">
+                                            <?php
+                                            // ACFの 'image' フィールドから画像URLを取得
+                                            $image_url = get_field('image');
+                                            // 画像URLが空でなく、エラーもないことを確認
+                                            if (!empty($image_url) && !is_wp_error($image_url));
+                                            ?>
+                                            <img class="thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="サムネイル画像">
+                                        </div>
+                                        <div class="lead">
+                                            <div class="lead__title">
+                                                <p class="lead__title_text">
+                                                    <?php
+                                                    // 現在の投稿のタイトルを取得
+                                                    $title  = get_the_title();
+                                                    // タイトルからHTMLタグとショートコードを取り除く
+                                                    $text = strip_tags(strip_shortcodes($title));
+                                                    // 整形したテキストを出力
+                                                    echo $text;
+                                                    ?>
+                                                </p>
+                                            </div>
+                                            <div class="lead__main">
+                                                <p class="lead__main_text">
+                                                    <?php
+                                                    // 現在の投稿の本文を取得
+                                                    $content  = get_the_content();
+                                                    // 本文からHTMLタグとショートコードを取り除く
+                                                    $text = strip_tags(strip_shortcodes($content));
+                                                    // 整形したテキストを出力
+                                                    echo $text;
+                                                    ?>
+                                                </p>
+                                            </div>
+                                            <div class="lead-sub">
+                                                <div class="lead__date">
+                                                    <span class="lead__date_text">
+                                                        <?php echo get_the_date(); // 投稿日を出力
+                                                        ?>
+                                                    </span>
+                                                </div>
+                                                <div class="lead__category">
+                                                    <?php //カテゴリを取得 
+                                                    $cat_taxonomy = 'blog_cat';
+                                                    // 現在の投稿に紐づく 'blog_cat' タクソノミーのターム（カテゴリ）を取得
+                                                    $categories = get_the_terms(get_the_ID(), $cat_taxonomy);
+                                                    // カテゴリが存在し、エラーがない場合のみ処理を実行
+                                                    if (! empty($categories) && ! is_wp_error($categories)) {
+                                                        // 取得したカテゴリを一つずつループ処理
+                                                        foreach ($categories as $category) {
+                                                            // カテゴリのアーカイブページへのリンクURLを取得
+                                                            $category_link = get_term_link($category->slug, $cat_taxonomy);
+                                                    ?>
+                                                            <object class="lead__category_text">
+                                                                <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
+                                                                    <?php echo esc_html($category->name); ?>
+                                                                </a>
+                                                            </object>
+                                                    <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </div>
+                                                <div class="lead__tag">
+                                                    <object class="lead__tag_text">
+                                                        <?php //タグを取得する
+                                                        $tag_taxonomy = 'blog_tag';
+                                                        // 現在の投稿に紐づく 'blog_tag' タクソノミーのターム（タグ）を取得
+                                                        $tags = get_the_terms(get_the_ID(), $tag_taxonomy);
+                                                        // タグが存在し、エラーがない場合のみ処理を実行
+                                                        if (! empty($tags) && ! is_wp_error($tags)) {
+                                                            // 取得したタグを一つずつループ処理
+                                                            foreach ($tags as $tag) {
+                                                                // タグのアーカイブページへのリンクURLを取得
+                                                                $tag_link = get_term_link($tag->slug, $tag_taxonomy);
+                                                        ?>
+                                                                <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
+                                                                    <?php echo '#' . esc_html($tag->name); ?>
+                                                                </a>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </object>
+                                                </div>
+                                                <div class="lead__button">
+                                                    <span class="lead__button_heart">♡</span>
+                                                    <span class="lead__button_number">11</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            <?php endwhile; // ループの終了 
+                            ?>
+                        <?php endif; ?>
+                        <?php wp_reset_postdata(); // WP_Query で変更された投稿データを元に戻す 
+                        ?>
                     </ul>
+
                     <!-- ページネーション
                     ------------------------------------------------->
-                    <div class="pagination">
-                        <ul class="page-number">
-                            <li class="page-number__block">
-                                <a class="page-number__link active" href="#">
-                                    <span class="page-number__area">1</span>
-                                </a>
-                            </li>
-                            <!-- <li class="page-number__block">
-                                <span class="page-number__area">...</span>
-                            </li> -->
-                            <li class="page-number__block">
-                                <a class="page-number__link" href="#">
-                                    <span class="page-number__area">2</span>
-                                </a>
-                            </li>
-                            <li class="page-number__block">
-                                <a class="page-number__link" href="#">
-                                    <span class="page-number__area">3</span>
-                                </a>
-                            </li>
-                            <li class="page-number__item">
-                                <span class="page-number__dotted">...</span>
-                            </li>
-                            <li class="page-number__block">
-                                <a class="page-number__link" href="#">
-                                    <span class="page-number__area">6</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- サイドバー
-                ------------------------------------------------->
-                <div class="sidebar">
-                    <!-- 検索ボックス
-                    ------------------------------------------------->
-                    <form class="search-box">
-                        <div class="search-box__block">
-                            <input type="search" name="search" class="search-box__block_search" placeholder="キーワード検索" />
-                        </div>
-                        <div class="search-box__icon">
-                            <button type="submit" name="submit" class="search-box__icon_submit">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                        </div>
-                    </form>
 
-                    <!-- カテゴリ
-                    ------------------------------------------------->
-                    <div class="category">
-                        <!-- <div class="category-title">
-                            <span class="category-title__text">CATEGORY</span>
-                            <span class="category-title__text_sub">カテゴリ</span>
-                        </div> -->
-                        <div class="category-block">
-                            <ul class="category-item">
-                                <li class="category-list">
-                                    <a class="category-list__link" href="#">
-                                        <span class="category-list__box">AI</span>
-                                    </a>
-                                </li>
-                                <li class="category-list">
-                                    <a class="category-list__link" href="#">
-                                        <span class="category-list__box">DX</span>
-                                    </a>
-                                </li>
-                                <li class="category-list">
-                                    <a class="category-list__link" href="#">
-                                        <span class="category-list__box">CLOUD</span>
-                                    </a>
-                                </li>
-                                <li class="category-list">
-                                    <a class="category-list__link" href="#">
-                                        <span class="category-list__box">HTML</span>
-                                    </a>
-                                </li>
-                                <li class="category-list">
-                                    <a class="category-list__link" href="#">
-                                        <span class="category-list__box">CSS</span>
-                                    </a>
-                                </li>
-                                <li class="category-list">
-                                    <a class="category-list__link" href="#">
-                                        <span class="category-list__box">Java Script</span>
-                                    </a>
-                                </li>
-                                <li class="category-list">
-                                    <a class="category-list__link" href="#">
-                                        <span class="category-list__box">technology</span>
-                                    </a>
-                                </li>
-                                <li class="category-list">
-                                    <a class="category-list__link" href="#">
-                                        <span class="category-list__box">information technology</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <?php // ページネーションの表示
+                    if ($my_query->max_num_pages > 1): // ページが2ページ以上ある場合にのみページネーションを表示
+                        // ページネーションのリンクを配列として取得
+                        $links = paginate_links(array(
+                            'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))), // ページ番号の置換ルール
+                            'format'       => '?paged=%#%', // ページ番号のフォーマット
+                            'base'         => str_replace(999999999, '%#%', esc_url(add_query_arg('pg', 999999999))), // 独自のパラメータ 'pg' を使用
+                            'format'       => '', // formatは空にする（base側でパラメータを指定しているため）
+                            'current'      => max(1, $paged), // 現在のページ番号
+                            'total'        => $my_query->max_num_pages, // 全ページ数
+                            'type'         => 'array', // リンクを配列として取得（HTML文字列ではなく）
+                            'prev_next'    => false,  // 「前へ」「次へ」のリンクを表示しない
+                            'end_size'     => 1,      // 最初と最後に表示するページ数
+                            'mid_size'     => 2,      // 現在のページの左右に表示するページ数
+                        ));
 
-                    <!-- タグ
-                    ------------------------------------------------->
-                    <div class="tag">
-                        <!-- <div class="tag-title">
-                            <span class="tag-title__text">TAG</span>
-                            <span class="tag-title__text_sub">タグ</span>
-                        </div> -->
-                        <div class="tag-block">
-                            <ul class="tag-item">
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#AI</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#html</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#css</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#js</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#jquery</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#javascript</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#java</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#information technology</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#technology</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#it</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#ui</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#ux</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#scss</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#github</span>
-                                    </a>
-                                </li>
-                                <li class="tag-list">
-                                    <a class="tag-list__link" href="#">
-                                        <span class="tag-list__title">#google</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                        // リンクが存在する場合のみ出力処理を行う
+                        if ($links) :
+                    ?>
+                            <div class="pagination">
+                                <ul class="page-number">
+                                    <?php
+                                    // 配列として取得したリンクをループ処理
+                                    foreach ($links as $link) {
+                                        // 現在のページの場合
+                                        if (strpos($link, 'current')) {
+                                            // ページ番号のみ取得
+                                            $page_number = strip_tags($link);
+                                    ?>
+                                            <li class="page-number__block">
+                                                <a class="page-number__link active" href="#">
+                                                    <span class="page-number__area">
+                                                        <?php echo esc_html($page_number); ?>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        <?php
+                                        }
+                                        // 省略記号「...」の場合
+                                        elseif (strpos($link, 'dots')) {
+                                        ?>
+                                            <li class="page-number__item">
+                                                <span class="page-number__dotted">...</span>
+                                            </li>
+                                        <?php
+                                        }
+                                        // その他の通常のページリンクの場合
+                                        else {
+                                            // リンクからURLとテキストを抽出
+                                            preg_match('/href=["\']?([^"\'>]+)["\']?/', $link, $matches);
+                                            $link_url = isset($matches[1]) ? $matches[1] : '';
+                                            $link_text = strip_tags($link);
+                                        ?>
+                                            <li class="page-number__block">
+                                                <a class="page-number__link" href="<?php echo esc_url($link_url); ?>">
+                                                    <span class="page-number__area"><?php echo esc_html($link_text); ?></span>
+                                                </a>
+                                            </li>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </ul>
+                            </div>
+                    <?php
+                        endif;
+                    endif; ?>
                 </div>
+                <?php get_template_part('sidebar'); //サイドバー(sidebar.phpを呼び出す) ?>
             </div>
         </div>
     </div>

@@ -13,7 +13,9 @@
                                 <div class="lead">
                                     <div class="lead-top">
                                         <div class="lead__date">
-                                            <span class="lead__date_text">20XX.XX.XX</span>
+                                            <span class="lead__date_text">
+                                                <?php echo get_the_date(); //投稿日を出力 ?>
+                                            </span>
                                         </div>
                                         <div class="lead__button">
                                             <span class="lead__button_heart">♡</span>
@@ -21,31 +23,74 @@
                                         </div>
                                     </div>
                                     <div class="lead__title">
-                                        <h1>新人AI禁止令と、その結果の答え合わせ</h1>
+                                        <h1>
+                                            <?php
+                                                // 現在の投稿のタイトルを取得
+                                                $title  = get_the_title();
+                                                // タイトルからHTMLタグとショートコードを取り除く
+                                                $text = strip_tags(strip_shortcodes($title));
+                                                // 整形したテキストを出力
+                                                echo $text;
+                                            ?>
+                                        </h1>
                                     </div>
                                     <div class="lead-sub">
                                         <div class="lead__category">
+                                            <?php 
+                                                //カテゴリを取得 
+                                                $cat_taxonomy = 'blog_cat';
+                                                // 現在の投稿に紐づく 'blog_cat' タクソノミーのターム（カテゴリ）を取得
+                                                $categories = get_the_terms(get_the_ID(), $cat_taxonomy);
+                                                // カテゴリが存在し、エラーがない場合のみ処理を実行
+                                                if (! empty($categories) && ! is_wp_error($categories)) {
+                                                    // 取得したカテゴリを一つずつループ処理
+                                                    foreach ($categories as $category) {
+                                                         // カテゴリのアーカイブページへのリンクURLを取得
+                                                        $category_link = get_term_link($category->slug, $cat_taxonomy);
+                                            ?>
                                             <object class="lead__category_text">
-                                                <a class="lead__category_link"
-                                                    href="https://web.kk-protect.co.jp/">AI</a></object>
+                                                <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
+                                                    <?php echo esc_html($category->name); ?>
+                                                </a>
+                                            </object>
+                                            <?php
+                                                }
+                                                }
+                                            ?>
                                         </div>
                                         <div class="lead__tag">
-                                            <ul class="tag-list">
-                                                <li class="tag-item">
-                                                    <a class="tag-item__link" href="#">#AI</a>
-                                                </li>
-                                                <li class="tag-item">
-                                                    <a class="tag-item__link" href="#">#tag</a>
-                                                </li>
-                                                <li class="tag-item">
-                                                    <a class="tag-item__link" href="#">#タグ</a>
-                                                </li>
-                                            </ul>
+                                            <object class="lead__tag_text">
+                                                <?php 
+                                                    //タグを取得する
+                                                    $tag_taxonomy = 'blog_tag';
+                                                    // 現在の投稿に紐づく 'blog_tag' タクソノミーのターム（タグ）を取得
+                                                    $tags = get_the_terms(get_the_ID(), $tag_taxonomy);
+                                                    // タグが存在し、エラーがない場合のみ処理を実行
+                                                    if (! empty($tags) && ! is_wp_error($tags)) {
+                                                        // 取得したタグを一つずつループ処理
+                                                        foreach ($tags as $tag) {
+                                                            // タグのアーカイブページへのリンクURLを取得
+                                                            $tag_link = get_term_link($tag->slug, $tag_taxonomy);
+                                                ?>
+                                                <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
+                                                    <?php echo '#' . esc_html($tag->name); ?>
+                                                </a>
+                                                <?php
+                                                    }
+                                                    }
+                                                ?>
+                                            </object>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="thumbnail">
-                                    <img class="thumbnail__img" src="assets/img/blog_01.jpg" alt="サムネイル画像">
+                                    <?php
+                                        // ACFの 'image' フィールドから画像URLを取得
+                                        $image_url = get_field('image');
+                                        // 画像URLが空でなく、エラーもないことを確認
+                                        if (!empty($image_url) && !is_wp_error($image_url));
+                                    ?>
+                                    <img class="thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="サムネイル画像">
                                 </div>
                             </div>
                             <!-- 記事 --->
@@ -87,7 +132,10 @@
                                 <div class="main-content">
                                     <div class="main-content__index">
                                         <!-- 見出し --->
-                                        <h2 id="index-1">はじめに</h2>
+                                        <h2 id="index-1">
+                                            <?php echo get_the_content('h2'); ?>
+                                        </h2>
+                                        <!-- <h2 id="index-1">はじめに</h2> -->
                                         <span class="main-content__border"></span>
                                         <p>こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。<br>
                                             弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude
@@ -412,630 +460,7 @@
                             </ul>
                         </div>
                     </div>
-
-                    <!-- サイドバー
-                    ------------------------------------------------->
-                    <div class="sidebar">
-                        <!-- 検索ボックス
-                        ------------------------------------------------->
-                        <form class="search-box">
-                            <div class="search-box__block">
-                                <input type="search" name="search" class="search-box__block_search" placeholder="キーワード検索" />
-                            </div>
-                            <div class="search-box__icon">
-                                <button type="submit" name="submit" class="search-box__icon_submit">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                            </div>
-                        </form>
-
-                        <!-- カテゴリ
-                        ------------------------------------------------->
-                        <div class="category">
-                            <div class="category-block">
-                                <ul class="category-item">
-                                    <li class="category-list">
-                                        <a class="category-list__link" href="#">
-                                            <span class="category-list__box">AI</span>
-                                        </a>
-                                    </li>
-                                    <li class="category-list">
-                                        <a class="category-list__link" href="#">
-                                            <span class="category-list__box">DX</span>
-                                        </a>
-                                    </li>
-                                    <li class="category-list">
-                                        <a class="category-list__link" href="#">
-                                            <span class="category-list__box">CLOUD</span>
-                                        </a>
-                                    </li>
-                                    <li class="category-list">
-                                        <a class="category-list__link" href="#">
-                                            <span class="category-list__box">HTML</span>
-                                        </a>
-                                    </li>
-                                    <li class="category-list">
-                                        <a class="category-list__link" href="#">
-                                            <span class="category-list__box">CSS</span>
-                                        </a>
-                                    </li>
-                                    <li class="category-list">
-                                        <a class="category-list__link" href="#">
-                                            <span class="category-list__box">Java Script</span>
-                                        </a>
-                                    </li>
-                                    <li class="category-list">
-                                        <a class="category-list__link" href="#">
-                                            <span class="category-list__box">technology</span>
-                                        </a>
-                                    </li>
-                                    <li class="category-list">
-                                        <a class="category-list__link" href="#">
-                                            <span class="category-list__box">information technology</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- タグ
-                        ------------------------------------------------->
-                        <div class="tag">
-                            <div class="tag-block">
-                                <ul class="tag-item">
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#AI</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#html</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#css</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#js</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#jquery</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#javascript</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#java</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#information technology</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#technology</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#it</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#ui</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#ux</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#scss</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#github</span>
-                                        </a>
-                                    </li>
-                                    <li class="tag-list">
-                                        <a class="tag-list__link" href="#">
-                                            <span class="tag-list__title">#google</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- ピックアップ記事
-                            ------------------------------------------------->
-                        <div class="pickup">
-                            <ul class="blog-title">
-                                <li class="blog-title__button active">
-                                    <a class="blog-title__button_link" href="">新着</a>
-                                </li>
-                                <li class="blog-title__button">
-                                    <a class="blog-title__button_link" href="">人気</a>
-                                </li>
-                            </ul>
-
-                            <!-- 新着記事一覧
-                            ------------------------------------------------->
-                            <div class="Pickup-Posts active">
-                                <ul class="Pickup-Posts-list">
-                                    <li class="Pickup-Posts-item">
-                                        <a class="Pickup-Posts-item-link" href="#">
-                                            <div class="Pickup-Posts-thumbnail">
-                                                <img class="Pickup-Posts-thumbnail__img" src="assets/img/blog_01.jpg"
-                                                    alt="サムネイル画像">
-                                            </div>
-                                            <div class="Pickup-Posts-lead">
-                                                <div class="Pickup-Posts-lead__title">
-                                                    <div class="Pickup-Posts-lead__title_text">新人AI禁止令と、その結果の答え合わせ
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead__main">
-                                                    <div class="Pickup-Posts-lead__main_text">
-                                                        こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                                        弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude
-                                                        Codeを配布、
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead-sub">
-                                                    <div class="Pickup-Posts-lead__date">
-                                                        <span class="Pickup-Posts-lead__date_text">20XX.XX.XX</span>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__category">
-                                                        <object class="Pickup-Posts-lead__category_text">
-                                                            <a class="Pickup-Posts-lead__category_link"
-                                                                href="https://web.kk-protect.co.jp/">AI</a></object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__tag">
-                                                        <object class="Pickup-Posts-lead__tag_text">
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#AI</a>
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#生成AI</a>
-                                                        </object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__button">
-                                                        <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                        <span class="Pickup-Posts-lead__button_number">11</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="Pickup-Posts-item">
-                                        <a class="Pickup-Posts-item-link" href="#">
-                                            <div class="Pickup-Posts-thumbnail">
-                                                <img class="Pickup-Posts-thumbnail__img" src="assets/img/blog_02.jpg"
-                                                    alt="サムネイル画像">
-                                            </div>
-                                            <div class="Pickup-Posts-lead">
-                                                <div class="Pickup-Posts-lead__title">
-                                                    <div class="Pickup-Posts-lead__title_text">
-                                                        Javaのメモリ管理をざっくり理解する（Out-of-Memoryに至る流れ）</div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead__main">
-                                                    <div class="Pickup-Posts-lead__main_text">
-                                                        こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                                        弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude
-                                                        Codeを配布、
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead-sub">
-                                                    <div class="Pickup-Posts-lead__date">
-                                                        <span class="Pickup-Posts-lead__date_text">20XX.XX.XX</span>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__category">
-                                                        <object class="Pickup-Posts-lead__category_text">
-                                                            <a class="Pickup-Posts-lead__category_link"
-                                                                href="https://web.kk-protect.co.jp/">クラウド</a></object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__tag">
-                                                        <object class="Pickup-Posts-lead__tag_text">
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#AI</a>
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#生成AI</a>
-                                                        </object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__button">
-                                                        <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                        <span class="Pickup-Posts-lead__button_number">11</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="Pickup-Posts-item">
-                                        <a class="Pickup-Posts-item-link" href="#">
-                                            <div class="Pickup-Posts-thumbnail">
-                                                <img class="Pickup-Posts-thumbnail__img" src="assets/img/blog_03.jpg"
-                                                    alt="サムネイル画像">
-                                            </div>
-                                            <div class="Pickup-Posts-lead">
-                                                <div class="Pickup-Posts-lead__title">
-                                                    <div class="Pickup-Posts-lead__title_text">新人AI禁止令と、その結果の答え合わせ
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead__main">
-                                                    <div class="Pickup-Posts-lead__main_text">
-                                                        こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                                        弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude
-                                                        Codeを配布、
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead-sub">
-                                                    <div class="Pickup-Posts-lead__date">
-                                                        <span class="Pickup-Posts-lead__date_text">20XX.XX.XX</span>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__category">
-                                                        <object class="Pickup-Posts-lead__category_text">
-                                                            <a class="Pickup-Posts-lead__category_link"
-                                                                href="https://web.kk-protect.co.jp/">Java
-                                                                Script</a></object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__tag">
-                                                        <object class="Pickup-Posts-lead__tag_text">
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#AI</a>
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#生成AI</a>
-                                                        </object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__button">
-                                                        <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                        <span class="Pickup-Posts-lead__button_number">11</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="Pickup-Posts-item">
-                                        <a class="Pickup-Posts-item-link" href="#">
-                                            <div class="Pickup-Posts-thumbnail">
-                                                <img class="Pickup-Posts-thumbnail__img" src="assets/img/blog_04.jpg"
-                                                    alt="サムネイル画像">
-                                            </div>
-                                            <div class="Pickup-Posts-lead">
-                                                <div class="Pickup-Posts-lead__title">
-                                                    <div class="Pickup-Posts-lead__title_text">新人AI禁止令と、その結果の答え合わせ
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead__main">
-                                                    <div class="Pickup-Posts-lead__main_text">
-                                                        こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                                        弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude
-                                                        Codeを配布、
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead-sub">
-                                                    <div class="Pickup-Posts-lead__date">
-                                                        <span class="Pickup-Posts-lead__date_text">20XX.XX.XX</span>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__category">
-                                                        <object class="Pickup-Posts-lead__category_text">
-                                                            <a class="Pickup-Posts-lead__category_link"
-                                                                href="https://web.kk-protect.co.jp/">Word
-                                                                Press</a></object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__tag">
-                                                        <object class="Pickup-Posts-lead__tag_text">
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#AI</a>
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#生成AI</a>
-                                                        </object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__button">
-                                                        <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                        <span class="Pickup-Posts-lead__button_number">11</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="Pickup-Posts-item">
-                                        <a class="Pickup-Posts-item-link" href="#">
-                                            <div class="Pickup-Posts-thumbnail">
-                                                <img class="Pickup-Posts-thumbnail__img" src="assets/img/blog_05.jpg"
-                                                    alt="サムネイル画像">
-                                            </div>
-                                            <div class="Pickup-Posts-lead">
-                                                <div class="Pickup-Posts-lead__title">
-                                                    <div class="Pickup-Posts-lead__title_text">新人AI禁止令と、その結果の答え合わせ
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead__main">
-                                                    <div class="Pickup-Posts-lead__main_text">
-                                                        こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                                        弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude
-                                                        Codeを配布、
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead-sub">
-                                                    <div class="Pickup-Posts-lead__date">
-                                                        <span class="Pickup-Posts-lead__date_text">20XX.XX.XX</span>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__category">
-                                                        <object class="Pickup-Posts-lead__category_text">
-                                                            <a class="Pickup-Posts-lead__category_link"
-                                                                href="https://web.kk-protect.co.jp/">サプライチェーン攻撃</a></object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__tag">
-                                                        <object class="Pickup-Posts-lead__tag_text">
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#AI</a>
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#生成AI</a>
-                                                        </object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__button">
-                                                        <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                        <span class="Pickup-Posts-lead__button_number">11</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <button class="view-more">もっと見る...</button>
-                            </div>
-
-                            <!-- 人気記事一覧
-                            ------------------------------------------------->
-                            <div class="Pickup-Posts">
-                                <ul class="Pickup-Posts-list">
-                                    <li class="Pickup-Posts-item">
-                                        <a class="Pickup-Posts-item-link" href="#">
-                                            <div class="Pickup-Posts-thumbnail">
-                                                <img class="Pickup-Posts-thumbnail__img" src="assets/img/blog_01.jpg"
-                                                    alt="サムネイル画像">
-                                            </div>
-                                            <div class="Pickup-Posts-lead">
-                                                <div class="Pickup-Posts-lead__title">
-                                                    <div class="Pickup-Posts-lead__title_text">active:新人AI禁止令と、その結果の答え合わせ
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead__main">
-                                                    <div class="Pickup-Posts-lead__main_text">
-                                                        こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                                        弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude
-                                                        Codeを配布、
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead-sub">
-                                                    <div class="Pickup-Posts-lead__date">
-                                                        <span class="Pickup-Posts-lead__date_text">20XX.XX.XX</span>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__category">
-                                                        <object class="Pickup-Posts-lead__category_text">
-                                                            <a class="Pickup-Posts-lead__category_link"
-                                                                href="https://web.kk-protect.co.jp/">AI</a></object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__tag">
-                                                        <object class="Pickup-Posts-lead__tag_text">
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#AI</a>
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#生成AI</a>
-                                                        </object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__button">
-                                                        <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                        <span class="Pickup-Posts-lead__button_number">11</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="Pickup-Posts-item">
-                                        <a class="Pickup-Posts-item-link" href="#">
-                                            <div class="Pickup-Posts-thumbnail">
-                                                <img class="Pickup-Posts-thumbnail__img" src="assets/img/blog_02.jpg"
-                                                    alt="サムネイル画像">
-                                            </div>
-                                            <div class="Pickup-Posts-lead">
-                                                <div class="Pickup-Posts-lead__title">
-                                                    <div class="Pickup-Posts-lead__title_text">
-                                                        Javaのメモリ管理をざっくり理解する（Out-of-Memoryに至る流れ）</div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead__main">
-                                                    <div class="Pickup-Posts-lead__main_text">
-                                                        こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                                        弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude
-                                                        Codeを配布、
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead-sub">
-                                                    <div class="Pickup-Posts-lead__date">
-                                                        <span class="Pickup-Posts-lead__date_text">20XX.XX.XX</span>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__category">
-                                                        <object class="Pickup-Posts-lead__category_text">
-                                                            <a class="Pickup-Posts-lead__category_link"
-                                                                href="https://web.kk-protect.co.jp/">クラウド</a></object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__tag">
-                                                        <object class="Pickup-Posts-lead__tag_text">
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#AI</a>
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#生成AI</a>
-                                                        </object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__button">
-                                                        <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                        <span class="Pickup-Posts-lead__button_number">11</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="Pickup-Posts-item">
-                                        <a class="Pickup-Posts-item-link" href="#">
-                                            <div class="Pickup-Posts-thumbnail">
-                                                <img class="Pickup-Posts-thumbnail__img" src="assets/img/blog_03.jpg"
-                                                    alt="サムネイル画像">
-                                            </div>
-                                            <div class="Pickup-Posts-lead">
-                                                <div class="Pickup-Posts-lead__title">
-                                                    <div class="Pickup-Posts-lead__title_text">新人AI禁止令と、その結果の答え合わせ
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead__main">
-                                                    <div class="Pickup-Posts-lead__main_text">
-                                                        こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                                        弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude
-                                                        Codeを配布、
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead-sub">
-                                                    <div class="Pickup-Posts-lead__date">
-                                                        <span class="Pickup-Posts-lead__date_text">20XX.XX.XX</span>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__category">
-                                                        <object class="Pickup-Posts-lead__category_text">
-                                                            <a class="Pickup-Posts-lead__category_link"
-                                                                href="https://web.kk-protect.co.jp/">Java
-                                                                Script</a></object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__tag">
-                                                        <object class="Pickup-Posts-lead__tag_text">
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#AI</a>
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#生成AI</a>
-                                                        </object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__button">
-                                                        <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                        <span class="Pickup-Posts-lead__button_number">11</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="Pickup-Posts-item">
-                                        <a class="Pickup-Posts-item-link" href="#">
-                                            <div class="Pickup-Posts-thumbnail">
-                                                <img class="Pickup-Posts-thumbnail__img" src="assets/img/blog_04.jpg"
-                                                    alt="サムネイル画像">
-                                            </div>
-                                            <div class="Pickup-Posts-lead">
-                                                <div class="Pickup-Posts-lead__title">
-                                                    <div class="Pickup-Posts-lead__title_text">新人AI禁止令と、その結果の答え合わせ
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead__main">
-                                                    <div class="Pickup-Posts-lead__main_text">
-                                                        こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                                        弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude
-                                                        Codeを配布、
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead-sub">
-                                                    <div class="Pickup-Posts-lead__date">
-                                                        <span class="Pickup-Posts-lead__date_text">20XX.XX.XX</span>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__category">
-                                                        <object class="Pickup-Posts-lead__category_text">
-                                                            <a class="Pickup-Posts-lead__category_link"
-                                                                href="https://web.kk-protect.co.jp/">Word
-                                                                Press</a></object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__tag">
-                                                        <object class="Pickup-Posts-lead__tag_text">
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#AI</a>
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#生成AI</a>
-                                                        </object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__button">
-                                                        <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                        <span class="Pickup-Posts-lead__button_number">11</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="Pickup-Posts-item">
-                                        <a class="Pickup-Posts-item-link" href="#">
-                                            <div class="Pickup-Posts-thumbnail">
-                                                <img class="Pickup-Posts-thumbnail__img" src="assets/img/blog_04.jpg"
-                                                    alt="サムネイル画像">
-                                            </div>
-                                            <div class="Pickup-Posts-lead">
-                                                <div class="Pickup-Posts-lead__title">
-                                                    <div class="Pickup-Posts-lead__title_text">新人AI禁止令と、その結果の答え合わせ
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead__main">
-                                                    <div class="Pickup-Posts-lead__main_text">
-                                                        こんにちは、和田です。いえらぶGROUPで開発部の執行役員を務めています。
-                                                        弊社も例に漏れず、今年はAI活用に非常に注力してきました。Cursorを全エンジニアに導入し、テックリードにはClaude
-                                                        Codeを配布、
-                                                    </div>
-                                                </div>
-                                                <div class="Pickup-Posts-lead-sub">
-                                                    <div class="Pickup-Posts-lead__date">
-                                                        <span class="Pickup-Posts-lead__date_text">20XX.XX.XX</span>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__category">
-                                                        <object class="Pickup-Posts-lead__category_text">
-                                                            <a class="Pickup-Posts-lead__category_link"
-                                                                href="https://web.kk-protect.co.jp/">サプライチェーン攻撃</a></object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__tag">
-                                                        <object class="Pickup-Posts-lead__tag_text">
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#AI</a>
-                                                            <a class="Pickup-Posts-lead__tag_link01" href="#">#生成AI</a>
-                                                        </object>
-                                                    </div>
-                                                    <div class="Pickup-Posts-lead__button">
-                                                        <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                        <span class="Pickup-Posts-lead__button_number">11</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <button class="view-more">もっと見る...</button>
-                            </div>
-                        </div>
-
-                        <!-- 目次
-                        ------------------------------------------------->
-                        <div class="sub-index">
-                            <div class="sub-index__title">目次</div>
-                            <ul class="sub-index-item">
-                                <li class="sub-index-list">
-                                    <a class="sub-index-list__link" href="#index-1">
-                                        <i class="fa-regular fa-square"></i>
-                                        はじめに</a>
-                                </li>
-                                <li class="sub-index-list">
-                                    <a class="sub-index-list__link" href="#index-2">
-                                        <i class="fa-regular fa-square"></i>
-                                        最初は「AIをどんどん使わせていた」</a>
-                                </li>
-                                <li class="sub-index-list">
-                                    <a class="sub-index-list__link" href="#index-3">
-                                        <i class="fa-regular fa-square"></i>
-                                        レビュー830件の衝撃</a>
-                                </li>
-                                <li class="sub-index-list">
-                                    <a class="sub-index-list__link" href="#index-4">
-                                        <i class="fa-regular fa-square"></i>
-                                        「AIを神だと思っていました」</a>
-                                </li>
-                                <li class="sub-index-list">
-                                    <a class="sub-index-list__link" href="#index-5">
-                                        <i class="fa-regular fa-square"></i>
-                                        AI禁止令</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <?php get_template_part('sidebar'); //サイドバー(sidebar.phpを呼び出す) ?>
                     </div>
                 </div>
             </div>
