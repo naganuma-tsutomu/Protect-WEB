@@ -3,6 +3,7 @@ require("dotenv").config(); // dotenv読み込み
 const Ip = process.env.IP; // .env.IP 環境変数の取得
 
 const path = require("path");
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const RemoveEmptyScriptsPlugin = require("webpack-remove-empty-scripts");
@@ -129,6 +130,10 @@ module.exports = (env, argv) => {
         notify: false, // ブラウザ更新時に出てくる通知を非表示にする
       }),
       new WebpackWatchedGlobEntries(),
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+      }),
       new CopyPlugin({
         patterns: [
           {
