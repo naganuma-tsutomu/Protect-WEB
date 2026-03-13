@@ -178,39 +178,39 @@
                     <?php foreach ($popular_posts as $post): setup_postdata($post); ?>
 
                         <li class="Pickup-Posts-item">
-                            <a class="Pickup-Posts-item-link" href="<?php echo esc_url(get_permalink()); ?>">
+                            <a class="Pickup-Posts-item-link" href="<?php echo esc_url(get_permalink()); ?>" >
                                 <div class="Pickup-Posts-lead">                        
-                                    <div class="Pickup-Posts-lead__title">                        
+                                    <div class="Pickup-Posts-lead__title">
                                         <div class="Pickup-Posts-lead__title_text">
-                                            <?php the_title(); //タイトルを出力 ?>
-                                        </div>                        
+                                        <?php the_title();  //タイトルを出力 ?>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="Pickup-Posts-lead-sub">
-                                    <div class="Pickup-Posts-lead__date">
-                                        <span class="Pickup-Posts-lead__date_text">
-                                            <?php echo get_the_date(); //投稿日を出力 ?>
-                                        </span>
-                                    </div>
-                                    <div class="Pickup-Posts-lead__category">
-                                        <?php 
-                                        // 'blog_cat'タクソノミーのタームを取得
-                                        $categories = get_the_terms(get_the_ID(), 'blog_cat');
-                                        if(!empty($categories) && !is_wp_error($categories)) {
-                                            //最初のカテゴリを表示
-                                            $category = $categories[0];
-                                            $category_link = get_term_link($category);
-                                        ?>
-                                        <object class="Pickup-Posts-lead__category_text">
-                                            <a class="Pickup-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
-                                                <?php echo esc_html($category->name); ?>
-                                            </a>
-                                        </object>
-                                        <?php } ?>                                    
-                                    </div>
-                                    <div class="Pickup-Posts-lead__button">
-                                        <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                        <span class="Pickup-Posts-lead__button_number">11</span>
+                                    <div class="Pickup-Posts-lead-sub">                        
+                                        <div class="Pickup-Posts-lead__date">
+                                            <span class="Pickup-Posts-lead__date_text">
+                                                <?php echo get_the_date(); //投稿日を出力 ?>
+                                            </span>
+                                        </div>
+                                        <div class="Pickup-Posts-lead__category">
+                                            <?php
+                                            // 'blog_cat' タクソノミーのタームを取得
+                                            $categories = get_the_terms(get_the_ID(), 'blog_cat');
+                                            if (!empty($categories) && !is_wp_error($categories)) {
+                                                // 最初のカテゴリを表示
+                                                $category = $categories[0];
+                                                $category_link = get_term_link($category);
+                                            ?>
+                                            <object class="Pickup-Posts-lead__category_text">
+                                                <a class="Pickup-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
+                                                    <?php echo esc_html($category->name); ?>
+                                                </a>
+                                            </object>
+                                            <?php } ?>
+                                        </div>
+                                        <div class="Pickup-Posts-lead__button">
+                                            <span class="Pickup-Posts-lead__button_heart">♡</span>
+                                            <span class="Pickup-Posts-lead__button_number">11</span>
+                                        </div>
                                     </div>
                                 </div>
                             </a>

@@ -29,3 +29,13 @@ function console($args)
 function the_dummy_image_url() {
     echo esc_url( get_theme_file_uri( '/assets/images/etc/dammy_960x640.webp' ) );
 }
+
+
+function my_scripts_method() {
+    wp_enqueue_script(
+        'custom_script',
+        get_template_directory_uri().'/assets/js/single.js'
+    );
+}
+
+add_action('wp_enqueue_scripts', 'my_scripts_method');

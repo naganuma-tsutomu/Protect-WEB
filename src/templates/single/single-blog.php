@@ -97,6 +97,11 @@
                             <!-- 記事 --->
                             <div class="main-box">
                                 <!-- 目次 --->
+                                <?php
+                                // 本文からh2タグを抽出して目次を生成
+                                $index_content = apply_filters('the_content', get_the_content());
+                                if (preg_match_all('/<h2.*?>+(.*?)<\/h2>/i', $index_content, $matches)) :
+                                ?>
                                 <div class="index">
                                     <span class="index__border"></span>
                                     <div class="index__title">
@@ -105,37 +110,26 @@
                                     </div>
                                     <div class="index__text">
                                         <ol class="index-list">
-                                            <li class="index-item">
-                                                <i class="fa-regular fa-square"></i>
-                                                <a class="index-item__link" href="#index-1">はじめに</a>
-                                            </li>
-                                            <li class="index-item">
-                                                <i class="fa-regular fa-square"></i>
-                                                <a class="index-item__link" href="#index-2">最初は「AIをどんどん使わせていた」</a>
-                                            </li>
-                                            <li class="index-item">
-                                                <i class="fa-regular fa-square"></i>
-                                                <a class="index-item__link" href="#index-3">レビュー830件の衝撃</a>
-                                            </li>
-                                            <li class="index-item">
-                                                <i class="fa-regular fa-square"></i>
-                                                <a class="index-item__link" href="#index-4">「AIを神だと思っていました」</a>
-                                            </li>
-                                            <li class="index-item">
-                                                <i class="fa-regular fa-square"></i>
-                                                <a class="index-item__link" href="#index-5">AI禁止令</a>
-                                            </li>
+                                            <?php //抽出された見出しの配列を1つずつ取り出す
+                                            //$key=連番（インデックス）,$title=h2のテキスト
+                                            foreach ($matches[1] as $key => $title) : ?>
+                                                <li class="index-item">
+                                                    <i class="fa-regular fa-square"></i>
+                                                    <a class="index-item__link" href="#index-<?php echo $key; ?>"><?php echo strip_tags($title); ?></a>
+                                                </li>
+                                            <?php endforeach; ?>
                                         </ol>
                                     </div>
                                     <span class="index__border"></span>
                                 </div>
+                                <?php endif; ?>
                                 <!-- 本文 --->
                                 <div class="main-content">
                                     <?php
-                                    // 投稿の本文をフィルターを適用した形で取得します。
+                                    // 投稿の本文をフィルターを適用した形で取得
                                     $content = apply_filters('the_content', get_the_content());
 
-                                    // h2タグを区切り文字として、コンテンツをセクションに分割します。
+                                    // h2タグを区切り文字として、コンテンツをセクションに分割
                                     $sections = preg_split('/(?=<h2)/', $content, -1, PREG_SPLIT_NO_EMPTY);
 
                                     // 最初のセクション（最初のh2の前のコンテンツ）があるかチェック
@@ -148,7 +142,9 @@
 
                                     <?php
                                     // 各h2セクションをループで出力します。
-                                    foreach ($sections as $section) :
+                                    foreach ($sections as $key => $section) :
+                                        // h2タグにIDを付与（目次からのリンク用）
+                                        $section = preg_replace('/<h2/', '<h2 id="index-' . $key . '"', $section, 1);
                                     ?>
                                         <div class="main-content__index">
                                             <?php echo $section; ?>
@@ -222,13 +218,6 @@
                         <?php endif; ?> -->
 
 
-
-
-
-
-
-
-
                         <div class="blog-pagination">
                             <?php
                             $prev_post = get_previous_post();
@@ -253,12 +242,6 @@
                         ?>
                             <a href="<?php echo esc_url($post_type_archive_link); ?>" class="blog-pagination__index">記事一覧</a>
                         <?php endif; ?>
-
-
-
-
-
-
 
                         <!-- 関連記事
                         ------------------------------------------------->
@@ -347,7 +330,7 @@
                                 else :
                                 ?>
                                     <li class="Related-Posts-item">
-                                        <p>関連記事はありません。</p>
+                                        <span class="Related-Posts-item__text">関連記事はありません。</span>
                                     </li>
                                 <?php
                                 endif;
