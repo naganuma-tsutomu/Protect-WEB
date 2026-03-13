@@ -291,7 +291,6 @@
         position: sticky;
         top: 40px;
         min-width: auto;
-        width: 40%;
 
         // 検索ボックス
         ////////////////////////////////////////
@@ -352,6 +351,7 @@
         // 新着記事一覧
         ////////////////////////////////////////
         .pickup {
+            width: 260px;
 
             .Pickup-Posts {
                 padding: 5px 0 0;
@@ -388,6 +388,7 @@
             display: block;
             position: sticky;
             top: 60px;
+            width: 260px;
 
             &__title {
                 width: 100%;

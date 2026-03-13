@@ -73,7 +73,7 @@
                                                             // タグのアーカイブページへのリンクURLを取得
                                                             $tag_link = get_term_link($tag->slug, $tag_taxonomy);
                                                 ?>
-                                                <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
+                                                <a class="lead__tag_link" href="<?php echo esc_url($tag_link); ?>">
                                                     <?php echo '#' . esc_html($tag->name); ?>
                                                 </a>
                                                 <?php
@@ -192,32 +192,6 @@
 
                         <!-- 前・次・記事一覧のボタン
                         ------------------------------------------------->
-                        <!-- <div class="blog-pagination">
-                            <?php
-                            $prev_post = get_previous_post();
-                            if (!empty($prev_post)) : ?>
-                                <a href="<?php echo esc_url(get_permalink($prev_post->ID)); ?>" class="blog-pagination__before">
-                                    <?php echo esc_html($prev_post->post_title); ?>
-                                    <div class="blog-pagination__before_item">← 前の記事</div>
-                                </a>
-                            <?php endif; ?>
-                            <?php
-                            $next_post = get_next_post();
-                            if (!empty($next_post)) : ?>
-                                <a href="<?php echo esc_url(get_permalink($next_post->ID)); ?>" class="blog-pagination__after">
-                                    <?php echo esc_html($next_post->post_title); ?>
-                                    <div class="blog-pagination__after_item">次の記事 →</div>
-                                </a>
-                            <?php endif; ?>
-                        </div>
-                        <?php
-                        $post_type_archive_link = get_post_type_archive_link('blog');
-                        if ($post_type_archive_link) :
-                        ?>
-                            <a href="<?php echo esc_url($post_type_archive_link); ?>" class="blog-pagination__index">記事一覧</a>
-                        <?php endif; ?> -->
-
-
                         <div class="blog-pagination">
                             <?php
                             $prev_post = get_previous_post();
@@ -297,25 +271,60 @@
                                                     </div>
                                                     <div class="Related-Posts-lead__main">
                                                         <div class="Related-Posts-lead__main_text">
-                                                            <?php echo wp_trim_words(get_the_excerpt(), 50, '...'); ?>
+                                                            <?php echo get_the_excerpt(); ?>
                                                         </div>
                                                     </div>
                                                     <div class="Related-Posts-lead-sub">
                                                         <div class="Related-Posts-lead__date">
                                                             <span class="Related-Posts-lead__date_text"><?php echo get_the_date(); ?></span>
                                                         </div>
+
                                                         <div class="Related-Posts-lead__category">
-                                                            <?php
-                                                            $related_terms = get_the_terms(get_the_ID(), 'blog_cat');
-                                                            if ($related_terms && !is_wp_error($related_terms)) :
-                                                                $term = array_shift($related_terms);
-                                                                $term_link = get_term_link($term);
+                                                            <?php //カテゴリを取得 
+                                                            $cat_taxonomy = 'blog_cat';
+                                                            // 現在の投稿に紐づく 'blog_cat' タクソノミーのターム（カテゴリ）を取得
+                                                            $categories = get_the_terms(get_the_ID(), $cat_taxonomy);
+                                                            // カテゴリが存在し、エラーがない場合のみ処理を実行
+                                                            if (! empty($categories) && ! is_wp_error($categories)) {
+                                                                // 取得したカテゴリを一つずつループ処理
+                                                                foreach ($categories as $category) {
+                                                                    // カテゴリのアーカイブページへのリンクURLを取得
+                                                                    $category_link = get_term_link($category->slug, $cat_taxonomy);
                                                             ?>
-                                                                <object class="Related-Posts-lead__category_text">
-                                                                    <a class="Related-Posts-lead__category_link" href="<?php echo esc_url($term_link); ?>"><?php echo esc_html($term->name); ?></a>
-                                                                </object>
-                                                            <?php endif; ?>
+                                                                    <object class="Related-Posts-lead__category_text">
+                                                                        <a class="Related-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
+                                                                            <?php echo esc_html($category->name); ?>
+                                                                        </a>
+                                                                    </object>
+                                                            <?php
+                                                                }
+                                                            }
+                                                            ?>
                                                         </div>
+
+                                                        <div class="Related-Posts-lead__tag">
+                                                            <object class="Related-Posts-lead__tag_text">
+                                                                <?php //タグを取得する
+                                                                $tag_taxonomy = 'blog_tag';
+                                                                // 現在の投稿に紐づく 'blog_tag' タクソノミーのターム（タグ）を取得
+                                                                $tags = get_the_terms(get_the_ID(), $tag_taxonomy);
+                                                                // タグが存在し、エラーがない場合のみ処理を実行
+                                                                if (! empty($tags) && ! is_wp_error($tags)) {
+                                                                    // 取得したタグを一つずつループ処理
+                                                                    foreach ($tags as $tag) {
+                                                                        // タグのアーカイブページへのリンクURLを取得
+                                                                        $tag_link = get_term_link($tag->slug, $tag_taxonomy);
+                                                                ?>
+                                                                        <a class="Related-Posts-lead__tag_link" href="<?php echo esc_url($tag_link); ?>">
+                                                                            <?php echo '#' . esc_html($tag->name); ?>
+                                                                        </a>
+                                                                <?php
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </object>
+                                                        </div>
+                                                        
                                                         <div class="Related-Posts-lead__button">
                                                             <span class="Related-Posts-lead__button_heart">♡</span>
                                                             <span class="Related-Posts-lead__button_number">11</span>

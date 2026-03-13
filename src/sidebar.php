@@ -227,35 +227,25 @@
 
     <!-- 目次
     ------------------------------------------------->
-    <div class="sub-index">
-        <div class="sub-index__title">目次</div>
-            <ul class="sub-index-item">
+    <?php
+    // 本文からh2タグを抽出して目次を生成
+    $index_content = apply_filters('the_content', get_the_content());
+    if (preg_match_all('/<h2.*?>+(.*?)<\/h2>/i', $index_content, $matches)) :
+    ?>
+        <div class="sub-index">
+            <div class="sub-index__title">目次</div>
+            <ol class="sub-index-item">
+            <?php //抽出された見出しの配列を1つずつ取り出す
+            //$key=連番（インデックス）,$title=h2のテキスト
+            foreach ($matches[1] as $key => $title) : ?>
                 <li class="sub-index-list">
-                    <a class="sub-index-list__link" href="#index-1">
-                        <i class="fa-regular fa-square"></i>
-                        はじめに</a>
+                    <i class="fa-regular fa-square"></i>
+                    <a class="sub-index-list__link" href="#index-<?php echo $key; ?>"><?php echo strip_tags($title); ?></a>
                 </li>
-                <li class="sub-index-list">
-                    <a class="sub-index-list__link" href="#index-2">
-                        <i class="fa-regular fa-square"></i>
-                            最初は「AIをどんどん使わせていた」</a>
-                </li>
-                <li class="sub-index-list">
-                    <a class="sub-index-list__link" href="#index-3">
-                        <i class="fa-regular fa-square"></i>
-                            レビュー830件の衝撃</a>
-                </li>
-                <li class="sub-index-list">
-                    <a class="sub-index-list__link" href="#index-4">
-                        <i class="fa-regular fa-square"></i>
-                            「AIを神だと思っていました」</a>
-                </li>
-                <li class="sub-index-list">
-                    <a class="sub-index-list__link" href="#index-5">
-                        <i class="fa-regular fa-square"></i>
-                            AI禁止令</a>
-                </li>
-            </ul>
+                <?php endforeach; ?>
+            </ol>
         </div>
-    </div>
+    <?php endif; ?>
+
+
 </div>
