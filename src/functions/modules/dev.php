@@ -39,3 +39,4 @@ function my_scripts_method() {
 }
 
 add_action('wp_enqueue_scripts', 'my_scripts_method');
+
