@@ -13,26 +13,29 @@
 <body <?php body_class(); ?> id="<?php echo esc_attr($post->post_name); ?>">
 
     <?php /* ---------- TOPページ以外にheaderを表示 ---------- */ ?>
+    <?php // トップページ以外のページでヘッダーを表示します。 ?>
     <?php if (!is_front_page()) : ?>
         <header>
             <?php
-            if (is_archive()) {
-                $slug = get_query_var('post_type');
-                $title = get_post_type_object($slug)->label;
-            } else if (is_single()) {
-                $slug = get_query_var('post_type');
-                $title = get_post_type_object($slug)->label;
-            } else if (is_404()) {
-                $slug = "404";
-                $title = "ページが見つかりません";
-            } else {
-                $slug = basename(get_permalink());
-                $title = get_the_title();
+            // 表示しているページの種類を判別し、タイトル($title)とCSSクラス名用のスラッグ($slug)を動的に設定します。
+            if (is_archive()) { // アーカイブページ（投稿一覧など）の場合
+                $slug = get_query_var('post_type'); // 投稿タイプのスラッグを取得します (例: 'blog')。
+                $title = get_post_type_object($slug)->label; // 投稿タイプのラベル（管理画面で設定した名前）を取得します (例: 'ブログ')。
+            } elseif (is_single()) { // 個別投稿ページの場合
+                $slug = get_query_var('post_type'); // 投稿タイプのスラッグを取得します。
+                $title = get_post_type_object($slug)->label; // 投稿タイプのラベルを取得します。
+            } elseif (is_404()) { // 404エラーページの場合
+                $slug = "404"; // スラッグを '404' に固定します。
+                $title = "ページが見つかりません"; // タイトルを固定の文言に設定します。
+            } else { // 上記以外（固定ページなど）の場合
+                $slug = basename(get_permalink()); // 現在のページのパーマリンクからスラッグを取得します (例: 'service')。
+                $title = get_the_title(); // 現在のページのタイトルを取得します。
             }
-
             ?>
-            <div class="title__<?php echo $slug ?>">
-                <div class="title__<?php echo $slug ?>__bg">
+            <?php // 動的に設定したスラッグをCSSクラス名に使用し、ページごとに異なるスタイルを適用できるようにします。 ?>
+            <div class="title__<?php echo esc_attr($slug); ?>">
+                <div class="title__<?php echo esc_attr($slug); ?>__bg">
+                    <?php // 動的に設定したタイトルをh1タグで表示します。 ?>
                     <h1 class="title-text"><?php echo esc_html($title); ?></h1>
                 </div>
             </div>

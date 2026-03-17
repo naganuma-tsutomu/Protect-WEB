@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php get_header('header.php'); ?>
 <div class="wrapper">
     <?php /* Template Name: archive blog Page */ ?>
 <div class="container">
@@ -11,21 +11,35 @@
                 <!-- 記事一覧
                 ------------------------------------------------->
                 <div class="article">
+                <div class="search-result">
+                    <?php
+                    // 検索キーワードが存在する場合
+                    if (get_search_query()) {
+                    echo '「' . esc_html(get_search_query()) . '」の検索結果';
+                    }
+                    // 検索キーワードが存在しない場合
+                    else {
+                    echo '検索キーワードが未入力です';
+                    }
+                    ?>
+                </div>
                     <ul class="list">
                         <?php
-                        // 独自のパラメータ 'pg' からページ番号を取得します。
-                        $search = (int) (isset($_GET['search']) ? $_GET['search'] : 1);
+                        // 独自のパラメータ 'search_page' からページ番号を取得します。
+                        $paged = isset($_GET['search_page']) ? (int)$_GET['search_page'] : 1;
+                        $search_query = get_query_var('s'); // 生の検索キーワードを取得
 
                         // WP_Queryに渡すパラメータを設定
                         $args = array(
-                            'post_type'      => 'blog', // 取得する投稿タイプを 'blog' に指定
-                            'posts_per_page' => 2,     // 1ページに表示する記事の数
-                            'paged'          => $search, // 取得するページ番号
+                            'post_type'      => 'blog',           // 取得する投稿タイプを 'blog' に指定
+                            'posts_per_page' => 2,                // 1ページに表示する記事の数
+                            'paged'          => $paged,           // 取得するページ番号
+                            's'              => $search_query,    // 検索キーワード
                         );
                         // 設定したパラメータを使って、新しいクエリを作成し、記事データを取得
                         $my_query = new WP_Query($args);
                         ?>
-                        <?php if (have_posts()): ?>
+                        <?php if ($my_query->have_posts()): ?>
                             <?php // 取得した記事データが存在する間、ループ処理を開始 
                             while ($my_query->have_posts()) : $my_query->the_post(); ?>
 
@@ -137,11 +151,12 @@
                     <?php // ページネーションの表示
                     if ($my_query->max_num_pages > 1): // ページが2ページ以上ある場合にのみページネーションを表示
                         // ページネーションのリンクを配列として取得
+                        $big = 999999999; // ページ番号の置換用整数
+                        // 検索キーワードを維持したまま、独自のページネーションパラメータを付与する
+                        $base_url = add_query_arg( 's', $search_query, home_url( '/' ) );
                         $links = paginate_links(array(
-                            'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))), // ページ番号の置換ルール
-                            'format'       => '?paged=%#%', // ページ番号のフォーマット
-                            'base'         => str_replace(999999999, '%#%', esc_url(add_query_arg('search', 999999999))), // 独自のパラメータ 'search' を使用
-                            'format'       => '', // formatは空にする（base側でパラメータを指定しているため）
+                            'base'         => str_replace($big, '%#%', add_query_arg('search_page', $big, $base_url)),
+                            'format'       => '', // 'base'でURLの構造を指定しているため、ここは空にします
                             'current'      => max(1, $paged), // 現在のページ番号
                             'total'        => $my_query->max_num_pages, // 全ページ数
                             'type'         => 'array', // リンクを配列として取得（HTML文字列ではなく）
@@ -183,7 +198,7 @@
                                         // その他の通常のページリンクの場合
                                         else {
                                             // リンクからURLとテキストを抽出
-                                            preg_match('/href=["\']?([^"\'>]+)["\']?/', $link, $matches);
+                                            preg_match('/href=[\'"]([^\'"]+)[\'"]/', $link, $matches);
                                             $link_url = isset($matches[1]) ? $matches[1] : '';
                                             $link_text = strip_tags($link);
                                         ?>
@@ -210,7 +225,3 @@
 </div>
 
 <?php get_footer(); ?>
-
-
-
-
