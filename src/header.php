@@ -17,13 +17,23 @@
     <?php if (!is_front_page()) : ?>
         <header>
             <?php
+            // カテゴリ・タグ検索のパラメータを取得
+            $cat_slug = isset($_GET['blog_cat']) ? $_GET['blog_cat'] : '';
+            $tag_slug = isset($_GET['blog_tag']) ? $_GET['blog_tag'] : '';
+
             // 表示しているページの種類を判別し、タイトル($title)とCSSクラス名用のスラッグ($slug)を動的に設定します。
-            if (is_archive()) { // アーカイブページ（投稿一覧など）の場合
+            if ($cat_slug || $tag_slug) { // カテゴリ・タグ絞り込み検索の場合
+                $slug = 'blog'; // ブログのデザインを適用
+                $title = '検索結果';
+            } elseif (is_archive()) { // アーカイブページ（投稿一覧など）の場合
                 $slug = get_query_var('post_type'); // 投稿タイプのスラッグを取得します (例: 'blog')。
                 $title = get_post_type_object($slug)->label; // 投稿タイプのラベル（管理画面で設定した名前）を取得します (例: 'ブログ')。
             } elseif (is_single()) { // 個別投稿ページの場合
                 $slug = get_query_var('post_type'); // 投稿タイプのスラッグを取得します。
                 $title = get_post_type_object($slug)->label; // 投稿タイプのラベルを取得します。
+            } elseif (is_search()) { // 検索結果ページの場合
+                $slug = 'blog'; // ブログのデザイン（背景画像など）を適用するためにスラッグを 'blog' に設定
+                $title = '検索結果'; // タイトルを設定
             } elseif (is_404()) { // 404エラーページの場合
                 $slug = "404"; // スラッグを '404' に固定します。
                 $title = "ページが見つかりません"; // タイトルを固定の文言に設定します。

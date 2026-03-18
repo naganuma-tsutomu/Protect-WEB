@@ -1,4 +1,4 @@
-<?php get_header('header.php'); ?>
+<?php get_header(); ?>
 <div class="wrapper">
     <?php /* Template Name: archive blog Page */ ?>
 <div class="container">
@@ -11,31 +11,56 @@
                 <!-- 記事一覧
                 ------------------------------------------------->
                 <div class="article">
-                <div class="search-result">
                     <?php
-                    // 検索キーワードが存在する場合
-                    if (get_search_query()) {
-                    echo '「' . esc_html(get_search_query()) . '」の検索結果';
-                    }
-                    // 検索キーワードが存在しない場合
-                    else {
-                    echo '検索キーワードが未入力です';
-                    }
+                    // パラメータの取得をここで行う（タイトル表示とクエリ作成の両方で使用するため）
+                    $cat_slug = isset($_GET['blog_cat']) ? $_GET['blog_cat'] : ''; // カテゴリパラメータ取得
+                    $tag_slug = isset($_GET['blog_tag']) ? $_GET['blog_tag'] : ''; // タグパラメータ取得
+                    $search_query = get_search_query(); // 検索キーワードを取得
                     ?>
-                </div>
+                    <div class="search-result">
+                        <?php
+                        // 表示条件の分岐
+                        if ($cat_slug) {
+                            $term = get_term_by('slug', $cat_slug, 'blog_cat'); // スラッグからカテゴリ情報を取得
+                            echo 'カテゴリ：「' . esc_html($term->name) . '」';
+                        } elseif ($tag_slug) {
+                            $term = get_term_by('slug', $tag_slug, 'blog_tag'); // スラッグからタグ情報を取得
+                            echo 'タグ：「' . esc_html($term->name) . '」';
+                        } elseif ($search_query) {
+                            echo '「' . esc_html($search_query) . '」の検索結果';
+                        } else {
+                            echo '検索キーワードが未入力です';
+                        }
+                        ?>
+                    </div>
                     <ul class="list">
                         <?php
                         // 独自のパラメータ 'search_page' からページ番号を取得します。
                         $paged = isset($_GET['search_page']) ? (int)$_GET['search_page'] : 1;
-                        $search_query = get_query_var('s'); // 生の検索キーワードを取得
 
                         // WP_Queryに渡すパラメータを設定
                         $args = array(
                             'post_type'      => 'blog',           // 取得する投稿タイプを 'blog' に指定
                             'posts_per_page' => 2,                // 1ページに表示する記事の数
                             'paged'          => $paged,           // 取得するページ番号
-                            's'              => $search_query,    // 検索キーワード
                         );
+
+                        // カテゴリ・タグ指定がある場合は絞り込み検索（キーワード検索は行わない）
+                        if ($cat_slug) {
+                            // ここで 's' パラメータをセットしないことで、キーワード検索を無効化しています
+                            $args['tax_query'] = array(
+                                array('taxonomy' => 'blog_cat', 'field' => 'slug', 'terms' => $cat_slug),
+                            );
+                        } elseif ($tag_slug) {
+                            // 同様にタグの場合も 's' をセットせず、tax_query のみを実行します
+                            $args['tax_query'] = array(
+                                array('taxonomy' => 'blog_tag', 'field' => 'slug', 'terms' => $tag_slug),
+                            );
+                        } else {
+                            // 指定がない場合は通常のキーワード検索
+                            $args['s'] = $search_query;
+                        }
+
                         // 設定したパラメータを使って、新しいクエリを作成し、記事データを取得
                         $my_query = new WP_Query($args);
                         ?>
@@ -95,8 +120,8 @@
                                                     if (! empty($categories) && ! is_wp_error($categories)) {
                                                         // 取得したカテゴリを一つずつループ処理
                                                         foreach ($categories as $category) {
-                                                            // カテゴリのアーカイブページへのリンクURLを取得
-                                                            $category_link = get_term_link($category->slug, $cat_taxonomy);
+                                                            // カテゴリ名をキーワードとした検索URLを生成
+                                                            $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
                                                     ?>
                                                             <object class="lead__category_text">
                                                                 <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
@@ -118,8 +143,8 @@
                                                         if (! empty($tags) && ! is_wp_error($tags)) {
                                                             // 取得したタグを一つずつループ処理
                                                             foreach ($tags as $tag) {
-                                                                // タグのアーカイブページへのリンクURLを取得
-                                                                $tag_link = get_term_link($tag->slug, $tag_taxonomy);
+                                                                // タグ名をキーワードとした検索URLを生成
+                                                                $tag_link = home_url('/') . '?s=' . urlencode($tag->name) . '&blog_tag=' . $tag->slug;
                                                         ?>
                                                                 <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
                                                                     <?php echo '#' . esc_html($tag->name); ?>
@@ -140,6 +165,10 @@
                                 </li>
                             <?php endwhile; // ループの終了 
                             ?>
+                        <?php else: ?>
+                            <li class="search-no-result">
+                                <span class="search-no-result__text">該当する記事は見つかりませんでした。<br>別のキーワードをお試しください。</span>
+                            </li>
                         <?php endif; ?>
                         <?php wp_reset_postdata(); // WP_Query で変更された投稿データを元に戻す 
                         ?>
@@ -153,7 +182,11 @@
                         // ページネーションのリンクを配列として取得
                         $big = 999999999; // ページ番号の置換用整数
                         // 検索キーワードを維持したまま、独自のページネーションパラメータを付与する
-                        $base_url = add_query_arg( 's', $search_query, home_url( '/' ) );
+                        $base_url = add_query_arg('s', $search_query, home_url('/'));
+                        // カテゴリ・タグパラメータがあれば維持する
+                        if ($cat_slug) $base_url = add_query_arg('blog_cat', $cat_slug, $base_url);
+                        if ($tag_slug) $base_url = add_query_arg('blog_tag', $tag_slug, $base_url);
+
                         $links = paginate_links(array(
                             'base'         => str_replace($big, '%#%', add_query_arg('search_page', $big, $base_url)),
                             'format'       => '', // 'base'でURLの構造を指定しているため、ここは空にします

@@ -79,8 +79,8 @@
                                                     if (! empty($categories) && ! is_wp_error($categories)) {
                                                         // 取得したカテゴリを一つずつループ処理
                                                         foreach ($categories as $category) {
-                                                            // カテゴリのアーカイブページへのリンクURLを取得
-                                                            $category_link = get_term_link($category->slug, $cat_taxonomy);
+                                                            // カテゴリ名をキーワードとした検索URLを生成
+                                                            $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
                                                     ?>
                                                             <object class="lead__category_text">
                                                                 <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
@@ -102,8 +102,8 @@
                                                         if (! empty($tags) && ! is_wp_error($tags)) {
                                                             // 取得したタグを一つずつループ処理
                                                             foreach ($tags as $tag) {
-                                                                // タグのアーカイブページへのリンクURLを取得
-                                                                $tag_link = get_term_link($tag->slug, $tag_taxonomy);
+                                                                // タグ名をキーワードとした検索URLを生成
+                                                                $tag_link = home_url('/') . '?s=' . urlencode($tag->name) . '&blog_tag=' . $tag->slug;
                                                         ?>
                                                                 <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
                                                                     <?php echo '#' . esc_html($tag->name); ?>

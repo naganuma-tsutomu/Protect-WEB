@@ -46,8 +46,8 @@
                                                 if (! empty($categories) && ! is_wp_error($categories)) {
                                                     // 取得したカテゴリを一つずつループ処理
                                                     foreach ($categories as $category) {
-                                                         // カテゴリのアーカイブページへのリンクURLを取得
-                                                        $category_link = get_term_link($category->slug, $cat_taxonomy);
+                                                         // カテゴリ名をキーワードとした検索URLを生成
+                                                        $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
                                             ?>
                                             <object class="lead__category_text">
                                                 <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
@@ -70,8 +70,8 @@
                                                     if (! empty($tags) && ! is_wp_error($tags)) {
                                                         // 取得したタグを一つずつループ処理
                                                         foreach ($tags as $tag) {
-                                                            // タグのアーカイブページへのリンクURLを取得
-                                                            $tag_link = get_term_link($tag->slug, $tag_taxonomy);
+                                                            // タグ名をキーワードとした検索URLを生成
+                                                            $tag_link = home_url('/') . '?s=' . urlencode($tag->name) . '&blog_tag=' . $tag->slug;
                                                 ?>
                                                 <a class="lead__tag_link" href="<?php echo esc_url($tag_link); ?>">
                                                     <?php echo '#' . esc_html($tag->name); ?>
@@ -159,7 +159,7 @@
                                                 $categories = get_the_terms(get_the_ID(), 'blog_cat');
                                                 if (!empty($categories) && !is_wp_error($categories)) :
                                                     foreach ($categories as $category) :
-                                                        $category_link = get_term_link($category);
+                                                        $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
                                                 ?>
                                                         <a class="bottom__category_link" href="<?php echo esc_url($category_link); ?>"><?php echo esc_html($category->name); ?></a>
                                                 <?php endforeach;
@@ -172,7 +172,7 @@
                                                     $tags = get_the_terms(get_the_ID(), 'blog_tag');
                                                     if (!empty($tags) && !is_wp_error($tags)) :
                                                         foreach ($tags as $tag) :
-                                                            $tag_link = get_term_link($tag);
+                                                            $tag_link = home_url('/') . '?s=' . urlencode($tag->name) . '&blog_tag=' . $tag->slug;
                                                     ?>
                                                             <li class="tag-item"><a class="tag-item__link" href="<?php echo esc_url($tag_link); ?>">#<?php echo esc_html($tag->name); ?></a></li>
                                                     <?php endforeach;
@@ -288,8 +288,8 @@
                                                             if (! empty($categories) && ! is_wp_error($categories)) {
                                                                 // 取得したカテゴリを一つずつループ処理
                                                                 foreach ($categories as $category) {
-                                                                    // カテゴリのアーカイブページへのリンクURLを取得
-                                                                    $category_link = get_term_link($category->slug, $cat_taxonomy);
+                                                                    // カテゴリ名をキーワードとした検索URLを生成
+                                                                    $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
                                                             ?>
                                                                     <object class="Related-Posts-lead__category_text">
                                                                         <a class="Related-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
@@ -312,8 +312,8 @@
                                                                 if (! empty($tags) && ! is_wp_error($tags)) {
                                                                     // 取得したタグを一つずつループ処理
                                                                     foreach ($tags as $tag) {
-                                                                        // タグのアーカイブページへのリンクURLを取得
-                                                                        $tag_link = get_term_link($tag->slug, $tag_taxonomy);
+                                                                        // タグ名をキーワードとした検索URLを生成
+                                                                        $tag_link = home_url('/') . '?s=' . urlencode($tag->name) . '&blog_tag=' . $tag->slug;
                                                                 ?>
                                                                         <a class="Related-Posts-lead__tag_link" href="<?php echo esc_url($tag_link); ?>">
                                                                             <?php echo '#' . esc_html($tag->name); ?>

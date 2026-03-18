@@ -25,8 +25,8 @@
                 if (! empty($categories) && ! is_wp_error($categories)) {
                     // 取得したカテゴリの数だけループ処理を実行
                     foreach ($categories as $category) {
-                        // 各カテゴリのアーカイブページへのリンクURLを取得
-                        $category_link = get_term_link($category);
+                        // カテゴリ名をキーワードとした検索URLを生成
+                        $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
                 ?>
                         <li class="category-list">
                             <a class="category-list__link" href="<?php echo esc_url($category_link); ?>"><span class="category-list__box"><?php echo esc_html($category->name); ?></span></a>
@@ -57,8 +57,8 @@
                 if (! empty($tags) && ! is_wp_error($tags)) {
                     // 取得したタグの数だけループ処理を実行
                     foreach ($tags as $tag) {
-                        // 各タグのアーカイブページへのリンクURLを取得
-                        $tag_link = get_term_link($tag);
+                        // タグ名をキーワードとした検索URLを生成
+                        $tag_link = home_url('/') . '?s=' . urlencode($tag->name) . '&blog_tag=' . $tag->slug;
                 ?>
                         <li class="tag-list">
                             <a class="tag-list__link" href="<?php echo esc_url($tag_link); ?>">
@@ -134,7 +134,8 @@
                                                 if (!empty($categories) && !is_wp_error($categories)) {
                                                     // 最初のカテゴリを表示
                                                     $category = $categories[0];
-                                                    $category_link = get_term_link($category);
+                                                    // カテゴリ名をキーワードとした検索URLを生成
+                                                    $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
                                                 ?>
                                                 <object class="Pickup-Posts-lead__category_text">
                                                     <a class="Pickup-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
@@ -207,7 +208,8 @@
                                                 if (!empty($categories) && !is_wp_error($categories)) {
                                                     // 最初のカテゴリを表示
                                                     $category = $categories[0];
-                                                    $category_link = get_term_link($category);
+                                                    // カテゴリ名をキーワードとした検索URLを生成
+                                                    $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
                                                 ?>
                                                 <object class="Pickup-Posts-lead__category_text">
                                                     <a class="Pickup-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
