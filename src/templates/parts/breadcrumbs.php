@@ -41,5 +41,29 @@
 <?php //elseif (is_404()) : ?>
     <!--<li>ページが見つかりません</li>-->
 <?php endif; ?>
+
+
+<?php if (is_search()) : ?><?php /* 検索結果ページ */ ?>
+    <li class="breadcrumbs__list"><a href="<?php echo esc_url(home_url('/archives/blog/')); ?>">ブログ・記事</a></li>
+    <?php
+    $cat_slug = $_GET['blog_cat'] ?? '';
+    $tag_slug = $_GET['blog_tag'] ?? '';
+    $search_text = '';
+
+    if ($cat_slug) {
+        $term = get_term_by('slug', $cat_slug, 'blog_cat');
+        $search_text = 'カテゴリ：' . $term->name;
+    } elseif ($tag_slug) {
+        $term = get_term_by('slug', $tag_slug, 'blog_tag');
+        $search_text = 'タグ：' . $term->name;
+    } else {
+        $search_text = '「' . get_search_query() . '」の検索結果';
+    }
+    ?>
+    <li class="breadcrumbs__list"><?php echo esc_html($search_text); ?></li>
+<?php endif; ?>
+
+
+
     </ul>
 <?php endif; ?>

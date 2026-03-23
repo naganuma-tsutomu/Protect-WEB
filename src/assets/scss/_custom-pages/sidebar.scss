@@ -494,9 +494,15 @@
                 &__link {
                     transition-duration: .2s;
 
-                    &:hover {
+                    &:hover,
+                    &.active {
                         background: #1F4B8A;
                     }
+                }
+
+                /* <li>タグにactiveクラスが付く場合への対応 */
+                &.active &__link {
+                    background: #1F4B8A;
                 }
             }
         }

@@ -28,7 +28,7 @@
                         // カテゴリ名をキーワードとした検索URLを生成
                         $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
                 ?>
-                        <li class="category-list">
+                        <li class="category-list active">
                             <a class="category-list__link" href="<?php echo esc_url($category_link); ?>"><span class="category-list__box"><?php echo esc_html($category->name); ?></span></a>
                         </li>
                 <?php
