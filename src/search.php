@@ -155,9 +155,12 @@
                                                         ?>
                                                     </object>
                                                 </div>
-                                                <div class="lead__button">
+                                                 <?php 
+                                                $current_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
+                                                ?>
+                                                <div class="lead__button js-like-button" data-post-id="<?php the_ID(); ?>">
                                                     <span class="lead__button_heart">♡</span>
-                                                    <span class="lead__button_number">11</span>
+                                                    <span class="lead__button_number"><?php echo $current_like_count; ?></span>
                                                 </div>
                                             </div>
                                         </div>

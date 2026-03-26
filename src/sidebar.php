@@ -1,6 +1,12 @@
 <!-- サイドバー
 ------------------------------------------------->
 <div class="sidebar">
+    <?php
+    // 現在選択されているカテゴリとタグのスラッグをURLパラメータから取得
+    $current_cat_slug = isset($_GET['blog_cat']) ? $_GET['blog_cat'] : '';
+    $current_tag_slug = isset($_GET['blog_tag']) ? $_GET['blog_tag'] : '';
+    ?>
+
     <!-- 検索ボックス
     ------------------------------------------------->
     <?php //フォームを読み込む
@@ -27,9 +33,13 @@
                     foreach ($categories as $category) {
                         // カテゴリ名をキーワードとした検索URLを生成
                         $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
+                        // ループ中のカテゴリが現在選択されているものと一致するか判定
+                        $cat_active = ($current_cat_slug === $category->slug) ? 'active' : '';
                 ?>
-                        <li class="category-list active">
-                            <a class="category-list__link" href="<?php echo esc_url($category_link); ?>"><span class="category-list__box"><?php echo esc_html($category->name); ?></span></a>
+                        <li class="category-list <?php echo esc_attr($cat_active); ?>">
+                            <a class="category-list__link" href="<?php echo esc_url($category_link); ?>">
+                                <span class="category-list__box"><?php echo esc_html($category->name); ?></span>
+                            </a>
                         </li>
                 <?php
                     }
@@ -59,8 +69,10 @@
                     foreach ($tags as $tag) {
                         // タグ名をキーワードとした検索URLを生成
                         $tag_link = home_url('/') . '?s=' . urlencode($tag->name) . '&blog_tag=' . $tag->slug;
+                        // ループ中のタグが現在選択されているものと一致するか判定
+                        $tag_active = ($current_tag_slug === $tag->slug) ? 'active' : '';
                 ?>
-                        <li class="tag-list">
+                        <li class="tag-list <?php echo esc_attr($tag_active); ?>">
                             <a class="tag-list__link" href="<?php echo esc_url($tag_link); ?>">
                                 <span class="tag-list__title">
                                     <?php echo '#' . esc_html($tag->name); ?>
@@ -144,9 +156,12 @@
                                                 </object>
                                                 <?php } ?>
                                             </div>
-                                            <div class="Pickup-Posts-lead__button">
+                                            <div class="Pickup-Posts-lead__button" data-post-id="<?php the_ID(); ?>">
+                                                <?php 
+                                                $like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
+                                                ?>
                                                 <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                <span class="Pickup-Posts-lead__button_number">11</span>
+                                                <span class="Pickup-Posts-lead__button_number"><?php echo $like_count; ?></span>
                                             </div>
                                         </div>
                                     </div>
@@ -218,9 +233,12 @@
                                                 </object>
                                                 <?php } ?>
                                             </div>
-                                            <div class="Pickup-Posts-lead__button">
+                                            <div class="Pickup-Posts-lead__button" data-post-id="<?php the_ID(); ?>">
+                                                <?php 
+                                                $like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
+                                                ?>
                                                 <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                <span class="Pickup-Posts-lead__button_number">11</span>
+                                                <span class="Pickup-Posts-lead__button_number"><?php echo $like_count; ?></span>
                                             </div>
                                         </div>
                                     </div>

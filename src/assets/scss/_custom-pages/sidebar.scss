@@ -88,6 +88,13 @@
                 line-height: 25px;
                 text-align: center;
                 font-size: 12px;
+
+            }
+        }
+
+        .active {
+            .category-list__link {
+                background: #1F4B8A;
             }
         }
     }
@@ -118,6 +125,12 @@
                 display: block;
                 text-decoration: none;
                 color: #1F4B8A;
+            }
+        }
+
+        .active {
+            .tag-list__link {
+                color: #B6CDEF;
             }
         }
     }
@@ -494,15 +507,12 @@
                 &__link {
                     transition-duration: .2s;
 
-                    &:hover,
-                    &.active {
+                    &:hover {
                         background: #1F4B8A;
                     }
-                }
 
-                /* <li>タグにactiveクラスが付く場合への対応 */
-                &.active &__link {
-                    background: #1F4B8A;
+
+
                 }
             }
         }

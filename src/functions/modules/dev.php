@@ -40,3 +40,26 @@ function my_scripts_method() {
 
 add_action('wp_enqueue_scripts', 'my_scripts_method');
 
+/**
+ * AJAXによるいいね機能の処理
+ */
+function handle_toggle_like() {
+    $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+    $type    = isset($_POST['type']) ? $_POST['type'] : ''; // 'like' または 'unlike'
+
+    if ($post_id > 0 && in_array($type, ['like', 'unlike'])) {
+        $count = (int) get_post_meta($post_id, '_post_like_count', true);
+        
+        if ($type === 'like') {
+            $count++;
+        } else {
+            $count = max(0, $count - 1);
+        }
+
+        update_post_meta($post_id, '_post_like_count', $count);
+        wp_send_json_success(['count' => $count]);
+    }
+    wp_send_json_error();
+}
+add_action('wp_ajax_toggle_like', 'handle_toggle_like');
+add_action('wp_ajax_nopriv_toggle_like', 'handle_toggle_like');

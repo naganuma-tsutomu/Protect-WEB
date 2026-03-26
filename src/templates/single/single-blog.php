@@ -18,9 +18,12 @@
                                                 <?php echo get_the_date(); //投稿日を出力 ?>
                                             </span>
                                         </div>
-                                        <div class="lead__button">
+                                        <div class="lead__button" data-post-id="<?php the_ID(); ?>">
+                                            <?php 
+                                            $like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
+                                            ?>
                                             <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number">11</span>
+                                            <span class="lead__button_number"><?php echo $like_count; ?></span>
                                         </div>
                                     </div>
                                     <div class="lead__title">
@@ -180,9 +183,12 @@
                                                     ?>
                                                 </ul>
                                             </div>
-                                            <button class="good">
+                                            <?php 
+                                            $current_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
+                                            ?>
+                                            <button class="good js-like-button" data-post-id="<?php the_ID(); ?>">
                                                 <span class="good__item">♡</span>
-                                                <span class="good__number">11</span>
+                                                <span class="good__number"><?php echo $current_like_count; ?></span>
                                             </button>
                                         </div>
                                     </div>
@@ -325,9 +331,12 @@
                                                             </object>
                                                         </div>
                                                         
-                                                        <div class="Related-Posts-lead__button">
-                                                            <span class="Related-Posts-lead__button_heart">♡</span>
-                                                            <span class="Related-Posts-lead__button_number">11</span>
+                                                        <div class="Related-Posts-lead__button" data-post-id="<?php the_ID(); ?>">
+                                                            <?php 
+                                                            $rel_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
+                                                            ?>
+                                                            <span class="Related-Posts-lead__button_heart Related-Posts-lead__button_heart--icon">♡</span>
+                                                            <span class="Related-Posts-lead__button_number"><?php echo $rel_like_count; ?></span>
                                                         </div>
                                                     </div>
                                                 </div>

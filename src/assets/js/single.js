@@ -48,35 +48,6 @@ $(window).on("scroll", function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $(function () {
     const $header = $(".main-content__index");
     const $subindex = $(".sub-index-list");
@@ -114,5 +85,74 @@ $(function () {
             $subindex.find("li").removeClass("active");
             currentSection.link.parent("li").addClass("active");
         }
+    });
+});
+
+// いいね機能の実装
+$(function () {
+    const storageKey = 'protect_web_liked_posts';
+    // ローカルストレージから「いいね」した記事IDの配列を取得
+    let likedPosts = JSON.parse(localStorage.getItem(storageKey)) || [];
+
+    // UI状態を更新する関数
+    function updateLikeUI(postId, isLiked) {
+        $(`[data-post-id="${postId}"]`).each(function() {
+            const $btn = $(this);
+            if (isLiked) {
+                $btn.addClass('is-active');
+                $btn.find('.good__item').text('♥');
+            } else {
+                $btn.removeClass('is-active');
+                $btn.find('.good__item').text('♡');
+            }
+        });
+    }
+
+    // 初期化：保存されている「いいね」をUIに反映
+    likedPosts.forEach(id => updateLikeUI(id, true));
+
+    // クリックイベント
+    $(document).on('click', '.js-like-button', function() {
+        const $btn = $(this);
+        const postId = $btn.data('post-id').toString();
+        const isActive = $btn.hasClass('is-active');
+        const type = isActive ? 'unlike' : 'like';
+
+        // 連続クリック防止
+        $('.js-like-button[data-post-id="' + postId + '"]').css('pointer-events', 'none');
+
+        $.ajax({
+            url: '/wp-admin/admin-ajax.php',
+            type: 'POST',
+            data: {
+                action: 'toggle_like',
+                post_id: postId,
+                type: type
+            },
+            success: function(response) {
+                if (response.success) {
+                    const newCount = response.data.count;
+                    
+                    // 数値の更新（ページ内の同一IDすべて）
+                    $(`[data-post-id="${postId}"]`).each(function() {
+                        $(this).find('.good__number, .lead__button_number, .Related-Posts-lead__button_number, .Pickup-Posts-lead__button_number').text(newCount);
+                    });
+
+                    // UI（ハートマークとクラス）の更新
+                    updateLikeUI(postId, type === 'like');
+
+                    // LocalStorageの更新
+                    if (type === 'like') {
+                        if (!likedPosts.includes(postId)) likedPosts.push(postId);
+                    } else {
+                        likedPosts = likedPosts.filter(id => id !== postId);
+                    }
+                    localStorage.setItem(storageKey, JSON.stringify(likedPosts));
+                }
+            },
+            complete: function() {
+                $('.js-like-button[data-post-id="' + postId + '"]').css('pointer-events', 'auto');
+            }
+        });
     });
 });
