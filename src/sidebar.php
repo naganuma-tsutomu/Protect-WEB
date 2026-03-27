@@ -31,10 +31,14 @@
                 if (! empty($categories) && ! is_wp_error($categories)) {
                     // 取得したカテゴリの数だけループ処理を実行
                     foreach ($categories as $category) {
-                        // カテゴリ名をキーワードとした検索URLを生成
-                        $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
+                        // add_query_argを使用してURLを安全に生成（自動的にエンコードされます）
+                        $category_link = add_query_arg(array(
+                            's'        => $category->name,
+                            'blog_cat' => $category->slug
+                        ), home_url('/'));
                         // ループ中のカテゴリが現在選択されているものと一致するか判定
-                        $cat_active = ($current_cat_slug === $category->slug) ? 'active' : '';
+                        // 日本語スラッグの場合に備え、デコードして比較を行う
+                        $cat_active = (urldecode($current_cat_slug) === urldecode($category->slug)) ? 'active' : '';
                 ?>
                         <li class="category-list <?php echo esc_attr($cat_active); ?>">
                             <a class="category-list__link" href="<?php echo esc_url($category_link); ?>">
@@ -67,10 +71,14 @@
                 if (! empty($tags) && ! is_wp_error($tags)) {
                     // 取得したタグの数だけループ処理を実行
                     foreach ($tags as $tag) {
-                        // タグ名をキーワードとした検索URLを生成
-                        $tag_link = home_url('/') . '?s=' . urlencode($tag->name) . '&blog_tag=' . $tag->slug;
+                        // タグ用URLも同様に修正
+                        $tag_link = add_query_arg(array(
+                            's'        => $tag->name,
+                            'blog_tag' => $tag->slug
+                        ), home_url('/'));
                         // ループ中のタグが現在選択されているものと一致するか判定
-                        $tag_active = ($current_tag_slug === $tag->slug) ? 'active' : '';
+                        // タグも同様にデコードして比較
+                        $tag_active = (urldecode($current_tag_slug) === urldecode($tag->slug)) ? 'active' : '';
                 ?>
                         <li class="tag-list <?php echo esc_attr($tag_active); ?>">
                             <a class="tag-list__link" href="<?php echo esc_url($tag_link); ?>">
@@ -146,8 +154,10 @@
                                                 if (!empty($categories) && !is_wp_error($categories)) {
                                                     // 最初のカテゴリを表示
                                                     $category = $categories[0];
-                                                    // カテゴリ名をキーワードとした検索URLを生成
-                                                    $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
+                                                    $category_link = add_query_arg(array(
+                                                        's'        => $category->name,
+                                                        'blog_cat' => $category->slug
+                                                    ), home_url('/'));
                                                 ?>
                                                 <object class="Pickup-Posts-lead__category_text">
                                                     <a class="Pickup-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
@@ -190,7 +200,8 @@
                         'post_type'      => 'blog', // 取得する投稿タイプを 'blog' に指定
                         'post_status'    => 'publish', //公開状態の投稿のみを取得
                         'numberposts'    => 10, //表示数を増やす
-                        'orderby'        => 'count', //投稿数
+                        'meta_key'       => '_post_like_count', // いいね数が格納されているキーを指定
+                        'orderby'        => 'meta_value_num', // カスタムフィールドの値を数値として比較
                         'order'          => 'DESC', //多い順（降順）
                     ));
                     ?>
@@ -223,8 +234,10 @@
                                                 if (!empty($categories) && !is_wp_error($categories)) {
                                                     // 最初のカテゴリを表示
                                                     $category = $categories[0];
-                                                    // カテゴリ名をキーワードとした検索URLを生成
-                                                    $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
+                                                    $category_link = add_query_arg(array(
+                                                        's'        => $category->name,
+                                                        'blog_cat' => $category->slug
+                                                    ), home_url('/'));
                                                 ?>
                                                 <object class="Pickup-Posts-lead__category_text">
                                                     <a class="Pickup-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">

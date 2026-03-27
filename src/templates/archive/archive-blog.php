@@ -17,7 +17,7 @@
                         // WP_Queryに渡すパラメータを設定
                         $args = array(
                             'post_type'      => 'blog', // 取得する投稿タイプを 'blog' に指定
-                            'posts_per_page' => 2,     // 1ページに表示する記事の数
+                            'posts_per_page' => 5,     // 1ページに表示する記事の数
                             'paged'          => $paged, // 取得するページ番号
                         );
                         // 設定したパラメータを使って、新しいクエリを作成し、記事データを取得
@@ -114,9 +114,12 @@
                                                         ?>
                                                     </object>
                                                 </div>
-                                                <div class="lead__button">
-                                                    <span class="lead__button_heart">♡</span>
-                                                    <span class="lead__button_number">11</span>
+                                                <div class="lead__button" data-post-id="<?php the_ID(); ?>">
+                                                    <?php 
+                                                    $rel_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
+                                                    ?>
+                                                    <span class="lead__button_heart lead__button_heart--icon">♡</span>
+                                                    <span class="lead__button_number"><?php echo $rel_like_count; ?></span>
                                                 </div>
                                             </div>
                                         </div>
