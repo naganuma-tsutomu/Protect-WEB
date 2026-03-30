@@ -114,7 +114,7 @@
                                                         ?>
                                                     </object>
                                                 </div>
-                                                <div class="lead__button" data-post-id="<?php the_ID(); ?>">
+                                                <div class="lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                     <?php 
                                                     $rel_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
                                                     ?>

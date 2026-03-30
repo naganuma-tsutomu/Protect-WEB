@@ -41,9 +41,15 @@
                         $cat_active = (urldecode($current_cat_slug) === urldecode($category->slug)) ? 'active' : '';
                 ?>
                         <li class="category-list <?php echo esc_attr($cat_active); ?>">
-                            <a class="category-list__link" href="<?php echo esc_url($category_link); ?>">
-                                <span class="category-list__box"><?php echo esc_html($category->name); ?></span>
-                            </a>
+                            <?php if ($cat_active) : ?>
+                                <span class="category-list__link">
+                                    <span class="category-list__box"><?php echo esc_html($category->name); ?></span>
+                                </span>
+                            <?php else : ?>
+                                <a class="category-list__link" href="<?php echo esc_url($category_link); ?>">
+                                    <span class="category-list__box"><?php echo esc_html($category->name); ?></span>
+                                </a>
+                            <?php endif; ?>
                         </li>
                 <?php
                     }
@@ -81,11 +87,19 @@
                         $tag_active = (urldecode($current_tag_slug) === urldecode($tag->slug)) ? 'active' : '';
                 ?>
                         <li class="tag-list <?php echo esc_attr($tag_active); ?>">
-                            <a class="tag-list__link" href="<?php echo esc_url($tag_link); ?>">
-                                <span class="tag-list__title">
-                                    <?php echo '#' . esc_html($tag->name); ?>
+                            <?php if ($tag_active) : ?>
+                                <span class="tag-list__link">
+                                    <span class="tag-list__title">
+                                        <?php echo '#' . esc_html($tag->name); ?>
+                                    </span>
                                 </span>
-                            </a>
+                            <?php else : ?>
+                                <a class="tag-list__link" href="<?php echo esc_url($tag_link); ?>">
+                                    <span class="tag-list__title">
+                                        <?php echo '#' . esc_html($tag->name); ?>
+                                    </span>
+                                </a>
+                            <?php endif; ?>
                         </li>
                 <?php
                     }
@@ -103,10 +117,10 @@
         <div class="pickup">
             <ul class="blog-title">
                 <li class="blog-title__button active">                    
-                    <a class="blog-title__button_link" href="">新着</a>
+                    <span class="blog-title__button_link" href="">新着</span>
                 </li>                    
                 <li class="blog-title__button">
-                    <a class="blog-title__button_link" href="">人気</a>                    
+                    <span class="blog-title__button_link" href="">人気</span>                    
                 </li>                                        
             </ul>                                                            
 
@@ -166,7 +180,7 @@
                                                 </object>
                                                 <?php } ?>
                                             </div>
-                                            <div class="Pickup-Posts-lead__button" data-post-id="<?php the_ID(); ?>">
+                                            <div class="Pickup-Posts-lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                 <?php 
                                                 $like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
                                                 ?>
@@ -246,7 +260,7 @@
                                                 </object>
                                                 <?php } ?>
                                             </div>
-                                            <div class="Pickup-Posts-lead__button" data-post-id="<?php the_ID(); ?>">
+                                            <div class="Pickup-Posts-lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                 <?php 
                                                 $like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
                                                 ?>
