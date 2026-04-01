@@ -36,6 +36,12 @@ function my_scripts_method() {
         'custom_script',
         get_template_directory_uri().'/assets/js/single.js'
     );
+
+    // JSにデータを渡す (ajax_url と nonce)
+    wp_localize_script('custom_script', 'like_vars', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce'    => wp_create_nonce('like_nonce')
+    ));
 }
 
 add_action('wp_enqueue_scripts', 'my_scripts_method');
@@ -44,6 +50,9 @@ add_action('wp_enqueue_scripts', 'my_scripts_method');
  * AJAXによるいいね機能の処理
  */
 function handle_toggle_like() {
+    // ノンスの検証 (不正なリクエストの場合はここで処理が止まります)
+    check_ajax_referer('like_nonce', 'security');
+
     $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
     $type    = isset($_POST['type']) ? $_POST['type'] : ''; // 'like' または 'unlike'
 

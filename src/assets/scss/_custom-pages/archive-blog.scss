@@ -32,7 +32,7 @@
         // 記事一覧
         ////////////////////////////////////////
         .article {
-             .list {
+            .list {
                 list-style: none;
                 display: flex;
                 flex-wrap: wrap;
@@ -97,6 +97,10 @@
                         text-align: center;
                         color: #fff;
                         font-size: 12px;
+
+                        .active {
+                            background: #1F4B8A;
+                        }
                     }
 
                     &_link {
@@ -379,7 +383,8 @@
                                 color: #1F4B8A;
                                 transition-duration: .1s;
 
-                                &:hover {
+                                &:hover,
+                                &.active {
                                     color: #B6CDEF;
                                 }
                             }

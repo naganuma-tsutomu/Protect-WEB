@@ -9,6 +9,11 @@
                 <!-- 記事一覧
                 ------------------------------------------------->
                 <div class="article">
+                    <?php
+                    // 現在選択されているカテゴリとタグのスラッグをURLパラメータから取得
+                    $cat_slug = isset($_GET['blog_cat']) ? $_GET['blog_cat'] : '';
+                    $tag_slug = isset($_GET['blog_tag']) ? $_GET['blog_tag'] : '';
+                    ?>
                     <ul class="list">
                         <?php
                         // 独自のパラメータ 'pg' からページ番号を取得します。
@@ -34,9 +39,10 @@
                                             // ACFの 'image' フィールドから画像URLを取得
                                             $image_url = get_field('image');
                                             // 画像URLが空でなく、エラーもないことを確認
-                                            if (!empty($image_url) && !is_wp_error($image_url));
+                                            if (!empty($image_url) && !is_wp_error($image_url)) :
                                             ?>
                                             <img class="thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="サムネイル画像">
+                                            <?php endif; ?>
                                         </div>
                                         <div class="lead">
                                             <div class="lead__title">
@@ -79,13 +85,24 @@
                                                     if (! empty($categories) && ! is_wp_error($categories)) {
                                                         // 取得したカテゴリを一つずつループ処理
                                                         foreach ($categories as $category) {
-                                                            // カテゴリ名をキーワードとした検索URLを生成
-                                                            $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
+                                                            // add_query_argを使用してURLを安全に生成
+                                                            $category_link = add_query_arg(array(
+                                                                's'        => $category->name,
+                                                                'blog_cat' => $category->slug
+                                                            ), home_url('/'));
+                                                            // 現在選択されているカテゴリと一致するか判定（日本語スラッグ対応のためデコード）
+                                                            $is_cat_active = ($cat_slug && urldecode($cat_slug) === urldecode($category->slug));
                                                     ?>
                                                             <object class="lead__category_text">
-                                                                <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
-                                                                    <?php echo esc_html($category->name); ?>
-                                                                </a>
+                                                                <?php if ($is_cat_active) : ?>
+                                                                    <span class="lead__category_link active">
+                                                                        <?php echo esc_html($category->name); ?>
+                                                                    </span>
+                                                                <?php else : ?>
+                                                                    <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
+                                                                        <?php echo esc_html($category->name); ?>
+                                                                    </a>
+                                                                <?php endif; ?>
                                                             </object>
                                                     <?php
                                                         }
@@ -102,12 +119,23 @@
                                                         if (! empty($tags) && ! is_wp_error($tags)) {
                                                             // 取得したタグを一つずつループ処理
                                                             foreach ($tags as $tag) {
-                                                                // タグ名をキーワードとした検索URLを生成
-                                                                $tag_link = home_url('/') . '?s=' . urlencode($tag->name) . '&blog_tag=' . $tag->slug;
+                                                                // add_query_argを使用してURLを安全に生成
+                                                                $tag_link = add_query_arg(array(
+                                                                    's'        => $tag->name,
+                                                                    'blog_tag' => $tag->slug
+                                                                ), home_url('/'));
+                                                                // 現在選択されているタグと一致するか判定
+                                                                $is_tag_active = (urldecode($tag_slug) === urldecode($tag->slug));
                                                         ?>
-                                                                <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
-                                                                    <?php echo '#' . esc_html($tag->name); ?>
-                                                                </a>
+                                                                <?php if ($is_tag_active) : ?>
+                                                                    <span class="lead__tag_link01 active">
+                                                                        <?php echo '#' . esc_html($tag->name); ?>
+                                                                    </span>
+                                                                <?php else : ?>
+                                                                    <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
+                                                                        <?php echo '#' . esc_html($tag->name); ?>
+                                                                    </a>
+                                                                <?php endif; ?>
                                                         <?php
                                                             }
                                                         }

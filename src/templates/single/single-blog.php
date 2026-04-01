@@ -192,6 +192,10 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <div class="author">
+                                        <p class="author__title">この記事の執筆者</p>
+                                        <p class="author__text"><?php the_author(); ?></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

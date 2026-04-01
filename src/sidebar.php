@@ -172,11 +172,19 @@
                                                         's'        => $category->name,
                                                         'blog_cat' => $category->slug
                                                     ), home_url('/'));
+                                                    // 現在選択されているカテゴリと一致するか判定
+                                                    $is_cat_active = (urldecode($current_cat_slug) === urldecode($category->slug));
                                                 ?>
                                                 <object class="Pickup-Posts-lead__category_text">
-                                                    <a class="Pickup-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
-                                                        <?php echo esc_html($category->name); ?>
-                                                    </a>
+                                                    <?php if ($is_cat_active) : ?>
+                                                        <span class="Pickup-Posts-lead__category_link active">
+                                                            <?php echo esc_html($category->name); ?>
+                                                        </span>
+                                                    <?php else : ?>
+                                                        <a class="Pickup-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
+                                                            <?php echo esc_html($category->name); ?>
+                                                        </a>
+                                                    <?php endif; ?>
                                                 </object>
                                                 <?php } ?>
                                             </div>
@@ -252,11 +260,19 @@
                                                         's'        => $category->name,
                                                         'blog_cat' => $category->slug
                                                     ), home_url('/'));
+                                                    // 現在選択されているカテゴリと一致するか判定
+                                                    $is_cat_active = (urldecode($current_cat_slug) === urldecode($category->slug));
                                                 ?>
                                                 <object class="Pickup-Posts-lead__category_text">
-                                                    <a class="Pickup-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
-                                                        <?php echo esc_html($category->name); ?>
-                                                    </a>
+                                                    <?php if ($is_cat_active) : ?>
+                                                        <span class="Pickup-Posts-lead__category_link active">
+                                                            <?php echo esc_html($category->name); ?>
+                                                        </span>
+                                                    <?php else : ?>
+                                                        <a class="Pickup-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
+                                                            <?php echo esc_html($category->name); ?>
+                                                        </a>
+                                                    <?php endif; ?>
                                                 </object>
                                                 <?php } ?>
                                             </div>
