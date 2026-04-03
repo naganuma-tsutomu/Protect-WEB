@@ -50,36 +50,37 @@ add_action('wp_enqueue_scripts', 'my_scripts_method');
  * AJAXによるいいね機能の処理
  */
 function handle_toggle_like() {
-    // セキュリティチェック: 送信されたノンスを検証し、不正なリクエスト（CSRF等）をブロック
-    check_ajax_referer('like_nonce', 'security');
+    // 1. セキュリティトークンの検証
+    // JS側で 'nonce' というキー名で送信しているため、第2引数を 'nonce' に合わせます。
+    check_ajax_referer('like_nonce', 'nonce');
 
-    // POSTリクエストから投稿IDを取得し、整数型(int)に変換して安全に受け取る
+    // 2. データの取得とバリデーション    
     $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
-    // POSTリクエストから操作の種類（'like' または 'unlike'）を取得
-    $type    = isset($_POST['type']) ? $_POST['type'] : ''; // 'like' または 'unlike'
+    $type    = isset($_POST['type']) ? sanitize_text_field($_POST['type']) : '';
 
-    // 有効な投稿IDであり、かつ操作の種類が許可されたものであるかを確認
-    if ($post_id > 0 && in_array($type, ['like', 'unlike'])) {
-        // 現在のいいね数を投稿メタデータから取得（値がない場合は0として扱う）
+     // 有効な投稿 ID であるか、操作の種類が許可されたものであるかを確認
+    if ($post_id > 0 && in_array($type, ['like', 'unlike']) && get_post($post_id)) {
+        
+        // 3. 現在のいいね数を取得
         $count = (int) get_post_meta($post_id, '_post_like_count', true);
         
         if ($type === 'like') {
-            // 「いいね」の場合はカウントを1増やす
             $count++;
         } else {
-            // 「いいね解除」の場合はカウントを1減らす（ただし、負の数にならないよう0で下限を設定）
             $count = max(0, $count - 1);
         }
 
-        // 更新したいいね数を投稿メタデータに保存する
-        // update_post_meta関数でデータベースに、$post_idと_post_like_countの組み合わせがあるか確認する
-        // 存在しなければ_post_like_countという投稿メタデータを作成し、あれば$countの値で更新する。
-        update_post_meta($post_id, '_post_like_count', $count);
-        // 成功レスポンスとして、最新のカウント数をJSON形式で返却
-        wp_send_json_success(['count' => $count]);
+        // 4. データベースを更新
+        if (update_post_meta($post_id, '_post_like_count', $count) !== false || get_post_meta($post_id, '_post_like_count', true) == $count) {
+            // 5. 成功レスポンスを返却
+            wp_send_json_success(['count' => $count]);
+        } else {
+            wp_send_json_error(['message' => 'Failed to update database.']);
+        }
+    } else {
+        wp_send_json_error(['message' => 'Invalid parameters or post not found.']);
     }
-    // バリデーションに失敗した場合はエラーレスポンスを返却
-    wp_send_json_error();
+   
 }
 // ログイン済みユーザーからのAJAXリクエストを処理するアクションを追加
 add_action('wp_ajax_toggle_like', 'handle_toggle_like');

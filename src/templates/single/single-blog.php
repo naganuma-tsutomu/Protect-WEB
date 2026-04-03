@@ -50,7 +50,10 @@
                                                     // 取得したカテゴリを一つずつループ処理
                                                     foreach ($categories as $category) {
                                                          // カテゴリ名をキーワードとした検索URLを生成
-                                                        $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
+                                                        $category_link = add_query_arg(array(
+                                                            's'        => $category->name,
+                                                            'blog_cat' => $category->slug
+                                                        ), home_url('/'));
                                             ?>
                                             <object class="lead__category_text">
                                                 <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
@@ -74,7 +77,10 @@
                                                         // 取得したタグを一つずつループ処理
                                                         foreach ($tags as $tag) {
                                                             // タグ名をキーワードとした検索URLを生成
-                                                            $tag_link = home_url('/') . '?s=' . urlencode($tag->name) . '&blog_tag=' . $tag->slug;
+                                                            $tag_link = add_query_arg(array(
+                                                                's'        => $tag->name,
+                                                                'blog_tag' => $tag->slug
+                                                            ), home_url('/'));
                                                 ?>
                                                 <a class="lead__tag_link" href="<?php echo esc_url($tag_link); ?>">
                                                     <?php echo '#' . esc_html($tag->name); ?>
@@ -91,10 +97,10 @@
                                     <?php
                                         // ACFの 'image' フィールドから画像URLを取得
                                         $image_url = get_field('image');
-                                        // 画像URLが空でなく、エラーもないことを確認
-                                        if (!empty($image_url) && !is_wp_error($image_url));
+                                        if (!empty($image_url) && !is_wp_error($image_url)) :
                                     ?>
-                                    <img class="thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_html($image_url); ?>">
+                                        <img class="thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="サムネイル画像">
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <!-- 記事 --->
@@ -162,7 +168,10 @@
                                                 $categories = get_the_terms(get_the_ID(), 'blog_cat');
                                                 if (!empty($categories) && !is_wp_error($categories)) :
                                                     foreach ($categories as $category) :
-                                                        $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
+                                                        $category_link = add_query_arg(array(
+                                                            's'        => $category->name,
+                                                            'blog_cat' => $category->slug
+                                                        ), home_url('/'));
                                                 ?>
                                                         <a class="bottom__category_link" href="<?php echo esc_url($category_link); ?>"><?php echo esc_html($category->name); ?></a>
                                                 <?php endforeach;
@@ -175,7 +184,10 @@
                                                     $tags = get_the_terms(get_the_ID(), 'blog_tag');
                                                     if (!empty($tags) && !is_wp_error($tags)) :
                                                         foreach ($tags as $tag) :
-                                                            $tag_link = home_url('/') . '?s=' . urlencode($tag->name) . '&blog_tag=' . $tag->slug;
+                                                            $tag_link = add_query_arg(array(
+                                                                's'        => $tag->name,
+                                                                'blog_tag' => $tag->slug
+                                                            ), home_url('/'));
                                                     ?>
                                                             <li class="tag-item"><a class="tag-item__link" href="<?php echo esc_url($tag_link); ?>">#<?php echo esc_html($tag->name); ?></a></li>
                                                     <?php endforeach;
@@ -183,10 +195,19 @@
                                                     ?>
                                                 </ul>
                                             </div>
+                                            <!-- <div class="author">
+                                                <span class="author_title">この記事の執筆者 ➤ 
+                                                    <?php the_author(); ?>
+                                                </span>
+                                            </div> -->
+
+
+
+
                                             <?php 
                                             $current_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
                                             ?>
-                                            <button class="good js-like-button" data-post-id="<?php the_ID(); ?>">
+                                            <button class="good js-like-button" data-post-id="<?php the_ID(); ?>" data-nonce="<?php echo wp_create_nonce('like_nonce'); ?>">
                                                 <span class="good__item">♡</span>
                                                 <span class="good__number"><?php echo $current_like_count; ?></span>
                                             </button>
@@ -196,6 +217,12 @@
                                         <p class="author__title">この記事の執筆者</p>
                                         <p class="author__text"><?php the_author(); ?></p>
                                     </div>
+                                    
+                                    <!-- <div class="author">
+                                        <p class="author__title">この記事の執筆者 ➤ 
+                                        <?php the_author(); ?></p>
+                                    </div> -->
+
                                 </div>
                             </div>
                         </div>
@@ -299,7 +326,10 @@
                                                                 // 取得したカテゴリを一つずつループ処理
                                                                 foreach ($categories as $category) {
                                                                     // カテゴリ名をキーワードとした検索URLを生成
-                                                                    $category_link = home_url('/') . '?s=' . urlencode($category->name) . '&blog_cat=' . $category->slug;
+                                                                    $category_link = add_query_arg(array(
+                                                                        's'        => $category->name,
+                                                                        'blog_cat' => $category->slug
+                                                                    ), home_url('/'));
                                                             ?>
                                                                     <object class="Related-Posts-lead__category_text">
                                                                         <a class="Related-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
@@ -323,7 +353,10 @@
                                                                     // 取得したタグを一つずつループ処理
                                                                     foreach ($tags as $tag) {
                                                                         // タグ名をキーワードとした検索URLを生成
-                                                                        $tag_link = home_url('/') . '?s=' . urlencode($tag->name) . '&blog_tag=' . $tag->slug;
+                                                                        $tag_link = add_query_arg(array(
+                                                                            's'        => $tag->name,
+                                                                            'blog_tag' => $tag->slug
+                                                                        ), home_url('/'));
                                                                 ?>
                                                                         <a class="Related-Posts-lead__tag_link" href="<?php echo esc_url($tag_link); ?>">
                                                                             <?php echo '#' . esc_html($tag->name); ?>
@@ -335,13 +368,13 @@
                                                             </object>
                                                         </div>
                                                         
-                                                        <div class="Related-Posts-lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
+                                                        <button class="Related-Posts-lead__button js-like-button" data-post-id="<?php the_ID(); ?>" data-nonce="<?php echo wp_create_nonce('like_nonce'); ?>" style="pointer-events: none;">
                                                             <?php 
                                                             $rel_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
                                                             ?>
                                                             <span class="Related-Posts-lead__button_heart Related-Posts-lead__button_heart--icon">♡</span>
                                                             <span class="Related-Posts-lead__button_number"><?php echo $rel_like_count; ?></span>
-                                                        </div>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </a>

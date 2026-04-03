@@ -120,6 +120,7 @@
 
         .tag-list {
             font-size: 14px;
+            position: relative;
 
             &__link {
                 display: block;
@@ -131,10 +132,17 @@
         .active {
             .tag-list__link {
                 color: #B6CDEF;
-                // border-bottom: 2px dotted #1F4B8A;
-                // text-shadow: #1F4B8A 0 0 1px;
-                // box-shadow: 2px 2px 3px #B6CDEF;
-                border-bottom: 1px solid #1F4B8A;
+
+                &::after {
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    content: '';
+                    display: block;
+                    width: 100%;
+                    height: 1px;
+                    background: #1F4B8A;
+                }
             }
         }
     }
@@ -528,6 +536,7 @@
             width: 260px;
 
             .tag-list {
+                position: relative;
 
                 &__link {
                     transition-duration: .1s;
@@ -536,6 +545,9 @@
                         color: #B6CDEF;
 
                         &::after {
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;;
                             content: '';
                             display: block;
                             width: 100%;

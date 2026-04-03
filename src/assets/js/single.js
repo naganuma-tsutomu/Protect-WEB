@@ -98,12 +98,14 @@ $(function () {
     function updateLikeUI(postId, isLiked) {
         $(`[data-post-id="${postId}"]`).each(function() {
             const $btn = $(this);
+            // ページ内の全ボタンのハート（クラス名が異なるものすべて）を対象にする
+            const $heart = $btn.find('.good__item, .lead__button_heart, .Related-Posts-lead__button_heart');
             if (isLiked) {
                 $btn.addClass('is-active');
-                $btn.find('.good__item').text('♥');
+                $heart.text('♥');
             } else {
                 $btn.removeClass('is-active');
-                $btn.find('.good__item').text('♡');
+                $heart.text('♡');
             }
         });
     }
@@ -115,6 +117,7 @@ $(function () {
     $(document).on('click', '.js-like-button', function() {
         const $btn = $(this);
         const postId = $btn.data('post-id').toString();
+        const nonce = $btn.data('nonce'); // data-nonce属性から値を取得
         const isActive = $btn.hasClass('is-active');
         const type = isActive ? 'unlike' : 'like';
 
@@ -122,12 +125,14 @@ $(function () {
         $('.js-like-button[data-post-id="' + postId + '"]').css('pointer-events', 'none');
 
         $.ajax({
-            url: '/wp-admin/admin-ajax.php',
+            // dev.phpで定義した like_vars.ajax_url を優先的に使用する
+            url: (typeof like_vars !== 'undefined') ? like_vars.ajax_url : '/wp-admin/admin-ajax.php',
             type: 'POST',
             data: {
                 action: 'toggle_like',
                 post_id: postId,
-                type: type
+                type: type,
+                nonce: nonce // セキュリティトークンを送信
             },
             success: function(response) {
                 if (response.success) {
