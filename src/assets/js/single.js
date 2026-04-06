@@ -20,13 +20,13 @@ $(function () {
 });
 
 // サイドバーの目次スクロール追従
-$(window).on("scroll", function () {
+$(window).on("scroll.toc", function () {
     const subindex = ".sub-index-list";
     const threshold = 100; // 判定位置のオフセット（px）
     let activeIndex = -1;
 
     // 現在どのh2のエリアにいるか判定
-    $(".main-content__index>h2").each(function (i) {
+    $(".main-content__index h2").each(function (i) {
         const targetTop = $(this).offset().top;
         const scrollTop = $(window).scrollTop();
 
@@ -36,56 +36,14 @@ $(window).on("scroll", function () {
     });
 
     // activeを消す
-    $(".main-content__index>h2").removeClass('active');
+    $(".main-content__index h2").removeClass('active');
     $(subindex).removeClass('active');
 
     // activeにする
     if (activeIndex >= 0) {
-        $(".main-content__index>h2").eq(activeIndex).addClass('active');
+        $(".main-content__index h2").eq(activeIndex).addClass('active');
         $(subindex).eq(activeIndex).addClass('active');
     }
-});
-
-
-
-$(function () {
-    const $header = $(".main-content__index");
-    const $subindex = $(".sub-index-list");
-    let $links = [];
-
-    // アウトラインの作成
-    // $header.find("h2").each(function (index) {
-    //     const $element = $(this);
-    //     const id = "content_" + index;
-    //     $element.attr("id", id);
-    //     const $link = $("<a></a>")
-    //         .text($element.text())
-    //         .attr("href", "#" + id);
-    //     $subindex.append($("<li></li>").append($link));
-    //     $links.push({ link: $link, target: $element });
-    // });
-
-    // スクロール時の処理
-    $(window).on("scroll", function () {
-        // 現在のスクロール位置
-        const scrollTop = $(window).scrollTop();
-        let currentSection = null;
-
-        $links.forEach(function (item) {
-            // 格タイトルの画面上の位置
-            const targetTop = item.target.offset().top;
-            // もしもスクロール位置が、該当タイトルよりも大きい場合
-            if (scrollTop >= targetTop) {
-                // 適当なオフセット
-                currentSection = item;
-            }
-        });
-
-        if (currentSection) {
-            $subindex.find("li").removeClass("active");
-            currentSection.link.parent("li").addClass("active");
-        }
-    });
 });
 
 // いいね機能の実装
@@ -98,7 +56,7 @@ $(function () {
     function updateLikeUI(postId, isLiked) {
         $(`[data-post-id="${postId}"]`).each(function() {
             const $btn = $(this);
-            // ページ内の全ボタンのハート（クラス名が異なるものすべて）を対象にする
+            // ページ内の全ボタンのハートを対象にする
             const $heart = $btn.find('.good__item, .lead__button_heart, .Related-Posts-lead__button_heart');
             if (isLiked) {
                 $btn.addClass('is-active');
@@ -117,12 +75,15 @@ $(function () {
     $(document).on('click', '.js-like-button', function() {
         const $btn = $(this);
         const postId = $btn.data('post-id').toString();
-        const nonce = $btn.data('nonce'); // data-nonce属性から値を取得
+        const nonce = $btn.data('nonce');
         const isActive = $btn.hasClass('is-active');
         const type = isActive ? 'unlike' : 'like';
 
+        // 同じpostIdを持つページ内の全ボタンを取得
+        const $targetButtons = $(`[data-post-id="${postId}"]`);
+
         // 連続クリック防止
-        $('.js-like-button[data-post-id="' + postId + '"]').css('pointer-events', 'none');
+        $targetButtons.css('pointer-events', 'none');
 
         $.ajax({
             // dev.phpで定義した like_vars.ajax_url を優先的に使用する
@@ -139,7 +100,7 @@ $(function () {
                     const newCount = response.data.count;
                     
                     // 数値の更新（ページ内の同一IDすべて）
-                    $(`[data-post-id="${postId}"]`).each(function() {
+                    $targetButtons.each(function() {
                         $(this).find('.good__number, .lead__button_number, .Related-Posts-lead__button_number, .Pickup-Posts-lead__button_number').text(newCount);
                     });
 
@@ -156,7 +117,7 @@ $(function () {
                 }
             },
             complete: function() {
-                $('.js-like-button[data-post-id="' + postId + '"]').css('pointer-events', 'auto');
+                $targetButtons.css('pointer-events', 'auto');
             }
         });
     });

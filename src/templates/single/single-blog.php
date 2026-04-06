@@ -213,18 +213,12 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="author">
-                                        <p class="author__title">この記事の執筆者</p>
-                                        <p class="author__text"><?php the_author(); ?></p>
-                                    </div>
-                                    
-                                    <!-- <div class="author">
-                                        <p class="author__title">この記事の執筆者 ➤ 
-                                        <?php the_author(); ?></p>
-                                    </div> -->
-
                                 </div>
                             </div>
+                        </div>
+                        <div class="author">
+                            <p class="author__title">この記事の執筆者</p>
+                            <p class="author__text"><?php the_author(); ?></p>
                         </div>
 
                         <!-- 前・次・記事一覧のボタン

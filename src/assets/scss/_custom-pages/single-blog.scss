@@ -111,7 +111,7 @@ p {
 
             &__tag {
                 margin-left: 15px;
-                line-height: 30px;
+                line-height: 15px;
 
                 &_text {
                     display: inline-flex;
@@ -120,6 +120,7 @@ p {
                 }
 
                 &_link {
+                    position: relative;
                     display: inline-block;
                     text-decoration: none;
                     color: #1F4B8A;
@@ -128,6 +129,17 @@ p {
 
                     &:hover {
                         color: rgb(182, 205, 239);
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;
+                            display: block;
+                            width: 100%;
+                            height: 1px;
+                            background: #1F4B8A;
+                        }
                     }
                 }
             }
@@ -306,6 +318,8 @@ p {
                         }
 
                         .tag-item {
+                            position: relative;
+
                             &__link {
                                 display: inline-block;
                                 text-decoration: none;
@@ -315,26 +329,21 @@ p {
 
                                 &:hover {
                                     color: rgb(182, 205, 239);
+
+                                    &::after {
+                                        content: "";
+                                        position: absolute;
+                                        left: 0;
+                                        bottom: 0;
+                                        display: block;
+                                        width: 100%;
+                                        height: 1px;
+                                        background: #1F4B8A;
+                                    }
                                 }
                             }
                         }
                     }
-
-                    // .author {
-                    //     margin-left: 30px;
-
-                    //     &__title {
-                    //         display: inline-block;
-                    //         font-size: 13px;
-                    //         // border-bottom: 1px solid #707070;
-                    //         margin: 60px 0 20px 10px;
-                    //         padding: 0 0 5px 5px;
-                    //     }
-
-                    //     &__text {
-                    //         margin: 0 0 10px 10px;
-                    //     }
-                    // }
 
                     .good {
                         background: #eeeeee;
@@ -372,20 +381,25 @@ p {
                     }
                 }
             }
+        }
 
-            .author {
-                &__title {
-                    font-size: 13px;
-                    border-bottom: 1px solid #707070;
-                    margin: 60px 0 20px 0;
-                    padding: 0 0 5px 5px;
-                }
+        .author {
+            width: 100%;
+            height: auto;
+            box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.15);
 
-                &__text {
-                    margin: 0 0 10px 10px;
-                }
+            &__title {
+                font-size: 13px;
+                border-bottom: 1px solid #707070;
+                margin: 60px 0 20px 0;
+                padding: 0 0 5px 5px;
+            }
+
+            &__text {
+                margin: 0 0 10px 10px;
             }
         }
+
     }
 
     // 前・次・記事一覧のボタン
@@ -441,7 +455,7 @@ p {
             &_item {
                 position: absolute;
                 content: "";
-                bottom: -60px;
+                bottom: 45px;
                 right: -15px;
                 background: #fff;
                 color: #1F4B8A;
@@ -774,6 +788,7 @@ p {
                             }
 
                             &_link {
+                                position: relative;
                                 margin-left: 5px;
                                 text-decoration: none;
                                 color: #1F4B8A;
@@ -781,6 +796,17 @@ p {
 
                                 &:hover {
                                     color: #B6CDEF;
+
+                                    &::after {
+                                        position: absolute;
+                                        content: "";
+                                        left: 0;
+                                        bottom: 0;
+                                        display: block;
+                                        width: 100%;
+                                        height: 1px;
+                                        background: #1F4B8A;
+                                    }
                                 }
                             }
                         }

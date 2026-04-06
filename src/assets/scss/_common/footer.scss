@@ -25,12 +25,14 @@ footer {
           font-size: clamp(2.4rem, 2.182rem + 1.09vw, 3rem);
           font-weight: bold;
           text-align: center;
+
           img {
             width: 35px;
             height: auto;
             margin: 0 1.5rem 0 0;
             vertical-align: middle;
           }
+
           @media screen and (max-width: 1024px) {
             text-align: center;
             font-size: clamp(2.2em, 4.8vw, 4.8vw);
@@ -43,6 +45,7 @@ footer {
         width: 100%;
         margin: 0 auto;
         background-color: #ebf6fe;
+
         @media screen and (max-width: 1024px) {
           background-color: transparent;
         }
@@ -55,16 +58,19 @@ footer {
           vertical-align: middle;
           border-radius: 0.3vw;
           background: #ec831a;
+
           @media screen and (max-width: 1024px) {
             width: 54%;
             height: 10vw;
             margin: 5vw auto 6vw auto;
             border-radius: 1.2vw;
           }
+
           a {
             div {
               transition: opacity 0.2s ease;
             }
+
             &:hover {
               div {
                 opacity: 0.8;
@@ -79,6 +85,7 @@ footer {
             line-height: 5vw;
             font-weight: bold;
             letter-spacing: 0.1vw;
+
             @media screen and (max-width: 1024px) {
               padding: 2.5vw 0vw 0 0vw;
               font-size: clamp(1rem, 0.273rem + 3.64vw, 3rem);
@@ -93,6 +100,7 @@ footer {
           letter-spacing: 0.1vw;
           pointer-events: none;
           cursor: default;
+
           @media screen and (max-width: 1024px) {
             margin: 5vw 0 5vw 0;
             font-size: clamp(2rem, 1.636rem + 1.82vw, 3rem);
@@ -104,11 +112,14 @@ footer {
         &_sns {
           width: fit-content;
           margin: 0 auto 4rem auto;
+
           img {
             margin: 0 1rem 0 1rem;
           }
+
           a {
             transition: opacity 0.2s ease;
+
             &:hover {
               opacity: 0.8;
             }
@@ -124,10 +135,13 @@ footer {
           font-size: clamp(0.8rem, 0.545rem + 1.27vw, 1.5rem);
           font-weight: bold;
           letter-spacing: 0.08vw;
+
           div {
             margin: 0 2.5vw 0 2.5vw;
+
             a {
               transition: opacity 0.2s ease;
+
               &:hover {
                 opacity: 0.8;
               }
@@ -139,6 +153,7 @@ footer {
           margin: 0;
           padding: 0 0 2rem 0;
           font-size: clamp(0.7rem, 0.518rem + 0.91vw, 1.2rem);
+
           @media screen and (max-width: 1024px) {
             font-size: clamp(0.8rem, 0.364rem + 2.18vw, 2rem);
           }
@@ -148,22 +163,33 @@ footer {
   }
 }
 
-#service .footer__contents_menu_list .menu_service > a {
-  pointer-events: none;
-  cursor: default;
-  color: #f7a336;
-}
-#plan .footer__contents_menu_list .menu_plan > a {
-  pointer-events: none;
-  cursor: default;
-  color: #f7a336;
-}
-#order .footer__contents_menu_list .menu_order > a {
-  pointer-events: none;
-  cursor: default;
-  color: #f7a336;
-}
-#contact .footer__contents_menu_list .menu_contact > a {
+// #service .footer__contents_menu_list .menu_service > a {
+//   pointer-events: none;
+//   cursor: default;
+//   color: #f7a336;
+// }
+// #plan .footer__contents_menu_list .menu_plan > a {
+//   pointer-events: none;
+//   cursor: default;
+//   color: #f7a336;
+// }
+// #blog .footer__contents_menu_list .menu_blog > a {
+//   pointer-events: none;
+//   cursor: default;
+//   color: #f7a336;
+// }
+// #order .footer__contents_menu_list .menu_order > a {
+//   pointer-events: none;
+//   cursor: default;
+//   color: #f7a336;
+// }
+// #contact .footer__contents_menu_list .menu_contact > a {
+//   pointer-events: none;
+//   cursor: default;
+//   color: #f7a336;
+// }
+
+footer .is-active {
   pointer-events: none;
   cursor: default;
   color: #f7a336;
