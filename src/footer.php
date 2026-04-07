@@ -65,6 +65,12 @@
             </ul>
         </div>
     </div>
+    <?php // ページトップボタン ?>
+    <div id="js-pagetop" class="pagetop">
+        <div class="pagetop__contents">
+        <a class="pagetop__contents_button" href="#">TOP</a>
+        </div>
+    </div>
 </footer>
 <?php wp_footer(); ?>
 </body>

@@ -6,3 +6,45 @@ Author: naganuma
 Description: ProtectHP制作専用WEBサイト
 */
 
+/* ページ全体のスクロールをスムーズにする（徐々に戻る設定） */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ページトップボタンを画面右下に固定 */
+.pagetop {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+}
+
+/* ボタンの見た目を整える */
+.pagetop__contents_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* ホバー時の動き（少し浮き上がらせる） */
+.pagetop__contents_button:hover {
+  opacity: 0.8;
+  transform: translateY(-5px);
+}
+
+/* OSの「視覚効果を減らす」設定が有効な場合はアニメーションを無効化（アクセシビリティ配慮） */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -194,3 +194,74 @@ footer .is-active {
   cursor: default;
   color: #f7a336;
 }
+
+// .pagetop {
+//   position: relative;
+
+//   &__contents {
+//     position: absolute;
+//     z-index: 2;
+//     top: -500px;
+//     right: 0;
+//     transform: translate(-50%, -50%);
+//     text-align: center;
+//     width: 45px;
+//     height: 45px;
+//     line-height: 45px;
+
+//     &_button {
+//       display: block;
+//       background: #1f4b8a;
+//       border: none;
+//       border-radius: 20%;
+//       width: 100%;
+//       height: 100%;
+//       cursor: pointer;
+//       color: #fff;
+//     }
+//   }
+// }
+
+
+// ページ全体のスクロールをスムーズにする（徐々に戻る設定）
+html {
+  scroll-behavior: smooth;
+}
+
+// ページトップボタンのスタイル
+.pagetop {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+
+  &__contents {
+    &_button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: opacity 0.3s, transform 0.3s;
+
+      &:hover {
+        opacity: 0.8;
+        transform: translateY(-5px);
+      }
+    }
+  }
+}
+
+// アクセシビリティ配慮
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
