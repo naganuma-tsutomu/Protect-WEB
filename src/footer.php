@@ -66,7 +66,7 @@
         </div>
     </div>
     <?php // ページトップボタン ?>
-    <div id="js-pagetop" class="pagetop">
+    <div id="js-pagetop" class="js-pagetop pagetop">
         <div class="pagetop__contents">
         <a class="pagetop__contents_button" href="#">TOP</a>
         </div>

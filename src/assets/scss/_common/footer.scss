@@ -222,18 +222,15 @@ footer .is-active {
 //   }
 // }
 
-
-// ページ全体のスクロールをスムーズにする（徐々に戻る設定）
-html {
-  scroll-behavior: smooth;
-}
-
 // ページトップボタンのスタイル
 .pagetop {
   position: fixed;
   right: 20px;
   bottom: 20px;
   z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
 
   &__contents {
     &_button {
@@ -257,7 +254,16 @@ html {
       }
     }
   }
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
 }
+
+
+
 
 // アクセシビリティ配慮
 @media (prefers-reduced-motion: reduce) {
