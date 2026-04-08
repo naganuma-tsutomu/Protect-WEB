@@ -382,25 +382,92 @@ p {
                 }
             }
         }
+    }
 
-        .author {
-            width: 100%;
-            height: auto;
-            box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.15);
+    // .author {
+    //     margin: 60px 0 40px;
+    //     padding: 10px 5%;
+    //     background: #f8fbff;
+    //     display: flex;
 
-            &__title {
-                font-size: 13px;
-                border-bottom: 1px solid #707070;
-                margin: 60px 0 20px 0;
-                padding: 0 0 5px 5px;
-            }
+    //     &__label {
+    //         font-size: 14px;
+    //         line-height: 20px;
+    //         font-weight: bold;
+    //         color: #1F4B8A;
+    //         display: block;
+    //         width: fit-content;
+    //     }
 
-            &__text {
-                margin: 0 0 10px 10px;
-            }
+    //     &__img {
+    //         width: 50px;
+    //         height: 50px;
+    //         margin: 0 10px 0 15px;
+    //         border-radius: 50%;
+    //         object-fit: cover;
+    //         flex-shrink: 0;
+    //         border: 3px solid #fff;
+    //         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    //     }
+
+    //     &__name {
+    //         font-size: 18px;
+    //         line-height: 20px;
+    //         font-weight: bold;
+    //         margin: 0 0 10px 10px;
+    //         color: #333;
+    //     }
+
+    //     &__profile {
+    //         font-size: 14px;
+    //         line-height: 1.6;
+    //         margin: 0 10px;
+    //         color: #555;
+    //     }
+    // }
+
+    .author {
+        margin: 60px 0 40px;
+        padding: 10px 5%;
+        background: #f8fbff;
+        display: flex;
+
+        // &__label {
+        //     font-size: 14px;
+        //     line-height: 20px;
+        //     font-weight: bold;
+        //     color: #1F4B8A;
+        //     display: block;
+        //     width: fit-content;
+        // }
+
+        &__img {
+            width: 50px;
+            height: 50px;
+            margin: auto 15px auto 0;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
+        &__name {
+            font-size: 12px;
+            line-height: 15px;
+            font-weight: bold;
+            margin: 10px 10px 5px 10px;
+            color: #333;
+        }
+
+        &__profile {
+            font-size: 12px;
+            line-height: 15px;
+            margin: 5px 10px 10px 10px;
+            color: #555;
+        }
     }
+
 
     // 前・次・記事一覧のボタン
     ////////////////////////////////////////

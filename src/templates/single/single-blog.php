@@ -195,14 +195,6 @@
                                                     ?>
                                                 </ul>
                                             </div>
-                                            <!-- <div class="author">
-                                                <span class="author_title">この記事の執筆者 ➤ 
-                                                    <?php the_author(); ?>
-                                                </span>
-                                            </div> -->
-
-
-
 
                                             <?php 
                                             $current_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
@@ -216,9 +208,23 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="author">
-                            <p class="author__title">この記事の執筆者</p>
-                            <p class="author__text"><?php the_author(); ?></p>
+                            <!-- <span class="author__label">この記事の執筆者</span> -->
+                            <?php
+                            $author_id = get_the_author_meta('ID');
+                            $author_img = get_field('user_profile_img', 'user_' . $author_id); // ACFフィールドを取得
+                            if ($author_img) : ?>
+                                <img src="<?php echo esc_url($author_img); ?>" alt="<?php echo esc_attr(get_the_author()); ?>" class="author__img">
+                            <?php else : ?>
+                                <?php echo get_avatar($author_id, 100, '', get_the_author(), array('class' => 'author__img')); ?>
+                            <?php endif; ?>
+                            <div class="author__info">
+                            <p class="author__name"><?php the_author(); ?></p>
+                            <p class="author__profile">
+                                <?php the_author_meta('description'); ?>
+                            </p>
+                            </div>
                         </div>
 
                         <!-- 前・次・記事一覧のボタン
