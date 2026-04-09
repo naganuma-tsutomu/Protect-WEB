@@ -34,6 +34,7 @@
     "axios": "^1.7.9",
     "destyle.css": "^4.0.1",
     "gsap": "^3.12.7",
+    "jquery": "^4.0.0",
     "ress": "^5.0.2",
     "scroll-hint": "^1.2.9",
     "swiper": "^11.0.6",
