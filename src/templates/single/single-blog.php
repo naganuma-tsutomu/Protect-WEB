@@ -222,7 +222,7 @@
                             <div class="author__info">
                             <p class="author__name"><?php the_author(); ?></p>
                             <p class="author__profile">
-                                <?php the_author_meta('description'); ?>
+                                <?php the_author_meta('user_profile_comment'); ?>
                             </p>
                             </div>
                         </div>

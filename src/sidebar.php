@@ -117,7 +117,7 @@
         <div class="pickup">
             <ul class="blog-title">
                 <li class="blog-title__button active">                    
-                    <span class="blog-title__button_link" href="">新着</span>
+                    <span class="blog-title__button_link active" href="">新着</span>
                 </li>                    
                 <li class="blog-title__button">
                     <span class="blog-title__button_link" href="">人気</span>                    
