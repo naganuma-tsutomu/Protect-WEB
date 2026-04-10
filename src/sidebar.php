@@ -115,12 +115,13 @@
         <!-- ピックアップ記事
         ------------------------------------------------->
         <div class="pickup">
+            <div class="pickup-title">ピックアップ記事</div>
             <ul class="blog-title">
                 <li class="blog-title__button active">                    
-                    <span class="blog-title__button_link active" href="">新着</span>
+                    <span class="blog-title__button_link active">新着</span>
                 </li>                    
                 <li class="blog-title__button">
-                    <span class="blog-title__button_link" href="">人気</span>                    
+                    <span class="blog-title__button_link">人気</span>                    
                 </li>                                        
             </ul>                                                            
 
@@ -202,7 +203,7 @@
                         <?php endforeach; ?>
                         <?php wp_reset_postdata(); // 投稿データをリセット ?>
                     <?php else: ?>
-                        <li class="Pickup-Posts-item">新着記事はありません。</li>
+                        <li class="Pickup-Posts-item empty">新着記事はありません。</li>
                     <?php endif; ?>
                 </ul>
                 <?php if (count($new_posts) > 5) : ?>
@@ -290,7 +291,7 @@
                         <?php endforeach; ?>
                         <?php wp_reset_postdata(); //投稿データをリセット ?>
                         <?php else: ?>
-                            <li class="Pickup-Posts-item">人気記事はありません。</li>
+                            <li class="Pickup-Posts-item empty">人気記事はありません。</li>
                         <?php endif; ?>
                 </ul>
                 <?php if (count($popular_posts) > 5) : ?>
