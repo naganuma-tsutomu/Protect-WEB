@@ -36,13 +36,13 @@
                                     <a class="item-link" href="<?php the_permalink(); ?>">
                                         <div class="thumbnail">
                                             <?php
-                                            // ACFの 'image' フィールドから画像URLを取得
                                             $image_url = get_field('image');
-                                            // 画像URLが空でなく、エラーもないことを確認
-                                            if (!empty($image_url) && !is_wp_error($image_url)) :
+                                            // 画像が未設定の場合の共通画像パスを設定
+                                            if (empty($image_url) || is_wp_error($image_url)) {
+                                                $image_url = get_theme_file_uri('/assets/images/common/no-image.webp');
+                                            }
                                             ?>
-                                            <img class="thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="サムネイル画像">
-                                            <?php endif; ?>
+                                            <img class="thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="<?php the_title_attribute(); ?>">
                                         </div>
                                         <div class="lead">
                                             <div class="lead__title">
@@ -76,15 +76,15 @@
                                                         ?>
                                                     </span>
                                                 </div>
-                                                <div class="lead__category">
-                                                    <?php //カテゴリを取得 
-                                                    $cat_taxonomy = 'blog_cat';
-                                                    // 現在の投稿に紐づく 'blog_cat' タクソノミーのターム（カテゴリ）を取得
-                                                    $categories = get_the_terms(get_the_ID(), $cat_taxonomy);
-                                                    // カテゴリが存在し、エラーがない場合のみ処理を実行
-                                                    if (! empty($categories) && ! is_wp_error($categories)) {
-                                                        // 取得したカテゴリを一つずつループ処理
-                                                        foreach ($categories as $category) {
+                                                <?php
+                                                $cat_taxonomy = 'blog_cat';
+                                                $categories = get_the_terms(get_the_ID(), $cat_taxonomy);
+                                                // カテゴリが存在する場合のみ div を出力
+                                                if (! empty($categories) && ! is_wp_error($categories)) :
+                                                ?>
+                                                    <div class="lead__category">
+                                                        <?php
+                                                        foreach ($categories as $category) :
                                                             // add_query_argを使用してURLを安全に生成
                                                             $category_link = add_query_arg(array(
                                                                 's'        => $category->name,
@@ -105,20 +105,21 @@
                                                                 <?php endif; ?>
                                                             </object>
                                                     <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                </div>
-                                                <div class="lead__tag">
-                                                    <object class="lead__tag_text">
-                                                        <?php //タグを取得する
-                                                        $tag_taxonomy = 'blog_tag';
-                                                        // 現在の投稿に紐づく 'blog_tag' タクソノミーのターム（タグ）を取得
-                                                        $tags = get_the_terms(get_the_ID(), $tag_taxonomy);
-                                                        // タグが存在し、エラーがない場合のみ処理を実行
-                                                        if (! empty($tags) && ! is_wp_error($tags)) {
-                                                            // 取得したタグを一つずつループ処理
-                                                            foreach ($tags as $tag) {
+                                                        endforeach;
+                                                        ?>
+                                                    </div>
+                                                <?php endif; ?>
+
+                                                <?php
+                                                $tag_taxonomy = 'blog_tag';
+                                                $tags = get_the_terms(get_the_ID(), $tag_taxonomy);
+                                                // タグが存在する場合のみ div > object を出力
+                                                if (! empty($tags) && ! is_wp_error($tags)) :
+                                                ?>
+                                                    <div class="lead__tag">
+                                                        <object class="lead__tag_text">
+                                                            <?php
+                                                            foreach ($tags as $tag) :
                                                                 // add_query_argを使用してURLを安全に生成
                                                                 $tag_link = add_query_arg(array(
                                                                     's'        => $tag->name,
@@ -137,11 +138,11 @@
                                                                     </a>
                                                                 <?php endif; ?>
                                                         <?php
-                                                            }
-                                                        }
-                                                        ?>
-                                                    </object>
-                                                </div>
+                                                            endforeach;
+                                                            ?>
+                                                        </object>
+                                                    </div>
+                                                <?php endif; ?>
                                                 <div class="lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                     <?php 
                                                     $rel_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
