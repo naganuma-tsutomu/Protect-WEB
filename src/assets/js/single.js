@@ -4,10 +4,12 @@ import $ from "jquery";
 $(function () {
 
     const tab = ".blog-title__button"
+    const title = ".blog-title__button_link"
     const blog = ".Pickup-Posts"
     $(tab).on('click', function () {
         // activeを消す
         $(tab).removeClass('active');
+        $(title).removeClass('active');
         $(blog).removeClass('active');
 
         // activeにする

@@ -222,7 +222,7 @@
                             <div class="author__info">
                             <p class="author__name"><?php the_author(); ?></p>
                             <p class="author__profile">
-                                <?php the_author_meta('description'); ?>
+                                <?php the_author_meta('user_profile_comment'); ?>
                             </p>
                             </div>
                         </div>
@@ -256,10 +256,8 @@
 
                         <!-- 関連記事
                         ------------------------------------------------->
-                        <div class="Related-Posts">
-                            <div class="Related-Posts__title">関連記事</div>
-                            <ul class="Related-Posts-list">
-                                <?php
+                        <?php
+                                $related_title = '関連記事';
                                 // 現在の投稿のカテゴリー（ターム）IDを取得
                                 $terms = get_the_terms(get_the_ID(), 'blog_cat');
                                 $term_ids = array();
@@ -289,6 +287,18 @@
 
                                 $related_query = new WP_Query($args);
 
+                                // 関連記事（同じカテゴリの投稿）が見つからなかった場合、カテゴリ指定を外してランダムに再取得
+                                if (!$related_query->have_posts()) {
+                                    $related_title = 'おすすめ記事';
+                                    unset($args['tax_query']);
+                                    $related_query = new WP_Query($args);
+                                }
+                        ?>
+
+                        <div class="Related-Posts">
+                            <div class="Related-Posts__title"><?php echo esc_html($related_title); ?></div>
+                            <ul class="Related-Posts-list">
+                                <?php
                                 if ($related_query->have_posts()) :
                                     while ($related_query->have_posts()) : $related_query->the_post();
                                 ?>
