@@ -37,12 +37,12 @@ p {
     .box-shadow {
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
         margin-bottom: 50px;
+        padding: 20px 5%;
     }
 
     // 見出し
     .article {
         width: 100%;
-        padding: 20px 6%;
 
         .lead {
 
@@ -161,7 +161,6 @@ p {
     // 記事
     .main-box {
         width: 100%;
-        padding: 10px 5%;
 
         // 目次
         .index {
@@ -683,6 +682,10 @@ p {
             padding: 0 20px;
             gap: 30px;
             position: relative;
+
+            .main-block{
+                width: 75%;
+            }
 
             // 前・次・記事一覧のボタン
             ////////////////////////////////////////

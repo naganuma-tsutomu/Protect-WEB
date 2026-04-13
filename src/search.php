@@ -72,13 +72,13 @@
                                     <a class="item-link" href="<?php the_permalink(); ?>">
                                         <div class="thumbnail">
                                             <?php
-                                            // ACFの 'image' フィールドから画像URLを取得
                                             $image_url = get_field('image');
-                                            // 画像URLが空でなく、エラーもないことを確認
-                                            if (!empty($image_url) && !is_wp_error($image_url)) :
+                                            // 画像が未設定の場合の共通画像パスを設定
+                                            if (empty($image_url) || is_wp_error($image_url)) {
+                                                $image_url = get_theme_file_uri('/assets/images/common/no-image.webp');
+                                            }
                                             ?>
-                                            <img class="thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="サムネイル画像">
-                                            <?php endif; ?>
+                                            <img class="thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="<?php the_title_attribute(); ?>">
                                         </div>
                                         <div class="lead">
                                             <div class="lead__title">

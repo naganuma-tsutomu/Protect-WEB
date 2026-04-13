@@ -38,17 +38,21 @@
                                             ?>
                                         </h1>
                                     </div>
-                                    <div class="lead-sub">
-                                        <div class="lead__category">
-                                            <?php 
-                                                //カテゴリを取得 
-                                                $cat_taxonomy = 'blog_cat';
-                                                // 現在の投稿に紐づく 'blog_cat' カテゴリを取得
-                                                $categories = get_the_terms(get_the_ID(), $cat_taxonomy);
-                                                // カテゴリが存在し、エラーがない場合のみ処理を実行
-                                                if (! empty($categories) && ! is_wp_error($categories)) {
-                                                    // 取得したカテゴリを一つずつループ処理
-                                                    foreach ($categories as $category) {
+                                    <?php
+                                    // カテゴリとタグを取得し、存在するか判定する
+                                    $categories = get_the_terms(get_the_ID(), 'blog_cat');
+                                    $tags = get_the_terms(get_the_ID(), 'blog_tag');
+                                    $has_categories = ! empty($categories) && ! is_wp_error($categories);
+                                    $has_tags = ! empty($tags) && ! is_wp_error($tags);
+
+                                    // どちらかが存在する場合のみ lead-sub を出力
+                                    if ($has_categories || $has_tags) :
+                                    ?>
+                                        <div class="lead-sub">
+                                            <?php if ($has_categories) : ?>
+                                            <div class="lead__category">
+                                                <?php
+                                                foreach ($categories as $category) :
                                                          // カテゴリ名をキーワードとした検索URLを生成
                                                         $category_link = add_query_arg(array(
                                                             's'        => $category->name,
@@ -61,21 +65,15 @@
                                                 </a>
                                             </object>
                                             <?php
-                                                }
-                                                }
-                                            ?>
-                                        </div>
-                                        <div class="lead__tag">
-                                            <object class="lead__tag_text">
-                                                <?php 
-                                                    //タグを取得する
-                                                    $tag_taxonomy = 'blog_tag';
-                                                    // 現在の投稿に紐づく 'blog_tag' タグを取得
-                                                    $tags = get_the_terms(get_the_ID(), $tag_taxonomy);
-                                                    // タグが存在し、エラーがない場合のみ処理を実行
-                                                    if (! empty($tags) && ! is_wp_error($tags)) {
-                                                        // 取得したタグを一つずつループ処理
-                                                        foreach ($tags as $tag) {
+                                                endforeach; ?>
+                                            </div>
+                                            <?php endif; ?>
+
+                                            <?php if ($has_tags) : ?>
+                                            <div class="lead__tag">
+                                                <object class="lead__tag_text">
+                                                    <?php
+                                                    foreach ($tags as $tag) :
                                                             // タグ名をキーワードとした検索URLを生成
                                                             $tag_link = add_query_arg(array(
                                                                 's'        => $tag->name,
@@ -86,12 +84,12 @@
                                                     <?php echo '#' . esc_html($tag->name); ?>
                                                 </a>
                                                 <?php
-                                                    }
-                                                    }
-                                                ?>
-                                            </object>
+                                                    endforeach; ?>
+                                                </object>
+                                            </div>
+                                            <?php endif; ?>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="thumbnail">
                                     <?php
