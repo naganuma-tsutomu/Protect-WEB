@@ -155,7 +155,10 @@
                                     </a>
                                 </li>
                             <?php endwhile; // ループの終了 
+                            else : 
                             ?>
+                            <li class="blog-empty">このブログにはまだ記事がありません。<br>
+                                更新までしばらくお待ちください。</li>
                         <?php endif; ?>
                         <?php wp_reset_postdata(); // WP_Query で変更された投稿データを元に戻す 
                         ?>
