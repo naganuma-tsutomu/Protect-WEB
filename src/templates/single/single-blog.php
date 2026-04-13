@@ -272,8 +272,8 @@
                                     'orderby'        => 'rand',
                                 );
 
-                                // 同じカテゴリ（ターム）がある場合のみtax_queryを追加
                                 if (!empty($term_ids)) {
+                                    // カテゴリがある場合はそのカテゴリで検索
                                     $args['tax_query'] = array(
                                         array(
                                             'taxonomy' => 'blog_cat',
@@ -281,14 +281,17 @@
                                             'terms'    => $term_ids,
                                         ),
                                     );
-                                }
+                                    $related_query = new WP_Query($args);
 
-                                $related_query = new WP_Query($args);
-
-                                // 関連記事（同じカテゴリの投稿）が見つからなかった場合、カテゴリ指定を外してランダムに再取得
-                                if (!$related_query->have_posts()) {
+                                    // 関連記事が見つからなかった場合は絞り込みを解除して再取得
+                                    if (!$related_query->have_posts()) {
+                                        $related_title = 'おすすめ記事';
+                                        unset($args['tax_query']);
+                                        $related_query = new WP_Query($args);
+                                    }
+                                } else {
+                                    // そもそも現在の記事にカテゴリがない場合は最初から「おすすめ記事」を表示
                                     $related_title = 'おすすめ記事';
-                                    unset($args['tax_query']);
                                     $related_query = new WP_Query($args);
                                 }
                         ?>
@@ -305,10 +308,12 @@
                                                 <div class="Related-Posts-thumbnail">
                                                     <?php
                                                     $image_url = get_field('image');
-                                                    if (!empty($image_url)) :
+                                                    // 画像が未設定の場合の共通画像パスを設定
+                                                    if (empty($image_url) || is_wp_error($image_url)) {
+                                                        $image_url = get_theme_file_uri('/assets/images/common/no-image.webp');
+                                                    }
                                                     ?>
-                                                        <img class="Related-Posts-thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="<?php the_title_attribute(); ?>">
-                                                    <?php endif; ?>
+                                                    <img class="Related-Posts-thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="<?php the_title_attribute(); ?>">
                                                 </div>
                                                 <div class="Related-Posts-lead">
                                                     <div class="Related-Posts-lead__title">
@@ -324,13 +329,13 @@
                                                             <span class="Related-Posts-lead__date_text"><?php echo get_the_date(); ?></span>
                                                         </div>
 
-                                                        <div class="Related-Posts-lead__category">
-                                                            <?php //カテゴリを取得 
-                                                            $cat_taxonomy = 'blog_cat';
-                                                            // 現在の投稿に紐づく 'blog_cat' タクソノミーのターム（カテゴリ）を取得
-                                                            $categories = get_the_terms(get_the_ID(), $cat_taxonomy);
-                                                            // カテゴリが存在し、エラーがない場合のみ処理を実行
-                                                            if (! empty($categories) && ! is_wp_error($categories)) {
+                                                        <?php
+                                                        $categories = get_the_terms(get_the_ID(), 'blog_cat');
+                                                        // カテゴリが存在する場合のみ div を出力
+                                                        if (! empty($categories) && ! is_wp_error($categories)) :
+                                                        ?>
+                                                            <div class="Related-Posts-lead__category">
+                                                                <?php
                                                                 // 取得したカテゴリを一つずつループ処理
                                                                 foreach ($categories as $category) {
                                                                     // カテゴリ名をキーワードとした検索URLを生成
@@ -346,18 +351,18 @@
                                                                     </object>
                                                             <?php
                                                                 }
-                                                            }
-                                                            ?>
-                                                        </div>
+                                                                ?>
+                                                            </div>
+                                                        <?php endif; ?>
 
-                                                        <div class="Related-Posts-lead__tag">
-                                                            <object class="Related-Posts-lead__tag_text">
-                                                                <?php //タグを取得する
-                                                                $tag_taxonomy = 'blog_tag';
-                                                                // 現在の投稿に紐づく 'blog_tag' タクソノミーのターム（タグ）を取得
-                                                                $tags = get_the_terms(get_the_ID(), $tag_taxonomy);
-                                                                // タグが存在し、エラーがない場合のみ処理を実行
-                                                                if (! empty($tags) && ! is_wp_error($tags)) {
+                                                        <?php
+                                                        $tags = get_the_terms(get_the_ID(), 'blog_tag');
+                                                        // タグが存在する場合のみ div を出力
+                                                        if (! empty($tags) && ! is_wp_error($tags)) :
+                                                        ?>
+                                                            <div class="Related-Posts-lead__tag">
+                                                                <object class="Related-Posts-lead__tag_text">
+                                                                    <?php
                                                                     // 取得したタグを一つずつループ処理
                                                                     foreach ($tags as $tag) {
                                                                         // タグ名をキーワードとした検索URLを生成
@@ -371,10 +376,10 @@
                                                                         </a>
                                                                 <?php
                                                                     }
-                                                                }
-                                                                ?>
-                                                            </object>
-                                                        </div>
+                                                                    ?>
+                                                                </object>
+                                                            </div>
+                                                        <?php endif; ?>
                                                         
                                                         <button class="Related-Posts-lead__button js-like-button" data-post-id="<?php the_ID(); ?>" data-nonce="<?php echo wp_create_nonce('like_nonce'); ?>" style="pointer-events: none;">
                                                             <?php 

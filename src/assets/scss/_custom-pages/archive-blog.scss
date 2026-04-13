@@ -118,6 +118,7 @@
 
                 &__button {
                     margin-left: 15px;
+                    line-height: 25px;
                 }
             }
         }
@@ -383,6 +384,8 @@
                                 color: #1F4B8A;
                                 transition-duration: .1s;
                                 position: relative;
+                                display: inline-block;
+                                line-height: 25px;
 
                                 &:hover,
                                 &.active {
