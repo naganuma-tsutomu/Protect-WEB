@@ -22,6 +22,7 @@ p {
     display: block;
     font-size: 16px;
     margin: 20px 10px;
+    line-height: 25px;
 }
 
 // メイン
@@ -38,6 +39,24 @@ p {
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
         margin-bottom: 50px;
         padding: 20px 5%;
+
+        //記事内のaタグとliタグにのみスタイルを適用
+        a {
+            text-decoration: solid underline;
+            color: #1F4B8A;
+            transition: .1s;
+
+            &:hover {
+                color: #B6CDEF;
+            }
+        }
+
+        li {
+            list-style-type: disc;
+            margin-left: 40px;
+            line-height: 25px;
+;
+        }
     }
 
     // 見出し
@@ -383,62 +402,11 @@ p {
         }
     }
 
-    // .author {
-    //     margin: 60px 0 40px;
-    //     padding: 10px 5%;
-    //     background: #f8fbff;
-    //     display: flex;
-
-    //     &__label {
-    //         font-size: 14px;
-    //         line-height: 20px;
-    //         font-weight: bold;
-    //         color: #1F4B8A;
-    //         display: block;
-    //         width: fit-content;
-    //     }
-
-    //     &__img {
-    //         width: 50px;
-    //         height: 50px;
-    //         margin: 0 10px 0 15px;
-    //         border-radius: 50%;
-    //         object-fit: cover;
-    //         flex-shrink: 0;
-    //         border: 3px solid #fff;
-    //         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    //     }
-
-    //     &__name {
-    //         font-size: 18px;
-    //         line-height: 20px;
-    //         font-weight: bold;
-    //         margin: 0 0 10px 10px;
-    //         color: #333;
-    //     }
-
-    //     &__profile {
-    //         font-size: 14px;
-    //         line-height: 1.6;
-    //         margin: 0 10px;
-    //         color: #555;
-    //     }
-    // }
-
     .author {
         margin: 60px 0 40px;
         padding: 10px 5%;
         background: #f8fbff;
         display: flex;
-
-        // &__label {
-        //     font-size: 14px;
-        //     line-height: 20px;
-        //     font-weight: bold;
-        //     color: #1F4B8A;
-        //     display: block;
-        //     width: fit-content;
-        // }
 
         &__img {
             width: 50px;
@@ -684,7 +652,7 @@ p {
             gap: 30px;
             position: relative;
 
-            .main-block{
+            .main-block {
                 width: 75%;
             }
 
