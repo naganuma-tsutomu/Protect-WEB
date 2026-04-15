@@ -9,11 +9,6 @@
                 <!-- 記事一覧
                 ------------------------------------------------->
                 <div class="article">
-                    <?php
-                    // 現在選択されているカテゴリとタグのスラッグをURLパラメータから取得
-                    $cat_slug = isset($_GET['blog_cat']) ? sanitize_text_field($_GET['blog_cat']) : '';
-                    $tag_slug = isset($_GET['blog_tag']) ? sanitize_text_field($_GET['blog_tag']) : '';
-                    ?>
                     <ul class="list">
                         <?php
                         // 独自のパラメータ 'pg' からページ番号を取得します。
@@ -76,73 +71,6 @@
                                                         ?>
                                                     </span>
                                                 </div>
-                                                <?php
-                                                $cat_taxonomy = 'blog_cat';
-                                                $categories = get_the_terms(get_the_ID(), $cat_taxonomy);
-                                                // カテゴリが存在する場合のみ div を出力
-                                                if (! empty($categories) && ! is_wp_error($categories)) :
-                                                ?>
-                                                    <div class="lead__category">
-                                                        <?php
-                                                        foreach ($categories as $category) :
-                                                            // add_query_argを使用してURLを安全に生成
-                                                            $category_link = add_query_arg(array(
-                                                                's'        => $category->name,
-                                                                'blog_cat' => $category->slug
-                                                            ), home_url('/'));
-                                                            // 現在選択されているカテゴリと一致するか判定（日本語スラッグ対応のためデコード）
-                                                            $is_cat_active = ($cat_slug && urldecode($cat_slug) === urldecode($category->slug));
-                                                    ?>
-                                                            <object class="lead__category_text">
-                                                                <?php if ($is_cat_active) : ?>
-                                                                    <span class="lead__category_link active">
-                                                                        <?php echo esc_html($category->name); ?>
-                                                                    </span>
-                                                                <?php else : ?>
-                                                                    <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
-                                                                        <?php echo esc_html($category->name); ?>
-                                                                    </a>
-                                                                <?php endif; ?>
-                                                            </object>
-                                                    <?php
-                                                        endforeach;
-                                                        ?>
-                                                    </div>
-                                                <?php endif; ?>
-
-                                                <?php
-                                                $tag_taxonomy = 'blog_tag';
-                                                $tags = get_the_terms(get_the_ID(), $tag_taxonomy);
-                                                // タグが存在する場合のみ div > object を出力
-                                                if (! empty($tags) && ! is_wp_error($tags)) :
-                                                ?>
-                                                    <div class="lead__tag">
-                                                        <object class="lead__tag_text">
-                                                            <?php
-                                                            foreach ($tags as $tag) :
-                                                                // add_query_argを使用してURLを安全に生成
-                                                                $tag_link = add_query_arg(array(
-                                                                    's'        => $tag->name,
-                                                                    'blog_tag' => $tag->slug
-                                                                ), home_url('/'));
-                                                                // 現在選択されているタグと一致するか判定
-                                                                $is_tag_active = (urldecode($tag_slug) === urldecode($tag->slug));
-                                                        ?>
-                                                                <?php if ($is_tag_active) : ?>
-                                                                    <span class="lead__tag_link01 active">
-                                                                        <?php echo '#' . esc_html($tag->name); ?>
-                                                                    </span>
-                                                                <?php else : ?>
-                                                                    <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
-                                                                        <?php echo '#' . esc_html($tag->name); ?>
-                                                                    </a>
-                                                                <?php endif; ?>
-                                                        <?php
-                                                            endforeach;
-                                                            ?>
-                                                        </object>
-                                                    </div>
-                                                <?php endif; ?>
                                                 <div class="lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                     <?php 
                                                     $rel_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
