@@ -124,7 +124,7 @@
                                                                 'blog_cat' => $category->slug
                                                             ), home_url('/'));
                                                             // 現在選択されているカテゴリと一致するか判定（日本語スラッグ対応のためデコード）
-                                                            $is_cat_active = (urldecode($cat_slug) === urldecode($category->slug));
+                                                            $is_cat_active = ($cat_slug && urldecode($cat_slug) === urldecode($category->slug));
                                                     ?>
                                                             <object class="lead__category_text">
                                                                 <?php if ($is_cat_active) : ?>
@@ -157,7 +157,7 @@
                                                                     'blog_tag' => $tag->slug
                                                                 ), home_url('/'));
                                                                 // 現在選択されているタグと一致するか判定（日本語スラッグ対応のためデコード）
-                                                                $is_tag_active = (urldecode($tag_slug) === urldecode($tag->slug));
+                                                                $is_tag_active = ($tag_slug && urldecode($tag_slug) === urldecode($tag->slug));
                                                         ?>
                                                                 <?php if ($is_tag_active) : ?>
                                                                     <span class="lead__tag_link01 active">
