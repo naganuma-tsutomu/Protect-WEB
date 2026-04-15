@@ -13,8 +13,8 @@
                 <div class="article">
                     <?php
                     // パラメータの取得をここで行う（タイトル表示とクエリ作成の両方で使用するため）
-                    $cat_slug = isset($_GET['blog_cat']) ? $_GET['blog_cat'] : ''; // カテゴリパラメータ取得
-                    $tag_slug = isset($_GET['blog_tag']) ? $_GET['blog_tag'] : ''; // タグパラメータ取得
+                    $cat_slug = isset($_GET['blog_cat']) ? sanitize_text_field($_GET['blog_cat']) : ''; // カテゴリパラメータ取得
+                    $tag_slug = isset($_GET['blog_tag']) ? sanitize_text_field($_GET['blog_tag']) : ''; // タグパラメータ取得
                     $search_query = get_search_query(); // 検索キーワードを取得
                     ?>
                     <div class="search-result">
@@ -36,7 +36,7 @@
                     <ul class="list">
                         <?php
                         // 独自のパラメータ 'search_page' からページ番号を取得します。
-                        $paged = isset($_GET['search_page']) ? (int)$_GET['search_page'] : 1;
+                        $paged = isset($_GET['search_page']) ? absint(sanitize_text_field($_GET['search_page'])) : 1;
 
                         // WP_Queryに渡すパラメータを設定
                         $args = array(

@@ -3,8 +3,8 @@
 <div class="sidebar">
     <?php
     // 現在選択されているカテゴリとタグのスラッグをURLパラメータから取得
-    $current_cat_slug = isset($_GET['blog_cat']) ? $_GET['blog_cat'] : '';
-    $current_tag_slug = isset($_GET['blog_tag']) ? $_GET['blog_tag'] : '';
+    $current_cat_slug = isset($_GET['blog_cat']) ? sanitize_text_field($_GET['blog_cat']) : '';
+    $current_tag_slug = isset($_GET['blog_tag']) ? sanitize_text_field($_GET['blog_tag']) : '';
     ?>
 
     <!-- 検索ボックス

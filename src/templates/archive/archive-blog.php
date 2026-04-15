@@ -11,13 +11,13 @@
                 <div class="article">
                     <?php
                     // 現在選択されているカテゴリとタグのスラッグをURLパラメータから取得
-                    $cat_slug = isset($_GET['blog_cat']) ? $_GET['blog_cat'] : '';
-                    $tag_slug = isset($_GET['blog_tag']) ? $_GET['blog_tag'] : '';
+                    $cat_slug = isset($_GET['blog_cat']) ? sanitize_text_field($_GET['blog_cat']) : '';
+                    $tag_slug = isset($_GET['blog_tag']) ? sanitize_text_field($_GET['blog_tag']) : '';
                     ?>
                     <ul class="list">
                         <?php
                         // 独自のパラメータ 'pg' からページ番号を取得します。
-                        $paged = (int) (isset($_GET['pg']) ? $_GET['pg'] : 1);
+                        $paged = isset($_GET['pg']) ? absint(sanitize_text_field($_GET['pg'])) : 1;
 
                         // WP_Queryに渡すパラメータを設定
                         $args = array(
