@@ -97,7 +97,7 @@
                                         $image_url = get_field('image');
                                         if (!empty($image_url) && !is_wp_error($image_url)) :
                                     ?>
-                                        <img class="thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="サムネイル画像">
+                                        <img class="thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="<?php the_title_attribute(); ?>">
                                     <?php endif; ?>
                                 </div>
                             </div>
