@@ -71,6 +71,57 @@
                                                         ?>
                                                     </span>
                                                 </div>
+                                                <?php
+                                                $cat_taxonomy = 'blog_cat';
+                                                $categories = get_the_terms(get_the_ID(), $cat_taxonomy);
+                                                // カテゴリが存在する場合のみ div を出力
+                                                if (! empty($categories) && ! is_wp_error($categories)) :
+                                                ?>
+                                                    <div class="lead__category">
+                                                        <?php
+                                                        foreach ($categories as $category) :
+                                                            // add_query_argを使用してURLを安全に生成
+                                                            $category_link = add_query_arg(array(
+                                                                's'        => $category->name,
+                                                                'blog_cat' => $category->slug
+                                                            ), home_url('/'));
+                                                        ?>
+                                                        <object class="lead__category_text">
+                                                            <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
+                                                                <?php echo esc_html($category->name); ?>
+                                                            </a>
+                                                        </object>
+                                                    <?php
+                                                        endforeach;
+                                                        ?>
+                                                    </div>
+                                                <?php endif; ?>
+
+                                                <?php
+                                                $tag_taxonomy = 'blog_tag';
+                                                $tags = get_the_terms(get_the_ID(), $tag_taxonomy);
+                                                // タグが存在する場合のみ div > object を出力
+                                                if (! empty($tags) && ! is_wp_error($tags)) :
+                                                ?>
+                                                    <div class="lead__tag">
+                                                        <?php
+                                                        foreach ($tags as $tag) :
+                                                        // add_query_argを使用してURLを安全に生成
+                                                        $tag_link = add_query_arg(array(
+                                                            's'        => $tag->name,
+                                                            'blog_tag' => $tag->slug
+                                                        ), home_url('/'));
+                                                        ?>
+                                                        <object class="lead__tag_text">
+                                                            <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
+                                                                <?php echo '#' . esc_html($tag->name); ?>
+                                                            </a>
+                                                        </object>
+                                                        <?php
+                                                        endforeach;
+                                                        ?>
+                                                    </div>
+                                                <?php endif; ?>
                                                 <div class="lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                     <?php 
                                                     $rel_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
@@ -99,6 +150,8 @@
                     if ($my_query->max_num_pages > 1): // ページが2ページ以上ある場合にのみページネーションを表示
                         // ページネーションのリンクを配列として取得
                         $links = paginate_links(array(
+                            'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))), // ページ番号の置換ルール
+                            'format'       => '?paged=%#%', // ページ番号のフォーマット
                             'base'         => str_replace(999999999, '%#%', esc_url(add_query_arg('pg', 999999999))), // 独自のパラメータ 'pg' を使用
                             'format'       => '', // formatは空にする（base側でパラメータを指定しているため）
                             'current'      => max(1, $paged), // 現在のページ番号
