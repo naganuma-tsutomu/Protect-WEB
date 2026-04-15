@@ -15,21 +15,22 @@
 
     <!-- カテゴリ
     ------------------------------------------------->
-    <div class="category">
-        <div class="category-block">
-            <ul class="category-item">
-                <?php
-                // タクソノミー名（'blog_cat'）を指定
-                $cat_taxonomy = 'blog_cat';
-                // get_terms() を使って、カテゴリをすべて取得
-                $categories = get_terms(array(
-                    'taxonomy'   => $cat_taxonomy, // 取得するタクソノミーを指定
-                    'hide_empty' => true,         // 投稿が1つもないカテゴリを非表示
-                ));
+    <?php
+    // タクソノミー名（'blog_cat'）を指定
+    $cat_taxonomy = 'blog_cat';
+    // get_terms() を使って、カテゴリをすべて取得
+    $categories = get_terms(array(
+        'taxonomy'   => $cat_taxonomy, // 取得するタクソノミーを指定
+        'hide_empty' => true,         // 投稿が1つもないカテゴリを非表示
+    ));
 
-                // カテゴリが1つ以上存在し、エラーが発生していないかを確認
-                if (! empty($categories) && ! is_wp_error($categories)) {
-                    // 取得したカテゴリの数だけループ処理を実行
+    // カテゴリが1つ以上存在し、エラーが発生していないかを確認
+    if (! empty($categories) && ! is_wp_error($categories)) :
+    ?>
+        <div class="category">
+            <div class="category-block">
+                <ul class="category-item">
+                    <?php
                     foreach ($categories as $category) {
                         // add_query_argを使用してURLを安全に生成（自動的にエンコードされます）
                         $category_link = add_query_arg(array(
@@ -51,31 +52,30 @@
                                 </a>
                             <?php endif; ?>
                         </li>
-                <?php
-                    }
-                }
-                ?>
-            </ul>
+                    <?php } ?>
+                </ul>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 
     <!-- タグ
     ------------------------------------------------->
-    <div class="tag">
-        <div class="tag-block">
-            <ul class="tag-item">
-                <?php
-                // タクソノミー名（'blog_tag'）を指定
-                $tag_taxonomy = 'blog_tag';
-                // get_terms() を使って、タグをすべて取得
-                $tags = get_terms(array(
-                    'taxonomy' => $tag_taxonomy, // 取得するタクソノミーを指定
-                    'hide_empty' => true, // 投稿がないタグは非表示
-                ));
+    <?php
+    // タクソノミー名（'blog_tag'）を指定
+    $tag_taxonomy = 'blog_tag';
+    // get_terms() を使って、タグをすべて取得
+    $tags = get_terms(array(
+        'taxonomy' => $tag_taxonomy, // 取得するタクソノミーを指定
+        'hide_empty' => true, // 投稿がないタグは非表示
+    ));
 
-                // タグが1つ以上存在し、エラーが発生していないかを確認
-                if (! empty($tags) && ! is_wp_error($tags)) {
-                    // 取得したタグの数だけループ処理を実行
+    // タグが1つ以上存在し、エラーが発生していないかを確認
+    if (! empty($tags) && ! is_wp_error($tags)) :
+    ?>
+        <div class="tag">
+            <div class="tag-block">
+                <ul class="tag-item">
+                    <?php
                     foreach ($tags as $tag) {
                         // タグ用URLも同様に修正
                         $tag_link = add_query_arg(array(
@@ -101,13 +101,11 @@
                                 </a>
                             <?php endif; ?>
                         </li>
-                <?php
-                    }
-                }
-                ?>
-            </ul>
+                    <?php } ?>
+                </ul>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 
     <?php //archive-blog.php内ではピックアップ記事と目次は表示させない。
     if ( ! is_post_type_archive( 'blog' ) ) :
