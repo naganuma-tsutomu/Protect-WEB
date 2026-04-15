@@ -171,8 +171,6 @@
                     if ($my_query->max_num_pages > 1): // ページが2ページ以上ある場合にのみページネーションを表示
                         // ページネーションのリンクを配列として取得
                         $links = paginate_links(array(
-                            'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))), // ページ番号の置換ルール
-                            'format'       => '?paged=%#%', // ページ番号のフォーマット
                             'base'         => str_replace(999999999, '%#%', esc_url(add_query_arg('pg', 999999999))), // 独自のパラメータ 'pg' を使用
                             'format'       => '', // formatは空にする（base側でパラメータを指定しているため）
                             'current'      => max(1, $paged), // 現在のページ番号
