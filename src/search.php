@@ -20,11 +20,9 @@
                     <div class="search-result">
                         <?php
                         // 表示条件の分岐
-                        if ($cat_slug) {
-                            $term = get_term_by('slug', $cat_slug, 'blog_cat'); // スラッグからカテゴリ情報を取得
+                        if ($cat_slug && ($term = get_term_by('slug', $cat_slug, 'blog_cat')) && !is_wp_error($term)) {
                             echo 'カテゴリ：「' . esc_html($term->name) . '」';
-                        } elseif ($tag_slug) {
-                            $term = get_term_by('slug', $tag_slug, 'blog_tag'); // スラッグからタグ情報を取得
+                        } elseif ($tag_slug && ($term = get_term_by('slug', $tag_slug, 'blog_tag')) && !is_wp_error($term)) {
                             echo 'タグ：「' . esc_html($term->name) . '」';
                         } elseif ($search_query) {
                             echo '「' . esc_html($search_query) . '」の検索結果';
