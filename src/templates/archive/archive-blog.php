@@ -149,10 +149,9 @@
                     <?php // ページネーションの表示
                     if ($my_query->max_num_pages > 1): // ページが2ページ以上ある場合にのみページネーションを表示
                         // ページネーションのリンクを配列として取得
+                        $big = 999999999; // ページ番号の置換用整数
                         $links = paginate_links(array(
-                            'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))), // ページ番号の置換ルール
-                            'format'       => '?paged=%#%', // ページ番号のフォーマット
-                            'base'         => str_replace(999999999, '%#%', esc_url(add_query_arg('pg', 999999999))), // 独自のパラメータ 'pg' を使用
+                            'base'         => str_replace($big, '%#%', esc_url(add_query_arg('pg', $big))), // 独自のパラメータ 'pg' を使用
                             'format'       => '', // formatは空にする（base側でパラメータを指定しているため）
                             'current'      => max(1, $paged), // 現在のページ番号
                             'total'        => $my_query->max_num_pages, // 全ページ数
@@ -173,14 +172,14 @@
                                         // 現在のページの場合
                                         if (strpos($link, 'current')) {
                                             // ページ番号のみ取得
-                                            $page_number = strip_tags($link);
+                                            $link_text = strip_tags($link);
                                     ?>
                                             <li class="page-number__block">
-                                                <a class="page-number__link active" href="#">
+                                                <span class="page-number__box">
                                                     <span class="page-number__area">
-                                                        <?php echo esc_html($page_number); ?>
+                                                        <?php echo esc_html($link_text); ?>
                                                     </span>
-                                                </a>
+                                                </span>
                                             </li>
                                         <?php
                                         }
@@ -196,7 +195,7 @@
                                         else {
                                             // リンクからURLとテキストを抽出
                                             preg_match('/href=["\']?([^"\'>]+)["\']?/', $link, $matches);
-                                            $link_url = isset($matches[1]) ? $matches[1] : '';
+                                            $link_url  = isset($matches[1]) ? $matches[1] : '';
                                             $link_text = strip_tags($link);
                                         ?>
                                             <li class="page-number__block">
