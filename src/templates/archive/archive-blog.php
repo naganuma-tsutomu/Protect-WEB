@@ -113,7 +113,7 @@
                                                         ), home_url('/'));
                                                         ?>
                                                         <object class="lead__tag_text">
-                                                            <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
+                                                            <a class="lead__tag_link" href="<?php echo esc_url($tag_link); ?>">
                                                                 <?php echo '#' . esc_html($tag->name); ?>
                                                             </a>
                                                         </object>

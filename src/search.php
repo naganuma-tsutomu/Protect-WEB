@@ -128,7 +128,7 @@
                                                     ?>
                                                             <object class="lead__category_text">
                                                                 <?php if ($is_cat_active) : ?>
-                                                                    <span class="lead__category_link active">
+                                                                    <span class="lead__category_item">
                                                                         <?php echo esc_html($category->name); ?>
                                                                     </span>
                                                                 <?php else : ?>
@@ -160,11 +160,11 @@
                                                                 $is_tag_active = ($tag_slug && urldecode($tag_slug) === urldecode($tag->slug));
                                                         ?>
                                                                 <?php if ($is_tag_active) : ?>
-                                                                    <span class="lead__tag_link01 active">
+                                                                    <span class="lead__tag_item">
                                                                         <?php echo '#' . esc_html($tag->name); ?>
                                                                     </span>
                                                                 <?php else : ?>
-                                                                    <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
+                                                                    <a class="lead__tag_link" href="<?php echo esc_url($tag_link); ?>">
                                                                         <?php echo '#' . esc_html($tag->name); ?>
                                                                     </a>
                                                                 <?php endif; ?>

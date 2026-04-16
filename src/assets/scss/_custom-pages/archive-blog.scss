@@ -97,25 +97,27 @@
 
                     &_text {
                         height: 15px;
-                        background: #B6CDEF;
-                        border-radius: 20px;
                         transition-duration: .3s;
                         margin-left: 15px;
                         text-align: center;
                         color: #fff;
                         font-size: 12px;
-
-                        .active {
-                            background: #1F4B8A;
-                        }
                     }
 
                     &_link {
-                        padding: 0 10px 0 10px;
                         display: inline-block;
+                        padding: 0 10px 0 10px;
+                        background: #B6CDEF;
                         border-radius: 20px;
                         text-decoration: none;
-                        color: #fff;
+                    }
+
+                    &_item {
+                        display: inline-block;
+                        padding: 0 10px 0 10px;
+                        background: #1F4B8A;
+                        border-radius: 20px;
+                        text-decoration: none;
                     }
                 }
 
@@ -378,6 +380,14 @@
                                 text-decoration: none;
                                 color: #fff;
                             }
+
+                            &_item {
+                                display: inline-block;
+                                background: #1F4B8A;
+                                color: #fff;
+                                border-radius: 20px;
+                                padding: 0 15px 0 15px;
+                            }
                         }
 
                         &__tag {
@@ -385,7 +395,7 @@
                             font-size: 14px;
                             margin-left: 10px;
 
-                            &_link01 {
+                            &_link {
                                 margin-left: 5px;
                                 text-decoration: none;
                                 color: #1F4B8A;
@@ -394,8 +404,7 @@
                                 display: inline-block;
                                 line-height: 25px;
 
-                                &:hover,
-                                &.active {
+                                &:hover {
                                     color: #B6CDEF;
 
                                     &::after {
@@ -409,6 +418,14 @@
                                         background: #1F4B8A;
                                     }
                                 }
+                            }
+
+                            &_item {
+                                display: inline-block;
+                                color: #B6CDEF;
+                                margin-left: 5px;
+                                line-height: 24px;
+                                border-bottom: 1px solid #1F4B8A;
                             }
                         }
 

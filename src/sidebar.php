@@ -39,16 +39,16 @@
                         ), home_url('/'));
                         // ループ中のカテゴリが現在選択されているものと一致するか判定
                         // 日本語スラッグの場合に備え、デコードして比較を行う
-                        $cat_active = (urldecode($current_cat_slug) === urldecode($category->slug)) ? 'active' : '';
+                        $is_cat_active = (urldecode($current_cat_slug) === urldecode($category->slug));
                 ?>
-                        <li class="category-list <?php echo esc_attr($cat_active); ?>">
-                            <?php if ($cat_active) : ?>
-                                <span class="category-list__link">
-                                    <span class="category-list__box"><?php echo esc_html($category->name); ?></span>
+                        <li class="category-list">
+                            <?php if ($is_cat_active) : ?>
+                                <span class="category-list__item">
+                                    <?php echo esc_html($category->name); ?>
                                 </span>
                             <?php else : ?>
                                 <a class="category-list__link" href="<?php echo esc_url($category_link); ?>">
-                                    <span class="category-list__box"><?php echo esc_html($category->name); ?></span>
+                                    <?php echo esc_html($category->name); ?>
                                 </a>
                             <?php endif; ?>
                         </li>
@@ -84,20 +84,16 @@
                         ), home_url('/'));
                         // ループ中のタグが現在選択されているものと一致するか判定
                         // タグも同様にデコードして比較
-                        $tag_active = (urldecode($current_tag_slug) === urldecode($tag->slug)) ? 'active' : '';
+                        $is_tag_active = (urldecode($current_tag_slug) === urldecode($tag->slug));
                 ?>
-                        <li class="tag-list <?php echo esc_attr($tag_active); ?>">
-                            <?php if ($tag_active) : ?>
-                                <span class="tag-list__link">
-                                    <span class="tag-list__title">
+                        <li class="tag-list">
+                            <?php if ($is_tag_active) : ?>
+                                <span class="tag-list__item">
                                         <?php echo '#' . esc_html($tag->name); ?>
-                                    </span>
                                 </span>
                             <?php else : ?>
                                 <a class="tag-list__link" href="<?php echo esc_url($tag_link); ?>">
-                                    <span class="tag-list__title">
                                         <?php echo '#' . esc_html($tag->name); ?>
-                                    </span>
                                 </a>
                             <?php endif; ?>
                         </li>
@@ -113,7 +109,6 @@
         <!-- ピックアップ記事
         ------------------------------------------------->
         <div class="pickup">
-            <div class="pickup-title">ピックアップ記事</div>
             <ul class="blog-title">
                 <li class="blog-title__button active">                    
                     <span class="blog-title__button_link active">新着</span>
@@ -176,7 +171,7 @@
                                                 ?>
                                                 <object class="Pickup-Posts-lead__category_text">
                                                     <?php if ($is_cat_active) : ?>
-                                                        <span class="Pickup-Posts-lead__category_link active">
+                                                        <span class="Pickup-Posts-lead__category_item">
                                                             <?php echo esc_html($category->name); ?>
                                                         </span>
                                                     <?php else : ?>
@@ -264,7 +259,7 @@
                                                 ?>
                                                 <object class="Pickup-Posts-lead__category_text">
                                                     <?php if ($is_cat_active) : ?>
-                                                        <span class="Pickup-Posts-lead__category_link active">
+                                                        <span class="Pickup-Posts-lead__category_item">
                                                             <?php echo esc_html($category->name); ?>
                                                         </span>
                                                     <?php else : ?>
