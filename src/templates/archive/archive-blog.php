@@ -65,8 +65,8 @@
                                                 </p>
                                             </div>
                                             <div class="lead-sub">
-                                                <div class="lead__date">
-                                                    <span class="lead__date_text">
+                                                <div class="lead-sub__date">
+                                                    <span class="lead-sub__date_text">
                                                         <?php echo get_the_date(); // 投稿日を出力
                                                         ?>
                                                     </span>
@@ -77,7 +77,8 @@
                                                 // カテゴリが存在する場合のみ div を出力
                                                 if (! empty($categories) && ! is_wp_error($categories)) :
                                                 ?>
-                                                    <div class="lead__category">
+                                                    <div class="lead-sub__category">
+                                                        <object class="lead-sub__cat-area">
                                                         <?php
                                                         foreach ($categories as $category) :
                                                             // add_query_argを使用してURLを安全に生成
@@ -86,14 +87,13 @@
                                                                 'blog_cat' => $category->slug
                                                             ), home_url('/'));
                                                         ?>
-                                                        <object class="lead__category_text">
-                                                            <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
+                                                            <a class="lead-sub__cat-area_link" href="<?php echo esc_url($category_link); ?>">
                                                                 <?php echo esc_html($category->name); ?>
                                                             </a>
-                                                        </object>
                                                     <?php
                                                         endforeach;
                                                         ?>
+                                                        </object>
                                                     </div>
                                                 <?php endif; ?>
 
@@ -103,7 +103,8 @@
                                                 // タグが存在する場合のみ div > object を出力
                                                 if (! empty($tags) && ! is_wp_error($tags)) :
                                                 ?>
-                                                    <div class="lead__tag">
+                                                    <div class="lead-sub__tag">
+                                                        <object class="lead-sub__tag-area">
                                                         <?php
                                                         foreach ($tags as $tag) :
                                                         // add_query_argを使用してURLを安全に生成
@@ -112,22 +113,21 @@
                                                             'blog_tag' => $tag->slug
                                                         ), home_url('/'));
                                                         ?>
-                                                        <object class="lead__tag_text">
-                                                            <a class="lead__tag_link" href="<?php echo esc_url($tag_link); ?>">
+                                                            <a class="lead-sub__tag-area_link" href="<?php echo esc_url($tag_link); ?>">
                                                                 <?php echo '#' . esc_html($tag->name); ?>
                                                             </a>
-                                                        </object>
                                                         <?php
                                                         endforeach;
                                                         ?>
+                                                        </object>
                                                     </div>
                                                 <?php endif; ?>
-                                                <div class="lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
+                                                <div class="lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                     <?php 
                                                     $rel_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
                                                     ?>
-                                                    <span class="lead__button_heart lead__button_heart--icon">♡</span>
-                                                    <span class="lead__button_number"><?php echo $rel_like_count; ?></span>
+                                                    <span class="lead-sub__button-heart lead-sub__button-heart--icon">♡</span>
+                                                    <span class="lead-sub__button-heart_number"><?php echo $rel_like_count; ?></span>
                                                 </div>
                                             </div>
                                         </div>

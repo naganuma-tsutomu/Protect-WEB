@@ -104,13 +104,14 @@
                                                 </p>
                                             </div>
                                             <div class="lead-sub">
-                                                <div class="lead__date">
-                                                    <span class="lead__date_text">
+                                                <div class="lead-sub__date">
+                                                    <span class="lead-sub__date_text">
                                                         <?php echo get_the_date(); // 投稿日を出力
                                                         ?>
                                                     </span>
                                                 </div>
-                                                <div class="lead__category">
+                                                <div class="lead-sub__category">
+                                                    <object class="lead-sub__cat-area">
                                                     <?php //カテゴリを取得 
                                                     $cat_taxonomy = 'blog_cat';
                                                     // 現在の投稿に紐づく 'blog_cat' タクソノミーのターム（カテゴリ）を取得
@@ -126,24 +127,23 @@
                                                             // 現在選択されているカテゴリと一致するか判定（日本語スラッグ対応のためデコード）
                                                             $is_cat_active = ($cat_slug && urldecode($cat_slug) === urldecode($category->slug));
                                                     ?>
-                                                            <object class="lead__category_text">
                                                                 <?php if ($is_cat_active) : ?>
-                                                                    <span class="lead__category_item">
+                                                                    <span class="lead-sub__cat-area_item">
                                                                         <?php echo esc_html($category->name); ?>
                                                                     </span>
                                                                 <?php else : ?>
-                                                                    <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
+                                                                    <a class="lead-sub__cat-area_link" href="<?php echo esc_url($category_link); ?>">
                                                                         <?php echo esc_html($category->name); ?>
                                                                     </a>
                                                                 <?php endif; ?>
-                                                            </object>
                                                     <?php
                                                         }
                                                     }
                                                     ?>
+                                                    </object>
                                                 </div>
-                                                <div class="lead__tag">
-                                                    <object class="lead__tag_text">
+                                                <div class="lead-sub__tag">
+                                                    <object class="lead-sub__tag-area">
                                                         <?php //タグを取得する
                                                         $tag_taxonomy = 'blog_tag';
                                                         // 現在の投稿に紐づく 'blog_tag' タクソノミーのターム（タグ）を取得
@@ -160,11 +160,11 @@
                                                                 $is_tag_active = ($tag_slug && urldecode($tag_slug) === urldecode($tag->slug));
                                                         ?>
                                                                 <?php if ($is_tag_active) : ?>
-                                                                    <span class="lead__tag_item">
+                                                                    <span class="lead-sub__tag-area_item">
                                                                         <?php echo '#' . esc_html($tag->name); ?>
                                                                     </span>
                                                                 <?php else : ?>
-                                                                    <a class="lead__tag_link" href="<?php echo esc_url($tag_link); ?>">
+                                                                    <a class="lead-sub__tag-area_link" href="<?php echo esc_url($tag_link); ?>">
                                                                         <?php echo '#' . esc_html($tag->name); ?>
                                                                     </a>
                                                                 <?php endif; ?>
@@ -177,9 +177,9 @@
                                                  <?php 
                                                 $current_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
                                                 ?>
-                                                <div class="lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
-                                                    <span class="lead__button_heart">♡</span>
-                                                    <span class="lead__button_number"><?php echo $current_like_count; ?></span>
+                                                <div class="lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
+                                                    <span class="lead-sub__button-heart">♡</span>
+                                                    <span class="lead-sub__button-heart_number"><?php echo $current_like_count; ?></span>
                                                 </div>
                                             </div>
                                         </div>

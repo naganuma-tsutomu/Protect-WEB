@@ -321,16 +321,16 @@
                                                 </div>
                                                 <div class="Related-Posts-lead">
                                                     <div class="Related-Posts-lead__title">
-                                                        <div class="Related-Posts-lead__title_text"><?php the_title(); ?></div>
+                                                        <p class="Related-Posts-lead__title_text"><?php the_title(); ?></p>
                                                     </div>
                                                     <div class="Related-Posts-lead__main">
-                                                        <div class="Related-Posts-lead__main_text">
+                                                        <p class="Related-Posts-lead__main_text">
                                                             <?php echo get_the_excerpt(); ?>
-                                                        </div>
+                                                        </p>
                                                     </div>
                                                     <div class="Related-Posts-lead-sub">
-                                                        <div class="Related-Posts-lead__date">
-                                                            <span class="Related-Posts-lead__date_text"><?php echo get_the_date(); ?></span>
+                                                        <div class="Related-Posts-lead-sub__date">
+                                                            <span class="Related-Posts-lead-sub__date-text"><?php echo get_the_date(); ?></span>
                                                         </div>
 
                                                         <?php
@@ -338,7 +338,8 @@
                                                         // カテゴリが存在する場合のみ div を出力
                                                         if (! empty($categories) && ! is_wp_error($categories)) :
                                                         ?>
-                                                            <div class="Related-Posts-lead__category">
+                                                            <div class="Related-Posts-lead-sub__category">
+                                                                <object class="Related-Posts-lead-sub__cat-area">
                                                                 <?php
                                                                 // 取得したカテゴリを一つずつループ処理
                                                                 foreach ($categories as $category) {
@@ -348,14 +349,13 @@
                                                                         'blog_cat' => $category->slug
                                                                     ), home_url('/'));
                                                             ?>
-                                                                    <object class="Related-Posts-lead__category_text">
-                                                                        <a class="Related-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
+                                                                        <a class="Related-Posts-lead-sub__cat-area_link" href="<?php echo esc_url($category_link); ?>">
                                                                             <?php echo esc_html($category->name); ?>
                                                                         </a>
-                                                                    </object>
                                                             <?php
                                                                 }
                                                                 ?>
+                                                                </object>
                                                             </div>
                                                         <?php endif; ?>
 
@@ -364,8 +364,8 @@
                                                         // タグが存在する場合のみ div を出力
                                                         if (! empty($tags) && ! is_wp_error($tags)) :
                                                         ?>
-                                                            <div class="Related-Posts-lead__tag">
-                                                                <object class="Related-Posts-lead__tag_text">
+                                                            <div class="Related-Posts-lead-sub__tag">
+                                                                <object class="Related-Posts-lead-sub__tag-area">
                                                                     <?php
                                                                     // 取得したタグを一つずつループ処理
                                                                     foreach ($tags as $tag) {
@@ -374,8 +374,8 @@
                                                                             's'        => $tag->name,
                                                                             'blog_tag' => $tag->slug
                                                                         ), home_url('/'));
-                                                                ?>
-                                                                        <a class="Related-Posts-lead__tag_link" href="<?php echo esc_url($tag_link); ?>">
+                                                                    ?>
+                                                                        <a class="Related-Posts-lead-sub__tag-area_link" href="<?php echo esc_url($tag_link); ?>">
                                                                             <?php echo '#' . esc_html($tag->name); ?>
                                                                         </a>
                                                                 <?php
@@ -385,12 +385,12 @@
                                                             </div>
                                                         <?php endif; ?>
                                                         
-                                                        <button class="Related-Posts-lead__button js-like-button" data-post-id="<?php the_ID(); ?>" data-nonce="<?php echo wp_create_nonce('like_nonce'); ?>" style="pointer-events: none;">
+                                                        <button class="Related-Posts-lead-sub__button js-like-button" data-post-id="<?php the_ID(); ?>" data-nonce="<?php echo wp_create_nonce('like_nonce'); ?>" style="pointer-events: none;">
                                                             <?php 
                                                             $rel_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
                                                             ?>
-                                                            <span class="Related-Posts-lead__button_heart Related-Posts-lead__button_heart--icon">♡</span>
-                                                            <span class="Related-Posts-lead__button_number"><?php echo $rel_like_count; ?></span>
+                                                            <span class="Related-Posts-lead-sub__button-heart Related-Posts-lead__button_heart--icon">♡</span>
+                                                            <span class="Related-Posts-lead-sub__button-heart_number"><?php echo $rel_like_count; ?></span>
                                                         </button>
                                                     </div>
                                                 </div>
