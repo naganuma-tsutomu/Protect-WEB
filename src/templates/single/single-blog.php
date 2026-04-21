@@ -105,10 +105,14 @@
                             <div class="main-box">
                                 <!-- 目次 --->
                                 <?php
-                                // 本文からh2タグを抽出して目次を生成
-                                $index_content = apply_filters('the_content', get_the_content());
-                                if (preg_match_all('/<h2.*?>+(.*?)<\/h2>/i', $index_content, $matches)) :
-                                ?>
+                                // 本文にフィルタを適用（1回だけ実行し、目次と本文の両方で使う）
+                                $filtered_content = apply_filters('the_content', get_the_content());
+                                // sidebar.phpの目次生成でも使えるよう、グローバル変数に格納
+                                global $protect_web_filtered_content;
+                                $protect_web_filtered_content = $filtered_content;
+
+                                if (preg_match_all('/<h2.*?>+(.*?)<\/h2>/i', $filtered_content, $matches)) :
+                                    ?>
                                 <div class="index">
                                     <span class="index__border"></span>
                                     <div class="index__title">
@@ -133,11 +137,8 @@
                                 <!-- 本文 --->
                                 <div class="main-content">
                                     <?php
-                                    // 投稿の本文をフィルターを適用した形で取得
-                                    $content = apply_filters('the_content', get_the_content());
-
                                     // h2タグを区切り文字として、コンテンツをセクションに分割
-                                    $sections = preg_split('/(?=<h2)/', $content, -1, PREG_SPLIT_NO_EMPTY);
+                                    $sections = preg_split('/(?=<h2)/', $filtered_content, -1, PREG_SPLIT_NO_EMPTY);
 
                                     // 最初のセクション（最初のh2の前のコンテンツ）があるかチェック
                                     if (isset($sections[0]) && strpos($sections[0], '<h2') === false) :

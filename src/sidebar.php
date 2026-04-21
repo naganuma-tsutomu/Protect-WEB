@@ -297,9 +297,9 @@
         <!-- 目次
         ------------------------------------------------->
         <?php
-        // 本文からh2タグを抽出して目次を生成
-        $index_content = apply_filters('the_content', get_the_content());
-        if (preg_match_all('/<h2.*?>+(.*?)<\/h2>/i', $index_content, $matches)) :
+        // single-blog.phpで保存したフィルタ済みコンテンツを再利用する
+        global $protect_web_filtered_content;
+        if (!empty($protect_web_filtered_content) && preg_match_all('/<h2.*?>+(.*?)<\/h2>/i', $protect_web_filtered_content, $matches)) :
         ?>
             <div class="sub-index">
                 <div class="sub-index__title">目次</div>
