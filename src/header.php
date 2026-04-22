@@ -18,8 +18,8 @@
         <header>
             <?php
             // カテゴリ・タグ検索のパラメータを取得
-            $cat_slug = isset($_GET['blog_cat']) ? $_GET['blog_cat'] : '';
-            $tag_slug = isset($_GET['blog_tag']) ? $_GET['blog_tag'] : '';
+            $cat_slug = isset($_GET['blog_cat']) ? sanitize_text_field($_GET['blog_cat']) : '';
+            $tag_slug = isset($_GET['blog_tag']) ? sanitize_text_field($_GET['blog_tag']) : '';
 
             // 表示しているページの種類を判別し、タイトル($title)とCSSクラス名用のスラッグ($slug)を動的に設定します。
             if ($cat_slug || $tag_slug) { // カテゴリ・タグ絞り込み検索の場合

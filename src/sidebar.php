@@ -3,8 +3,8 @@
 <div class="sidebar">
     <?php
     // 現在選択されているカテゴリとタグのスラッグをURLパラメータから取得
-    $current_cat_slug = isset($_GET['blog_cat']) ? $_GET['blog_cat'] : '';
-    $current_tag_slug = isset($_GET['blog_tag']) ? $_GET['blog_tag'] : '';
+    $current_cat_slug = isset($_GET['blog_cat']) ? sanitize_text_field($_GET['blog_cat']) : '';
+    $current_tag_slug = isset($_GET['blog_tag']) ? sanitize_text_field($_GET['blog_tag']) : '';
     ?>
 
     <!-- 検索ボックス
@@ -15,21 +15,22 @@
 
     <!-- カテゴリ
     ------------------------------------------------->
-    <div class="category">
-        <div class="category-block">
-            <ul class="category-item">
-                <?php
-                // タクソノミー名（'blog_cat'）を指定
-                $cat_taxonomy = 'blog_cat';
-                // get_terms() を使って、カテゴリをすべて取得
-                $categories = get_terms(array(
-                    'taxonomy'   => $cat_taxonomy, // 取得するタクソノミーを指定
-                    'hide_empty' => true,         // 投稿が1つもないカテゴリを非表示
-                ));
+    <?php
+    // タクソノミー名（'blog_cat'）を指定
+    $cat_taxonomy = 'blog_cat';
+    // get_terms() を使って、カテゴリをすべて取得
+    $categories = get_terms(array(
+        'taxonomy'   => $cat_taxonomy, // 取得するタクソノミーを指定
+        'hide_empty' => true,         // 投稿が1つもないカテゴリを非表示
+    ));
 
-                // カテゴリが1つ以上存在し、エラーが発生していないかを確認
-                if (! empty($categories) && ! is_wp_error($categories)) {
-                    // 取得したカテゴリの数だけループ処理を実行
+    // カテゴリが1つ以上存在し、エラーが発生していないかを確認
+    if (! empty($categories) && ! is_wp_error($categories)) :
+    ?>
+        <div class="category">
+            <div class="category-block">
+                <ul class="category-item">
+                    <?php
                     foreach ($categories as $category) {
                         // add_query_argを使用してURLを安全に生成（自動的にエンコードされます）
                         $category_link = add_query_arg(array(
@@ -38,44 +39,43 @@
                         ), home_url('/'));
                         // ループ中のカテゴリが現在選択されているものと一致するか判定
                         // 日本語スラッグの場合に備え、デコードして比較を行う
-                        $cat_active = (urldecode($current_cat_slug) === urldecode($category->slug)) ? 'active' : '';
+                        $is_cat_active = (urldecode($current_cat_slug) === urldecode($category->slug));
                 ?>
-                        <li class="category-list <?php echo esc_attr($cat_active); ?>">
-                            <?php if ($cat_active) : ?>
-                                <span class="category-list__link">
-                                    <span class="category-list__box"><?php echo esc_html($category->name); ?></span>
+                        <li class="category-list">
+                            <?php if ($is_cat_active) : ?>
+                                <span class="category-list__item">
+                                    <?php echo esc_html($category->name); ?>
                                 </span>
                             <?php else : ?>
                                 <a class="category-list__link" href="<?php echo esc_url($category_link); ?>">
-                                    <span class="category-list__box"><?php echo esc_html($category->name); ?></span>
+                                    <?php echo esc_html($category->name); ?>
                                 </a>
                             <?php endif; ?>
                         </li>
-                <?php
-                    }
-                }
-                ?>
-            </ul>
+                    <?php } ?>
+                </ul>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 
     <!-- タグ
     ------------------------------------------------->
-    <div class="tag">
-        <div class="tag-block">
-            <ul class="tag-item">
-                <?php
-                // タクソノミー名（'blog_tag'）を指定
-                $tag_taxonomy = 'blog_tag';
-                // get_terms() を使って、タグをすべて取得
-                $tags = get_terms(array(
-                    'taxonomy' => $tag_taxonomy, // 取得するタクソノミーを指定
-                    'hide_empty' => true, // 投稿がないタグは非表示
-                ));
+    <?php
+    // タクソノミー名（'blog_tag'）を指定
+    $tag_taxonomy = 'blog_tag';
+    // get_terms() を使って、タグをすべて取得
+    $tags = get_terms(array(
+        'taxonomy' => $tag_taxonomy, // 取得するタクソノミーを指定
+        'hide_empty' => true, // 投稿がないタグは非表示
+    ));
 
-                // タグが1つ以上存在し、エラーが発生していないかを確認
-                if (! empty($tags) && ! is_wp_error($tags)) {
-                    // 取得したタグの数だけループ処理を実行
+    // タグが1つ以上存在し、エラーが発生していないかを確認
+    if (! empty($tags) && ! is_wp_error($tags)) :
+    ?>
+        <div class="tag">
+            <div class="tag-block">
+                <ul class="tag-item">
+                    <?php
                     foreach ($tags as $tag) {
                         // タグ用URLも同様に修正
                         $tag_link = add_query_arg(array(
@@ -84,30 +84,24 @@
                         ), home_url('/'));
                         // ループ中のタグが現在選択されているものと一致するか判定
                         // タグも同様にデコードして比較
-                        $tag_active = (urldecode($current_tag_slug) === urldecode($tag->slug)) ? 'active' : '';
+                        $is_tag_active = (urldecode($current_tag_slug) === urldecode($tag->slug));
                 ?>
-                        <li class="tag-list <?php echo esc_attr($tag_active); ?>">
-                            <?php if ($tag_active) : ?>
-                                <span class="tag-list__link">
-                                    <span class="tag-list__title">
+                        <li class="tag-list">
+                            <?php if ($is_tag_active) : ?>
+                                <span class="tag-list__item">
                                         <?php echo '#' . esc_html($tag->name); ?>
-                                    </span>
                                 </span>
                             <?php else : ?>
                                 <a class="tag-list__link" href="<?php echo esc_url($tag_link); ?>">
-                                    <span class="tag-list__title">
                                         <?php echo '#' . esc_html($tag->name); ?>
-                                    </span>
                                 </a>
                             <?php endif; ?>
                         </li>
-                <?php
-                    }
-                }
-                ?>
-            </ul>
+                    <?php } ?>
+                </ul>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 
     <?php //archive-blog.php内ではピックアップ記事と目次は表示させない。
     if ( ! is_post_type_archive( 'blog' ) ) :
@@ -115,7 +109,6 @@
         <!-- ピックアップ記事
         ------------------------------------------------->
         <div class="pickup">
-            <div class="pickup-title">ピックアップ記事</div>
             <ul class="blog-title">
                 <li class="blog-title__button active">                    
                     <span class="blog-title__button_link active">新着</span>
@@ -178,7 +171,7 @@
                                                 ?>
                                                 <object class="Pickup-Posts-lead__category_text">
                                                     <?php if ($is_cat_active) : ?>
-                                                        <span class="Pickup-Posts-lead__category_link active">
+                                                        <span class="Pickup-Posts-lead__category_item">
                                                             <?php echo esc_html($category->name); ?>
                                                         </span>
                                                     <?php else : ?>
@@ -266,7 +259,7 @@
                                                 ?>
                                                 <object class="Pickup-Posts-lead__category_text">
                                                     <?php if ($is_cat_active) : ?>
-                                                        <span class="Pickup-Posts-lead__category_link active">
+                                                        <span class="Pickup-Posts-lead__category_item">
                                                             <?php echo esc_html($category->name); ?>
                                                         </span>
                                                     <?php else : ?>
@@ -304,9 +297,9 @@
         <!-- 目次
         ------------------------------------------------->
         <?php
-        // 本文からh2タグを抽出して目次を生成
-        $index_content = apply_filters('the_content', get_the_content());
-        if (preg_match_all('/<h2.*?>+(.*?)<\/h2>/i', $index_content, $matches)) :
+        // single-blog.phpで保存したフィルタ済みコンテンツを再利用する
+        global $protect_web_filtered_content;
+        if (!empty($protect_web_filtered_content) && preg_match_all('/<h2.*?>+(.*?)<\/h2>/i', $protect_web_filtered_content, $matches)) :
         ?>
             <div class="sub-index">
                 <div class="sub-index__title">目次</div>

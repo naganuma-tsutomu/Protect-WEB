@@ -13,18 +13,16 @@
                 <div class="article">
                     <?php
                     // パラメータの取得をここで行う（タイトル表示とクエリ作成の両方で使用するため）
-                    $cat_slug = isset($_GET['blog_cat']) ? $_GET['blog_cat'] : ''; // カテゴリパラメータ取得
-                    $tag_slug = isset($_GET['blog_tag']) ? $_GET['blog_tag'] : ''; // タグパラメータ取得
+                    $cat_slug = isset($_GET['blog_cat']) ? sanitize_text_field($_GET['blog_cat']) : ''; // カテゴリパラメータ取得
+                    $tag_slug = isset($_GET['blog_tag']) ? sanitize_text_field($_GET['blog_tag']) : ''; // タグパラメータ取得
                     $search_query = get_search_query(); // 検索キーワードを取得
                     ?>
                     <div class="search-result">
                         <?php
                         // 表示条件の分岐
-                        if ($cat_slug) {
-                            $term = get_term_by('slug', $cat_slug, 'blog_cat'); // スラッグからカテゴリ情報を取得
+                        if ($cat_slug && ($term = get_term_by('slug', $cat_slug, 'blog_cat')) && !is_wp_error($term)) {
                             echo 'カテゴリ：「' . esc_html($term->name) . '」';
-                        } elseif ($tag_slug) {
-                            $term = get_term_by('slug', $tag_slug, 'blog_tag'); // スラッグからタグ情報を取得
+                        } elseif ($tag_slug && ($term = get_term_by('slug', $tag_slug, 'blog_tag')) && !is_wp_error($term)) {
                             echo 'タグ：「' . esc_html($term->name) . '」';
                         } elseif ($search_query) {
                             echo '「' . esc_html($search_query) . '」の検索結果';
@@ -36,7 +34,7 @@
                     <ul class="list">
                         <?php
                         // 独自のパラメータ 'search_page' からページ番号を取得します。
-                        $paged = isset($_GET['search_page']) ? (int)$_GET['search_page'] : 1;
+                        $paged = isset($_GET['search_page']) ? absint(sanitize_text_field($_GET['search_page'])) : 1;
 
                         // WP_Queryに渡すパラメータを設定
                         $args = array(
@@ -106,13 +104,14 @@
                                                 </p>
                                             </div>
                                             <div class="lead-sub">
-                                                <div class="lead__date">
-                                                    <span class="lead__date_text">
+                                                <div class="lead-sub__date">
+                                                    <span class="lead-sub__date_text">
                                                         <?php echo get_the_date(); // 投稿日を出力
                                                         ?>
                                                     </span>
                                                 </div>
-                                                <div class="lead__category">
+                                                <div class="lead-sub__category">
+                                                    <object class="lead-sub__cat-area">
                                                     <?php //カテゴリを取得 
                                                     $cat_taxonomy = 'blog_cat';
                                                     // 現在の投稿に紐づく 'blog_cat' タクソノミーのターム（カテゴリ）を取得
@@ -126,26 +125,25 @@
                                                                 'blog_cat' => $category->slug
                                                             ), home_url('/'));
                                                             // 現在選択されているカテゴリと一致するか判定（日本語スラッグ対応のためデコード）
-                                                            $is_cat_active = (urldecode($cat_slug) === urldecode($category->slug));
+                                                            $is_cat_active = ($cat_slug && urldecode($cat_slug) === urldecode($category->slug));
                                                     ?>
-                                                            <object class="lead__category_text">
                                                                 <?php if ($is_cat_active) : ?>
-                                                                    <span class="lead__category_link active">
+                                                                    <span class="lead-sub__cat-area_item">
                                                                         <?php echo esc_html($category->name); ?>
                                                                     </span>
                                                                 <?php else : ?>
-                                                                    <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
+                                                                    <a class="lead-sub__cat-area_link" href="<?php echo esc_url($category_link); ?>">
                                                                         <?php echo esc_html($category->name); ?>
                                                                     </a>
                                                                 <?php endif; ?>
-                                                            </object>
                                                     <?php
                                                         }
                                                     }
                                                     ?>
+                                                    </object>
                                                 </div>
-                                                <div class="lead__tag">
-                                                    <object class="lead__tag_text">
+                                                <div class="lead-sub__tag">
+                                                    <object class="lead-sub__tag-area">
                                                         <?php //タグを取得する
                                                         $tag_taxonomy = 'blog_tag';
                                                         // 現在の投稿に紐づく 'blog_tag' タクソノミーのターム（タグ）を取得
@@ -159,14 +157,14 @@
                                                                     'blog_tag' => $tag->slug
                                                                 ), home_url('/'));
                                                                 // 現在選択されているタグと一致するか判定（日本語スラッグ対応のためデコード）
-                                                                $is_tag_active = (urldecode($tag_slug) === urldecode($tag->slug));
+                                                                $is_tag_active = ($tag_slug && urldecode($tag_slug) === urldecode($tag->slug));
                                                         ?>
                                                                 <?php if ($is_tag_active) : ?>
-                                                                    <span class="lead__tag_link01 active">
+                                                                    <span class="lead-sub__tag-area_item">
                                                                         <?php echo '#' . esc_html($tag->name); ?>
                                                                     </span>
                                                                 <?php else : ?>
-                                                                    <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
+                                                                    <a class="lead-sub__tag-area_link" href="<?php echo esc_url($tag_link); ?>">
                                                                         <?php echo '#' . esc_html($tag->name); ?>
                                                                     </a>
                                                                 <?php endif; ?>
@@ -179,9 +177,9 @@
                                                  <?php 
                                                 $current_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
                                                 ?>
-                                                <div class="lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
-                                                    <span class="lead__button_heart">♡</span>
-                                                    <span class="lead__button_number"><?php echo $current_like_count; ?></span>
+                                                <div class="lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
+                                                    <span class="lead-sub__button-heart">♡</span>
+                                                    <span class="lead-sub__button-heart_number"><?php echo $current_like_count; ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -200,7 +198,6 @@
 
                     <!-- ページネーション
                     ------------------------------------------------->
-
                     <?php // ページネーションの表示
                     if ($my_query->max_num_pages > 1): // ページが2ページ以上ある場合にのみページネーションを表示
                         // ページネーションのリンクを配列として取得
@@ -233,14 +230,14 @@
                                         // 現在のページの場合
                                         if (strpos($link, 'current')) {
                                             // ページ番号のみ取得
-                                            $page_number = strip_tags($link);
+                                            $link_text = strip_tags($link);
                                     ?>
                                             <li class="page-number__block">
-                                                <a class="page-number__link active" href="#">
+                                                <span class="page-number__box">
                                                     <span class="page-number__area">
-                                                        <?php echo esc_html($page_number); ?>
+                                                        <?php echo esc_html($link_text); ?>
                                                     </span>
-                                                </a>
+                                                </span>
                                             </li>
                                         <?php
                                         }
@@ -255,8 +252,8 @@
                                         // その他の通常のページリンクの場合
                                         else {
                                             // リンクからURLとテキストを抽出
-                                            preg_match('/href=[\'"]([^\'"]+)[\'"]/', $link, $matches);
-                                            $link_url = isset($matches[1]) ? $matches[1] : '';
+                                            preg_match('/href=["\']?([^"\'>]+)["\']?/', $link, $matches);
+                                            $link_url  = isset($matches[1]) ? $matches[1] : '';
                                             $link_text = strip_tags($link);
                                         ?>
                                             <li class="page-number__block">

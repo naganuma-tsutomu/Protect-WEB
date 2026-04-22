@@ -9,15 +9,10 @@
                 <!-- 記事一覧
                 ------------------------------------------------->
                 <div class="article">
-                    <?php
-                    // 現在選択されているカテゴリとタグのスラッグをURLパラメータから取得
-                    $cat_slug = isset($_GET['blog_cat']) ? $_GET['blog_cat'] : '';
-                    $tag_slug = isset($_GET['blog_tag']) ? $_GET['blog_tag'] : '';
-                    ?>
                     <ul class="list">
                         <?php
                         // 独自のパラメータ 'pg' からページ番号を取得します。
-                        $paged = (int) (isset($_GET['pg']) ? $_GET['pg'] : 1);
+                        $paged = isset($_GET['pg']) ? absint(sanitize_text_field($_GET['pg'])) : 1;
 
                         // WP_Queryに渡すパラメータを設定
                         $args = array(
@@ -70,8 +65,8 @@
                                                 </p>
                                             </div>
                                             <div class="lead-sub">
-                                                <div class="lead__date">
-                                                    <span class="lead__date_text">
+                                                <div class="lead-sub__date">
+                                                    <span class="lead-sub__date_text">
                                                         <?php echo get_the_date(); // 投稿日を出力
                                                         ?>
                                                     </span>
@@ -82,7 +77,8 @@
                                                 // カテゴリが存在する場合のみ div を出力
                                                 if (! empty($categories) && ! is_wp_error($categories)) :
                                                 ?>
-                                                    <div class="lead__category">
+                                                    <div class="lead-sub__category">
+                                                        <object class="lead-sub__cat-area">
                                                         <?php
                                                         foreach ($categories as $category) :
                                                             // add_query_argを使用してURLを安全に生成
@@ -90,23 +86,14 @@
                                                                 's'        => $category->name,
                                                                 'blog_cat' => $category->slug
                                                             ), home_url('/'));
-                                                            // 現在選択されているカテゴリと一致するか判定（日本語スラッグ対応のためデコード）
-                                                            $is_cat_active = ($cat_slug && urldecode($cat_slug) === urldecode($category->slug));
-                                                    ?>
-                                                            <object class="lead__category_text">
-                                                                <?php if ($is_cat_active) : ?>
-                                                                    <span class="lead__category_link active">
-                                                                        <?php echo esc_html($category->name); ?>
-                                                                    </span>
-                                                                <?php else : ?>
-                                                                    <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
-                                                                        <?php echo esc_html($category->name); ?>
-                                                                    </a>
-                                                                <?php endif; ?>
-                                                            </object>
+                                                        ?>
+                                                            <a class="lead-sub__cat-area_link" href="<?php echo esc_url($category_link); ?>">
+                                                                <?php echo esc_html($category->name); ?>
+                                                            </a>
                                                     <?php
                                                         endforeach;
                                                         ?>
+                                                        </object>
                                                     </div>
                                                 <?php endif; ?>
 
@@ -116,46 +103,41 @@
                                                 // タグが存在する場合のみ div > object を出力
                                                 if (! empty($tags) && ! is_wp_error($tags)) :
                                                 ?>
-                                                    <div class="lead__tag">
-                                                        <object class="lead__tag_text">
-                                                            <?php
-                                                            foreach ($tags as $tag) :
-                                                                // add_query_argを使用してURLを安全に生成
-                                                                $tag_link = add_query_arg(array(
-                                                                    's'        => $tag->name,
-                                                                    'blog_tag' => $tag->slug
-                                                                ), home_url('/'));
-                                                                // 現在選択されているタグと一致するか判定
-                                                                $is_tag_active = (urldecode($tag_slug) === urldecode($tag->slug));
-                                                        ?>
-                                                                <?php if ($is_tag_active) : ?>
-                                                                    <span class="lead__tag_link01 active">
-                                                                        <?php echo '#' . esc_html($tag->name); ?>
-                                                                    </span>
-                                                                <?php else : ?>
-                                                                    <a class="lead__tag_link01" href="<?php echo esc_url($tag_link); ?>">
-                                                                        <?php echo '#' . esc_html($tag->name); ?>
-                                                                    </a>
-                                                                <?php endif; ?>
+                                                    <div class="lead-sub__tag">
+                                                        <object class="lead-sub__tag-area">
                                                         <?php
-                                                            endforeach;
-                                                            ?>
+                                                        foreach ($tags as $tag) :
+                                                        // add_query_argを使用してURLを安全に生成
+                                                        $tag_link = add_query_arg(array(
+                                                            's'        => $tag->name,
+                                                            'blog_tag' => $tag->slug
+                                                        ), home_url('/'));
+                                                        ?>
+                                                            <a class="lead-sub__tag-area_link" href="<?php echo esc_url($tag_link); ?>">
+                                                                <?php echo '#' . esc_html($tag->name); ?>
+                                                            </a>
+                                                        <?php
+                                                        endforeach;
+                                                        ?>
                                                         </object>
                                                     </div>
                                                 <?php endif; ?>
-                                                <div class="lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
+                                                <div class="lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                     <?php 
                                                     $rel_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
                                                     ?>
-                                                    <span class="lead__button_heart lead__button_heart--icon">♡</span>
-                                                    <span class="lead__button_number"><?php echo $rel_like_count; ?></span>
+                                                    <span class="lead-sub__button-heart lead-sub__button-heart--icon">♡</span>
+                                                    <span class="lead-sub__button-heart_number"><?php echo $rel_like_count; ?></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
                                 </li>
                             <?php endwhile; // ループの終了 
+                            else : 
                             ?>
+                            <li class="blog-empty">このブログにはまだ記事がありません。<br>
+                                更新までしばらくお待ちください。</li>
                         <?php endif; ?>
                         <?php wp_reset_postdata(); // WP_Query で変更された投稿データを元に戻す 
                         ?>
@@ -167,10 +149,9 @@
                     <?php // ページネーションの表示
                     if ($my_query->max_num_pages > 1): // ページが2ページ以上ある場合にのみページネーションを表示
                         // ページネーションのリンクを配列として取得
+                        $big = 999999999; // ページ番号の置換用整数
                         $links = paginate_links(array(
-                            'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))), // ページ番号の置換ルール
-                            'format'       => '?paged=%#%', // ページ番号のフォーマット
-                            'base'         => str_replace(999999999, '%#%', esc_url(add_query_arg('pg', 999999999))), // 独自のパラメータ 'pg' を使用
+                            'base'         => str_replace($big, '%#%', esc_url(add_query_arg('pg', $big))), // 独自のパラメータ 'pg' を使用
                             'format'       => '', // formatは空にする（base側でパラメータを指定しているため）
                             'current'      => max(1, $paged), // 現在のページ番号
                             'total'        => $my_query->max_num_pages, // 全ページ数
@@ -191,14 +172,14 @@
                                         // 現在のページの場合
                                         if (strpos($link, 'current')) {
                                             // ページ番号のみ取得
-                                            $page_number = strip_tags($link);
+                                            $link_text = strip_tags($link);
                                     ?>
                                             <li class="page-number__block">
-                                                <a class="page-number__link active" href="#">
+                                                <span class="page-number__box">
                                                     <span class="page-number__area">
-                                                        <?php echo esc_html($page_number); ?>
+                                                        <?php echo esc_html($link_text); ?>
                                                     </span>
-                                                </a>
+                                                </span>
                                             </li>
                                         <?php
                                         }
@@ -214,7 +195,7 @@
                                         else {
                                             // リンクからURLとテキストを抽出
                                             preg_match('/href=["\']?([^"\'>]+)["\']?/', $link, $matches);
-                                            $link_url = isset($matches[1]) ? $matches[1] : '';
+                                            $link_url  = isset($matches[1]) ? $matches[1] : '';
                                             $link_text = strip_tags($link);
                                         ?>
                                             <li class="page-number__block">
