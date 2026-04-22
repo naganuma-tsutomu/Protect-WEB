@@ -247,14 +247,6 @@
                 position: relative;
                 transition: .1s;
 
-                .Pickup-Posts-lead-sub {
-                    display: flex;
-                    align-items: center;
-                    font-size: 12px;
-                    line-height: 15px;
-                    margin: 10px 0 0 0;
-                }
-
                 &__title {
                     transition: .1s;
 
@@ -264,29 +256,39 @@
                     }
                 }
 
-                &__date {
-                    color: #707070;
-                }
+                .Pickup-Posts-lead-sub {
+                    display: flex;
+                    align-items: center;
+                    font-size: 12px;
+                    line-height: 15px;
+                    margin: 10px 0 0 0;
 
-                &__category {
-                    height: 15px;
-                    background: #B6CDEF;
-                    border-radius: 20px;
-                    transition-duration: .3s;
-                    margin-left: 15px;
-
-                    &_link {
-                        display: inline-block;
-                        padding: 0 10px 0 10px;
-                        border-radius: 20px;
-                        text-decoration: none;
-                        color: #fff;
-                        font-size: 12px;
+                    &__date {
+                        color: #707070;
                     }
-                }
 
-                &__button {
-                    margin-left: 15px;
+                    &__category-item {
+                        height: 15px;
+                        background: #B6CDEF;
+                        border-radius: 20px;
+                        transition-duration: .3s;
+                        margin-left: 15px;
+
+                        &_text {
+                            display: inline-block;
+                            padding: 0 10px 0 10px;
+                            border-radius: 20px;
+                            text-decoration: none;
+                            color: #fff;
+                            font-size: 12px;
+                        }
+                    }
+
+                    &__button {
+                        margin-left: 15px;
+                    }
+
+
                 }
 
                 &:hover {

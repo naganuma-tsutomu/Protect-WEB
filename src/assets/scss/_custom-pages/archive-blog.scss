@@ -72,8 +72,8 @@
                 padding: 15px;
                 position: relative;
 
-                &__title{
-                    &_text{
+                &__title {
+                    &_text {
                         margin: 0 0 10px 0;
                     }
                 }
@@ -199,8 +199,10 @@
         // サイドバー
         ////////////////////////////////////////
         .sidebar {
+            position: static;
+            top: 0;
+            height: auto;
 
-            .pickup,
             .sub-index {
                 display: none;
             }
@@ -473,6 +475,15 @@
                             }
                         }
                     }
+                }
+            }
+
+            // サイドバー
+            ////////////////////////////////////////
+            .sidebar {
+                .pickup {
+                    position: sticky;
+                    top: 67px;
                 }
             }
         }

@@ -103,9 +103,7 @@
         </div>
     <?php endif; ?>
 
-    <?php //archive-blog.php内ではピックアップ記事と目次は表示させない。
-    if ( ! is_post_type_archive( 'blog' ) ) :
-    ?>
+    
         <!-- ピックアップ記事
         ------------------------------------------------->
         <div class="pickup">
@@ -150,44 +148,32 @@
                                             </div>
                                         </div>
                                         <div class="Pickup-Posts-lead-sub">                        
-                                            <div class="Pickup-Posts-lead__date">
-                                                <span class="Pickup-Posts-lead__date_text">
+                                            <div class="Pickup-Posts-lead-sub__date">
+                                                <span class="Pickup-Posts-lead-sub__date_text">
                                                     <?php echo get_the_date(); //投稿日を出力 ?>
                                                 </span>
                                             </div>
-                                            <div class="Pickup-Posts-lead__category">
+                                            <div class="Pickup-Posts-lead-sub__category">
                                                 <?php
                                                 // 'blog_cat' タクソノミーのタームを取得
                                                 $categories = get_the_terms(get_the_ID(), 'blog_cat');
                                                 if (!empty($categories) && !is_wp_error($categories)) {
                                                     // 最初のカテゴリを表示
                                                     $category = $categories[0];
-                                                    $category_link = add_query_arg(array(
-                                                        's'        => $category->name,
-                                                        'blog_cat' => $category->slug
-                                                    ), home_url('/'));
-                                                    // 現在選択されているカテゴリと一致するか判定
-                                                    $is_cat_active = (urldecode($current_cat_slug) === urldecode($category->slug));
                                                 ?>
-                                                <object class="Pickup-Posts-lead__category_text">
-                                                    <?php if ($is_cat_active) : ?>
-                                                        <span class="Pickup-Posts-lead__category_item">
+                                                <object class="Pickup-Posts-lead-sub__category-item">
+                                                        <span class="Pickup-Posts-lead-sub__category-item_text">
                                                             <?php echo esc_html($category->name); ?>
                                                         </span>
-                                                    <?php else : ?>
-                                                        <a class="Pickup-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
-                                                            <?php echo esc_html($category->name); ?>
-                                                        </a>
-                                                    <?php endif; ?>
                                                 </object>
                                                 <?php } ?>
                                             </div>
-                                            <div class="Pickup-Posts-lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
+                                            <div class="Pickup-Posts-lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                 <?php 
                                                 $like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
                                                 ?>
-                                                <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                <span class="Pickup-Posts-lead__button_number"><?php echo $like_count; ?></span>
+                                                <span class="Pickup-Posts-lead-sub__button-heart">♡</span>
+                                                <span class="Pickup-Posts-lead-sub__button-heart_number"><?php echo $like_count; ?></span>
                                             </div>
                                         </div>
                                     </div>
@@ -238,44 +224,32 @@
                                             </div>
                                         </div>
                                         <div class="Pickup-Posts-lead-sub">                        
-                                            <div class="Pickup-Posts-lead__date">
-                                                <span class="Pickup-Posts-lead__date_text">
+                                            <div class="Pickup-Posts-lead-sub__date">
+                                                <span class="Pickup-Posts-lead-sub__date_text">
                                                     <?php echo get_the_date(); //投稿日を出力 ?>
                                                 </span>
                                             </div>
-                                            <div class="Pickup-Posts-lead__category">
+                                            <div class="Pickup-Posts-lead-sub__category">
                                                 <?php
                                                 // 'blog_cat' タクソノミーのタームを取得
                                                 $categories = get_the_terms(get_the_ID(), 'blog_cat');
                                                 if (!empty($categories) && !is_wp_error($categories)) {
                                                     // 最初のカテゴリを表示
                                                     $category = $categories[0];
-                                                    $category_link = add_query_arg(array(
-                                                        's'        => $category->name,
-                                                        'blog_cat' => $category->slug
-                                                    ), home_url('/'));
-                                                    // 現在選択されているカテゴリと一致するか判定
-                                                    $is_cat_active = (urldecode($current_cat_slug) === urldecode($category->slug));
                                                 ?>
-                                                <object class="Pickup-Posts-lead__category_text">
-                                                    <?php if ($is_cat_active) : ?>
-                                                        <span class="Pickup-Posts-lead__category_item">
-                                                            <?php echo esc_html($category->name); ?>
-                                                        </span>
-                                                    <?php else : ?>
-                                                        <a class="Pickup-Posts-lead__category_link" href="<?php echo esc_url($category_link); ?>">
-                                                            <?php echo esc_html($category->name); ?>
-                                                        </a>
-                                                    <?php endif; ?>
+                                                <object class="Pickup-Posts-lead-sub__category-item">
+                                                    <span class="Pickup-Posts-lead-sub__category-item_text">
+                                                        <?php echo esc_html($category->name); ?>
+                                                    </span>
                                                 </object>
                                                 <?php } ?>
                                             </div>
-                                            <div class="Pickup-Posts-lead__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
+                                            <div class="Pickup-Posts-lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                 <?php 
                                                 $like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
                                                 ?>
-                                                <span class="Pickup-Posts-lead__button_heart">♡</span>
-                                                <span class="Pickup-Posts-lead__button_number"><?php echo $like_count; ?></span>
+                                                <span class="Pickup-Posts-lead-sub__button-heart">♡</span>
+                                                <span class="Pickup-Posts-lead-sub__button-heart_number"><?php echo $like_count; ?></span>
                                             </div>
                                         </div>
                                     </div>
@@ -294,6 +268,9 @@
             </div>
         </div> 
 
+    <?php //archive-blog.php内では目次は表示させない。
+    if ( ! is_post_type_archive( 'blog' ) ) :
+    ?>
         <!-- 目次
         ------------------------------------------------->
         <?php
