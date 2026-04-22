@@ -38,7 +38,7 @@ p {
     .box-shadow {
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
         margin-bottom: 50px;
-        padding: 20px 5%;
+        padding: 20px 5% 50px;
     }
 
     // 見出し
@@ -376,6 +376,7 @@ p {
                     align-items: center;
                     position: absolute;
                     right: 0;
+                    top: 90px;
                     border: none;
                     cursor: pointer;
                     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -737,6 +738,22 @@ p {
                     min-width: 0;
                 }
 
+                .box-shadow {
+                    padding: 20px 5%;
+                }
+
+                .main-box {
+                    .category-sub {
+                        .bottom {
+                            .good {
+                                top: 50px;
+                            }
+                        }
+                    }
+                }
+
+
+
                 // 関連記事
                 ////////////////////////////////////////
                 .Related-Posts {
@@ -879,7 +896,7 @@ p {
                             min-height: 25px;
                             font-weight: bold;
                             font-size: 16px;
-                            
+
                             &_text {
                                 margin: 0 0 0 10px;
                             }
