@@ -104,26 +104,30 @@
                                                         </span>
                                                     </div>
                                                     <?php $cat_terms = \modules\Taxonomy_Helper::get_term_links(get_the_ID(), 'blog_cat', $cat_slug); ?>
-                                                    <div class="lead-sub__category">
-                                                        <object class="lead-sub__cat-area">
-                                                            <?php get_template_part('templates/parts/term-links', null, [
-                                                                'terms'      => $cat_terms,
-                                                                'link_class' => 'lead-sub__cat-area_link',
-                                                                'span_class' => 'lead-sub__cat-area_item',
-                                                            ]); ?>
-                                                        </object>
-                                                    </div>
+                                                    <?php if (!empty($cat_terms)) : ?>
+                                                        <div class="lead-sub__category">
+                                                            <object class="lead-sub__cat-area">
+                                                                <?php get_template_part('templates/parts/term-links', null, [
+                                                                    'terms'      => $cat_terms,
+                                                                    'link_class' => 'lead-sub__cat-area_link',
+                                                                    'span_class' => 'lead-sub__cat-area_item',
+                                                                ]); ?>
+                                                            </object>
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <?php $tag_terms = \modules\Taxonomy_Helper::get_term_links(get_the_ID(), 'blog_tag', $tag_slug); ?>
-                                                    <div class="lead-sub__tag">
-                                                        <object class="lead-sub__tag-area">
-                                                            <?php get_template_part('templates/parts/term-links', null, [
-                                                                'terms'      => $tag_terms,
-                                                                'prefix'     => '#',
-                                                                'link_class' => 'lead-sub__tag-area_link',
-                                                                'span_class' => 'lead-sub__tag-area_item',
-                                                            ]); ?>
-                                                        </object>
-                                                    </div>
+                                                    <?php if (!empty($tag_terms)) : ?>
+                                                        <div class="lead-sub__tag">
+                                                            <object class="lead-sub__tag-area">
+                                                                <?php get_template_part('templates/parts/term-links', null, [
+                                                                    'terms'      => $tag_terms,
+                                                                    'prefix'     => '#',
+                                                                    'link_class' => 'lead-sub__tag-area_link',
+                                                                    'span_class' => 'lead-sub__tag-area_item',
+                                                                ]); ?>
+                                                            </object>
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                         <span class="lead-sub__button-heart">♡</span>
                                                         <span class="lead-sub__button-heart_number"><?php echo \modules\Blog_Helper::get_like_count(get_the_ID()); ?></span>
