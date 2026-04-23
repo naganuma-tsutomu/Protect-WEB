@@ -268,9 +268,10 @@
             </div>
         </div> 
 
-    <?php //archive-blog.php内では目次は表示させない。
-    if ( ! is_post_type_archive( 'blog' ) ) :
+    <?php // blogアーカイブおよび検索結果ページでは目次を表示しない
+    if ( ! is_post_type_archive( 'blog' ) && ! is_search() ) :
     ?>
+    
         <!-- 目次
         ------------------------------------------------->
         <?php

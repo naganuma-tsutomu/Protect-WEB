@@ -51,41 +51,13 @@
                                         <div class="lead-sub">
                                             <?php if ($has_categories) : ?>
                                             <ul class="lead__category">
-                                                <?php
-                                                foreach ($categories as $category) :
-                                                         // カテゴリ名をキーワードとした検索URLを生成
-                                                        $category_link = add_query_arg(array(
-                                                            's'        => $category->name,
-                                                            'blog_cat' => $category->slug
-                                                        ), home_url('/'));
-                                            ?>
-                                            <li class="lead__category_text">
-                                                <a class="lead__category_link" href="<?php echo esc_url($category_link); ?>">
-                                                    <?php echo esc_html($category->name); ?>
-                                                </a>
-                                            </li>
-                                            <?php
-                                                endforeach; ?>
+                                                <?php the_func(get_the_ID(), 'blog_cat', 'lead__category_text', 'lead__category-text_link'); //カテゴリを出力?>
                                             </ul>
                                             <?php endif; ?>
 
                                             <?php if ($has_tags) : ?>
                                             <ul class="lead__tag">
-                                                <?php
-                                                foreach ($tags as $tag) :
-                                                        // タグ名をキーワードとした検索URLを生成
-                                                        $tag_link = add_query_arg(array(
-                                                            's'        => $tag->name,
-                                                            'blog_tag' => $tag->slug
-                                                        ), home_url('/'));
-                                            ?>
-                                            <li class="lead__tag_text">
-                                                <a class="lead__tag_link" href="<?php echo esc_url($tag_link); ?>">
-                                                    <?php echo '#' . esc_html($tag->name); ?>
-                                                </a>
-                                            </li>
-                                            <?php
-                                                endforeach; ?>
+                                                <?php the_func(get_the_ID(), 'blog_tag','lead__tag_text','lead__tag_link'); //タグを出力?>
                                             </ul>
                                             <?php endif; ?>
                                         </div>
@@ -163,42 +135,27 @@
                                 <div class="category-sub">
                                     <p class="category-sub__title">この記事のカテゴリ・タグ一覧</p>
                                     <div class="bottom">
-                                        <div class="bottom__category">
-                                            <ul class="category-list">
-                                                <?php
-                                                $categories = get_the_terms(get_the_ID(), 'blog_cat');
-                                                if (!empty($categories) && !is_wp_error($categories)) :
-                                                    foreach ($categories as $category) :
-                                                        $category_link = add_query_arg(array(
-                                                            's'        => $category->name,
-                                                            'blog_cat' => $category->slug
-                                                        ), home_url('/'));
-                                                ?>
-                                                        <li class="category-item">
-                                                            <a class="bottom__category_link" href="<?php echo esc_url($category_link); ?>"><?php echo esc_html($category->name); ?></a>
-                                                        </li>
-                                                <?php endforeach;
-                                                endif;
-                                                ?>
-                                            </ul>
-                                        </div>
-                                        <div class="bottom__tag">
-                                            <ul class="tag-list">
-                                                <?php
-                                                $tags = get_the_terms(get_the_ID(), 'blog_tag');
-                                                if (!empty($tags) && !is_wp_error($tags)) :
-                                                    foreach ($tags as $tag) :
-                                                        $tag_link = add_query_arg(array(
-                                                            's'        => $tag->name,
-                                                            'blog_tag' => $tag->slug
-                                                        ), home_url('/'));
-                                                ?>
-                                                        <li class="tag-item"><a class="tag-item__link" href="<?php echo esc_url($tag_link); ?>">#<?php echo esc_html($tag->name); ?></a></li>
-                                                <?php endforeach;
-                                                endif;
-                                                ?>
-                                            </ul>
-                                        </div>
+                                    <?php
+                                    // カテゴリとタグを取得し、存在するか判定する
+                                    $categories = get_the_terms(get_the_ID(), 'blog_cat');
+                                    $tags = get_the_terms(get_the_ID(), 'blog_tag');
+                                    $has_categories = ! empty($categories) && ! is_wp_error($categories);
+                                    $has_tags = ! empty($tags) && ! is_wp_error($tags);
+
+                                    // どちらかが存在する場合のみ lead-sub を出力
+                                    if ($has_categories || $has_tags) :
+                                    ?>
+                                            <?php if ($has_categories) : ?> 
+                                                <ul class="category-list">
+                                                    <?php the_func(get_the_ID(), 'blog_cat', 'category-item','category-item__link'); ?>
+                                                </ul>
+                                            <?php endif; ?>
+
+                                            <?php if ($has_tags) : ?> 
+                                                <ul class="tag-list">
+                                                    <?php the_func(get_the_ID(), 'blog_tag', 'tag-item','tag-item__link'); ?>
+                                                </ul>
+                                            <?php endif; ?>
 
                                             <?php 
                                             $current_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
@@ -209,6 +166,7 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <?php endif; ?>
                             </div>
                         </div>
 
@@ -341,21 +299,7 @@
                                                         ?>
                                                             <div class="Related-Posts-lead-sub__category">
                                                                 <object class="Related-Posts-lead-sub__cat-area">
-                                                                <?php
-                                                                // 取得したカテゴリを一つずつループ処理
-                                                                foreach ($categories as $category) {
-                                                                    // カテゴリ名をキーワードとした検索URLを生成
-                                                                    $category_link = add_query_arg(array(
-                                                                        's'        => $category->name,
-                                                                        'blog_cat' => $category->slug
-                                                                    ), home_url('/'));
-                                                            ?>
-                                                                        <a class="Related-Posts-lead-sub__cat-area_link" href="<?php echo esc_url($category_link); ?>">
-                                                                            <?php echo esc_html($category->name); ?>
-                                                                        </a>
-                                                            <?php
-                                                                }
-                                                                ?>
+                                                                    <?php the_func(get_the_ID(), 'blog_cat', '','Related-Posts-lead-sub__cat-area_link'); ?>
                                                                 </object>
                                                             </div>
                                                         <?php endif; ?>
@@ -367,21 +311,7 @@
                                                         ?>
                                                             <div class="Related-Posts-lead-sub__tag">
                                                                 <object class="Related-Posts-lead-sub__tag-area">
-                                                                    <?php
-                                                                    // 取得したタグを一つずつループ処理
-                                                                    foreach ($tags as $tag) {
-                                                                        // タグ名をキーワードとした検索URLを生成
-                                                                        $tag_link = add_query_arg(array(
-                                                                            's'        => $tag->name,
-                                                                            'blog_tag' => $tag->slug
-                                                                        ), home_url('/'));
-                                                                    ?>
-                                                                        <a class="Related-Posts-lead-sub__tag-area_link" href="<?php echo esc_url($tag_link); ?>">
-                                                                            <?php echo '#' . esc_html($tag->name); ?>
-                                                                        </a>
-                                                                <?php
-                                                                    }
-                                                                    ?>
+                                                                    <?php the_func(get_the_ID(), 'blog_tag', '','Related-Posts-lead-sub__tag-area_link'); ?>
                                                                 </object>
                                                             </div>
                                                         <?php endif; ?>

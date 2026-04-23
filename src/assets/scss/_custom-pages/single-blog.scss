@@ -85,8 +85,15 @@ p {
 
             &__category {
                 display: inline-flex;
+            }
 
-                &_text {
+            &__category-text {
+
+                &_link {
+                    padding: 0 15px;
+                    display: inline-block;
+                    text-decoration: none;
+                    transition-duration: .1s;
                     text-align: center;
                     color: rgb(255, 255, 255);
                     font-size: 12px;
@@ -95,15 +102,6 @@ p {
                     background: rgb(182, 205, 239);
                     border-radius: 20px;
                     margin-right: 10px;
-                }
-
-                &_link {
-                    padding: 0 15px;
-                    display: inline-block;
-                    text-decoration: none;
-                    color: #fff;
-                    border-radius: 20px;
-                    transition-duration: .1s;
 
                     &:hover {
                         background: #1F4B8A;
@@ -115,12 +113,12 @@ p {
                 display: inline-flex;
 
                 &_text {
-                    margin-right: 10px;
-                    line-height: 25px;
                     list-style-type: none;
                 }
 
                 &_link {
+                    margin-right: 10px;
+                    line-height: 25px;
                     position: relative;
                     display: inline-block;
                     text-decoration: none;
@@ -301,19 +299,21 @@ p {
                 margin: 0 0 10px 0;
                 align-items: center;
 
-                &__category {
+                //カテゴリー
+                .category-list {
                     display: inline-flex;
-                    text-align: center;
-                    color: rgb(255, 255, 255);
-                    line-height: 25px;
-                    height: 25px;
+                    list-style-type: none;
+                }
 
-                    &_link {
+                .category-item {
+                    &__link {
+                        display: inline-flex;
+                        text-align: center;
+                        color: rgb(255, 255, 255);
+                        line-height: 25px;
+                        height: 25px;
                         font-size: 12px;
                         padding: 0 15px;
-                        color: #fff;
-                        display: inline-block;
-                        border-radius: 20px;
                         text-decoration: none;
                         transition-duration: .1s;
                         background: rgb(182, 205, 239);
@@ -324,45 +324,38 @@ p {
                             background: #1F4B8A;
                         }
                     }
-
-                    .category-list {
-                        display: inline-flex;
-                        list-style-type: none;
-                    }
                 }
 
-                &__tag {
+                // タグ
+                .tag-list {
                     line-height: 25px;
+                    display: inline-flex;
+                    list-style-type: none;
+                }
 
-                    .tag-list {
-                        display: inline-flex;
-                        list-style-type: none;
-                    }
+                .tag-item {
+                    position: relative;
 
-                    .tag-item {
-                        position: relative;
+                    &__link {
                         margin-right: 10px;
+                        display: inline-block;
+                        text-decoration: none;
+                        color: #1F4B8A;
+                        font-size: 14px;
+                        transition-duration: .1s;
 
-                        &__link {
-                            display: inline-block;
-                            text-decoration: none;
-                            color: #1F4B8A;
-                            font-size: 14px;
-                            transition-duration: .1s;
+                        &:hover {
+                            color: rgb(182, 205, 239);
 
-                            &:hover {
-                                color: rgb(182, 205, 239);
-
-                                &::after {
-                                    content: "";
-                                    position: absolute;
-                                    left: 0;
-                                    bottom: 0;
-                                    display: block;
-                                    width: 100%;
-                                    height: 1px;
-                                    background: #1F4B8A;
-                                }
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                left: 0;
+                                bottom: 0;
+                                display: block;
+                                width: 100%;
+                                height: 1px;
+                                background: #1F4B8A;
                             }
                         }
                     }
@@ -616,7 +609,7 @@ p {
                     &_item {
                         display: inline-block;
                         height: 15px;
-                        margin-left: 10px;
+                        margin-right: 10px;
                         padding: 0 10px;
                         border-radius: 20px;
                         text-decoration: none;
@@ -841,14 +834,13 @@ p {
                             &__tag {
                                 display: block;
                                 font-size: 14px;
-                                margin-left: 10px;
                             }
 
                             &__tag-area {
 
                                 &_link,
                                 &_item {
-                                    margin-left: 5px;
+                                    margin-right: 10px;
                                     text-decoration: none;
                                     display: inline-block;
                                 }
