@@ -600,6 +600,10 @@ p {
                     color: #707070;
                 }
 
+                &__category {
+                    margin: 0 0 0 10px;
+                }
+
                 &__cat-area {
                     display: inline-block;
                     height: 15px;
@@ -798,6 +802,7 @@ p {
 
                         .Related-Posts-lead-sub {
                             position: static;
+                            margin: 0 0 0 10px;
 
                             &__date {
                                 position: absolute;
@@ -806,6 +811,10 @@ p {
                                 left: 10px;
                                 color: #707070;
                                 font-size: 12px;
+                            }
+
+                            &__category {
+                                margin: 0;
                             }
 
                             &__cat-area {
