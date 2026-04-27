@@ -62,7 +62,7 @@ function handle_toggle_like() {
     if ($post_id > 0 && in_array($type, ['like', 'unlike']) && get_post($post_id)) {
         
         // 3. 現在のいいね数を取得
-        $count = (int) get_post_meta($post_id, '_post_like_count', true);
+        $count = get_post_like_count($post_id);
         
         if ($type === 'like') {
             $count++;
@@ -86,6 +86,12 @@ function handle_toggle_like() {
 add_action('wp_ajax_toggle_like', 'handle_toggle_like');
 // 未ログインユーザーからのAJAXリクエストを処理するアクションを追加
 add_action('wp_ajax_nopriv_toggle_like', 'handle_toggle_like');
+
+//記事のいいね数を取得する関数
+function get_post_like_count($post_id) {
+    return (int) get_post_meta($post_id, '_post_like_count', true);
+}
+
 
 
 // the_func関数

@@ -169,11 +169,8 @@
                                                 <?php } ?>
                                             </div>
                                             <div class="Pickup-Posts-lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
-                                                <?php 
-                                                $like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
-                                                ?>
                                                 <span class="Pickup-Posts-lead-sub__button-heart">♡</span>
-                                                <span class="Pickup-Posts-lead-sub__button-heart_number"><?php echo $like_count; ?></span>
+                                                <span class="Pickup-Posts-lead-sub__button-heart_number"><?php echo get_post_like_count(get_the_ID()); ?></span>
                                             </div>
                                         </div>
                                     </div>
@@ -245,11 +242,8 @@
                                                 <?php } ?>
                                             </div>
                                             <div class="Pickup-Posts-lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
-                                                <?php 
-                                                $like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
-                                                ?>
                                                 <span class="Pickup-Posts-lead-sub__button-heart">♡</span>
-                                                <span class="Pickup-Posts-lead-sub__button-heart_number"><?php echo $like_count; ?></span>
+                                                <span class="Pickup-Posts-lead-sub__button-heart_number"><?php echo get_post_like_count(get_the_ID()); ?></span>
                                             </div>
                                         </div>
                                     </div>

@@ -18,12 +18,10 @@
                                                 <?php echo get_the_date(); //投稿日を出力 ?>
                                             </span>
                                         </div>
+                                        <!-- いいね数 -->
                                         <div class="lead__button" data-post-id="<?php the_ID(); ?>">
-                                            <?php 
-                                            $like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
-                                            ?>
                                             <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number"><?php echo $like_count; ?></span>
+                                            <span class="lead__button_number"><?php echo get_post_like_count(get_the_ID()); ?></span>
                                         </div>
                                     </div>
                                     <div class="lead__title">
@@ -157,12 +155,9 @@
                                                 </ul>
                                             <?php endif; ?>
 
-                                            <?php 
-                                            $current_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
-                                            ?>
                                             <button class="good js-like-button" data-post-id="<?php the_ID(); ?>" data-nonce="<?php echo wp_create_nonce('like_nonce'); ?>">
                                                 <span class="good__item">♡</span>
-                                                <span class="good__number"><?php echo $current_like_count; ?></span>
+                                                <span class="good__number"><?php echo get_post_like_count(get_the_ID()); ?></span>
                                             </button>
                                         </div>
                                     </div>
@@ -317,11 +312,8 @@
                                                         <?php endif; ?>
                                                         
                                                         <button class="Related-Posts-lead-sub__button js-like-button" data-post-id="<?php the_ID(); ?>" data-nonce="<?php echo wp_create_nonce('like_nonce'); ?>" style="pointer-events: none;">
-                                                            <?php 
-                                                            $rel_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
-                                                            ?>
                                                             <span class="Related-Posts-lead-sub__button-heart Related-Posts-lead__button_heart--icon">♡</span>
-                                                            <span class="Related-Posts-lead-sub__button-heart_number"><?php echo $rel_like_count; ?></span>
+                                                            <span class="Related-Posts-lead-sub__button-heart_number"><?php echo get_post_like_count(get_the_ID()); ?></span>
                                                         </button>
                                                     </div>
                                                 </div>
