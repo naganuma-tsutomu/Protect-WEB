@@ -174,12 +174,10 @@
                                                         ?>
                                                     </object>
                                                 </div>
-                                                 <?php 
-                                                $current_like_count = (int) get_post_meta(get_the_ID(), '_post_like_count', true);
-                                                ?>
+                                                <!-- いいね数 -->
                                                 <div class="lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                     <span class="lead-sub__button-heart">♡</span>
-                                                    <span class="lead-sub__button-heart_number"><?php echo $current_like_count; ?></span>
+                                                    <span class="lead-sub__button-heart_number"><?php echo get_post_like_count(get_the_ID()); ?></span>
                                                 </div>
                                             </div>
                                         </div>
