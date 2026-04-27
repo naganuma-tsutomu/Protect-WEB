@@ -88,29 +88,49 @@ add_action('wp_ajax_toggle_like', 'handle_toggle_like');
 add_action('wp_ajax_nopriv_toggle_like', 'handle_toggle_like');
 
 
-
-function the_func($id, $taxonomy, $liclass = '', $class = '', $term_link = ''){
-    //IDに紐づくタクソノミーを取得
-    $terms = get_the_terms($id, $taxonomy);
-    if(!empty($terms) && !is_wp_error($terms)){
-        foreach ($terms as $term) :
-            // カテゴリ名をキーワードとした検索URLを生成
-            $term_link = add_query_arg(array(
-                's'        => $term->name,
-                $taxonomy  => $term->slug
-            ), home_url('/'));
+// the_func関数
+function the_func($id, $taxonomy, $liclass = '', $class = ''){
+    
+    // get_the_taxonomy_data関数を呼び出す
+    $term_data = get_the_taxonomy_data($id, $taxonomy);
+    if(!empty($term_data)){
+        foreach($term_data as $data){
 
             //表示内容の準備
             $prefix = ($taxonomy == 'blog_tag') ? '#' : ''; //タグの場合、#を表示する
-            $content = '<a class="' . $class . '" href="' . esc_url($term_link) . '">' . $prefix . esc_html($term->name) . '</a>';
+            $content = '<a class="' . $class . '" href="' . esc_url($data['link']) . '">' . $prefix . esc_html($data['name']) . '</a>';
             
             //$liclassが指定されている場合、<li>を出力する
-            if( !empty($liclass)){
+            if(!empty($liclass)){
                 echo '<li class="'. esc_attr($liclass) .'">'. $content .'</li>';
             } else {
                 echo $content;     
-            } 
-        endforeach;
+            }
+        }
     }
 }
+
+// the_func関数で使うget_the_taxonomy_data関数
+function get_the_taxonomy_data($id, $taxonomy){
+    $data = array();
+    $terms = get_the_terms($id, $taxonomy);
+
+    if(!empty($terms) && !is_wp_error($terms)){
+        foreach ($terms as $term) {
+            $data[] = array(
+                'name' => $term->name,
+                'link' => add_query_arg(array(
+                    's'        => $term->name,
+                    $taxonomy  => $term->slug
+                ), home_url('/'))
+            );
+        }
+    }
+    return $data;
+}
+
+
+
+
+    
     
