@@ -62,13 +62,7 @@
                                     <?php endif; ?>
                                 </div>
                                 <div class="thumbnail">
-                                    <?php
-                                        // ACFの 'image' フィールドから画像URLを取得
-                                        $image_url = get_field('image');
-                                        if (!empty($image_url) && !is_wp_error($image_url)) :
-                                    ?>
-                                        <img class="thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="<?php the_title_attribute(); ?>">
-                                    <?php endif; ?>
+                                    <?php echo get_the_post_image(get_the_ID(), 'thumbnail__img', false); ?>
                                 </div>
                             </div>
                             <!-- 記事 --->
@@ -264,14 +258,7 @@
                                         <li class="Related-Posts-item">
                                             <a class="Related-Posts-item-link" href="<?php the_permalink(); ?>">
                                                 <div class="Related-Posts-thumbnail">
-                                                    <?php
-                                                    $image_url = get_field('image');
-                                                    // 画像が未設定の場合の共通画像パスを設定
-                                                    if (empty($image_url) || is_wp_error($image_url)) {
-                                                        $image_url = get_theme_file_uri('/assets/images/common/no-image.webp');
-                                                    }
-                                                    ?>
-                                                    <img class="Related-Posts-thumbnail__img" src="<?php echo esc_url($image_url); ?>" alt="<?php the_title_attribute(); ?>">
+                                                    <?php echo get_the_post_image(get_the_ID(), 'Related-Posts-thumbnail__img'); ?>
                                                 </div>
                                                 <div class="Related-Posts-lead">
                                                     <div class="Related-Posts-lead__title">

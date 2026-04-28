@@ -136,7 +136,23 @@ function get_the_taxonomy_data($id, $taxonomy){
 }
 
 
-
+/**
+ *アイキャッチ画像の表示
+ */
+function get_the_post_image($post_id, $class_name = '', $no_image = true){
+    $image_url = get_field('image');
+    // アイキャッチ画像を取得し、クラス名を付与して画像を表示する
+    if (!empty($image_url) && !is_wp_error($image_url)) {
+        // アイキャッチ画像がある場合
+        return '<img class="' . $class_name . '" src="' . esc_url($image_url) . '" alt="' . esc_attr(get_the_title($post_id)) . '">';
+    }elseif($no_image === true){
+        //画像が無い場合、no-image画像を表示する($no_image = true)
+        return '<img class="' . $class_name . '" src="' . get_theme_file_uri('/assets/images/common/no-image.webp') . '" alt="' . esc_attr(get_the_title($post_id)) . '">';
+    }else{
+        //画像が無い場合、何も表示しない($no_image = false)
+        return '';
+    }
+}
 
     
     
