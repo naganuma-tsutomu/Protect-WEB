@@ -99,18 +99,28 @@ function the_func($id, $taxonomy, $liclass = '', $class = ''){
     
     // get_the_taxonomy_data関数を呼び出す
     $term_data = get_the_taxonomy_data($id, $taxonomy);
+    //現在のタクソノミーを取得
+    $current_slug = get_query_var($taxonomy);
     if(!empty($term_data)){
         foreach($term_data as $data){
 
             //表示内容の準備
             $prefix = ($taxonomy == 'blog_tag') ? '#' : ''; //タグの場合、#を表示する
+            // タクソノミー名によってクラス名を切り替える（三項演算子）
+            $active_class = ($taxonomy == 'blog_tag') ? 'tag-list__item' : 'category-list__item';
             $content = '<a class="' . $class . '" href="' . esc_url($data['link']) . '">' . $prefix . esc_html($data['name']) . '</a>';
+            $active_content = '<span class="' . $active_class . '">' . $prefix . esc_html($data['name']) . '</span>';
             
-            //$liclassが指定されている場合、<li>を出力する
+            //タクソノミーがactiveかどうかを判定
+            $is_active = (urldecode($current_slug) === urldecode($data['slug']));
+            //タクソノミーがactiveの場合、'active'クラスを付与する
+            $final_content = $is_active ? $active_content : $content;
+
+            //liclassが指定されている場合、<li>を出力する
             if(!empty($liclass)){
-                echo '<li class="'. esc_attr($liclass) .'">'. $content .'</li>';
+                echo '<li class="'. esc_attr($liclass) .'">'. $final_content .'</li>';
             } else {
-                echo $content;     
+                echo $final_content;
             }
         }
     }
@@ -119,12 +129,20 @@ function the_func($id, $taxonomy, $liclass = '', $class = ''){
 // the_func関数で使うget_the_taxonomy_data関数
 function get_the_taxonomy_data($id, $taxonomy){
     $data = array();
-    $terms = get_the_terms($id, $taxonomy);
+    
+    if (empty($id) ) {
+        // IDがない場合は get_terms で全取得
+        $terms = get_terms( array('taxonomy' => $taxonomy, 'hide_empty' => true) );
+    } else {
+        // IDがある場合は今まで通り get_the_terms
+        $terms = get_the_terms($id, $taxonomy);
+    }
 
     if(!empty($terms) && !is_wp_error($terms)){
         foreach ($terms as $term) {
             $data[] = array(
                 'name' => $term->name,
+                'slug' => $term->slug,
                 'link' => add_query_arg(array(
                     's'        => $term->name,
                     $taxonomy  => $term->slug
@@ -134,7 +152,6 @@ function get_the_taxonomy_data($id, $taxonomy){
     }
     return $data;
 }
-
 
 /**
  *アイキャッチ画像の表示

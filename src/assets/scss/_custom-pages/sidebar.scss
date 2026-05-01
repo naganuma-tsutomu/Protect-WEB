@@ -133,23 +133,6 @@
                 border-bottom: 1px solid #1F4B8A
             }
         }
-
-        .active {
-            .tag-list__link {
-                color: #B6CDEF;
-
-                &::after {
-                    position: absolute;
-                    left: 0;
-                    bottom: 0;
-                    content: '';
-                    display: block;
-                    width: 100%;
-                    height: 1px;
-                    background: #1F4B8A;
-                }
-            }
-        }
     }
 
     // 新着記事一覧

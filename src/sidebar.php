@@ -15,94 +15,31 @@
 
     <!-- カテゴリ
     ------------------------------------------------->
-    <?php
-    // タクソノミー名（'blog_cat'）を指定
-    $cat_taxonomy = 'blog_cat';
-    // get_terms() を使って、カテゴリをすべて取得
-    $categories = get_terms(array(
-        'taxonomy'   => $cat_taxonomy, // 取得するタクソノミーを指定
-        'hide_empty' => true,         // 投稿が1つもないカテゴリを非表示
-    ));
-
-    // カテゴリが1つ以上存在し、エラーが発生していないかを確認
-    if (! empty($categories) && ! is_wp_error($categories)) :
-    ?>
         <div class="category">
             <div class="category-block">
                 <ul class="category-item">
                     <?php
-                    foreach ($categories as $category) {
-                        // add_query_argを使用してURLを安全に生成（自動的にエンコードされます）
-                        $category_link = add_query_arg(array(
-                            's'        => $category->name,
-                            'blog_cat' => $category->slug
-                        ), home_url('/'));
-                        // ループ中のカテゴリが現在選択されているものと一致するか判定
-                        // 日本語スラッグの場合に備え、デコードして比較を行う
-                        $is_cat_active = (urldecode($current_cat_slug) === urldecode($category->slug));
-                ?>
-                        <li class="category-list">
-                            <?php if ($is_cat_active) : ?>
-                                <span class="category-list__item">
-                                    <?php echo esc_html($category->name); ?>
-                                </span>
-                            <?php else : ?>
-                                <a class="category-list__link" href="<?php echo esc_url($category_link); ?>">
-                                    <?php echo esc_html($category->name); ?>
-                                </a>
-                            <?php endif; ?>
-                        </li>
-                    <?php } ?>
+                        // IDをnullにして1回だけ呼び出す。
+                        // 関数の中で自動的に全カテゴリを取得してループする
+                        the_func(null, 'blog_cat', 'category-list', 'category-list__link');
+                    ?>
                 </ul>
             </div>
         </div>
-    <?php endif; ?>
 
     <!-- タグ
     ------------------------------------------------->
-    <?php
-    // タクソノミー名（'blog_tag'）を指定
-    $tag_taxonomy = 'blog_tag';
-    // get_terms() を使って、タグをすべて取得
-    $tags = get_terms(array(
-        'taxonomy' => $tag_taxonomy, // 取得するタクソノミーを指定
-        'hide_empty' => true, // 投稿がないタグは非表示
-    ));
-
-    // タグが1つ以上存在し、エラーが発生していないかを確認
-    if (! empty($tags) && ! is_wp_error($tags)) :
-    ?>
         <div class="tag">
             <div class="tag-block">
                 <ul class="tag-item">
                     <?php
-                    foreach ($tags as $tag) {
-                        // タグ用URLも同様に修正
-                        $tag_link = add_query_arg(array(
-                            's'        => $tag->name,
-                            'blog_tag' => $tag->slug
-                        ), home_url('/'));
-                        // ループ中のタグが現在選択されているものと一致するか判定
-                        // タグも同様にデコードして比較
-                        $is_tag_active = (urldecode($current_tag_slug) === urldecode($tag->slug));
-                ?>
-                        <li class="tag-list">
-                            <?php if ($is_tag_active) : ?>
-                                <span class="tag-list__item">
-                                        <?php echo '#' . esc_html($tag->name); ?>
-                                </span>
-                            <?php else : ?>
-                                <a class="tag-list__link" href="<?php echo esc_url($tag_link); ?>">
-                                        <?php echo '#' . esc_html($tag->name); ?>
-                                </a>
-                            <?php endif; ?>
-                        </li>
-                    <?php } ?>
+                        // IDをnullにして1回だけ呼び出す
+                        // 関数の中で自動的に全カテゴリを取得してループする
+                        the_func(null, 'blog_tag', 'tag-list', 'tag-list__link');
+                    ?>
                 </ul>
             </div>
         </div>
-    <?php endif; ?>
-
     
         <!-- ピックアップ記事
         ------------------------------------------------->
