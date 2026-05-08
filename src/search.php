@@ -103,70 +103,25 @@
                                                         ?>
                                                     </span>
                                                 </div>
-                                                <div class="lead-sub__category">
-                                                    <object class="lead-sub__cat-area">
-                                                    <?php //カテゴリを取得 
-                                                    $cat_taxonomy = 'blog_cat';
-                                                    // 現在の投稿に紐づく 'blog_cat' タクソノミーのターム（カテゴリ）を取得
-                                                    $categories = get_the_terms(get_the_ID(), $cat_taxonomy);
-                                                    // カテゴリが存在し、エラーがない場合のみ処理を実行
-                                                    if (! empty($categories) && ! is_wp_error($categories)) {
-                                                        // 取得したカテゴリを一つずつループ処理
-                                                        foreach ($categories as $category) {
-                                                            $category_link = add_query_arg(array(
-                                                                's'        => $category->name,
-                                                                'blog_cat' => $category->slug
-                                                            ), home_url('/'));
-                                                            // 現在選択されているカテゴリと一致するか判定（日本語スラッグ対応のためデコード）
-                                                            $is_cat_active = ($cat_slug && urldecode($cat_slug) === urldecode($category->slug));
-                                                    ?>
-                                                                <?php if ($is_cat_active) : ?>
-                                                                    <span class="lead-sub__cat-area_item">
-                                                                        <?php echo esc_html($category->name); ?>
-                                                                    </span>
-                                                                <?php else : ?>
-                                                                    <a class="lead-sub__cat-area_link" href="<?php echo esc_url($category_link); ?>">
-                                                                        <?php echo esc_html($category->name); ?>
-                                                                    </a>
-                                                                <?php endif; ?>
-                                                    <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                    </object>
-                                                </div>
-                                                <div class="lead-sub__tag">
-                                                    <object class="lead-sub__tag-area">
-                                                        <?php //タグを取得する
-                                                        $tag_taxonomy = 'blog_tag';
-                                                        // 現在の投稿に紐づく 'blog_tag' タクソノミーのターム（タグ）を取得
-                                                        $tags = get_the_terms(get_the_ID(), $tag_taxonomy);
-                                                        // タグが存在し、エラーがない場合のみ処理を実行
-                                                        if (! empty($tags) && ! is_wp_error($tags)) {
-                                                            // 取得したタグを一つずつループ処理
-                                                            foreach ($tags as $tag) {
-                                                                $tag_link = add_query_arg(array(
-                                                                    's'        => $tag->name,
-                                                                    'blog_tag' => $tag->slug
-                                                                ), home_url('/'));
-                                                                // 現在選択されているタグと一致するか判定（日本語スラッグ対応のためデコード）
-                                                                $is_tag_active = ($tag_slug && urldecode($tag_slug) === urldecode($tag->slug));
-                                                        ?>
-                                                                <?php if ($is_tag_active) : ?>
-                                                                    <span class="lead-sub__tag-area_item">
-                                                                        <?php echo '#' . esc_html($tag->name); ?>
-                                                                    </span>
-                                                                <?php else : ?>
-                                                                    <a class="lead-sub__tag-area_link" href="<?php echo esc_url($tag_link); ?>">
-                                                                        <?php echo '#' . esc_html($tag->name); ?>
-                                                                    </a>
-                                                                <?php endif; ?>
-                                                        <?php
-                                                            }
-                                                        }
-                                                        ?>
-                                                    </object>
-                                                </div>
+
+                                                <!-- カテゴリ取得 -->
+                                                <?php if ($term_data_check = get_the_taxonomy_data('blog_cat', get_the_ID())) : ?>
+                                                    <div class="lead-sub__category">
+                                                        <object class="lead-sub__cat-area">
+                                                            <?php the_func($term_data_check, 'blog_cat', 'lead-sub__cat-area_link', '', get_the_ID()); ?>
+                                                        </object>
+                                                    </div>
+                                                <?php endif; ?>
+
+                                                <!-- タグ取得 -->
+                                                <?php if ($term_data_check = get_the_taxonomy_data('blog_tag', get_the_ID())) : ?>
+                                                    <div class="lead-sub__tag">
+                                                        <object class="lead-sub__tag-area">
+                                                            <?php the_func($term_data_check, 'blog_tag', 'lead-sub__tag-area_link', '', get_the_ID()); ?>
+                                                        </object>
+                                                    </div>
+                                                <?php endif; ?>
+                                                
                                                 <!-- いいね数 -->
                                                 <div class="lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                     <span class="lead-sub__button-heart">♡</span>

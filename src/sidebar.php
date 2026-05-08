@@ -15,31 +15,27 @@
 
     <!-- カテゴリ
     ------------------------------------------------->
+    <?php if ($term_data_check = get_the_taxonomy_data('blog_cat')) : ?>
         <div class="category">
             <div class="category-block">
                 <ul class="category-item">
-                    <?php
-                        // IDをnullにして1回だけ呼び出す。
-                        // 関数の中で自動的に全カテゴリを取得してループする
-                        the_func(null, 'blog_cat', 'category-list', 'category-list__link');
-                    ?>
+                    <?php the_func($term_data_check, 'blog_cat', 'category-list__link', 'category-list'); ?>
                 </ul>
             </div>
         </div>
+    <?php endif; ?>
 
     <!-- タグ
     ------------------------------------------------->
+    <?php if ($term_data_check = get_the_taxonomy_data('blog_tag')) : ?>
         <div class="tag">
             <div class="tag-block">
                 <ul class="tag-item">
-                    <?php
-                        // IDをnullにして1回だけ呼び出す
-                        // 関数の中で自動的に全カテゴリを取得してループする
-                        the_func(null, 'blog_tag', 'tag-list', 'tag-list__link');
-                    ?>
+                    <?php the_func($term_data_check, 'blog_tag', 'tag-list__link', 'tag-list'); ?>
                 </ul>
             </div>
         </div>
+    <?php endif; ?>
     
         <!-- ピックアップ記事
         ------------------------------------------------->

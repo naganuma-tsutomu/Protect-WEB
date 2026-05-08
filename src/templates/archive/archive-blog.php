@@ -64,16 +64,26 @@
                                                         ?>
                                                     </span>
                                                 </div>
+
+                                                <!-- カテゴリ取得 -->
+                                                <?php if ($term_data_check = get_the_taxonomy_data('blog_cat', get_the_ID())) : ?>
                                                     <div class="lead-sub__category">
                                                         <object class="lead-sub__cat-area">
-                                                            <?php the_func(get_the_ID(), 'blog_cat', '', 'lead-sub__cat-area_link'); ?>
+                                                            <?php the_func($term_data_check, 'blog_cat', 'lead-sub__cat-area_link', '', get_the_ID()); ?>
                                                         </object>
                                                     </div>
-                                                <div class="lead-sub__tag">
+                                                <?php endif; ?>
+
+                                                <!-- タグ取得 -->
+                                                <?php if ($term_data_check = get_the_taxonomy_data('blog_tag', get_the_ID())) : ?>
+                                                    <div class="lead-sub__tag">
                                                         <object class="lead-sub__tag-area">
-                                                            <?php the_func(get_the_ID(), 'blog_tag', '', 'lead-sub__tag-area_link'); ?>
+                                                            <?php the_func($term_data_check, 'blog_tag', 'lead-sub__tag-area_link', '', get_the_ID()); ?>
                                                         </object>
                                                     </div>
+                                                <?php endif; ?>
+
+                                                <!-- いいね取得 -->
                                                 <div class="lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
                                                     <span class="lead-sub__button-heart lead-sub__button-heart--icon">♡</span>
                                                     <span class="lead-sub__button-heart_number"><?php echo get_post_like_count(get_the_ID()); ?></span>

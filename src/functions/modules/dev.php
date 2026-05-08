@@ -95,10 +95,10 @@ function get_post_like_count($post_id) {
 
 
 // the_func関数
-function the_func($id, $taxonomy, $liclass = '', $class = ''){
+function the_func($term_data, $taxonomy, $class = '', $liclass = '',  $id = null ){
     
     // get_the_taxonomy_data関数を呼び出す
-    $term_data = get_the_taxonomy_data($id, $taxonomy);
+    // $term_data = get_the_taxonomy_data($id, $taxonomy);
     //現在のタクソノミーを取得
     $current_slug = get_query_var($taxonomy);
     if(!empty($term_data)){
@@ -127,7 +127,7 @@ function the_func($id, $taxonomy, $liclass = '', $class = ''){
 }
 
 // the_func関数で使うget_the_taxonomy_data関数
-function get_the_taxonomy_data($id, $taxonomy){
+function get_the_taxonomy_data($taxonomy, $id = null){
     $data = array();
     
     if (empty($id) ) {

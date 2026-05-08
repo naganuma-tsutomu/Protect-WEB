@@ -115,7 +115,9 @@ p {
                 &_text {
                     list-style-type: none;
                 }
+            }
 
+            &__tag-text {
                 &_link {
                     margin-right: 10px;
                     line-height: 25px;
@@ -335,9 +337,9 @@ p {
 
                 .tag-item {
                     position: relative;
+                    margin-right: 10px;
 
                     &__link {
-                        margin-right: 10px;
                         display: inline-block;
                         text-decoration: none;
                         color: #1F4B8A;
@@ -346,6 +348,8 @@ p {
 
                         &:hover {
                             color: rgb(182, 205, 239);
+                            height: 25px;
+                            line-height: 25px;
 
                             &::after {
                                 content: "";

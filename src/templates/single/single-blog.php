@@ -36,30 +36,21 @@
                                             ?>
                                         </h1>
                                     </div>
-                                    <?php
-                                    // カテゴリとタグを取得し、存在するか判定する
-                                    $categories = get_the_terms(get_the_ID(), 'blog_cat');
-                                    $tags = get_the_terms(get_the_ID(), 'blog_tag');
-                                    $has_categories = ! empty($categories) && ! is_wp_error($categories);
-                                    $has_tags = ! empty($tags) && ! is_wp_error($tags);
 
-                                    // どちらかが存在する場合のみ lead-sub を出力
-                                    if ($has_categories || $has_tags) :
-                                    ?>
-                                        <div class="lead-sub">
-                                            <?php if ($has_categories) : ?>
-                                            <ul class="lead__category">
-                                                <?php the_func(get_the_ID(), 'blog_cat', 'lead__category_text', 'lead__category-text_link'); //カテゴリを出力?>
-                                            </ul>
-                                            <?php endif; ?>
-
-                                            <?php if ($has_tags) : ?>
-                                            <ul class="lead__tag">
-                                                <?php the_func(get_the_ID(), 'blog_tag','lead__tag_text','lead__tag_link'); //タグを出力?>
-                                            </ul>
-                                            <?php endif; ?>
-                                        </div>
+                                    <div class="lead-sub">
+                                    <!-- カテゴリを出力 -->
+                                    <?php if ($term_data_check = get_the_taxonomy_data('blog_cat', get_the_ID())) : ?>
+                                        <ul class="lead__category">
+                                            <?php the_func($term_data_check ,'blog_cat','lead__category-text_link','lead__category_text', get_the_ID()); //カテゴリを出力?>
+                                        </ul>
                                     <?php endif; ?>
+                                    <!-- タグを出力 -->
+                                    <?php if ($term_data_check = get_the_taxonomy_data('blog_tag', get_the_ID())) : ?>
+                                        <ul class="lead__tag">
+                                            <?php the_func($term_data_check ,'blog_tag','lead__tag-text_link','lead__tag_text',get_the_ID()); //タグを出力?>
+                                        </ul>
+                                    <?php endif; ?>
+                                    </div>
                                 </div>
                                 <div class="thumbnail">
                                     <?php echo get_the_post_image(get_the_ID(), 'thumbnail__img', false); ?>
@@ -127,35 +118,27 @@
                                 <div class="category-sub">
                                     <p class="category-sub__title">この記事のカテゴリ・タグ一覧</p>
                                     <div class="bottom">
-                                    <?php
-                                    // カテゴリとタグを取得し、存在するか判定する
-                                    $categories = get_the_terms(get_the_ID(), 'blog_cat');
-                                    $tags = get_the_terms(get_the_ID(), 'blog_tag');
-                                    $has_categories = ! empty($categories) && ! is_wp_error($categories);
-                                    $has_tags = ! empty($tags) && ! is_wp_error($tags);
+                                        <!-- カテゴリを出力 -->
+                                        <?php if ($term_data_check = get_the_taxonomy_data('blog_cat', get_the_ID())) : ?> 
+                                            <ul class="category-list">
+                                                <?php the_func($term_data_check ,'blog_cat','category-item__link','category-item',get_the_ID()); ?>
+                                            </ul>
+                                        <?php endif; ?>
 
-                                    // どちらかが存在する場合のみ lead-sub を出力
-                                    if ($has_categories || $has_tags) :
-                                    ?>
-                                            <?php if ($has_categories) : ?> 
-                                                <ul class="category-list">
-                                                    <?php the_func(get_the_ID(), 'blog_cat', 'category-item','category-item__link'); ?>
-                                                </ul>
-                                            <?php endif; ?>
+                                        <!-- タグを出力 -->
+                                        <?php if ($term_data_check = get_the_taxonomy_data('blog_tag', get_the_ID())) : ?> 
+                                            <ul class="tag-list">
+                                                <?php the_func($term_data_check ,'blog_tag','tag-item__link','tag-item',get_the_ID()); ?>
+                                            </ul>
+                                        <?php endif; ?>
 
-                                            <?php if ($has_tags) : ?> 
-                                                <ul class="tag-list">
-                                                    <?php the_func(get_the_ID(), 'blog_tag', 'tag-item','tag-item__link'); ?>
-                                                </ul>
-                                            <?php endif; ?>
-
-                                            <button class="good js-like-button" data-post-id="<?php the_ID(); ?>" data-nonce="<?php echo wp_create_nonce('like_nonce'); ?>">
-                                                <span class="good__item">♡</span>
-                                                <span class="good__number"><?php echo get_post_like_count(get_the_ID()); ?></span>
-                                            </button>
-                                        </div>
+                                        <!-- いいねボタンを出力 -->
+                                        <button class="good js-like-button" data-post-id="<?php the_ID(); ?>" data-nonce="<?php echo wp_create_nonce('like_nonce'); ?>">
+                                            <span class="good__item">♡</span>
+                                            <span class="good__number"><?php echo get_post_like_count(get_the_ID()); ?></span>
+                                        </button>
                                     </div>
-                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
 
@@ -274,26 +257,20 @@
                                                             <span class="Related-Posts-lead-sub__date-text"><?php echo get_the_date(); ?></span>
                                                         </div>
 
-                                                        <?php
-                                                        $categories = get_the_terms(get_the_ID(), 'blog_cat');
-                                                        // カテゴリが存在する場合のみ div を出力
-                                                        if (! empty($categories) && ! is_wp_error($categories)) :
-                                                        ?>
+                                                        <!-- カテゴリを出力 -->
+                                                        <?php if ($term_data_check = get_the_taxonomy_data('blog_cat', get_the_ID())) : ?>
                                                             <div class="Related-Posts-lead-sub__category">
                                                                 <object class="Related-Posts-lead-sub__cat-area">
-                                                                    <?php the_func(get_the_ID(), 'blog_cat', '','Related-Posts-lead-sub__cat-area_link'); ?>
+                                                                    <?php the_func($term_data_check ,'blog_cat','Related-Posts-lead-sub__cat-area_link','',get_the_ID()); ?>
                                                                 </object>
                                                             </div>
                                                         <?php endif; ?>
 
-                                                        <?php
-                                                        $tags = get_the_terms(get_the_ID(), 'blog_tag');
-                                                        // タグが存在する場合のみ div を出力
-                                                        if (! empty($tags) && ! is_wp_error($tags)) :
-                                                        ?>
+                                                        <!-- タグを出力 -->
+                                                        <?php if ($term_data_check = get_the_taxonomy_data('blog_tag', get_the_ID())) : ?>
                                                             <div class="Related-Posts-lead-sub__tag">
                                                                 <object class="Related-Posts-lead-sub__tag-area">
-                                                                    <?php the_func(get_the_ID(), 'blog_tag', '','Related-Posts-lead-sub__tag-area_link'); ?>
+                                                                    <?php the_func($term_data_check ,'blog_tag','Related-Posts-lead-sub__tag-area_link','',get_the_ID()); ?>
                                                                 </object>
                                                             </div>
                                                         <?php endif; ?>
