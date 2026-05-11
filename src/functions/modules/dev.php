@@ -94,20 +94,20 @@ function get_post_like_count($post_id) {
 
 
 
-// the_func関数
-function the_func($term_data, $taxonomy, $class = '', $liclass = '',  $id = null ){
-    
-    // get_the_taxonomy_data関数を呼び出す
-    // $term_data = get_the_taxonomy_data($id, $taxonomy);
+// taxonomyのリンクを出力する関数
+function render_taxonomy_links($term_data, $taxonomy, $class = '', $liclass = ''){
+
+    $tag_slug = 'blog_tag';
     //現在のタクソノミーを取得
     $current_slug = get_query_var($taxonomy);
+    //$term_dataはget_the_taxonomy_data関数で取得した$term_data_checkの値
     if(!empty($term_data)){
         foreach($term_data as $data){
 
             //表示内容の準備
-            $prefix = ($taxonomy == 'blog_tag') ? '#' : ''; //タグの場合、#を表示する
+            $prefix = ($taxonomy == $tag_slug) ? '#' : ''; //タグの場合、#を表示する
             // タクソノミー名によってクラス名を切り替える（三項演算子）
-            $active_class = ($taxonomy == 'blog_tag') ? 'tag-list__item' : 'category-list__item';
+            $active_class = ($taxonomy == $tag_slug) ? 'tag-list__item' : 'category-list__item';
             $content = '<a class="' . $class . '" href="' . esc_url($data['link']) . '">' . $prefix . esc_html($data['name']) . '</a>';
             $active_content = '<span class="' . $active_class . '">' . $prefix . esc_html($data['name']) . '</span>';
             

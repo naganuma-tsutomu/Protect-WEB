@@ -66,19 +66,23 @@
                                                 </div>
 
                                                 <!-- カテゴリ取得 -->
-                                                <?php if ($term_data_check = get_the_taxonomy_data('blog_cat', get_the_ID())) : ?>
+                                                <?php
+                                                $blog_cat = 'blog_cat';
+                                                $blog_tag = 'blog_tag';
+                                                ?>
+                                                <?php if ($cat_term_data = get_the_taxonomy_data($blog_cat, get_the_ID())) : ?>
                                                     <div class="lead-sub__category">
                                                         <object class="lead-sub__cat-area">
-                                                            <?php the_func($term_data_check, 'blog_cat', 'lead-sub__cat-area_link', '', get_the_ID()); ?>
+                                                            <?php render_taxonomy_links($cat_term_data, $blog_cat, 'lead-sub__cat-area_link'); ?>
                                                         </object>
                                                     </div>
                                                 <?php endif; ?>
 
                                                 <!-- タグ取得 -->
-                                                <?php if ($term_data_check = get_the_taxonomy_data('blog_tag', get_the_ID())) : ?>
+                                                <?php if ($tag_term_data = get_the_taxonomy_data($blog_tag, get_the_ID())) : ?>
                                                     <div class="lead-sub__tag">
                                                         <object class="lead-sub__tag-area">
-                                                            <?php the_func($term_data_check, 'blog_tag', 'lead-sub__tag-area_link', '', get_the_ID()); ?>
+                                                            <?php render_taxonomy_links($tag_term_data, $blog_tag, 'lead-sub__tag-area_link'); ?>
                                                         </object>
                                                     </div>
                                                 <?php endif; ?>

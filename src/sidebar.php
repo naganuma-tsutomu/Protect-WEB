@@ -2,9 +2,11 @@
 ------------------------------------------------->
 <div class="sidebar">
     <?php
+    $blog_cat = 'blog_cat';
+    $blog_tag = 'blog_tag';
     // 現在選択されているカテゴリとタグのスラッグをURLパラメータから取得
-    $current_cat_slug = isset($_GET['blog_cat']) ? sanitize_text_field($_GET['blog_cat']) : '';
-    $current_tag_slug = isset($_GET['blog_tag']) ? sanitize_text_field($_GET['blog_tag']) : '';
+    $current_cat_slug = isset($_GET[$blog_cat]) ? sanitize_text_field($_GET[$blog_cat]) : '';
+    $current_tag_slug = isset($_GET[$blog_tag]) ? sanitize_text_field($_GET[$blog_tag]) : '';
     ?>
 
     <!-- 検索ボックス
@@ -15,11 +17,11 @@
 
     <!-- カテゴリ
     ------------------------------------------------->
-    <?php if ($term_data_check = get_the_taxonomy_data('blog_cat')) : ?>
+    <?php if ($cat_term_data = get_the_taxonomy_data($blog_cat)) : ?>
         <div class="category">
             <div class="category-block">
                 <ul class="category-item">
-                    <?php the_func($term_data_check, 'blog_cat', 'category-list__link', 'category-list'); ?>
+                    <?php render_taxonomy_links($cat_term_data, $blog_cat, 'category-list__link', 'category-list'); ?>
                 </ul>
             </div>
         </div>
@@ -27,11 +29,11 @@
 
     <!-- タグ
     ------------------------------------------------->
-    <?php if ($term_data_check = get_the_taxonomy_data('blog_tag')) : ?>
+    <?php if ($tag_term_data = get_the_taxonomy_data($blog_tag)) : ?>
         <div class="tag">
             <div class="tag-block">
                 <ul class="tag-item">
-                    <?php the_func($term_data_check, 'blog_tag', 'tag-list__link', 'tag-list'); ?>
+                    <?php render_taxonomy_links($tag_term_data, $blog_tag, 'tag-list__link', 'tag-list'); ?>
                 </ul>
             </div>
         </div>
@@ -88,8 +90,8 @@
                                             </div>
                                             <div class="Pickup-Posts-lead-sub__category">
                                                 <?php
-                                                // 'blog_cat' タクソノミーのタームを取得
-                                                $categories = get_the_terms(get_the_ID(), 'blog_cat');
+                                                // $blog_cat タクソノミーのタームを取得
+                                                $categories = get_the_terms(get_the_ID(), $blog_cat);
                                                 if (!empty($categories) && !is_wp_error($categories)) {
                                                     // 最初のカテゴリを表示
                                                     $category = $categories[0];
@@ -161,8 +163,8 @@
                                             </div>
                                             <div class="Pickup-Posts-lead-sub__category">
                                                 <?php
-                                                // 'blog_cat' タクソノミーのタームを取得
-                                                $categories = get_the_terms(get_the_ID(), 'blog_cat');
+                                                // $blog_cat タクソノミーのタームを取得
+                                                $categories = get_the_terms(get_the_ID(), $blog_cat);
                                                 if (!empty($categories) && !is_wp_error($categories)) {
                                                     // 最初のカテゴリを表示
                                                     $category = $categories[0];

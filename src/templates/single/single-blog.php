@@ -39,15 +39,19 @@
 
                                     <div class="lead-sub">
                                     <!-- カテゴリを出力 -->
-                                    <?php if ($term_data_check = get_the_taxonomy_data('blog_cat', get_the_ID())) : ?>
+                                    <?php 
+                                        $blog_cat = 'blog_cat';
+                                        $blog_tag = 'blog_tag';
+                                    ?>
+                                    <?php if ($cat_term_data = get_the_taxonomy_data($blog_cat, get_the_ID())) : ?>
                                         <ul class="lead__category">
-                                            <?php the_func($term_data_check ,'blog_cat','lead__category-text_link','lead__category_text', get_the_ID()); //カテゴリを出力?>
+                                            <?php render_taxonomy_links($cat_term_data ,$blog_cat,'lead__category-text_link','lead__category_text'); //カテゴリを出力?>
                                         </ul>
                                     <?php endif; ?>
                                     <!-- タグを出力 -->
-                                    <?php if ($term_data_check = get_the_taxonomy_data('blog_tag', get_the_ID())) : ?>
+                                    <?php if ($tag_term_data = get_the_taxonomy_data($blog_tag, get_the_ID())) : ?>
                                         <ul class="lead__tag">
-                                            <?php the_func($term_data_check ,'blog_tag','lead__tag-text_link','lead__tag_text',get_the_ID()); //タグを出力?>
+                                            <?php render_taxonomy_links($tag_term_data ,$blog_tag,'lead__tag-text_link','lead__tag_text'); //タグを出力?>
                                         </ul>
                                     <?php endif; ?>
                                     </div>
@@ -119,16 +123,16 @@
                                     <p class="category-sub__title">この記事のカテゴリ・タグ一覧</p>
                                     <div class="bottom">
                                         <!-- カテゴリを出力 -->
-                                        <?php if ($term_data_check = get_the_taxonomy_data('blog_cat', get_the_ID())) : ?> 
+                                        <?php if ($cat_term_data = get_the_taxonomy_data($blog_cat, get_the_ID())) : ?> 
                                             <ul class="category-list">
-                                                <?php the_func($term_data_check ,'blog_cat','category-item__link','category-item',get_the_ID()); ?>
+                                                <?php render_taxonomy_links($cat_term_data ,$blog_cat,'category-item__link','category-item'); ?>
                                             </ul>
                                         <?php endif; ?>
 
                                         <!-- タグを出力 -->
-                                        <?php if ($term_data_check = get_the_taxonomy_data('blog_tag', get_the_ID())) : ?> 
+                                        <?php if ($tag_term_data = get_the_taxonomy_data($blog_tag, get_the_ID())) : ?> 
                                             <ul class="tag-list">
-                                                <?php the_func($term_data_check ,'blog_tag','tag-item__link','tag-item',get_the_ID()); ?>
+                                                <?php render_taxonomy_links($tag_term_data ,$blog_tag,'tag-item__link','tag-item'); ?>
                                             </ul>
                                         <?php endif; ?>
 
@@ -192,7 +196,7 @@
                         <?php
                                 $related_title = '関連記事';
                                 // 現在の投稿のカテゴリー（ターム）IDを取得
-                                $terms = get_the_terms(get_the_ID(), 'blog_cat');
+                                $terms = get_the_terms(get_the_ID(), $blog_cat);
                                 $term_ids = array();
                                 if ($terms && !is_wp_error($terms)) {
                                     // タームIDの配列を効率的に取得
@@ -211,7 +215,7 @@
                                     // カテゴリがある場合はそのカテゴリで検索
                                     $args['tax_query'] = array(
                                         array(
-                                            'taxonomy' => 'blog_cat',
+                                            'taxonomy' => $blog_cat,
                                             'field'    => 'term_id',
                                             'terms'    => $term_ids,
                                         ),
@@ -258,19 +262,19 @@
                                                         </div>
 
                                                         <!-- カテゴリを出力 -->
-                                                        <?php if ($term_data_check = get_the_taxonomy_data('blog_cat', get_the_ID())) : ?>
+                                                        <?php if ($cat_term_data = get_the_taxonomy_data($blog_cat, get_the_ID())) : ?>
                                                             <div class="Related-Posts-lead-sub__category">
                                                                 <object class="Related-Posts-lead-sub__cat-area">
-                                                                    <?php the_func($term_data_check ,'blog_cat','Related-Posts-lead-sub__cat-area_link','',get_the_ID()); ?>
+                                                                    <?php render_taxonomy_links($cat_term_data ,$blog_cat,'Related-Posts-lead-sub__cat-area_link'); ?>
                                                                 </object>
                                                             </div>
                                                         <?php endif; ?>
 
                                                         <!-- タグを出力 -->
-                                                        <?php if ($term_data_check = get_the_taxonomy_data('blog_tag', get_the_ID())) : ?>
+                                                        <?php if ($tag_term_data = get_the_taxonomy_data($blog_tag, get_the_ID())) : ?>
                                                             <div class="Related-Posts-lead-sub__tag">
                                                                 <object class="Related-Posts-lead-sub__tag-area">
-                                                                    <?php the_func($term_data_check ,'blog_tag','Related-Posts-lead-sub__tag-area_link','',get_the_ID()); ?>
+                                                                    <?php render_taxonomy_links($tag_term_data ,$blog_tag,'Related-Posts-lead-sub__tag-area_link'); ?>
                                                                 </object>
                                                             </div>
                                                         <?php endif; ?>
