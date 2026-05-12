@@ -45,9 +45,9 @@ p {
     .article {
         width: 100%;
 
-        .lead {
+        .main-lead {
 
-            .lead-top {
+            .main-lead-top {
                 display: flex;
                 font-size: 14px;
             }
@@ -74,7 +74,7 @@ p {
                 }
             }
 
-            .lead-sub {
+            .main-lead-sub {
                 display: flex;
                 gap: 5px;
                 height: 25px;
@@ -146,7 +146,7 @@ p {
             }
         }
 
-        .thumbnail {
+        .main-thumbnail {
             width: 100%;
             height: auto;
             overflow: hidden;
@@ -530,7 +530,7 @@ p {
 
     // 関連記事
     ////////////////////////////////////////
-    .Related-Posts {
+    .blog-posts {
         margin-bottom: 50px;
 
         &__title {
@@ -540,107 +540,12 @@ p {
             margin-bottom: 20px;
         }
 
-        .Related-Posts-list {
+        .blog-list {
             list-style: none;
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
             font-size: 14px;
-        }
-
-        .Related-Posts-item {
-            width: 100%;
-            height: auto;
-            box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.15);
-
-            &__text {
-                display: inline-block;
-                width: 100%;
-                height: 100%;
-                padding: 20px 10px;
-                background: #fff;
-            }
-        }
-
-        .Related-Posts-item-link {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            text-decoration: none;
-            color: #000;
-        }
-
-        .Related-Posts-thumbnail {
-            display: none;
-        }
-
-        .Related-Posts-lead {
-            display: block;
-            font-size: 14px;
-            width: 100%;
-            height: auto;
-            padding: 15px 15px 15px 15px;
-            position: relative;
-
-            &__title {
-                &_text {
-                    margin: 0 0 10px 0;
-                }
-            }
-
-
-            &__main {
-                display: none;
-            }
-
-            .Related-Posts-lead-sub {
-                display: flex;
-                align-items: center;
-                font-size: 12px;
-                line-height: 15px;
-                margin: 10px 0 0 0;
-
-                &__date {
-                    color: #707070;
-                }
-
-                &__category {
-                    margin: 0 0 0 10px;
-                }
-
-                &__cat-area {
-                    display: inline-block;
-                    height: 15px;
-                    line-height: 15px;
-
-                    &_link,
-                    &_item {
-                        display: inline-block;
-                        height: 15px;
-                        margin-right: 10px;
-                        padding: 0 10px;
-                        border-radius: 20px;
-                        text-decoration: none;
-                        color: #fff;
-                    }
-
-                    &_link {
-                        background: #B6CDEF;
-                    }
-
-                    &_item {
-                        background: #1F4B8A;
-                    }
-                }
-
-                &__tag {
-                    display: none;
-                }
-
-                &__button {
-                    margin-left: 15px;
-                }
-            }
         }
     }
 }
@@ -753,174 +658,12 @@ p {
                     }
                 }
 
-
-
                 // 関連記事
                 ////////////////////////////////////////
-                .Related-Posts {
+                .blog-posts {
 
-                    .Related-Posts-list {
+                    .blog-list {
                         width: 100%;
-                    }
-
-                    .Related-Posts-item {
-                        width: 100%;
-                        height: auto;
-                        background: #1F4B8A;
-                        overflow: hidden;
-                    }
-
-                    .Related-Posts-item-link {
-                        background: #fff;
-                        transition-duration: .2s;
-
-                        &:hover {
-                            transform: translateX(5px);
-
-                            .Related-Posts-lead__main_text {
-                                color: #000;
-                            }
-                        }
-                    }
-
-                    .Related-Posts-thumbnail {
-                        display: block;
-                        width: 220px;
-                        height: 165px;
-                        margin: auto 20px;
-                        overflow: hidden;
-
-                        &__img {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                        }
-                    }
-
-                    .Related-Posts-lead {
-                        font-size: 20px;
-                        width: 65%;
-                        height: auto;
-                        padding: 0;
-                        margin: 20px 20px 20px 0;
-
-                        .Related-Posts-lead-sub {
-                            position: static;
-                            margin: 0 0 0 10px;
-
-                            &__date {
-                                position: absolute;
-                                content: "";
-                                top: 0;
-                                left: 10px;
-                                color: #707070;
-                                font-size: 12px;
-                            }
-
-                            &__category {
-                                margin: 0;
-                            }
-
-                            &__cat-area {
-                                display: inline-block;
-                                height: 25px;
-                                line-height: 25px;
-
-                                &_link {
-                                    height: 25px;
-                                    line-height: 25px;
-                                    padding: 0 15px;
-                                    transition-duration: .2s;
-
-                                    &:hover {
-                                        background: #1F4B8A;
-                                    }
-                                }
-
-                                &_item {
-                                    padding: 0 15px;
-                                    height: 25px;
-                                    line-height: 25px;
-                                }
-                            }
-
-                            &__tag {
-                                display: block;
-                                font-size: 14px;
-                            }
-
-                            &__tag-area {
-
-                                &_link,
-                                &_item {
-                                    margin-right: 10px;
-                                    text-decoration: none;
-                                    display: inline-block;
-                                }
-
-                                &_link {
-                                    color: #1F4B8A;
-                                    transition-duration: .1s;
-                                    position: relative;
-                                    line-height: 25px;
-
-                                    &:hover {
-                                        color: #B6CDEF;
-
-                                        &::after {
-                                            position: absolute;
-                                            left: 0;
-                                            bottom: 0;
-                                            content: '';
-                                            display: block;
-                                            width: 100%;
-                                            height: 1px;
-                                            background: #1F4B8A;
-                                        }
-                                    }
-                                }
-
-                                &_item {
-                                    color: #B6CDEF;
-                                    line-height: 24px;
-                                    border-bottom: 1px solid #1F4B8A;
-                                }
-                            }
-
-                            &__button {
-                                margin-left: 15px;
-                                font-size: 14px;
-                                color: #707070;
-                                line-height: 25px;
-                            }
-                        }
-
-                        &__title {
-                            margin: 30px 0 0 0;
-                            width: 100%;
-                            min-height: 25px;
-                            font-weight: bold;
-                            font-size: 16px;
-
-                            &_text {
-                                margin: 0 0 0 10px;
-                            }
-                        }
-
-                        &__main {
-                            display: block;
-                            line-height: 20px;
-                            margin: 20px 0;
-
-                            &_text {
-                                display: -webkit-box;
-                                -webkit-line-clamp: 2;
-                                -webkit-box-orient: vertical;
-                                overflow: hidden;
-                                font-size: 13px;
-                                color: #707070;
-                            }
-                        }
                     }
                 }
             }

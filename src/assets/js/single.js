@@ -5,7 +5,7 @@ $(function () {
 
     const tab = ".blog-title__button"
     const title = ".blog-title__button_link"
-    const blog = ".Pickup-Posts"
+    const blog = ".pickup-posts"
     $(tab).on('click', function () {
         // activeを消す
         $(tab).removeClass('active');
@@ -56,7 +56,7 @@ $(function () {
 
     // UI状態を更新する関数
     function updateLikeUI(postId, isLiked) {
-        $(`[data-post-id="${postId}"]`).each(function() {
+        $(`[data-post-id="${postId}"]`).each(function () {
             const $btn = $(this);
             // ページ内の全ボタンのハートを対象にする
             const $heart = $btn.find('.good__item, .lead__button_heart, .Related-Posts-lead__button_heart');
@@ -74,7 +74,7 @@ $(function () {
     likedPosts.forEach(id => updateLikeUI(id, true));
 
     // クリックイベント
-    $(document).on('click', '.js-like-button', function() {
+    $(document).on('click', '.js-like-button', function () {
         const $btn = $(this);
         const postId = $btn.data('post-id').toString();
         const nonce = $btn.data('nonce');
@@ -97,13 +97,13 @@ $(function () {
                 type: type,
                 nonce: nonce // セキュリティトークンを送信
             },
-            success: function(response) {
+            success: function (response) {
                 if (response.success) {
                     const newCount = response.data.count;
-                    
+
                     // 数値の更新（ページ内の同一IDすべて）
-                    $targetButtons.each(function() {
-                        $(this).find('.good__number, .lead__button_number, .Related-Posts-lead__button_number, .Pickup-Posts-lead__button_number').text(newCount);
+                    $targetButtons.each(function () {
+                        $(this).find('.good__number, .lead__button_number, .Related-Posts-lead__button_number, .pickup-posts-lead__button_number').text(newCount);
                     });
 
                     // UI（ハートマークとクラス）の更新
@@ -118,7 +118,7 @@ $(function () {
                     localStorage.setItem(storageKey, JSON.stringify(likedPosts));
                 }
             },
-            complete: function() {
+            complete: function () {
                 $targetButtons.css('pointer-events', 'auto');
             }
         });

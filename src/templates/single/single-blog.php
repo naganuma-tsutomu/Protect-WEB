@@ -11,20 +11,20 @@
                         <div class="box-shadow">
                             <!-- 見出し --->
                             <div class="article">
-                                <div class="lead">
-                                    <div class="lead-top">
-                                        <div class="lead__date">
-                                            <span class="lead__date_text">
+                                <div class="main-lead">
+                                    <div class="main-lead-top">
+                                        <div class="main-lead__date">
+                                            <span class="main-lead__date_text">
                                                 <?php echo get_the_date(); //投稿日を出力 ?>
                                             </span>
                                         </div>
                                         <!-- いいね数 -->
-                                        <div class="lead__button" data-post-id="<?php the_ID(); ?>">
-                                            <span class="lead__button_heart">♡</span>
-                                            <span class="lead__button_number"><?php echo get_post_like_count(get_the_ID()); ?></span>
+                                        <div class="main-lead__button" data-post-id="<?php the_ID(); ?>">
+                                            <span class="main-lead__button_heart">♡</span>
+                                            <span class="main-lead__button_number"><?php echo get_post_like_count(get_the_ID()); ?></span>
                                         </div>
                                     </div>
-                                    <div class="lead__title">
+                                    <div class="main-lead__title">
                                         <h1>
                                             <?php
                                                 // 現在の投稿のタイトルを取得
@@ -37,27 +37,27 @@
                                         </h1>
                                     </div>
 
-                                    <div class="lead-sub">
+                                    <div class="main-lead-sub">
                                     <!-- カテゴリを出力 -->
                                     <?php 
                                         $blog_cat = 'blog_cat';
                                         $blog_tag = 'blog_tag';
                                     ?>
                                     <?php if ($cat_term_data = get_the_taxonomy_data($blog_cat, get_the_ID())) : ?>
-                                        <ul class="lead__category">
-                                            <?php render_taxonomy_links($cat_term_data ,$blog_cat,'lead__category-text_link','lead__category_text'); //カテゴリを出力?>
+                                        <ul class="main-lead__category">
+                                            <?php render_taxonomy_links($cat_term_data ,$blog_cat,'main-lead__category-text_link','main-lead__category_text'); //カテゴリを出力?>
                                         </ul>
                                     <?php endif; ?>
                                     <!-- タグを出力 -->
                                     <?php if ($tag_term_data = get_the_taxonomy_data($blog_tag, get_the_ID())) : ?>
-                                        <ul class="lead__tag">
-                                            <?php render_taxonomy_links($tag_term_data ,$blog_tag,'lead__tag-text_link','lead__tag_text'); //タグを出力?>
+                                        <ul class="main-lead__tag">
+                                            <?php render_taxonomy_links($tag_term_data ,$blog_tag,'main-lead__tag-text_link','main-lead__tag_text'); //タグを出力?>
                                         </ul>
                                     <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="thumbnail">
-                                    <?php echo get_the_post_image(get_the_ID(), 'thumbnail__img', false); ?>
+                                <div class="main-thumbnail">
+                                    <?php echo get_the_post_image(get_the_ID(), 'main-thumbnail__img', false); ?>
                                 </div>
                             </div>
                             <!-- 記事 --->
@@ -235,65 +235,21 @@
                                 }
                         ?>
 
-                        <div class="Related-Posts">
-                            <div class="Related-Posts__title"><?php echo esc_html($related_title); ?></div>
-                            <ul class="Related-Posts-list">
+                        <div class="blog-posts">
+                            <div class="blog-posts__title"><?php echo esc_html($related_title); ?></div>
+                            <ul class="blog-list">
                                 <?php
                                 if ($related_query->have_posts()) :
                                     while ($related_query->have_posts()) : $related_query->the_post();
                                 ?>
-                                        <li class="Related-Posts-item">
-                                            <a class="Related-Posts-item-link" href="<?php the_permalink(); ?>">
-                                                <div class="Related-Posts-thumbnail">
-                                                    <?php echo get_the_post_image(get_the_ID(), 'Related-Posts-thumbnail__img'); ?>
-                                                </div>
-                                                <div class="Related-Posts-lead">
-                                                    <div class="Related-Posts-lead__title">
-                                                        <p class="Related-Posts-lead__title_text"><?php the_title(); ?></p>
-                                                    </div>
-                                                    <div class="Related-Posts-lead__main">
-                                                        <p class="Related-Posts-lead__main_text">
-                                                            <?php echo get_the_excerpt(); ?>
-                                                        </p>
-                                                    </div>
-                                                    <div class="Related-Posts-lead-sub">
-                                                        <div class="Related-Posts-lead-sub__date">
-                                                            <span class="Related-Posts-lead-sub__date-text"><?php echo get_the_date(); ?></span>
-                                                        </div>
-
-                                                        <!-- カテゴリを出力 -->
-                                                        <?php if ($cat_term_data = get_the_taxonomy_data($blog_cat, get_the_ID())) : ?>
-                                                            <div class="Related-Posts-lead-sub__category">
-                                                                <object class="Related-Posts-lead-sub__cat-area">
-                                                                    <?php render_taxonomy_links($cat_term_data ,$blog_cat,'Related-Posts-lead-sub__cat-area_link'); ?>
-                                                                </object>
-                                                            </div>
-                                                        <?php endif; ?>
-
-                                                        <!-- タグを出力 -->
-                                                        <?php if ($tag_term_data = get_the_taxonomy_data($blog_tag, get_the_ID())) : ?>
-                                                            <div class="Related-Posts-lead-sub__tag">
-                                                                <object class="Related-Posts-lead-sub__tag-area">
-                                                                    <?php render_taxonomy_links($tag_term_data ,$blog_tag,'Related-Posts-lead-sub__tag-area_link'); ?>
-                                                                </object>
-                                                            </div>
-                                                        <?php endif; ?>
-                                                        
-                                                        <button class="Related-Posts-lead-sub__button js-like-button" data-post-id="<?php the_ID(); ?>" data-nonce="<?php echo wp_create_nonce('like_nonce'); ?>" style="pointer-events: none;">
-                                                            <span class="Related-Posts-lead-sub__button-heart Related-Posts-lead__button_heart--icon">♡</span>
-                                                            <span class="Related-Posts-lead-sub__button-heart_number"><?php echo get_post_like_count(get_the_ID()); ?></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
+                                <?php get_template_part('templates/parts/content-blog-card'); //関数で記事カードを出力する?>
                                 <?php
                                     endwhile;
                                     wp_reset_postdata();
                                 else :
                                 ?>
-                                    <li class="Related-Posts-item">
-                                        <span class="Related-Posts-item__text">現在表示できる記事はありません。</span>
+                                    <li class="blog-list__item">
+                                        <span class="blog-list__item_text">現在表示できる記事はありません。</span>
                                     </li>
                                 <?php
                                 endif;
