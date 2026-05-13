@@ -186,14 +186,14 @@
             }
         }
 
-        .Pickup-Posts {
+        .pickup-posts {
             display: none;
             width: 100%;
             padding: 10px 0 0;
             background-color: #fff;
             margin-bottom: 60px;
 
-            .Pickup-Posts-list {
+            .pickup-posts-list {
                 list-style: none;
                 display: flex;
                 flex-wrap: wrap;
@@ -204,7 +204,7 @@
                 margin: 20px 0;
             }
 
-            .Pickup-Posts-item {
+            .pickup-posts-item {
                 width: 95%;
                 height: auto;
             }
@@ -213,7 +213,7 @@
                 margin: 10px 0;
             }
 
-            .Pickup-Posts-item-link {
+            .pickup-posts-item-link {
                 display: flex;
                 width: 100%;
                 height: 100%;
@@ -221,7 +221,7 @@
                 color: #000;
             }
 
-            .Pickup-Posts-lead {
+            .pickup-posts-lead {
                 display: block;
                 font-size: 14px;
                 width: 100%;
@@ -239,7 +239,7 @@
                     }
                 }
 
-                .Pickup-Posts-lead-sub {
+                .pickup-posts-lead-sub {
                     display: flex;
                     align-items: center;
                     font-size: 12px;
@@ -275,7 +275,7 @@
                 }
 
                 &:hover {
-                    .Pickup-Posts-lead__title {
+                    .pickup-posts-lead__title {
                         color: #1F4B8A;
                         opacity: .8;
                     }
@@ -362,14 +362,14 @@
         .pickup {
             width: 260px;
 
-            .Pickup-Posts {
+            .pickup-posts {
                 padding: 5px 0 0;
 
-                .Pickup-Posts-list {
+                .pickup-posts-list {
                     gap: 10px;
                 }
 
-                .Pickup-Posts-lead {
+                .pickup-posts-lead {
                     padding: 10px;
 
                     &__category {
@@ -380,7 +380,7 @@
                         margin-left: 5px;
                     }
 
-                    .Pickup-Posts-lead-sub {
+                    .pickup-posts-lead-sub {
                         font-size: 10px;
                     }
                 }

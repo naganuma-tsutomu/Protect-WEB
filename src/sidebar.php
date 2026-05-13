@@ -53,8 +53,8 @@
 
             <!-- 新着記事一覧
             ------------------------------------------------->   
-            <div class="Pickup-Posts active">
-                <ul class="Pickup-Posts-list">
+            <div class="pickup-posts active">
+                <ul class="pickup-posts-list">
 
                     <?php
                     // get_postsに渡すパラメータを設定
@@ -70,51 +70,16 @@
                     <?php if ($new_posts): ?>
                         <?php foreach ($new_posts as $key => $post): setup_postdata($post); ?>
                             <?php
-                            // 6件目以降（インデックス5以上）は初期状態で非表示にするクラスとスタイルを付与
-                            $hidden_class = ($key >= 5) ? ' is-hidden-new' : '';
-                            $hidden_style = ($key >= 5) ? ' style="display:none;"' : '';
+                            // ピックアップ記事を出力
+                            get_template_part('templates/parts/pickup-posts', null, array(
+                                'key' => $key,
+                                'type' => 'new', //新着記事
+                            ));
                             ?>
-                            <li class="Pickup-Posts-item<?php echo $hidden_class; ?>"<?php echo $hidden_style; ?>>
-                                <a class="Pickup-Posts-item-link" href="<?php echo esc_url(get_permalink()); ?>" >
-                                    <div class="Pickup-Posts-lead">                        
-                                        <div class="Pickup-Posts-lead__title">
-                                            <div class="Pickup-Posts-lead__title_text">
-                                            <?php the_title();  //タイトルを出力 ?>
-                                            </div>
-                                        </div>
-                                        <div class="Pickup-Posts-lead-sub">                        
-                                            <div class="Pickup-Posts-lead-sub__date">
-                                                <span class="Pickup-Posts-lead-sub__date_text">
-                                                    <?php echo get_the_date(); //投稿日を出力 ?>
-                                                </span>
-                                            </div>
-                                            <div class="Pickup-Posts-lead-sub__category">
-                                                <?php
-                                                // $blog_cat タクソノミーのタームを取得
-                                                $categories = get_the_terms(get_the_ID(), $blog_cat);
-                                                if (!empty($categories) && !is_wp_error($categories)) {
-                                                    // 最初のカテゴリを表示
-                                                    $category = $categories[0];
-                                                ?>
-                                                <object class="Pickup-Posts-lead-sub__category-item">
-                                                        <span class="Pickup-Posts-lead-sub__category-item_text">
-                                                            <?php echo esc_html($category->name); ?>
-                                                        </span>
-                                                </object>
-                                                <?php } ?>
-                                            </div>
-                                            <div class="Pickup-Posts-lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
-                                                <span class="Pickup-Posts-lead-sub__button-heart">♡</span>
-                                                <span class="Pickup-Posts-lead-sub__button-heart_number"><?php echo get_post_like_count(get_the_ID()); ?></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
                         <?php endforeach; ?>
                         <?php wp_reset_postdata(); // 投稿データをリセット ?>
                     <?php else: ?>
-                        <li class="Pickup-Posts-item empty">新着記事はありません。</li>
+                        <li class="pickup-posts-item empty">新着記事はありません。</li>
                     <?php endif; ?>
                 </ul>
                 <?php if (count($new_posts) > 5) : ?>
@@ -125,8 +90,8 @@
 
             <!-- 人気記事一覧
             ------------------------------------------------->
-            <div class="Pickup-Posts">
-                <ul class="Pickup-Posts-list">
+            <div class="pickup-posts">
+                <ul class="pickup-posts-list">
 
                     <?php
                     // get_postsに渡すパラメータを設定
@@ -143,51 +108,17 @@
                     <?php if ($popular_posts): ?>
                         <?php foreach ($popular_posts as $key => $post): setup_postdata($post); ?>
                             <?php
-                            // 6件目以降は初期状態で非表示
-                            $hidden_class = ($key >= 5) ? ' is-hidden-popular' : '';
-                            $hidden_style = ($key >= 5) ? ' style="display:none;"' : '';
+                            // ピックアップ記事を出力
+                            get_template_part('templates/parts/pickup-posts', null, array(
+                                'key' => $key,
+                                'type' => 'popular',//人気記事
+                            ));
                             ?>
-                            <li class="Pickup-Posts-item<?php echo $hidden_class; ?>"<?php echo $hidden_style; ?>>
-                                <a class="Pickup-Posts-item-link" href="<?php echo esc_url(get_permalink()); ?>" >
-                                    <div class="Pickup-Posts-lead">                        
-                                        <div class="Pickup-Posts-lead__title">
-                                            <div class="Pickup-Posts-lead__title_text">
-                                            <?php the_title();  //タイトルを出力 ?>
-                                            </div>
-                                        </div>
-                                        <div class="Pickup-Posts-lead-sub">                        
-                                            <div class="Pickup-Posts-lead-sub__date">
-                                                <span class="Pickup-Posts-lead-sub__date_text">
-                                                    <?php echo get_the_date(); //投稿日を出力 ?>
-                                                </span>
-                                            </div>
-                                            <div class="Pickup-Posts-lead-sub__category">
-                                                <?php
-                                                // $blog_cat タクソノミーのタームを取得
-                                                $categories = get_the_terms(get_the_ID(), $blog_cat);
-                                                if (!empty($categories) && !is_wp_error($categories)) {
-                                                    // 最初のカテゴリを表示
-                                                    $category = $categories[0];
-                                                ?>
-                                                <object class="Pickup-Posts-lead-sub__category-item">
-                                                    <span class="Pickup-Posts-lead-sub__category-item_text">
-                                                        <?php echo esc_html($category->name); ?>
-                                                    </span>
-                                                </object>
-                                                <?php } ?>
-                                            </div>
-                                            <div class="Pickup-Posts-lead-sub__button" data-post-id="<?php the_ID(); ?>" style="pointer-events: none;">
-                                                <span class="Pickup-Posts-lead-sub__button-heart">♡</span>
-                                                <span class="Pickup-Posts-lead-sub__button-heart_number"><?php echo get_post_like_count(get_the_ID()); ?></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
+
                         <?php endforeach; ?>
                         <?php wp_reset_postdata(); //投稿データをリセット ?>
                         <?php else: ?>
-                            <li class="Pickup-Posts-item empty">人気記事はありません。</li>
+                            <li class="pickup-posts-item empty">人気記事はありません。</li>
                         <?php endif; ?>
                 </ul>
                 <?php if (count($popular_posts) > 5) : ?>
