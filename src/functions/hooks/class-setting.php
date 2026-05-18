@@ -5,8 +5,7 @@ namespace hooks;
 use hooks\setting\{
     Create_Post_Type,
     Create_Page,
-    Create_Taxonomy_Main_Cat,
-    Create_Taxonomy_Blog_Cat,
+    Create_Taxonomies,
     Redirect,
 };
 
@@ -18,8 +17,7 @@ class Setting
     private const HANDLERS = [
         Create_Post_Type::class,
         Create_Page::class,
-        Create_Taxonomy_Main_Cat::class,
-        Create_Taxonomy_Blog_Cat::class,
+        Create_Taxonomies::class,
         Redirect::class,
     ];
 
