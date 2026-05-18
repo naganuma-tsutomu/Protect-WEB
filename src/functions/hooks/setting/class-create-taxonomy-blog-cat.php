@@ -6,9 +6,9 @@ use hooks\Hook_Interface;
 use hooks\setting\Create_Taxonomy;
 
 /**
- * 固定ページカテゴリの作成
+ * ブログカテゴリの作成
  */
-class Create_Taxonomy_Main_Cat extends Create_Taxonomy implements Hook_Interface
+class Create_Taxonomy_Blog_Cat extends Create_Taxonomy implements Hook_Interface
 {
     /**
      * カテゴリの自動生成
@@ -17,9 +17,9 @@ class Create_Taxonomy_Main_Cat extends Create_Taxonomy implements Hook_Interface
      */
     public function __construct()
     {
-        $this->cat_slug = 'main_cat';
+        $this->cat_slug = 'blog_cat';
         $this->object_type = 'blog';
-        $this->label = 'メインカテゴリ';
+        $this->label = 'ブログカテゴリ';
         $this->showColumn = true;
         $this->terms = $this->createTerms();
     }

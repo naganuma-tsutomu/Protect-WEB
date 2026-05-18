@@ -2,10 +2,12 @@
 
 namespace hooks\setting;
 
+use hooks\Hook_Interface;
+
 /**
  * カスタム投稿タイプ作成
  */
-class Create_Post_Type
+class Create_Post_Type implements Hook_Interface
 {
     private const POST_TYPES = [
         'works' => '制作実績',
@@ -57,7 +59,7 @@ class Create_Post_Type
      *
      * @return void
      */
-    public function addAction()
+    public function addAction(): void
     {
         add_action(
             'init',

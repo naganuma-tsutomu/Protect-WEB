@@ -6,6 +6,7 @@ use hooks\setting\{
     Create_Post_Type,
     Create_Page,
     Create_Taxonomy_Main_Cat,
+    Create_Taxonomy_Blog_Cat,
     Redirect,
 };
 
@@ -14,33 +15,31 @@ use hooks\setting\{
  */
 class Setting
 {
+    private const HANDLERS = [
+        Create_Post_Type::class,
+        Create_Page::class,
+        Create_Taxonomy_Main_Cat::class,
+        Create_Taxonomy_Blog_Cat::class,
+        Redirect::class,
+    ];
 
-    private object $Create_Post_Type;
-    private object $Create_Page;
-    private object $Create_Taxonomy_Main_Cat;
-    private object $Redirect;
+    /** @var Hook_Interface[] */
+    private array $instances = [];
 
-    /**
-     * インスタンスの作成
-     */
     public function __construct()
     {
-        $this->Create_Post_Type = new Create_Post_Type();
-        $this->Create_Page = new Create_Page();
-        $this->Create_Taxonomy_Main_Cat = new Create_Taxonomy_Main_Cat();
-        $this->Redirect = new Redirect();
+        foreach (self::HANDLERS as $class) {
+            $this->instances[] = new $class();
+        }
     }
 
     /**
      * アクションの発火
-     *
-     * @return void
      */
-    public function init()
+    public function init(): void
     {
-        $this->Create_Post_Type->addAction();
-        $this->Create_Page->addAction();
-        // $this->Create_Taxonomy_Main_Cat->addAction();
-        $this->Redirect->addAction();
+        foreach ($this->instances as $instance) {
+            $instance->addAction();
+        }
     }
 }

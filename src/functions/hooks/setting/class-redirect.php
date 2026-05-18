@@ -2,9 +2,11 @@
 
 namespace hooks\setting;
 
-class Redirect
+use hooks\Hook_Interface;
+
+class Redirect implements Hook_Interface
 {
-    public function addAction()
+    public function addAction(): void
     {
         add_action('template_redirect', array($this, 'contact_redirect_step_1'));
         add_action('template_redirect', array($this, 'order_redirect_step_1'));

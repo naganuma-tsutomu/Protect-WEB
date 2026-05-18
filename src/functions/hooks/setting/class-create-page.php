@@ -2,10 +2,12 @@
 
 namespace hooks\setting;
 
+use hooks\Hook_Interface;
+
 /**
  * 固定ページの自動生成
  */
-class Create_Page
+class Create_Page implements Hook_Interface
 {
     // 作成したい固定ページのタイトル名・スラッグを入れる。
     private const PAGES = array(
@@ -19,7 +21,7 @@ class Create_Page
      *
      * @return void
      */
-    public function addAction()
+    public function addAction(): void
     {
         add_action('after_switch_theme', array($this, 'createAllPages'));
     }
