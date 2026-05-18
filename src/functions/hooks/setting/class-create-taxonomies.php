@@ -107,6 +107,11 @@ class Create_Taxonomies implements Hook_Interface
                 'show_in_rest' => true, // REST_API用
                 'show_admin_column' => $tax['showColumn'] ?? false, // 一覧画面にカラム
                 'hierarchical' => $tax['hierarchical'] ?? true, // 階層
+                // パーマリンク設定の prefix(/archives/ 等) を付けず /{slug}/xxx で出力する
+                'rewrite' => [
+                    'slug' => $slug,
+                    'with_front' => false,
+                ],
             ]
         );
     }
