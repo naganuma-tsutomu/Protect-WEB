@@ -2,18 +2,49 @@
 
 namespace hooks\setting;
 
-/**
- * カテゴリの自動生成
- */
+use hooks\Hook_Interface;
 
-class Create_Taxonomy
+/**
+ * カテゴリの自動生成（基底クラス）
+ *
+ * サブクラスは parent::__construct() で設定値を渡す。
+ * 直接インスタンス化はできない（abstract）。
+ */
+abstract class Create_Taxonomy implements Hook_Interface
 {
-    public string $cat_slug; // カテゴリのスラッグ
-    public $object_type; // カテゴリを紐づけるページスラッグ
-    public string $label; // 管理画面に表示するラベル
-    public bool $showColumn = false; // 一覧画面にカラムを表示するか
-    public bool $hierarchical = true; // 階層を持たせるか
-    public array|null $terms = null; // 作成するターム配列
+    /**
+     * コンストラクタ
+     *
+     * @param string     $cat_slug     カテゴリのスラッグ
+     * @param string     $object_type  カテゴリを紐づけるページスラッグ
+     * @param string     $label        管理画面に表示するラベル
+     * @param bool       $showColumn   一覧画面にカラムを表示するか
+     * @param bool       $hierarchical 階層を持たせるか
+     * @param array|null $terms        作成するターム配列（nameがラベル、argsがwp_insert_termで使用する付加情報。parentはスラッグで指定可能）
+     * @link https://elearn.jp/wpman/function/wp_insert_term.html
+     */
+    public function __construct(
+        protected string $cat_slug,
+        protected string $object_type,
+        protected string $label,
+        protected bool $showColumn = false,
+        protected bool $hierarchical = true,
+        protected ?array $terms = null,
+    ) {}
+
+    /**
+     * アクションフックの設定
+     *
+     * カテゴリ追加関数。init でタクソノミー登録し、
+     * 登録完了時にタームを作成するフックも合わせて設定する。
+     *
+     * @return void
+     */
+    public function addAction(): void
+    {
+        add_action('init', [$this, 'addTaxonomyCategory']); // カテゴリの作成
+        add_action("registered_taxonomy_{$this->cat_slug}", [$this, 'addTerms']); // カテゴリが作成されたときにタームの作成
+    }
 
     /**
      * カテゴリの追加
@@ -22,17 +53,17 @@ class Create_Taxonomy
      *
      * @return void
      */
-    public function addTaxonomyCategory()
+    public function addTaxonomyCategory(): void
     {
         register_taxonomy(
             $this->cat_slug, // カテゴリのスラッグ
             $this->object_type, // カテゴリを紐づけるページ
-            array(
+            [
                 'label' => $this->label, // ラベル
                 'show_in_rest' => true, // REST_API用
                 'show_admin_column' => $this->showColumn, // 一覧画面にカラム
                 'hierarchical' => $this->hierarchical, // 階層
-            )
+            ]
         );
     }
 
@@ -41,7 +72,7 @@ class Create_Taxonomy
      *
      * @return void
      */
-    public function addTerms()
+    public function addTerms(): void
     {
         if (empty($this->terms)) return; // 作成するタームが無い場合処理中止
         foreach ($this->terms as $term) {
@@ -55,29 +86,18 @@ class Create_Taxonomy
     /**
      * 親のタームの設定
      *
-     * @param array $termData
-     * @return void
+     * @param  array $termData
+     * @return array
      */
-    private function searchParentId($termData)
+    private function searchParentId(array $termData): array
     {
         if (array_key_exists('parent', $termData['args'])) { // parentのキーが存在すれば
             $parent = $termData['args']['parent'];
-            if(!empty($parent)){ // 空でないとき
+            if (!empty($parent)) { // 空でないとき
                 $term = get_term_by('slug', $parent, $this->cat_slug); // 親タームのオブジェクトの取得
                 $termData['args']['parent'] = $term->term_id; // 元配列のparentキーの値をIDに変更
             }
         }
         return $termData;
-    }
-
-    /**
-     * カテゴリー追加関数
-     *
-     * @return void
-     */
-    public function addCategory()
-    {
-        add_action('init', array($this, 'addTaxonomyCategory')); // カテゴリの作成
-        add_action("registered_taxonomy_{$this->cat_slug}", array($this, 'addTerms')); // カテゴリが作成されたときにタームの作成
     }
 }
