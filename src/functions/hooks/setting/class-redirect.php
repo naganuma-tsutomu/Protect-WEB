@@ -2,26 +2,24 @@
 
 namespace hooks\setting;
 
-class Redirect
+use hooks\Hook_Interface;
+
+class Redirect implements Hook_Interface
 {
-    public function addAction()
+    private const REDIRECT_PAGES = ['contact', 'order'];
+
+    public function addAction(): void
     {
-        add_action('template_redirect', array($this, 'contact_redirect_step_1'));
-        add_action('template_redirect', array($this, 'order_redirect_step_1'));
+        add_action('template_redirect', [$this, 'redirectToStep1']);
     }
 
-    public function contact_redirect_step_1()
+    public function redirectToStep1(): void
     {
-        if (is_page('contact') && !isset($_GET['step'])) {
-            wp_redirect(home_url('/contact/?step=1'));
-            exit();
-        }
-    }
-    public function order_redirect_step_1()
-    {
-        if (is_page('order') && !isset($_GET['step'])) {
-            wp_redirect(home_url('/order/?step=1'));
-            exit();
+        foreach (self::REDIRECT_PAGES as $slug) {
+            if (is_page($slug) && !isset($_GET['step'])) {
+                wp_redirect(home_url("/{$slug}/?step=1"));
+                exit();
+            }
         }
     }
 }

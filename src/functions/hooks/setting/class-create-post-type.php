@@ -2,13 +2,16 @@
 
 namespace hooks\setting;
 
+use hooks\Hook_Interface;
+
 /**
  * カスタム投稿タイプ作成
  */
-class Create_Post_Type
+class Create_Post_Type implements Hook_Interface
 {
     private const POST_TYPES = [
         'works' => '制作実績',
+        'blog' => 'ブログ・記事',
     ];
 
     /**
@@ -16,12 +19,12 @@ class Create_Post_Type
      *
      * @return void
      */
-    public function createPostType()
+    public function createPostType(): void
     {
         foreach (self::POST_TYPES as $key => $post_type) {
             register_post_type(
                 $key,
-                self::getPostTypeDefinition($post_type)
+                $this->getPostTypeDefinition($post_type)
             );
         }
     }
@@ -30,15 +33,15 @@ class Create_Post_Type
      * カスタム投稿タイプ設定
      *
      * @param  string $label
-     * @return void
+     * @return array
      */
-    private function getPostTypeDefinition($label)
+    private function getPostTypeDefinition(string $label): array
     {
-        return (array(
+        return [
             'label' => $label,
             'public' => true,
             'has_archive' => true,
-            'hierarchicla' => true,
+            'hierarchical' => true,
             'menu_position' => 10,
             'show_in_rest' => true,
             'supports' => [
@@ -48,15 +51,15 @@ class Create_Post_Type
                 'revisions',
                 'custom-fields',
                 'excerpt',
-            ]
-        ));
+            ],
+        ];
     }
     /**
      * アクションフックの設定
      *
      * @return void
      */
-    public function addAction()
+    public function addAction(): void
     {
         add_action(
             'init',

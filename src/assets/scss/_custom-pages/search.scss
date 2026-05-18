@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+
+
+// 記事一覧
+////////////////////////////////////////
+.article {
+
+    // search.phpでのみ使用される（「○○」の検索結果）
+    .search-result {
+        font-size: 22px;
+        font-weight: bold;
+        color: #1F4B8A;
+        margin: 0 0 30px;
+    }
+
+    .search-no-result {
+        &__text {
+            font-size: 18px;
+            color: #1F4B8A;
+            line-height: 25px;
+        }
+    }
+
+    .category-list {
+        &__item {
+            display: inline-block;
+            height: 15px;
+            line-height: 15px;
+            margin-left: 10px;
+            padding: 0 10px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #fff;
+            background: #1F4B8A;
+        }
+    }
+}
+
+// PC(1025px)
+//////////////////////////////////////////////////
+@media(min-width:1025px) {
+    .article {
+
+        .category-list {
+            &__item {
+                height: 25px;
+                line-height: 25px;
+                padding: 0 15px;
+            }
+        }
+
+        .tag-list {
+
+            &__item {
+                margin-left: 10px;
+                font-size: 14px;
+                display: inline-block;
+                text-decoration: none;
+                color: #B6CDEF;
+                line-height: 24px;
+                border-bottom: 1px solid #1F4B8A
+            }
+        }
+    }
+}
