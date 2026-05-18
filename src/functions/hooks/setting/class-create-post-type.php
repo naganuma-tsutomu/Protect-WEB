@@ -24,7 +24,7 @@ class Create_Post_Type implements Hook_Interface
         foreach (self::POST_TYPES as $key => $post_type) {
             register_post_type(
                 $key,
-                self::getPostTypeDefinition($post_type)
+                $this->getPostTypeDefinition($post_type)
             );
         }
     }
@@ -41,7 +41,7 @@ class Create_Post_Type implements Hook_Interface
             'label' => $label,
             'public' => true,
             'has_archive' => true,
-            'hierarchicla' => true,
+            'hierarchical' => true,
             'menu_position' => 10,
             'show_in_rest' => true,
             'supports' => [

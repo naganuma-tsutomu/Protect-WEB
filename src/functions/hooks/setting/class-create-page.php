@@ -79,25 +79,9 @@ class Create_Page implements Hook_Interface
         return $page;
     }
 
-    /**
-     * 記事内容判別
-     *
-     * @param  array $page
-     * @return void
-     */
-    private function setContent($page)
-    {
-        if (empty($page['content'])) {
-            $page['content'] = '';
-        }
-        return $page;
-    }
-
     private function setPage($page)
     {
-        $page = $this->setParent($page);
-        $page = $this->setContent($page);
-        return $page;
+        return $this->setParent($page);
     }
 
     /**
