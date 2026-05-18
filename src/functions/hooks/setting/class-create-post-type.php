@@ -19,7 +19,7 @@ class Create_Post_Type implements Hook_Interface
      *
      * @return void
      */
-    public function createPostType()
+    public function createPostType(): void
     {
         foreach (self::POST_TYPES as $key => $post_type) {
             register_post_type(
@@ -33,11 +33,11 @@ class Create_Post_Type implements Hook_Interface
      * カスタム投稿タイプ設定
      *
      * @param  string $label
-     * @return void
+     * @return array
      */
-    private function getPostTypeDefinition($label)
+    private function getPostTypeDefinition(string $label): array
     {
-        return (array(
+        return [
             'label' => $label,
             'public' => true,
             'has_archive' => true,
@@ -51,8 +51,8 @@ class Create_Post_Type implements Hook_Interface
                 'revisions',
                 'custom-fields',
                 'excerpt',
-            ]
-        ));
+            ],
+        ];
     }
     /**
      * アクションフックの設定

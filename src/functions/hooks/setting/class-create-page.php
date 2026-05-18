@@ -29,10 +29,10 @@ class Create_Page implements Hook_Interface
     /**
      * 固定ページ設定の作成
      *
-     * @param array $page
+     * @param  array $page
      * @return void
      */
-    private function createPage($page)
+    private function createPage(array $page): void
     {
         if (empty(get_page_by_path($page['slug']))) {
             //固定ページがなければ作成
@@ -62,10 +62,10 @@ class Create_Page implements Hook_Interface
     /**
      * 親ページの設定
      *
-     * @param array $page
-     * @return void
+     * @param  array $page
+     * @return array
      */
-    private function setParent($page)
+    private function setParent(array $page): array
     {
         // 親ページ判別
         if (empty($page['parent'])) {
@@ -79,7 +79,13 @@ class Create_Page implements Hook_Interface
         return $page;
     }
 
-    private function setPage($page)
+    /**
+     * 固定ページ用の値を整形
+     *
+     * @param  array $page
+     * @return array
+     */
+    private function setPage(array $page): array
     {
         return $this->setParent($page);
     }
@@ -89,7 +95,7 @@ class Create_Page implements Hook_Interface
      *
      * @return void
      */
-    public function createAllPages()
+    public function createAllPages(): void
     {
         foreach (self::PAGES as $value) {
             $value = $this->setPage($value); // 親ページの設定
