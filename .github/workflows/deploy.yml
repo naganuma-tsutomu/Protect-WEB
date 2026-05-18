@@ -25,12 +25,13 @@ jobs:
           npm install
           npm run pro
 
-      - name: Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      # ▼ ここから下を SFTP 用のアクションに変更 ▼
+      - name: SFTP Deploy
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_REMOTE_ROOT }}
-          # dangerous-clean-slate: true
+          port: 22
+          local_path: './dist/*'
+          remote_path: ${{ secrets.FTP_REMOTE_ROOT }}
