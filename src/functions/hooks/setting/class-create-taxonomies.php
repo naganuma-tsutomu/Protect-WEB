@@ -27,24 +27,40 @@ class Create_Taxonomies implements Hook_Interface
      * @link https://elearn.jp/wpman/function/wp_insert_term.html
      */
     private const TAXONOMIES = [
-        'main_cat' => [
-            'object_type' => 'blog',
-            'label' => 'メインカテゴリ',
-            'showColumn' => true,
-            'hierarchical' => true,
-            'terms' => [
-                ['name' => 'お知らせ', 'args' => ['slug' => 'regular-news']],
-                ['name' => '更新', 'args' => ['slug' => 'update']],
-            ],
-        ],
         'blog_cat' => [
             'object_type' => 'blog',
             'label' => 'ブログカテゴリ',
             'showColumn' => true,
             'hierarchical' => true,
             'terms' => [
-                ['name' => 'お知らせ', 'args' => ['slug' => 'regular-news']],
+                ['name' => 'wordpress', 'args' => ['slug' => 'wordpress']],
+                ['name' => 'php', 'args' => ['slug' => 'php']],
+                ['name' => 'mysql', 'args' => ['slug' => 'mysql']],
+                ['name' => 'javascript', 'args' => ['slug' => 'javascript']],
+                ['name' => 'typescript', 'args' => ['slug' => 'typescript']],
+                ['name' => 'laravel', 'args' => ['slug' => 'laravel']],
+                ['name' => 'vue', 'args' => ['slug' => 'vue']],
+                ['name' => 'react', 'args' => ['slug' => 'react']],
+                ['name' => 'docker', 'args' => ['slug' => 'docker']],
+                ['name' => 'git', 'args' => ['slug' => 'git']],
+                ['name' => 'aws', 'args' => ['slug' => 'aws']],
+                ['name' => 'linux', 'args' => ['slug' => 'linux']],
+            ],
+        ],
+        'blog_tag' => [
+            'object_type' => 'blog',
+            'label' => 'メインタグ',
+            'showColumn' => true,
+            'hierarchical' => true,
+            'terms' => [
+                ['name' => 'バックアップ', 'args' => ['slug' => 'backup']],
                 ['name' => '更新', 'args' => ['slug' => 'update']],
+                ['name' => 'チュートリアル', 'args' => ['slug' => 'tutorial']],
+                ['name' => 'Tips', 'args' => ['slug' => 'tips']],
+                ['name' => 'トラブルシューティング', 'args' => ['slug' => 'troubleshooting']],
+                ['name' => 'カスタム投稿タイプ', 'args' => ['slug' => 'custom-post-type']],
+                ['name' => 'REST API', 'args' => ['slug' => 'rest-api']],
+                ['name' => 'フック', 'args' => ['slug' => 'hooks']],
             ],
         ],
     ];
