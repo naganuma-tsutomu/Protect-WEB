@@ -176,6 +176,7 @@ p {
                 display: flex;
                 align-items: center;
                 height: 22px;
+                margin: 15px 0 0 0;
 
                 &_text {
                     font-size: 22px;
@@ -197,7 +198,7 @@ p {
                 font-size: 17px;
 
                 .index-list {
-                    padding: 15px 0 15px 5px;
+                    margin: 15px 0 15px 5px;
                 }
 
                 .index-item {
