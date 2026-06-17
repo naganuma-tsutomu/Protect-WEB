@@ -15,5 +15,7 @@ ps:
 	docker compose ps
 logs:
 	docker compose logs
+phpmyadmin:
+	docker compose --profile debug up -d phpmyadmin
 npm:
 	npm i

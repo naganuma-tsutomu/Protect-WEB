@@ -42,7 +42,7 @@ class Create_Post_Type implements Hook_Interface
             'label' => $label,
             'public' => true,
             'has_archive' => true,
-            'hierarchical' => true,
+            'hierarchical' => false,
             'menu_position' => 10,
             'show_in_rest' => true,
             // パーマリンク設定の prefix(/archives/ 等) を付けず /{slug}/xxx で出力する
