@@ -8,7 +8,7 @@ if (!is_front_page()) : ?>
     <?php endif; ?>
 
     <?php if (is_search()) : ?><?php /* 検索結果ページ */ ?>
-        <li class="breadcrumbs__list"><a href="<?php echo esc_url(home_url('/archives/blog/')); ?>">ブログ・記事</a></li>
+        <li class="breadcrumbs__list"><a href="<?php echo esc_url(home_url('/blog/')); ?>">ブログ・記事</a></li>
         <?php
         $cat_slug = isset($_GET['blog_cat']) ? sanitize_text_field($_GET['blog_cat']) : '';
         $tag_slug = isset($_GET['blog_tag']) ? sanitize_text_field($_GET['blog_tag']) : '';

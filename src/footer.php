@@ -56,7 +56,7 @@
                         <div class="menu_service"><a href="<?php echo esc_url(home_url()); ?>#service">SERVICE</a></div>
                         <?php // 各項目のスラッグが現在のページと一致する場合に 'is-active' クラスを付与 ?>
                         <div class="menu_plan <?php echo ($current_slug === 'plan') ? 'is-active' : ''; ?>"><a href="<?php echo esc_url(home_url('/plan/')); ?>">PLAN</a></div>
-                        <div class="menu_blog <?php echo ($current_slug === 'blog') ? 'is-active' : ''; ?>"><a href="<?php echo esc_url(home_url('/archives/blog/')); ?>">BLOG</a></div>
+                        <div class="menu_blog <?php echo ($current_slug === 'blog') ? 'is-active' : ''; ?>"><a href="<?php echo esc_url(home_url('/blog/')); ?>">BLOG</a></div>
                         <div class="menu_order <?php echo ($current_slug === 'order') ? 'is-active' : ''; ?>"><a href="<?php echo esc_url(home_url('/order/')); ?>">ORDER</a></div>
                         <div class="menu_contact <?php echo ($current_slug === 'contact') ? 'is-active' : ''; ?>"><a href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT</a></div>
                     </div>

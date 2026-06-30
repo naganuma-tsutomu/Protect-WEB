@@ -2,10 +2,12 @@
 
 namespace hooks\setting;
 
+use hooks\Hook_Interface;
+
 /**
  * カスタム投稿タイプ作成
  */
-class Create_Post_Type
+class Create_Post_Type implements Hook_Interface
 {
     private const POST_TYPES = [
         'works' => '制作実績',
@@ -17,12 +19,12 @@ class Create_Post_Type
      *
      * @return void
      */
-    public function createPostType()
+    public function createPostType(): void
     {
         foreach (self::POST_TYPES as $key => $post_type) {
             register_post_type(
                 $key,
-                self::getPostTypeDefinition($post_type)
+                $this->getPostTypeDefinition($key, $post_type)
             );
         }
     }
@@ -30,18 +32,24 @@ class Create_Post_Type
     /**
      * カスタム投稿タイプ設定
      *
+     * @param  string $slug
      * @param  string $label
-     * @return void
+     * @return array
      */
-    private function getPostTypeDefinition($label)
+    private function getPostTypeDefinition(string $slug, string $label): array
     {
-        return (array(
+        return [
             'label' => $label,
             'public' => true,
             'has_archive' => true,
-            'hierarchicla' => true,
+            'hierarchical' => true,
             'menu_position' => 10,
             'show_in_rest' => true,
+            // パーマリンク設定の prefix(/archives/ 等) を付けず /{slug}/xxx で出力する
+            'rewrite' => [
+                'slug' => $slug,
+                'with_front' => false,
+            ],
             'supports' => [
                 'title',
                 'editor',
@@ -49,15 +57,15 @@ class Create_Post_Type
                 'revisions',
                 'custom-fields',
                 'excerpt',
-            ]
-        ));
+            ],
+        ];
     }
     /**
      * アクションフックの設定
      *
      * @return void
      */
-    public function addAction()
+    public function addAction(): void
     {
         add_action(
             'init',

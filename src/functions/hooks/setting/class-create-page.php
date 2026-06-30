@@ -2,10 +2,12 @@
 
 namespace hooks\setting;
 
+use hooks\Hook_Interface;
+
 /**
  * 固定ページの自動生成
  */
-class Create_Page
+class Create_Page implements Hook_Interface
 {
     // 作成したい固定ページのタイトル名・スラッグを入れる。
     private const PAGES = array(
@@ -19,7 +21,7 @@ class Create_Page
      *
      * @return void
      */
-    public function addAction()
+    public function addAction(): void
     {
         add_action('after_switch_theme', array($this, 'createAllPages'));
     }
@@ -27,10 +29,10 @@ class Create_Page
     /**
      * 固定ページ設定の作成
      *
-     * @param array $page
+     * @param  array $page
      * @return void
      */
-    private function createPage($page)
+    private function createPage(array $page): void
     {
         if (empty(get_page_by_path($page['slug']))) {
             //固定ページがなければ作成
@@ -60,10 +62,10 @@ class Create_Page
     /**
      * 親ページの設定
      *
-     * @param array $page
-     * @return void
+     * @param  array $page
+     * @return array
      */
-    private function setParent($page)
+    private function setParent(array $page): array
     {
         // 親ページ判別
         if (empty($page['parent'])) {
@@ -78,24 +80,14 @@ class Create_Page
     }
 
     /**
-     * 記事内容判別
+     * 固定ページ用の値を整形
      *
      * @param  array $page
-     * @return void
+     * @return array
      */
-    private function setContent($page)
+    private function setPage(array $page): array
     {
-        if (empty($page['content'])) {
-            $page['content'] = '';
-        }
-        return $page;
-    }
-
-    private function setPage($page)
-    {
-        $page = $this->setParent($page);
-        $page = $this->setContent($page);
-        return $page;
+        return $this->setParent($page);
     }
 
     /**
@@ -103,7 +95,7 @@ class Create_Page
      *
      * @return void
      */
-    public function createAllPages()
+    public function createAllPages(): void
     {
         foreach (self::PAGES as $value) {
             $value = $this->setPage($value); // 親ページの設定
