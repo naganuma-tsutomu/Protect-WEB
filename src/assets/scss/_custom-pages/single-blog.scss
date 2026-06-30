@@ -3,10 +3,21 @@
 // スマホ(390px)
 //////////////////////////////////////////////////
 
+// h2 {
+//     font-size: 22px;
+//     margin: 50px 5px 10px 5px;
+//     line-height: 40px;
+//     background: #1F4B8A;
+//     color: #fff;
+//     padding: 0 10px;
+//     height: 40px;
+// }
+
 h2 {
     font-size: 22px;
-    margin: 50px 5px 10px 5px;
-    line-height: 25px;
+    margin: 50px 0px 10px 0px;
+    line-height: 40px;
+    height: 40px;
 
     &::after {
         content: "";
@@ -14,8 +25,37 @@ h2 {
         width: 100%;
         height: 2px;
         background: #1F4B8A;
-        margin: 10px 0;
     }
+}
+
+h3 {
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 30px;
+    position: relative;
+    margin: 0 0 0 10px;
+
+
+    &::after {
+        position: absolute;
+        left: -20px;
+        bottom: 0;
+        content: "";
+        display: block;
+        width: 1%;
+        height: 100%;
+        background: #1F4B8A;
+    }
+}
+
+// すべてのh3ブロックに適用される基本の余白（2つ目以降のh3） //
+.main-content .main-content__index--h3 {
+    margin: 70px 10px !important;
+}
+
+/* h2ブロックのすぐ直後に来る最初のh3ブロックだけ余白を変える */
+.main-content .main-content__index--h2+.main-content__index--h3 {
+    margin: 30px 10px !important;
 }
 
 p {
@@ -218,6 +258,19 @@ p {
                 }
             }
         }
+
+        /* h3（小見出し）の字下げ指定 */
+        .index-list .index-item--h3 {
+            padding-left: 24px !important;
+            font-size: 15px !important;
+
+            i {
+                color: #a7a7a7;
+                font-size: 10px;
+            }
+
+        }
+
 
         // 本文
         .main-content {
