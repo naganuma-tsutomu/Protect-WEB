@@ -309,6 +309,8 @@
     .sub-index {
         display: none;
     }
+
+
 }
 
 // タブレット(768px)
@@ -410,10 +412,45 @@
                 border-radius: 10px;
             }
 
+            /* サイドバー目次のh3（小見出し）の字下げ */
+            .sub-index-item .sub-index-list--h3 {
+                margin: 0 0 0 20px !important;
+                padding: 10px 0 0 !important;
+
+                .sub-index-list {
+                    &__link {
+                        font-size: 14px !important;
+                    }
+                }
+
+                .fa-circle {
+                    color: #a7a7a7;
+                    font-size: 14px;
+                    margin-right: 5px;
+                }
+            }
+
+            .active {
+
+                .fa-circle {
+                    color: #1F4B8A !important;
+                    font-size: 14px !important;
+
+                    &::before {
+                        background: #1F4B8A;
+                        border-radius: 50%;
+                    }
+                }
+            }
+
+            .sub-index-list__link {
+                line-height: 20px;
+            }
+
             .sub-index-item {
                 list-style-type: none;
 
-                .sub-index-list {
+                .sub-index-list--h2 {
                     padding: 15px 0 0;
                     display: flex;
                     align-items: baseline;
@@ -436,7 +473,7 @@
 
                     .fa-square {
                         color: #1F4B8A;
-                        font-size: 18px;
+                        // font-size: 18px;
 
                         &::before {
                             background: #1F4B8A;
@@ -451,7 +488,6 @@
         }
     }
 }
-
 
 // PC(1025px)
 //////////////////////////////////////////////////
@@ -538,5 +574,7 @@
                 }
             }
         }
+
+
     }
 }
