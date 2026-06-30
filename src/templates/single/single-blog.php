@@ -64,14 +64,19 @@
                             <div class="main-box">
                                 <!-- 目次 --->
                                 <?php
-                                // 本文にフィルタを適用（1回だけ実行し、目次と本文の両方で使う）
+                                // 本文データの取得と整形
+                                // データベースから生の本文を取得し、WordPress公式の加工処理を一斉に適用。
+                                // 読者が実際に画面で見ている状態と100%同じ「完成されたHTML本文」を作る。
                                 $filtered_content = apply_filters('the_content', get_the_content());
                                 // sidebar.phpの目次生成でも使えるよう、グローバル変数に格納
                                 global $protect_web_filtered_content;
                                 $protect_web_filtered_content = $filtered_content;
 
-                                if (preg_match_all('/<h2.*?>+(.*?)<\/h2>/i', $filtered_content, $matches)) :
-                                    ?>
+                                // 目次生成のための見出し（h2・h3）チェックとデータ抽出
+                                // !emptyで中身があるか確認、preg_match_allで本文の中にh2またはh3が一つでもある場合は$matchesに保存。
+                                // ※見出しが1つもない記事の場合は、このif文がスキップされるため、空っぽの目次が表示されてしまうのを防ぐ。
+                                if (!empty($filtered_content) && preg_match_all('/<(h[23]).*?>(.*?)<\/h[23]>/i', $filtered_content, $matches)) :
+                                ?>
                                 <div class="index">
                                     <span class="index__border"></span>
                                     <div class="index__title">
@@ -80,11 +85,30 @@
                                     </div>
                                     <div class="index__text">
                                         <ol class="index-list">
-                                            <?php //抽出された見出しの配列を1つずつ取り出す
-                                            //$key=連番（インデックス）,$title=h2のテキスト
-                                            foreach ($matches[1] as $key => $title) : ?>
-                                                <li class="index-item">
-                                                    <i class="fa-regular fa-square"></i>
+                                            <?php 
+                                            // $matches[1] に「h2」または「h3」が入る
+                                            // $keyは何番目か、$tagはh2かh3か
+                                            foreach ($matches[1] as $key => $tag) : 
+                                                // h2かh3の中身のテキスト
+                                                $title = $matches[2][$key];
+
+                                                // タグ名を小文字に統一して判定（念のため）
+                                                $tag = strtolower($tag);
+
+                                                // h3の時は確実に「index-item--h3」というクラス名を追加する
+                                                $item_class = 'index-item';
+                                                if ($tag === 'h3') {
+                                                    // index-itemの後ろに新しいクラスを追加
+                                                    $item_class .= ' index-item--h3';
+                                                }
+                                            ?>
+                                                <li class="<?php echo $item_class; ?>">
+                                                    <?php if ($tag === 'h3') : ?>
+                                                        <i class="fa-regular fa-circle"></i>
+                                                    <?php else : ?>
+                                                        <i class="fa-regular fa-square"></i>
+                                                    <?php endif; ?>
+                                                    
                                                     <a class="index-item__link" href="#index-<?php echo $key; ?>"><?php echo strip_tags($title); ?></a>
                                                 </li>
                                             <?php endforeach; ?>
@@ -96,29 +120,39 @@
                                 <!-- 本文 --->
                                 <div class="main-content">
                                     <?php
-                                    // h2タグを区切り文字として、コンテンツをセクションに分割
-                                    $sections = preg_split('/(?=<h2)/', $filtered_content, -1, PREG_SPLIT_NO_EMPTY);
+                                    // h2またはh3タグを区切り文字として、コンテンツをセクションに分割
+                                    $sections = preg_split('/(?=<h[23])/', $filtered_content, -1, PREG_SPLIT_NO_EMPTY);
 
-                                    // 最初のセクション（最初のh2の前のコンテンツ）があるかチェック
-                                    if (isset($sections[0]) && strpos($sections[0], '<h2') === false) :
+                                    // 最初のセクション（最初の見出しの前のコンテンツ）が含まれていないかチェック
+                                    if (isset($sections[0]) && !preg_match('/<h[23]/', $sections[0])) :
                                     ?>
                                         <div class="main-content__index">
-                                            <?php echo array_shift($sections); ?>
+                                            <?php 
+                                            // 先頭を抜き出して、残りを前に詰める
+                                            echo array_shift($sections); ?>
                                         </div>
                                     <?php endif; ?>
 
                                     <?php
-                                    // 各h2セクションをループで出力します。
+                                    // 見出しブロックを上から1つずつループ処理
                                     foreach ($sections as $key => $section) :
-                                        // h2タグにIDを付与（目次からのリンク用）
-                                        $section = preg_replace('/<h2/', '<h2 id="index-' . $key . '"', $section, 1);
+                                        // 見出しタグの始まり（<h2 や <h3）を正確に置換してIDを付与
+                                        $section = preg_replace('/<(h[23])(\s|>)/i', '<$1 id="index-' . $key . '"$2', $section, 1);
+
+                                        // セクションの最初の中身が h3 かどうかでクラス名を完全に分ける
+                                        $section_class = 'main-content__index';
+                                        if (preg_match('/^<h3/i', trim($section))) {
+                                            $section_class .= ' main-content__index--h3'; // h3から始まるブロック
+                                        } else {
+                                            $section_class .= ' main-content__index--h2'; // h2から始まるブロック（またはその他）
+                                        }
                                     ?>
-                                        <div class="main-content__index">
+                                        <div class="<?php echo $section_class; ?>">
                                             <?php echo $section; ?>
                                         </div>
-                                    <?php endforeach;
-                                    ?>
+                                    <?php endforeach; ?>
                                 </div>
+
                                 <div class="category-sub">
                                     <p class="category-sub__title">この記事のカテゴリ・タグ一覧</p>
                                     <div class="bottom">

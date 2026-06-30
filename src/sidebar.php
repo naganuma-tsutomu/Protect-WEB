@@ -137,19 +137,35 @@
         <?php
         // single-blog.phpで保存したフィルタ済みコンテンツを再利用する
         global $protect_web_filtered_content;
-        if (!empty($protect_web_filtered_content) && preg_match_all('/<h2.*?>+(.*?)<\/h2>/i', $protect_web_filtered_content, $matches)) :
+
+        // クラス付きのタグでも、h2/h3のタグ名と中身のテキストを確実に別々でキャッチする正規表現
+        if (!empty($protect_web_filtered_content) && preg_match_all('/<(h[23])(?:\s[^>]*?)?>(.*?)<\/h[23]>/i', $protect_web_filtered_content, $matches)) :
         ?>
             <div class="sub-index">
                 <div class="sub-index__title">目次</div>
                 <ol class="sub-index-item">
-                <?php //抽出された見出しの配列を1つずつ取り出す
-                //$key=連番（インデックス）,$title=h2のテキスト
-                foreach ($matches[1] as $key => $title) : ?>
-                    <li class="sub-index-list">
-                        <i class="fa-regular fa-square"></i>
+                <?php 
+                // $matches[1] には "h2" または "h3" が入る
+                // $matches[2] には見出しのテキストが入る（これでh2の文字消えを解決）
+                foreach ($matches[1] as $key => $tag) : 
+                    $title = $matches[2][$key];
+                    $tag = strtolower($tag);
+
+                    // h2とh3でクラス名を完全に分ける（これで確実に字下げとh2の直後判定ができます）
+                    if ($tag === 'h3') {
+                        $item_class = 'sub-index-list sub-index-list--h3';
+                    } else {
+                        $item_class = 'sub-index-list sub-index-list--h2';
+                    }
+                ?>
+                    <li class="<?php echo $item_class; ?>">
+                        <?php if ($tag === 'h3') : ?>
+                            <i class="fa-regular fa-circle"></i> <?php else : ?>
+                            <i class="fa-regular fa-square"></i> <?php endif; ?>
+                        
                         <a class="sub-index-list__link" href="#index-<?php echo $key; ?>"><?php echo strip_tags($title); ?></a>
                     </li>
-                    <?php endforeach; ?>
+                <?php endforeach; ?>
                 </ol>
             </div>
         <?php endif; ?>

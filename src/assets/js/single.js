@@ -27,8 +27,8 @@ $(window).on("scroll.toc", function () {
     const threshold = 100; // 判定位置のオフセット（px）
     let activeIndex = -1;
 
-    // 現在どのh2のエリアにいるか判定
-    $(".main-content__index h2").each(function (i) {
+    // h2だけでなく、h3も含めたすべての見出しを上から順番に判定する
+    $(".main-content__index h2, .main-content__index h3").each(function (i) {
         const targetTop = $(this).offset().top;
         const scrollTop = $(window).scrollTop();
 
@@ -37,13 +37,14 @@ $(window).on("scroll.toc", function () {
         }
     });
 
-    // activeを消す
-    $(".main-content__index h2").removeClass('active');
+    // 本文の見出し（h2, h3）とサイドバーの目次リストから一斉にactiveを消す
+    $(".main-content__index h2, .main-content__index h3").removeClass('active');
     $(subindex).removeClass('active');
 
     // activeにする
     if (activeIndex >= 0) {
-        $(".main-content__index h2").eq(activeIndex).addClass('active');
+        // 今読んでいる階層の見出しと、サイドバーの対応する目次（連番）にactiveを付与
+        $(".main-content__index h2, .main-content__index h3").eq(activeIndex).addClass('active');
         $(subindex).eq(activeIndex).addClass('active');
     }
 });
